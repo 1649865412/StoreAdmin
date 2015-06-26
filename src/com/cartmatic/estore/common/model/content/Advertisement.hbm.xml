@@ -184,12 +184,12 @@
             unique="false"
         />
 	   <property
-            name="cotext"
+            name="context"
             type="java.lang.String"
             update="true"
             insert="true"
             access="property"
-            column="cotext"
+            column="context"
             length="255"
             not-null="false"
             unique="false"

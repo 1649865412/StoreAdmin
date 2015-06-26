@@ -33,7 +33,7 @@ public class AdvertisementTbl extends BaseObject implements Serializable {
 
 	protected Integer showContext;
 	protected Integer contextBackColor;
-	protected String cotext;
+	protected String context;
 	protected String contextTitle;
 	protected String contextSubTitle;
 
@@ -382,12 +382,12 @@ public class AdvertisementTbl extends BaseObject implements Serializable {
 		this.showContext = showContext;
 	}
 
-	public String getCotext() {
-		return cotext;
+	public String getContext() {
+		return context;
 	}
 
-	public void setCotext(String cotext) {
-		this.cotext = cotext;
+	public void setCotext(String context) {
+		this.context = context;
 	}
 
 	public Integer getContextBackColor() {
@@ -461,7 +461,7 @@ public class AdvertisementTbl extends BaseObject implements Serializable {
 				.append(this.isInclude, rhs.isInclude)
 				.append(this.contextTitle, rhs.contextTitle)
 				.append(this.showContext, rhs.showContext)
-				.append(this.cotext, rhs.cotext)
+				.append(this.context, rhs.context)
 				.append(this.contextBackColor, rhs.contextBackColor)
 				.append(this.contextSubTitle, rhs.contextSubTitle)
 				
@@ -494,7 +494,7 @@ public class AdvertisementTbl extends BaseObject implements Serializable {
 				.append(this.isInclude) 
 				.append(this.contextTitle)
 				.append(this.showContext) 
-				.append(this.cotext) 
+				.append(this.context) 
 				.append(this.contextBackColor) 
 				.append(this.contextSubTitle)
 				.append(this.mediaPathOgv) 
@@ -529,7 +529,7 @@ public class AdvertisementTbl extends BaseObject implements Serializable {
 				.append("version", this.version)
 				.append("showContext", this.showContext) 
 				.append("contextTitle", this.contextTitle) 
-				.append("cotext", this.cotext) 
+				.append("cotext", this.context) 
 				.append("contextBackColor", this.contextBackColor) 
 				.append("contextSubTitle", this.contextSubTitle) 
 				.toString();

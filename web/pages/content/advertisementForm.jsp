@@ -58,7 +58,7 @@
 				图片上文字内容
 			</td>
 			<td>
-				<textarea rows="6" cols="61" name="cotext">${advertisement.cotext}</textarea>
+				<textarea rows="6" cols="61" name="context">${advertisement.context}</textarea>
 			</td>
 		</tr>
 		<tr>
