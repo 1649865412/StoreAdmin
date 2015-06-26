@@ -386,7 +386,7 @@ public class AdvertisementTbl extends BaseObject implements Serializable {
 		return context;
 	}
 
-	public void setCotext(String context) {
+	public void setContext(String context) {
 		this.context = context;
 	}
 
