@@ -31,6 +31,7 @@ import com.cartmatic.estore.customer.service.MembershipManager;
 import com.cartmatic.estore.system.service.CurrencyManager;
 
 public class AppContextLoaderImpl implements AppContextLoader {
+	
 	//private java.util.Timer		contextTimer	= null;
 
 	//private String				licenseKey		= null;
@@ -87,7 +88,7 @@ public class AppContextLoaderImpl implements AppContextLoader {
 		servletContext.setAttribute(Constants.CONFIG, ConfigUtil.getInstance());
 		logger.debug("Config reloaded [OK].");
 	}
-
+	
 	/**
 	 * Will be called by reloadController, can reload application context.
 	 * 
@@ -172,7 +173,6 @@ public class AppContextLoaderImpl implements AppContextLoader {
 		if (logger.isDebugEnabled()) {
 			ContextUtil.getInstance().debugContext();
 		}
-
 		logger.info("Reloading application context completed [OK].");
 	}
 	
@@ -182,6 +182,7 @@ public class AppContextLoaderImpl implements AppContextLoader {
 		MailEngine mgr = (MailEngine) springContext.getBean("mailEngine");
 		mgr.init();
 	}
+	
 
 	/*
 	 * (non-Javadoc)
@@ -222,7 +223,6 @@ public class AppContextLoaderImpl implements AppContextLoader {
 		if (logger.isDebugEnabled()) {
 			logger.debug("Starting struts-menu initialization");
 		}
-
 		try {
 			if (ContextUtil.isStoreFront() || ContextUtil.isSearchServer() || ContextUtil.isWebService()) {
 				//CategoryManager categoryManager = (CategoryManager) springContext.getBean("categoryManager");

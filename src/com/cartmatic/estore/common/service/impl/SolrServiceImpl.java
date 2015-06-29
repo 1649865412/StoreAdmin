@@ -468,7 +468,6 @@ public class SolrServiceImpl implements SolrService
 	}
 	
 	
-	
 	/**
 	 * 帮助内容页面查询
 	 *  查询帮助内容
@@ -476,7 +475,7 @@ public class SolrServiceImpl implements SolrService
 	public SearchResult queryAllCulturalByTag(HttpServletRequest request,String tags,Integer defaultPageSize)
 	{
 		SearchResult searchResult=new SearchResult();
-    	SolrQuery query = QueryHelper.buildContentQuery(request,defaultPageSize);
+     	SolrQuery query = QueryHelper.buildContentQuery(request,defaultPageSize);
     	try {
     		//SolrQuery query = new SolrQuery("+ (parentCategoryIds:"+categoryId+")+(price:["+fromPrice+" TO "+toPrice+"]) + (displayable:true)");
 			QueryResponse queryResponse = getSolrServer(SearchConstants.CORE_NAME_CULTURAL).query(query);
@@ -496,4 +495,35 @@ public class SolrServiceImpl implements SolrService
 		}		
 		return searchResult;
 	}
+	
+	
+	/**
+	 * 帮助内容页面查询
+	 *  查询帮助内容
+	 */
+	public SearchResult queryAllCulturalByTag(String tags,Integer defaultPageSize)
+	{
+		SearchResult searchResult=new SearchResult();
+    //	SolrQuery query = QueryHelper.buildContentQuery(request,defaultPageSize);
+		SolrQuery query = null;
+    	try {
+    		//SolrQuery query = new SolrQuery("+ (parentCategoryIds:"+categoryId+")+(price:["+fromPrice+" TO "+toPrice+"]) + (displayable:true)");
+			QueryResponse queryResponse = getSolrServer(SearchConstants.CORE_NAME_CULTURAL).query(query);
+			SolrDocumentList datas = queryResponse.getResults();
+		//	QueryHelper.setPageInfo(request, query, datas);
+	    	List<Integer> rs = new ArrayList<Integer>();
+			for (SolrDocument data : datas)
+			{				
+				rs.add(Integer.valueOf(data.getFieldValue("id").toString()));
+			}
+			searchResult.setResultList(rs);
+			
+		} catch (SolrServerException e) {
+			logger.error(e);
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		return searchResult;
+	}
+
 }

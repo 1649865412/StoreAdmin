@@ -8,9 +8,11 @@ import org.springframework.validation.BindException;
 
 import com.cartmatic.estore.core.controller.GenericController;
 import com.cartmatic.estore.core.model.Message;
+import com.cartmatic.estore.common.helper.CatalogHelper;
 import com.cartmatic.estore.common.model.culturalinformation.CulturalInformation;
 import com.cartmatic.estore.common.model.sekillproduct.SekillProduct;
 import com.cartmatic.estore.culturalinformation.service.CulturalInformationManager;
+import com.cartmatic.estore.textsearch.SearchConstants;
 
 public class CulturalInformationController extends GenericController<CulturalInformation> {
     private CulturalInformationManager culturalInformationManager = null;
@@ -58,9 +60,10 @@ public class CulturalInformationController extends GenericController<CulturalInf
 	 * 重写保存方法
 	 */
 	protected void  onSave(HttpServletRequest request, CulturalInformation entity, BindException errors) {
-		    
 		    System.out.println("onSave");
 			culturalInformationManager.save(entity);
+			System.out.println("entityID========"+entity.getId());
+			CatalogHelper.getInstance().indexNotifyUpdateEventMethod( entity.getId(), SearchConstants.CORE_NAME_CULTURAL);
 			saveMessage(Message.info("common.added", new Object[] {getEntityTypeMessage(), getEntityName(entity)}));	
 		
 	}

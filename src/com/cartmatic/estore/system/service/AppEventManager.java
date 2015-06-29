@@ -4,6 +4,7 @@ import com.cartmatic.estore.common.model.system.AppEvent;
 import com.cartmatic.estore.core.event.ApplicationEvent;
 import com.cartmatic.estore.core.service.GenericManager;
 
+
 /**
  * Manager interface for AppEvent, responsible for business processing, and communicate between web and persistence layer.
  *

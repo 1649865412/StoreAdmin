@@ -52,8 +52,13 @@ public class AppEventManagerImpl extends GenericManagerImpl<AppEvent> implements
 
 	}
 
+	
 	private long lastProcessTime=0;
 	
+     
+	/**
+	 * 建要增加的事件对象保存在app_event表里
+	 */
 	public void fireApplicationEvent(ApplicationEvent event) {
         logger.info("Firing application event:" + event);
         appEventHandler.handleApplicationEvent(event);
@@ -63,8 +68,13 @@ public class AppEventManagerImpl extends GenericManagerImpl<AppEvent> implements
         save(appEvent);
     }
 	
+	
+	
 	/* (non-Javadoc)
 	 * @see com.cartmatic.estore.system.service.AppEventManager#handleApplicationEvents()
+	 */
+	/**
+	 * 此方法由三个项目，后台定义bean，前台建立定时器，30S为周期build索引
 	 */
 	public void processApplicationEvents() {
 		if (lastProcessTime==0) {
@@ -81,6 +91,10 @@ public class AppEventManagerImpl extends GenericManagerImpl<AppEvent> implements
 			lastProcessTime=appEvent.getUpdateTime().getTime();
 		}
 	}
+	
+	
+	
+	
 	
 	/**
 	 * 定时任务器调度
@@ -107,6 +121,8 @@ public class AppEventManagerImpl extends GenericManagerImpl<AppEvent> implements
             lastProcessTime=appEvent.getUpdateTime().getTime();
         }
     }*/
+	
+	
 
 	/**
      * @param appEventDao
