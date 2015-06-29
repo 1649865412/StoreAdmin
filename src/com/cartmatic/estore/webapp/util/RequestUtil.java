@@ -24,8 +24,20 @@ import com.cartmatic.estore.common.model.customer.Customer;
 import com.cartmatic.estore.core.model.AppUser;
 import com.cartmatic.estore.core.util.StringUtil;
 
+
+
 /**
  * Convenience class for setting and retrieving cookies.
+ */
+
+/**
+ *  请求工具类（包括参数安全获取，cookie操作等）
+ *  <code>RequestUtil.java</code>
+ *  <p>
+ *  <p>Copyright  2015 All right reserved.
+ *  @author admin 时间 2015-6-29 上午11:10:19	
+ *  @version 1.0 
+ *  </br>最后修改人 无
  */
 public final class RequestUtil {
 	private transient static Log	logger			= LogFactory
@@ -138,6 +150,13 @@ public final class RequestUtil {
 		return sb;
 	}
 
+	
+	/**
+	 * 功能:获取错误信息
+	 * <p>作者 杨荣忠 2015-6-29 上午11:09:36
+	 * @param request
+	 * @return
+	 */
 	public final static String getErrorUrl(HttpServletRequest request) {
 		String errorUrl = (String) request
 				.getAttribute("javax.servlet.error.request_uri");
@@ -155,40 +174,46 @@ public final class RequestUtil {
 		return errorUrl;
 	}
 
+	
+	
+	/**
+	 * 功能:获取eStore cookie的名字
+	 * <p>作者 杨荣忠 2015-6-29 上午11:09:06
+	 * @param request
+	 * @return
+	 */
 	public static Cookie getEStoreCookie(HttpServletRequest request) {
 		return getCookie(request, Constants.COOKIE_NAME);
 	}
 
+	
+	/**
+	 * 功能:获取访问路径
+	 * <p>作者 杨荣忠 2015-6-29 上午11:08:42
+	 * @param req
+	 * @return
+	 */
 	public static final String getFullRequestUrl(HttpServletRequest req) {
 		return (req.getQueryString() == null ? req.getRequestURL() : req
 				.getRequestURL().append("?").append(req.getQueryString()))
 				.toString();
 	}
 
-	public static Integer getInteger(HttpServletRequest request,
+	
+	/**
+	 * 功能:由参数名安全获取参数内容（返回Integer数组）
+	 * <p>作者 杨荣忠 2015-6-29 上午11:00:09
+	 * @param request
+	 * @param paramName
+	 * @return
+	 */
+	public static Integer[] getIntegerArrayNullSafe(HttpServletRequest request,
 			String paramName) {
-		String id = request.getParameter(paramName);
-		if (id != null && !id.equals("")) {
-			try {
-				return new Integer(id);
-			} catch (Exception e) {
-				return null;
-			}
+		Integer[] iIds =getIntegerArray(request, paramName);
+		if(iIds==null){
+			iIds=new Integer[]{};
 		}
-		return null;
-	}
-
-	public static Boolean getBoolean(HttpServletRequest request,
-			String paramName) {
-		String id = request.getParameter(paramName);
-		if (id != null && !id.equals("")) {
-			try {
-				return new Boolean(id);
-			} catch (Exception e) {
-				return Boolean.FALSE;
-			}
-		}
-		return Boolean.FALSE;
+		return iIds;  
 	}
 	
 	public static Integer[] getIntegerArray(HttpServletRequest request,
@@ -204,15 +229,56 @@ public final class RequestUtil {
 		return iIds;
 	}
 	
-	public static Integer[] getIntegerArrayNullSafe(HttpServletRequest request,
-			String paramName) {
-		Integer[] iIds =getIntegerArray(request, paramName);
-		if(iIds==null){
-			iIds=new Integer[]{};
-		}
-		return iIds;  
-	}
 	
+	/**
+	 * 功能:由参数名安全获取参数内容（返回Integer值）
+	 * <p>作者 杨荣忠 2015-6-29 上午11:08:09
+	 * @param request
+	 * @param paramName
+	 * @return
+	 */
+	public static Integer getInteger(HttpServletRequest request,
+			String paramName) {
+		String id = request.getParameter(paramName);
+		if (id != null && !id.equals("")) {
+			try {
+				return new Integer(id);
+			} catch (Exception e) {
+				return null;
+			}
+		}
+		return null;
+	}
+
+	
+	/**
+	 * 功能:由参数名安全获取参数内容（返回Boolean,默认返回false）
+	 * <p>作者 杨荣忠 2015-6-29 上午11:00:57
+	 * @param request
+	 * @param paramName
+	 * @return
+	 */
+	public static Boolean getBoolean(HttpServletRequest request,
+			String paramName) {
+		String id = request.getParameter(paramName);
+		if (id != null && !id.equals("")) {
+			try {
+				return new Boolean(id);
+			} catch (Exception e) {
+				return Boolean.FALSE;
+			}
+		}
+		return Boolean.FALSE;
+	}
+
+	
+	/**
+	 * 功能:由参数名安全获取参数内容（返回String数组）
+	 * <p>作者 杨荣忠 2015-6-29 上午10:59:56
+	 * @param request
+	 * @param paramName
+	 * @return
+	 */
 	public static String[] getParameterValuesNullSafe(HttpServletRequest request,
 			String paramName) {
 		String[] strIds = request.getParameterValues(paramName);
@@ -222,6 +288,14 @@ public final class RequestUtil {
 		return strIds;  
 	}
 
+	
+	/**
+	 * 功能:由参数名安全获取参数内容（返回String）
+	 * <p>作者 杨荣忠 2015-6-29 上午10:59:03
+	 * @param request
+	 * @param paramName
+	 * @return
+	 */
 	public static String getParameterNullSafe(HttpServletRequest request,
 			String paramName) {
 		String ret = request.getParameter(paramName);

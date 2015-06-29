@@ -424,6 +424,7 @@ public class CatalogHelper {
 		return minAndMaxQuantity;
 	}
 	
+	
 	/**
 	 * 前台搜索排序hql转换
 	 * @param sortOrder
@@ -452,14 +453,18 @@ public class CatalogHelper {
 	}
 	
 	public void indexNotifyUpdateEvent(Integer...productIds){
+		System.out.println("indexNotifyUpdateEvent==============="+productIds);
 		IndexNotifyEvent event = new IndexNotifyEvent(SearchConstants.CORE_NAME_PRODUCT, SearchConstants.UPDATE_TYPE.UPDATE); 
 		event.setIds(Arrays.asList(productIds));
 		ContextUtil.getInstance().fireApplicationEvent(event);
 	}
 	
 	public void indexNotifyDeleteEvent(Integer...productIds){
+		System.out.println("indexNotifyDeleteEvent================"+productIds);
 		IndexNotifyEvent event = new IndexNotifyEvent(SearchConstants.CORE_NAME_PRODUCT, SearchConstants.UPDATE_TYPE.DEL); 
 		event.setIds(Arrays.asList(productIds));
 		ContextUtil.getInstance().fireApplicationEvent(event);
 	}
+	
+	
 }

@@ -17,7 +17,13 @@ import com.cartmatic.estore.common.model.cart.Shoppingcart;
 import com.cartmatic.estore.common.model.order.SalesOrder;
 
 /**
- * web项目session处理类
+ *  
+ *  <code>web项目session处理类</code>
+ *  <p>
+ *  <p>Copyright  2015 All right reserved.
+ *  @author admin 时间 2015-6-29 上午11:15:25	
+ *  @version 1.0 
+ *  </br>最后修改人 无
  */
 public class SessionUtil {
 	public final static String	BOOL_FROMCHECKOUT	= "fromCheckout";
@@ -32,6 +38,15 @@ public class SessionUtil {
 	public final static String	OBJ_MINICART		= "minicart";
 	public final static String	OBJ_SHOPPINGCART	= "shoppingcart";
 
+	
+	
+	/**
+	 * 功能:session值获取
+	 * <p>作者 杨荣忠 2015-6-29 上午11:14:51
+	 * @param _session
+	 * @param sKey
+	 * @return
+	 */
 	private static Object getAttribute(HttpSession _session, String sKey) {
 		if (_session == null) {
 			return null;
@@ -39,7 +54,14 @@ public class SessionUtil {
 		return _session.getAttribute(sKey);
 	}
 
-
+	
+	/**
+	 * 功能:session 设置(Key-Value)
+	 * <p>作者 杨荣忠 2015-6-29 上午11:12:45
+	 * @param _session
+	 * @param sKey
+	 * @param obj
+	 */
 	public static void setAttribute(HttpSession _session, String sKey,
 			Object obj) {
 		if (_session != null) {
@@ -47,7 +69,12 @@ public class SessionUtil {
 		}
 	}
 
-
+    /**
+     * 功能::session 设置(currentGroupKey-Value)
+     * <p>作者 杨荣忠 2015-6-29 上午11:14:12
+     * @param session
+     * @param currentGroupKey
+     */
 	public static void setCurrentGroupKey(HttpSession session,
 			String currentGroupKey) {
 		session.setAttribute(Constants.CURRENT_GROUP_KEY, currentGroupKey);

@@ -68,8 +68,11 @@ public final class RequestContext
 	public static ServletContext getServletContext() {
         return ContextUtil.getServletContext();
     }
+	
+	
 	/**
-	 * 
+	 * 功能:获取当前访问路径
+	 * <p>作者 杨荣忠 2015-6-29 上午11:15:59
 	 * @return
 	 */
 	public static String getCurrentRequestUrl() {
@@ -126,6 +129,13 @@ public final class RequestContext
 		return null;
 	}
 	
+	
+	/**
+	 * 功能:spring securty访问路径判断
+	 * <p>作者 杨荣忠 2015-6-29 上午11:16:46
+	 * @param url
+	 * @return
+	 */
 	public static boolean authorizeUsingUrlCheck(String url) 
 	{
 		SecurityContext securityContext = SecurityContextHolder.getContext();
@@ -157,37 +167,73 @@ public final class RequestContext
         return (WebInvocationPrivilegeEvaluator) wipes.values().toArray()[0];
     }
 
+	
+	/**
+	 * 功能:获取当前用户的Id
+	 * <p>作者 杨荣忠 2015-6-29 上午11:17:30
+	 * @return
+	 */
 	public static Integer getCurrentUserId() {
 		return getCurrentUser() != null ? getCurrentUser().getAppuserId()
 				: defaultUserId;
 	}
-
+   
+	/**
+	 * 功能:获取当前用户的Id
+	 * <p>作者 杨荣忠 2015-6-29 上午11:17:30
+	 * @return
+	 */
 	public static Integer getCurrentUserIdDefaultSystem() {
 		return getCurrentUser() != null ? getCurrentUser().getAppuserId()
 				: Constants.USERID_SYSTEM;
 	}
 
+	
+	/**
+	 * 功能:获取当前用户的名字
+	 * <p>作者 杨荣忠 2015-6-29 上午11:17:30
+	 * @return
+	 */
 	public static String getCurrentUserName() {
 		return getCurrentUser() != null ? getCurrentUser().getFullName()
 				: defaultUserName;
 	}
 
+	
+	/**
+	 * 功能:获取当前用户的系统名
+	 * <p>作者 杨荣忠 2015-6-29 上午11:17:30
+	 * @return
+	 */
 	public static String getCurrentUserNameDefaultSystem() {
 		return getCurrentUser() != null ? getCurrentUser().getFullName()
 				: systemUserName;
 	}
 
+	
+	/**
+	 * 功能:获取当前用户的Id
+	 * <p>作者 杨荣忠 2015-6-29 上午11:17:30
+	 * @return
+	 */
 	public static String getRelativeTemplatePath(String templatePath) 
 	{
 		//return new StringBuilder(Constants.PAGES_PREFIX).append(templatePath).append(".jsp").toString();
 		return new StringBuilder(getCurrentTemplatePath()).append(Constants.PAGES_PREFIX).append(templatePath).append(".jsp").toString();
 	}
 
+	
+	/**
+	 * 功能:获取当前信息数目 
+	 * <p>作者 杨荣忠 2015-6-29 上午11:18:59
+	 * @return
+	 */
 	public static int getSessionMessageCount() {
 		List<String> messages = (List<String>) getCurrentHttpSession()
 				.getAttribute("messages");
 		return messages == null ? 0 : messages.size();
 	}
+	
 
 	public static boolean isAnonymousUser() {
 		return getCurrentUser() == null;
