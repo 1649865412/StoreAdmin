@@ -72,8 +72,6 @@ public class CulturalInformationController extends GenericController<CulturalInf
 			saveMessage(Message.info("common.added", new Object[] {getEntityTypeMessage(), getEntityName(entity)}));	
 	}
 
-	
-	
 	/**
 	 * 重写删除方法
 	 * @throws Exception 
