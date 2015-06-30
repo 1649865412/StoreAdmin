@@ -74,7 +74,7 @@ public class AppEventManagerImpl extends GenericManagerImpl<AppEvent> implements
 	 * @see com.cartmatic.estore.system.service.AppEventManager#handleApplicationEvents()
 	 */
 	/**
-	 * 此方法由三个项目，后台定义bean，前台建立定时器，30S为周期build索引
+	 * 此方法由三个项目配合的定时器，后台定义bean，前台建立定时器控制，30S为周期建立索引
 	 */
 	public void processApplicationEvents() {
 		if (lastProcessTime==0) {

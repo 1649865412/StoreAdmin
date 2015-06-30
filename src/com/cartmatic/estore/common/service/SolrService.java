@@ -105,13 +105,5 @@ public interface SolrService
     public SearchResult queryAllCulturalByTag(HttpServletRequest request,String tags,Integer defaultPageSize);
     
     
-    /**
-     * 功能:查询文化资讯列表信息
-     * <p>作者 杨荣忠 2015-6-19 下午05:00:50
-     * @param request
-     * @param tags
-     * @param defaultPageSize
-     * @return
-     */
-    public SearchResult queryAllCulturalByTag(String tags,Integer defaultPageSize);
+
 }

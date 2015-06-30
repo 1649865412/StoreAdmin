@@ -485,7 +485,7 @@ public class CatalogHelper {
 	 * @param productIds
 	 * @param core
 	 */
-	public void indexNotifyUpdateEventMethod(Integer productIds,String core){
+	public void indexNotifyUpdateEventMethod(String core,Integer...productIds){
 		System.out.println("indexNotifyUpdateEvent==============="+productIds);
 		IndexNotifyEvent event = new IndexNotifyEvent(core, SearchConstants.UPDATE_TYPE.UPDATE); 
 		event.setIds(Arrays.asList(productIds));
@@ -498,7 +498,7 @@ public class CatalogHelper {
 	 * @param productIds
 	 * @param core
 	 */
-	public void indexNotifyDeleteEventMethod(Integer productIds,String core){
+	public void indexNotifyDeleteEventMethod(String core,Integer...productIds){
 		System.out.println("indexNotifyDeleteEvent================"+productIds);
 		IndexNotifyEvent event = new IndexNotifyEvent(core, SearchConstants.UPDATE_TYPE.DEL); 
 		event.setIds(Arrays.asList(productIds));

@@ -31,13 +31,21 @@
 					<div>
 						<select name="COL@s.type@Integer@EQ" id="type" style="width:150px" >
 							<option value="">所有</option>
-							<option value="0" <c:if test="${param['COL@s.type@String@EQ'] =='0'}">selected="selected" </c:if>>秀场</option>
-							<option value="1" <c:if test="${param['COL@s.type@String@EQ'] == '1'}">selected="selected" </c:if>>访谈</option>
-							<option value="2" <c:if test="${param['COL@s.type@String@EQ'] =='2'}">selected="selected" </c:if>>行业动态</option>
-							<option value="3" <c:if test="${param['COL@s.type@String@EQ'] =='3'}">selected="selected" </c:if>>线下主题活动</option>
+							<option value="0" <c:if test="${param['COL@s.type@Integer@EQ'] ==0}">selected="selected" </c:if>>秀场</option>
+							<option value="1" <c:if test="${param['COL@s.type@Integer@EQ'] ==1}">selected="selected" </c:if>>访谈</option>
+							<option value="2" <c:if test="${param['COL@s.type@Integer@EQ'] ==2}">selected="selected" </c:if>>行业动态</option>
+							<option value="3" <c:if test="${param['COL@s.type@Integer@EQ'] ==3}">selected="selected" </c:if>>线下主题活动</option>
 						</select>
 					</div>
-					
+						<!-- （0：发布）（1：取消） -->
+				<div class="title">发布状态</div>
+					<div>
+						<select name="COL@s.state@Integer@EQ" id="state" style="width:150px" >
+							<option value="">所有</option>
+							<option value="0" <c:if test="${param['COL@s.state@Integer@EQ'] ==0}">selected="selected" </c:if>>正常</option>
+							<option value="1" <c:if test="${param['COL@s.state@Integer@EQ'] ==1}">selected="selected" </c:if>>取消</option>
+						</select>
+					</div>
 				<div class="title">发布时间</div>
 					<div>
 						从
@@ -65,6 +73,10 @@
 			
 			<display:column style="width: 3%" title="${checkAll}" media="html">
 				<input type="checkbox" name="multiIds" value="${culturalInformationItem.culturalInformationId}" class="checkbox" title="${culturalInformationItem.culturalInformationName}"/>
+			</display:column>
+			
+			<display:column sortable="false" decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" titleKey="culturalInformation.logoImg" media="html">
+				<cartmatic:img isUrlOnly="false" url="${culturalInformationItem.logoImg}" mediaType="other" id="logoImage" height="100" width="100"></cartmatic:img>
 			</display:column>
 			
 			<display:column sortable="false" url="${editURLPath}" paramId="culturalInformationId" paramProperty="culturalInformationId" title="标题"
@@ -97,16 +109,20 @@
 				</c:choose>
 			</display:column>
 									
-        	<display:column sortable="false" decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" titleKey="culturalInformation.logoImg" media="html">
-				<cartmatic:img isUrlOnly="false" url="${culturalInformationItem.logoImg}" mediaType="other" id="logoImage" height="100" width="100"></cartmatic:img>
-			</display:column>
-			
 			<display:column property="metaKeywork" sortable="true" headerClass="data-table-title"  title="搜索关键词"
         		decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" titleKey="culturalInformation.metaKeywork"/>
         		
 		    <display:column property="sortOrder" sortable="true" headerClass="data-table-title"  title="排序(越大越前)"
         		decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" titleKey="culturalInformation.sortOrder"/>
-		 
+        		
+		 	 <display:column sortable="true" title="发布状态"
+				decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" titleKey="culturalInformation.state">
+				<c:choose >
+				  <c:when test="${culturalInformationItem.state==0}">正常</c:when>
+				  <c:when test="${culturalInformationItem.state==1}">取消</c:when>
+				</c:choose>
+			</display:column>
+			
 		</display:table>
 		<%@include file="/common/pagingOnlyNew.jsp"%>
 </form>

@@ -34,6 +34,7 @@ public class CulturalInformationTbl extends BaseObject implements Serializable {
 	protected String backOne;
 	protected String backTwo;
 	protected String metaKeywork;
+	protected Integer state;
 
 	/**
 	 * Default Empty Constructor for class CulturalInformation
@@ -309,6 +310,15 @@ public class CulturalInformationTbl extends BaseObject implements Serializable {
 	}	
 	
 	
+	
+	public Integer getState() {
+		return state;
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
+	}
+
 	/**
 	 * 搜索关键字字段	 * @return String
 	 * @hibernate.property column="backTwo" type="java.lang.String" length="20" not-null="false" unique="false"
@@ -347,6 +357,7 @@ public class CulturalInformationTbl extends BaseObject implements Serializable {
 				.append(this.videoAddress, rhs.videoAddress)
 				.append(this.backOne, rhs.backOne)
 				.append(this.backTwo, rhs.backTwo)
+				.append(this.state, rhs.state)
 				.append(this.metaKeywork, rhs.metaKeywork)
 				.isEquals();
 	}
@@ -372,7 +383,8 @@ public class CulturalInformationTbl extends BaseObject implements Serializable {
 				.append(this.createTime) 
 				.append(this.videoAddress) 
 				.append(this.backOne) 
-				.append(this.backTwo) 
+				.append(this.backTwo)
+				.append(this.state) 
 				.append(this.metaKeywork)
 				.toHashCode();
 	}
@@ -399,6 +411,7 @@ public class CulturalInformationTbl extends BaseObject implements Serializable {
 				.append("videoAddress", this.videoAddress) 
 				.append("backOne", this.backOne) 
 				.append("backTwo", this.backTwo) 
+				.append("state",this.state) 
 				.append(this.metaKeywork)
 				.toString();
 	}

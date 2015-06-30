@@ -24,7 +24,16 @@
 		<table class="table-content" cellSpacing="0" cellPadding="0" width="100%" border="0">
 		<app:input property="title" />
  		<app:input property="commentNumber" />
- 		
+ 		<tr>
+			<td class="FieldLabel">
+				发布状态：
+			</td>
+			<td>
+				正常<input type="radio" value="0" name="state" <c:if test="${culturalInformation.state==0}" >checked</c:if>>
+				&nbsp;&nbsp;&nbsp; 
+				取消<input type="radio" value="1" name="state" <c:if test="${culturalInformation.state==1}" >checked</c:if>>
+			</td>
+		</tr>
  	<!-- 	<app:input property="releaseTime" /> -->
  		<tr>
 			<td class="FieldLabel">
@@ -97,14 +106,8 @@
 			</td>
 	    </tr>
 	    <app:input property="metaKeywork" />
- 		<app:input property="brandId" />
  		<app:input property="sortOrder" />
- 		<app:formText label="common.message.createTime" value="${culturalInformation.createTime}" />
  		
-  	<!--	<app:input property="videoAddress" />-->
- 		<app:input property="backOne" />
-    <!-- 	<app:input property="backTwo" /> -->
-    
       <tr>
 			<td class="FieldLabel">
 			</td>
@@ -114,6 +117,10 @@
 	 </tr>
  	    <app:input property="textIntroduction" />
 		<app:ui_htmlEditor textareaIds="textIntroduction"/>
+		<app:formText label="common.message.createTime" value="${culturalInformation.createTime}" />
+		<!--	<app:input property="videoAddress" />-->
+ 		<app:input property="backOne" />
+    <!-- 	<app:input property="backTwo" /> -->
   	</table>
 </form:form>
 

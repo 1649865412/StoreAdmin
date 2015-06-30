@@ -19,7 +19,6 @@ public class CulturalinformationTest  extends BaseTransactionalTestCase
 	    @Autowired
 		private CulturalInformationManager culturalInformationManager = null;
 	    
-	    
 	    /**
 	     * 功能:
 	     * <p>作者 杨荣忠 2015-6-29 上午10:55:32
@@ -60,7 +59,7 @@ public class CulturalinformationTest  extends BaseTransactionalTestCase
 	    	
 	    	Integer productIds = CulturalInformation.getId();
 	    	
-	    	CatalogHelper.getInstance().indexNotifyUpdateEventMethod( productIds, SearchConstants.CORE_NAME_CULTURAL);
+	    	CatalogHelper.getInstance().indexNotifyUpdateEventMethod(SearchConstants.CORE_NAME_CULTURAL,productIds);
 	    	
 	    
 	         
