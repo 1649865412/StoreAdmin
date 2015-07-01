@@ -27,9 +27,11 @@ public class ShoppingcartTbl extends BaseObject implements Serializable {
 
     protected Integer shoppingcartId;
 	protected String uuid;
+	
 	protected String usedCouponNo;
 	protected Short isUsedCoupon;
 	protected java.math.BigDecimal cartDiscountAmount= new BigDecimal(0);
+	protected java.math.BigDecimal fullCutSum= new BigDecimal(0);
 	protected String shippingDiscountInfo = "";
 	protected Integer gainedPoint= new Integer(0);
 	protected Integer gainedCouponTypeId= null;
@@ -50,6 +52,14 @@ public class ShoppingcartTbl extends BaseObject implements Serializable {
 	
 	protected String giftCertificateNos;
 	protected Integer shopPoint;
+
+	public java.math.BigDecimal getFullCutSum() {
+		return fullCutSum;
+	}
+
+	public void setFullCutSum(java.math.BigDecimal fullCutSum) {
+		this.fullCutSum = fullCutSum;
+	}
 
 	/**
 	 * Default Empty Constructor for class Shoppingcart
@@ -385,6 +395,7 @@ public class ShoppingcartTbl extends BaseObject implements Serializable {
 				.append(this.shoppingcartId, rhs.shoppingcartId)
 				.append(this.uuid, rhs.uuid)
 				.append(this.isUsedCoupon, rhs.isUsedCoupon)
+				.append(this.fullCutSum, rhs.fullCutSum)
 				.append(this.cartDiscountAmount, rhs.cartDiscountAmount)
 				.append(this.shippingDiscountInfo, rhs.shippingDiscountInfo)
 				.append(this.gainedPoint, rhs.gainedPoint)
@@ -407,6 +418,7 @@ public class ShoppingcartTbl extends BaseObject implements Serializable {
 				.append(this.shoppingcartId) 
 				.append(this.uuid) 
 				.append(this.isUsedCoupon) 
+				.append(this.fullCutSum) 
 				.append(this.cartDiscountAmount) 
 				.append(this.shippingDiscountInfo) 
 				.append(this.gainedPoint) 
@@ -429,6 +441,7 @@ public class ShoppingcartTbl extends BaseObject implements Serializable {
 				.append("shoppingCartId", this.shoppingcartId) 
 				.append("uuid", this.uuid) 
 				.append("isUsedCoupon", this.isUsedCoupon) 
+				.append("fullCutSum", this.fullCutSum) 
 				.append("cartDiscountAmount", this.cartDiscountAmount) 
 				.append("shippingDiscountInfo", this.shippingDiscountInfo) 
 				.append("gainedPoint", this.gainedPoint) 

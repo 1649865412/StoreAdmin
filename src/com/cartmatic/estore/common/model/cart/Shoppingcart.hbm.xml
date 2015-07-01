@@ -22,6 +22,9 @@
 		<property name="isUsedCoupon" type="java.lang.Short" update="true"
 			insert="true" access="property" column="isUsedCoupon" length="5"
 			not-null="true" unique="false" />
+		<property name="fullCutSum" type="java.math.BigDecimal"
+			update="true" insert="true" access="property" column="fullCutSum"
+			precision="12" scale="2" not-null="false" unique="false" />
 		<property name="cartDiscountAmount" type="java.math.BigDecimal"
 			update="true" insert="true" access="property" column="cartDiscountAmount"
 			precision="12" scale="2" not-null="false" unique="false" />
