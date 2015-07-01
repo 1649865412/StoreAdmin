@@ -25,6 +25,8 @@ public class Shoppingcart extends ShoppingcartTbl implements Cloneable{
 	
 	
 	//*RAM用于暂时保存促销规则模拟运行后的结果
+	//保存购物车满减金额RAM
+	private BigDecimal fullCutSumRAM = new BigDecimal(0);
 	//保存购物车折扣金额RAM
 	private BigDecimal cartDiscountAmountRAM = new BigDecimal(0);
 	//保存运输信息折扣RAM
@@ -55,6 +57,16 @@ public class Shoppingcart extends ShoppingcartTbl implements Cloneable{
 		super();
 	}
 	
+
+	public BigDecimal getFullCutSumRAM() {
+		return this.fullCutSumRAM;
+	}
+
+
+	public void setFullCutSumRAM(BigDecimal fullCutSumRAM) {
+		this.fullCutSumRAM = fullCutSumRAM;
+	}
+
 
 	/**
 	 * Default Key Fields Constructor for class Shoppingcart

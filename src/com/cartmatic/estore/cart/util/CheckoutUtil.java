@@ -140,6 +140,11 @@ public class CheckoutUtil {
 		//订单 已支付
 		BigDecimal amountPaid = new BigDecimal(0);
 		
+		//满减 扣除
+		if(cart.getFullCutSum() != null){
+			amountPaid = amountPaid.add(cart.getFullCutSum());
+		}
+		
 		//优惠劵 扣除
 		if(cart.getCartDiscountAmount() != null){
 			amountPaid = amountPaid.add(cart.getCartDiscountAmount());
