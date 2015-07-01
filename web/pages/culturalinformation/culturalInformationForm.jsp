@@ -1,6 +1,7 @@
 <%@ include file="/common/taglibs.jsp"%>
 <%@ taglib prefix="cartmatic" tagdir="/WEB-INF/tags/cartmatic"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="cultural" tagdir="/WEB-INF/tags/cultural"%>
 
 <app:pageHeading entityName="${culturalInformation.culturalInformationName}" entityHeadingKey="culturalInformationDetail.heading" />
 
@@ -24,7 +25,16 @@
 		<table class="table-content" cellSpacing="0" cellPadding="0" width="100%" border="0">
 		<app:input property="title" />
  		<app:input property="commentNumber" />
- 		
+ 		<tr>
+			<td class="FieldLabel">
+				发布状态：
+			</td>
+			<td>
+				正常<input type="radio" value="0" name="state" <c:if test="${culturalInformation.state==0||culturalInformation.state==null}" >checked</c:if>>
+				&nbsp;&nbsp;&nbsp; 
+				取消<input type="radio" value="1" name="state" <c:if test="${culturalInformation.state==1}" >checked</c:if>>
+			</td>
+		</tr>
  	<!-- 	<app:input property="releaseTime" /> -->
  		<tr>
 			<td class="FieldLabel">
@@ -96,15 +106,23 @@
 				</div>
 			</td>
 	    </tr>
+	    
+	        <tr>
+			<td class="FieldLabel">
+				推荐资询(支持多选，前台只展示前三个):
+			</td>
+			<td>
+			    <input id="b1" type="button" class="admin-btn" value="文化资讯" onclick="multiSupplierSelector_show('kkk_DIV')"/>
+	<cultural:culturalSelector title="推荐资询选择"   id="multiSupplierSelector"  autoClose="true" ondblclick="fnTestSelectMultiProductSku"  multiSelect="true"></cultural:culturalSelector>
+	            <span id="arrayproductName"></span>
+	            <input type="hidden" id="arrayproductId" name="recommendArrayId"
+					value="${culturalInformation.recommendArrayId}" />
+			</td>
+	    </tr>
+	    
 	    <app:input property="metaKeywork" />
- 		<app:input property="brandId" />
  		<app:input property="sortOrder" />
- 		<app:formText label="common.message.createTime" value="${culturalInformation.createTime}" />
  		
-  	<!--	<app:input property="videoAddress" />-->
- 		<app:input property="backOne" />
-    <!-- 	<app:input property="backTwo" /> -->
-    
       <tr>
 			<td class="FieldLabel">
 			</td>
@@ -114,6 +132,10 @@
 	 </tr>
  	    <app:input property="textIntroduction" />
 		<app:ui_htmlEditor textareaIds="textIntroduction"/>
+		<app:formText label="common.message.createTime" value="${culturalInformation.createTime}" />
+		<!--	<app:input property="videoAddress" />-->
+ 		<app:input property="backOne" />
+    <!-- 	<app:input property="backTwo" /> -->
   	</table>
 </form:form>
 
@@ -126,4 +148,44 @@
 <v:javascript formName="culturalInformation" staticJavascript="false" />
 <script type="text/javascript">
     document.forms["culturalInformation"].elements["title"].focus();
+</script>
+
+
+
+<script type="text/javascript">
+function senData(arrayproductId, arrayproductName) {
+	 arrayproductIdvalue=$j("#arrayproductId").val();
+	 arrayproductNamevalue=$j("#arrayproductName").html();
+	 
+	 if(arrayproductIdvalue==""){
+		 arrayproductIdvalue="";
+		 }else{
+			 arrayproductIdvalue+=",";
+			 }
+	 if(arrayproductNamevalue==""){
+		 arrayproductNamevalue="";
+		 }else{
+			 arrayproductNamevalue+=",";
+			 }
+	$j("#arrayproductId").val(arrayproductIdvalue+arrayproductId);
+	$j("#arrayproductName").html(arrayproductNamevalue+arrayproductName);
+}
+
+function fnTestSelectMultiProductSku(productSkuList) {
+	//alert("fnTestSelectMultiProductSku")
+	var data = "";
+	var arrayproductId = new Array();
+	var arrayproductName = new Array();
+	for ( var i = 0; i < productSkuList.length; i++) {
+		var productSku = productSkuList[i];
+		data += "culturalInformationId:" + productSku.culturalInformationId + "\n";
+		data += "title:" + productSku.title+ "\n";
+		data += "writer:" + productSku.writer + "\n";
+		arrayproductId[i] = productSku.culturalInformationId;
+		arrayproductName[i] = productSku.title;
+	}
+    alert(arrayproductId.join());
+	alert(arrayproductName.join());
+	senData(arrayproductId.join(), arrayproductName.join());
+}
 </script>

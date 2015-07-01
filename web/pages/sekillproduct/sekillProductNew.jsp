@@ -1,6 +1,7 @@
 <%@ include file="/common/taglibs.jsp"%>
 <%@ include file="/decorators/include/styles.jspf"%>
 <%@ include file="/decorators/include/javascripts.jspf"%>
+<%@ taglib prefix="product" tagdir="/WEB-INF/tags/catalog"%>
 
 <script type="text/javascript">
 highlightTableRows("salesOrderItem");
@@ -25,74 +26,313 @@ $j(document).ready(function(){
 
 <app:ui_leftMenu>
 	<div class="sidebar-left">
-	    <form method="post" action="${ctxPath}/sekillproduct/sekillProduct.html">
-			<app:ui_tabs tabsId="left_menu_tabs"/>
-		    <div class="tab" id="left_menu_tabs">
-			    <ul>
-					<li><a href="#listSelectContent"><fmt:message key="yourposition.search"/></a></li>
-					<li><a href="#orderView"><fmt:message key="salesOrderList.tab.view"/></a></li>
-					<li><a href="#glSearchBar"><fmt:message key="yourposition.search"/></a></li>
+		<form method="post"
+			action="${ctxPath}/sekillproduct/sekillProduct.html">
+			<app:ui_tabs tabsId="left_menu_tabs" />
+			<div class="tab" id="left_menu_tabs">
+				<ul>
+					<li>
+						<a href="#listSelectContent"><fmt:message
+								key="yourposition.search" />
+						</a>
+					</li>
+					<li>
+						<a href="#orderView"><fmt:message
+								key="salesOrderList.tab.view" />
+						</a>
+					</li>
+					<li>
+						<a href="#glSearchBar"><fmt:message key="yourposition.search" />
+						</a>
+					</li>
 				</ul>
-					<div id="listSelectContent" class="content">
-					<table width="80%" border="0" cellspacing="0" cellpadding="0" align="center">
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true});" href="javascript:void(false);"><fmt:message key="search.filter.all"/></a><td></tr>
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true,search:'ask4Cancel'});" href="javascript:void(false);"><fmt:message key="salesOrder.view.ask4Cancel"/></a><td></tr>
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true,search:'awaitingPicking'});" href="javascript:void(false);"><fmt:message key="salesOrder.view.awaitingPicking"/></a><td></tr>
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true,search:'picking'});" href="javascript:void(false);"><fmt:message key="salesOrder.view.picking"/></a><td></tr>
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true,search:'partiallyShipped'});" href="javascript:void(false);"><fmt:message key="salesOrder.view.partiallyShipped"/></a><td></tr>
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true,search:'finished'});" href="javascript:void(false);"><fmt:message key="salesOrder.view.finished"/></a><td></tr>
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true,search:'partiallyPaid'});" href="javascript:void(false);"><fmt:message key="salesOrder.view.partiallyPaid"/></a><td></tr>
+				<div id="listSelectContent" class="content">
+					<table width="80%" border="0" cellspacing="0" cellpadding="0"
+						align="center">
+						<tr height="30px">
+							<td>
+								<a onclick="fnSearchSalesOrder({btnSearch:true});"
+									href="javascript:void(false);"><fmt:message
+										key="search.filter.all" />
+								</a>
+								<td>
+						</tr>
+						<tr height="30px">
+							<td>
+								<a
+									onclick="fnSearchSalesOrder({btnSearch:true,search:'ask4Cancel'});"
+									href="javascript:void(false);"><fmt:message
+										key="salesOrder.view.ask4Cancel" />
+								</a>
+								<td>
+						</tr>
+						<tr height="30px">
+							<td>
+								<a
+									onclick="fnSearchSalesOrder({btnSearch:true,search:'awaitingPicking'});"
+									href="javascript:void(false);"><fmt:message
+										key="salesOrder.view.awaitingPicking" />
+								</a>
+								<td>
+						</tr>
+						<tr height="30px">
+							<td>
+								<a
+									onclick="fnSearchSalesOrder({btnSearch:true,search:'picking'});"
+									href="javascript:void(false);"><fmt:message
+										key="salesOrder.view.picking" />
+								</a>
+								<td>
+						</tr>
+						<tr height="30px">
+							<td>
+								<a
+									onclick="fnSearchSalesOrder({btnSearch:true,search:'partiallyShipped'});"
+									href="javascript:void(false);"><fmt:message
+										key="salesOrder.view.partiallyShipped" />
+								</a>
+								<td>
+						</tr>
+						<tr height="30px">
+							<td>
+								<a
+									onclick="fnSearchSalesOrder({btnSearch:true,search:'finished'});"
+									href="javascript:void(false);"><fmt:message
+										key="salesOrder.view.finished" />
+								</a>
+								<td>
+						</tr>
+						<tr height="30px">
+							<td>
+								<a
+									onclick="fnSearchSalesOrder({btnSearch:true,search:'partiallyPaid'});"
+									href="javascript:void(false);"><fmt:message
+										key="salesOrder.view.partiallyPaid" />
+								</a>
+								<td>
+						</tr>
 						<%-- <tr height="30px"><td><a href="${ctxPath}/order/salesOrder.html?search=confirmedByRobot&btnSearch=true"><fmt:message key="salesOrder.view.confirmedByRobot"/></a><td></tr>--%>
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true,search:'newMessages'});" href="javascript:void(false);"><fmt:message key="salesOrder.view.newMessages"/></a><td></tr>
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true,search:'hasProblem'});" href="javascript:void(false);"><fmt:message key="salesOrder.view.hasProblem"/></a><td></tr>
-						<tr><td><hr/><td></tr>
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:1});" href="javascript:void(false);"><fmt:message key="salesOrder.view.paymentType_1"/></a><td></tr>
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:2});" href="javascript:void(false);"><fmt:message key="salesOrder.view.paymentType_2"/></a><td></tr>
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:3});" href="javascript:void(false);"><fmt:message key="salesOrder.view.paymentType_3"/></a><td></tr>
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:7});" href="javascript:void(false);"><fmt:message key="salesOrder.view.paymentType_7"/></a><td></tr>
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:9});" href="javascript:void(false);"><fmt:message key="salesOrder.view.paymentType_9"/></a><td></tr>
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:10});" href="javascript:void(false);"><fmt:message key="salesOrder.view.paymentType_10"/></a><td></tr>
+						<tr height="30px">
+							<td>
+								<a
+									onclick="fnSearchSalesOrder({btnSearch:true,search:'newMessages'});"
+									href="javascript:void(false);"><fmt:message
+										key="salesOrder.view.newMessages" />
+								</a>
+								<td>
+						</tr>
+						<tr height="30px">
+							<td>
+								<a
+									onclick="fnSearchSalesOrder({btnSearch:true,search:'hasProblem'});"
+									href="javascript:void(false);"><fmt:message
+										key="salesOrder.view.hasProblem" />
+								</a>
+								<td>
+						</tr>
+						<tr>
+							<td>
+								<hr />
+								<td>
+						</tr>
+						<tr height="30px">
+							<td>
+								<a
+									onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:1});"
+									href="javascript:void(false);"><fmt:message
+										key="salesOrder.view.paymentType_1" />
+								</a>
+								<td>
+						</tr>
+						<tr height="30px">
+							<td>
+								<a
+									onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:2});"
+									href="javascript:void(false);"><fmt:message
+										key="salesOrder.view.paymentType_2" />
+								</a>
+								<td>
+						</tr>
+						<tr height="30px">
+							<td>
+								<a
+									onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:3});"
+									href="javascript:void(false);"><fmt:message
+										key="salesOrder.view.paymentType_3" />
+								</a>
+								<td>
+						</tr>
+						<tr height="30px">
+							<td>
+								<a
+									onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:7});"
+									href="javascript:void(false);"><fmt:message
+										key="salesOrder.view.paymentType_7" />
+								</a>
+								<td>
+						</tr>
+						<tr height="30px">
+							<td>
+								<a
+									onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:9});"
+									href="javascript:void(false);"><fmt:message
+										key="salesOrder.view.paymentType_9" />
+								</a>
+								<td>
+						</tr>
+						<tr height="30px">
+							<td>
+								<a
+									onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:10});"
+									href="javascript:void(false);"><fmt:message
+										key="salesOrder.view.paymentType_10" />
+								</a>
+								<td>
+						</tr>
 					</table>
-					<br/><br/><br/><br/>
+					<br />
+					<br />
+					<br />
+					<br />
 				</div>
-					<div id="orderView" class="content">
-					<table width="80%" border="0" cellspacing="0" cellpadding="0" align="center">
-						
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true,search:'hasProblem'});" href="javascript:void(false);"><fmt:message key="salesOrder.view.hasProblem"/></a><td></tr>
-						<tr><td><hr/><td></tr>
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:1});" href="javascript:void(false);"><fmt:message key="salesOrder.view.paymentType_1"/></a><td></tr>
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:2});" href="javascript:void(false);"><fmt:message key="salesOrder.view.paymentType_2"/></a><td></tr>
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:3});" href="javascript:void(false);"><fmt:message key="salesOrder.view.paymentType_3"/></a><td></tr>
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:7});" href="javascript:void(false);"><fmt:message key="salesOrder.view.paymentType_7"/></a><td></tr>
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:9});" href="javascript:void(false);"><fmt:message key="salesOrder.view.paymentType_9"/></a><td></tr>
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:10});" href="javascript:void(false);"><fmt:message key="salesOrder.view.paymentType_10"/></a><td></tr>
+				<div id="orderView" class="content">
+					<table width="80%" border="0" cellspacing="0" cellpadding="0"
+						align="center">
+
+						<tr height="30px">
+							<td>
+								<a
+									onclick="fnSearchSalesOrder({btnSearch:true,search:'hasProblem'});"
+									href="javascript:void(false);"><fmt:message
+										key="salesOrder.view.hasProblem" />
+								</a>
+								<td>
+						</tr>
+						<tr>
+							<td>
+								<hr />
+								<td>
+						</tr>
+						<tr height="30px">
+							<td>
+								<a
+									onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:1});"
+									href="javascript:void(false);"><fmt:message
+										key="salesOrder.view.paymentType_1" />
+								</a>
+								<td>
+						</tr>
+						<tr height="30px">
+							<td>
+								<a
+									onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:2});"
+									href="javascript:void(false);"><fmt:message
+										key="salesOrder.view.paymentType_2" />
+								</a>
+								<td>
+						</tr>
+						<tr height="30px">
+							<td>
+								<a
+									onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:3});"
+									href="javascript:void(false);"><fmt:message
+										key="salesOrder.view.paymentType_3" />
+								</a>
+								<td>
+						</tr>
+						<tr height="30px">
+							<td>
+								<a
+									onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:7});"
+									href="javascript:void(false);"><fmt:message
+										key="salesOrder.view.paymentType_7" />
+								</a>
+								<td>
+						</tr>
+						<tr height="30px">
+							<td>
+								<a
+									onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:9});"
+									href="javascript:void(false);"><fmt:message
+										key="salesOrder.view.paymentType_9" />
+								</a>
+								<td>
+						</tr>
+						<tr height="30px">
+							<td>
+								<a
+									onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:10});"
+									href="javascript:void(false);"><fmt:message
+										key="salesOrder.view.paymentType_10" />
+								</a>
+								<td>
+						</tr>
 					</table>
-					<br/><br/><br/><br/>
+					<br />
+					<br />
+					<br />
+					<br />
 				</div>
-				
+
 				<div id="glSearchBar" class="content">
-					<table width="80%" border="0" cellspacing="0" cellpadding="0" align="center">
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:9});" href="javascript:void(false);"><fmt:message key="salesOrder.view.paymentType_9"/></a><td></tr>
-						<tr height="30px"><td><a onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:10});" href="javascript:void(false);"><fmt:message key="salesOrder.view.paymentType_10"/></a><td></tr>
+					<table width="80%" border="0" cellspacing="0" cellpadding="0"
+						align="center">
+						<tr height="30px">
+							<td>
+								<a
+									onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:9});"
+									href="javascript:void(false);"><fmt:message
+										key="salesOrder.view.paymentType_9" />
+								</a>
+								<td>
+						</tr>
+						<tr height="30px">
+							<td>
+								<a
+									onclick="fnSearchSalesOrder({btnSearch:true,search:'payment',paymentType:10});"
+									href="javascript:void(false);"><fmt:message
+										key="salesOrder.view.paymentType_10" />
+								</a>
+								<td>
+						</tr>
 					</table>
-					<br/><br/><br/><br/>
+					<br />
+					<br />
+					<br />
+					<br />
 				</div>
-				
-				
+
+
 				<div class="content" id="listSelectContent">
-						<search:searchBox>
-					 	<search:input attrNameKey="sekillProduct.sekillProductName" attrPath="s.product.productName" datatype="String" operator="LIKE"/>
-					
-						<div class="title">秒杀时间筛选</div>
+					<search:searchBox>
+						<search:input attrNameKey="sekillProduct.sekillProductName"
+							attrPath="s.product.productName" datatype="String"
+							operator="LIKE" />
+
+						<div class="title">
+							秒杀时间筛选
+						</div>
 						<div>
-							<select name="COL@s.sekillTime@String@EQ" id="awardLevel" style="width:150px" >
-					<!--  		<c:forEach items="${awardList}" var="award">
+							<select name="COL@s.sekillTime@String@EQ" id="awardLevel"
+								style="width: 150px">
+								<!--  		<c:forEach items="${awardList}" var="award">
 									<option value="${award.level }"  <c:if test="${sc.param['COL@s.awardLevel@Integer@EQ'] == award.level }">selected</c:if>>${award.title }
-								</c:forEach>-->	
-									<option value="">所有</option>
-								<option value="2015-05-08" <c:if test="${param['COL@s.sekillTime@String@EQ'] =='2015-05-08'}">selected="selected" </c:if>>2015年5月8日</option>
-								<option value="2015-05-09" <c:if test="${param['COL@s.sekillTime@String@EQ'] == '2015-05-09'}">selected="selected" </c:if>>2015年5月9日</option>
-								<option value="2015-05-10" <c:if test="${param['COL@s.sekillTime@String@EQ'] =='2015-05-10'}">selected="selected" </c:if>>2015年5月10日</option>
+								</c:forEach>-->
+								<option value="">
+									所有
+								</option>
+								<option value="2015-05-08"
+									<c:if test="${param['COL@s.sekillTime@String@EQ'] =='2015-05-08'}">selected="selected" </c:if>>
+									2015年5月8日
+								</option>
+								<option value="2015-05-09"
+									<c:if test="${param['COL@s.sekillTime@String@EQ'] == '2015-05-09'}">selected="selected" </c:if>>
+									2015年5月9日
+								</option>
+								<option value="2015-05-10"
+									<c:if test="${param['COL@s.sekillTime@String@EQ'] =='2015-05-10'}">selected="selected" </c:if>>
+									2015年5月10日
+								</option>
 							</select>
 						</div>
 					</search:searchBox>
@@ -106,8 +346,10 @@ $j(document).ready(function(){
 	<tr>
 		<td>
 			<a
-				onclick="$j(this).closest('tr').nextAll().toggle();$j(this).children('img').toggle();"
-				href="javascript:void(false)"> <img
+				onclick=
+	$j(this).closest('tr').nextAll().toggle();
+	$j(this).children('img').toggle();;
+href="javascript:void(false)"> <img
 					src="${ctxPath}/images/minus.gif" style="display: none" /> <img
 					src="${ctxPath}/images/plus.gif" /> &nbsp;&nbsp;下拉测试
 				${orderShipment.shipmentNo} </a>
@@ -120,14 +362,13 @@ $j(document).ready(function(){
 	</tr>
 </table>
 
-
-<input id="ClickMe" name="ClickMe" type="button" value="DialogFromTag" />
-<app:ui_dialog id="tttt" width="700" height="300" title="测试"
-	showDialogBtnId="ClickMe">
-	<span>测试弹出窗</span>
-	<input id="datePicker" name="datePicker" type="text" />
-	<input type="button" onclick="test();" />
-</app:ui_dialog>
+	<input id="ClickMe" name="ClickMe" type="button" value="弹出窗测试" />
+			<app:ui_dialog id="tttt" width="700" height="300" title="测试"
+				showDialogBtnId="ClickMe">
+				<span>测试弹出窗</span>
+				<input id="datePicker" name="datePicker" type="text" value="one" />
+				<input type="button" onclick='test()' value="two"/>
+		</app:ui_dialog>
 
 <div id="productTab2">
 	<ul>
@@ -158,6 +399,9 @@ $j(document).ready(function(){
 		d
 	</div>
 </div>
+
+
+
 <app:ui_tabs tabsId="productTab2" type="2" selected="0" />
 
 
@@ -169,8 +413,9 @@ $j(document).ready(function(){
 		value="/sekillproduct/sekillProduct.html?doAction=edit&from=list"
 		scope="page" />
 	<c:set var="checkAll">
-		<input type="checkbox" name="allbox" onclick="checkAll(this.form)"
-			class="checkbox" />
+		<input type="checkbox" name="allbox" onclick=
+	checkAll(this.form);
+class="checkbox" />
 	</c:set>
 	<display:table name="${sekillProductList}" cellspacing="0"
 		cellpadding="0" uid="sekillProductItem" class="table-list"

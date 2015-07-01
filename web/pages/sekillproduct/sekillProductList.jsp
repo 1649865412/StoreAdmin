@@ -12,7 +12,6 @@
 	<!--<<cartmatic:cartmaticBtn btnType="cancel" inputType="button" onclick="return fnDoUpToParent(this);" />-->
 </content>
 
-
 <app:ui_leftMenu>
 	<div class="sidebar-left">
 	    <form method="post" action="${ctxPath}/sekillproduct/sekillProduct.html">

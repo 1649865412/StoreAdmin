@@ -258,6 +258,7 @@ public abstract class GenericManagerImpl<T> implements GenericManager<T>,
 			save((T) iter.next());
 		}
 	}
+	
 
 	/**
 	 * 要求数据要先转换为正确的类型。

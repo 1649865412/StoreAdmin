@@ -5,7 +5,7 @@
 
 <app:pageHeading entityName="${sekillProduct.sekillProductName}"
 	entityHeadingKey="sekillProductDetail.heading" />
-	
+
 <content tag="buttons">
 <cartmatic:cartmaticBtn btnType="save" onclick="return fnDoSave(this);" />
 <%--
@@ -26,10 +26,8 @@
 	onsubmit="return validateSekillProduct(this);">
 	<input type="hidden" name="sekillProductId"
 		value="${sekillProduct.sekillProductId}" />
-
 	<table class="table-content" cellSpacing="0" cellPadding="0"
 		width="100%" border="0">
-
 		<tr>
 			<td class="FieldLabel">
 				<span> <c:if test="${sekillProduct.sekillProductId==null}">产品选择：</c:if>
@@ -42,13 +40,13 @@
 						showSelectorBtnId="b5" title="产品选择"
 						ondblclick="fnTestSelectMultiProductSku" showProductKinds="1,2"
 						multiSelect="true"></product:productSkuSelector>
-						<span id="arrayproductName"></span>
+					<span id="arrayproductName"></span>
 				</c:if>
-				
+
 				<c:if test="${sekillProduct.sekillProductId!=null}">
 					<span id="arrayproductName">${sekillProduct.sekillProductName}</span>
 				</c:if>
-				
+
 				<input type="hidden" id="arrayproductId" name="arrayproductId"
 					value="${sekillProduct.product.productId}" />
 			</td>
@@ -91,12 +89,8 @@
 
 <script type="text/javascript">
 	function senData(arrayproductId, arrayproductName) {
-		//alert(arrayproductId);
-		//alert(arrayproductName);
 		 arrayproductIdvalue=$j("#arrayproductId").val();
 		 arrayproductNamevalue=$j("#arrayproductName").html();
-		// alert("arrayproductIdvalue:"+arrayproductIdvalue);
-		// alert("arrayproductName:"+arrayproductNamevalue);
 		 if(arrayproductIdvalue==""){
 			 arrayproductIdvalue="";
 			// alert("arrayproductIdvalue:"+arrayproductIdvalue);
@@ -114,7 +108,7 @@
 	}
 
 	function fnTestSelectMultiProductSku(productSkuList) {
-		//alert("fnTestSelectMultiProductSku")
+		alert("fnTestSelectMultiProductSku")
 		var data = "";
 		var arrayproductId = new Array();
 		var arrayproductName = new Array();
@@ -133,8 +127,8 @@
 			arrayproductId[i] = productSku.product.productId;
 			arrayproductName[i] = productSku.product.productName;
 		}
-	    //alert(arrayproductId.join());
-		//alert(arrayproductName.join());
+	    alert(arrayproductId.join());
+		alert(arrayproductName.join());
 		senData(arrayproductId.join(), arrayproductName.join());
 	}
 </script>

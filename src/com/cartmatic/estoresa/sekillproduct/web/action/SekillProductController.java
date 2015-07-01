@@ -113,21 +113,12 @@ public class SekillProductController extends GenericController<SekillProduct> {
 	public ModelAndView  text(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		  Map<String, Object> context =new HashMap();
 		  
-		 /* List<AppEvent> appEventList = appEventManager.getAll();
-		  for(AppEvent appEvent:appEventList){
-			  System.out.println("value:========="+appEvent.getAppEvent());
-		  }*/
-		/*  IndexNotifyEvent
-		  RefreshContextEvent
-		  RefreshPromoEvent*/
-		  
 		  List list = new ArrayList();
 		  list.add(1);
 		  list.add(2);
 		  list.add(3);
 		  System.out.println("text");
-		  processApplicationEvents();
-		//  ModelAndView  mo =  new ModelAndView("test/ajax5.htm");
+		//ModelAndView  mo =  new ModelAndView("test/ajax5.htm");
 		//  ModelAndView  mo =  new ModelAndView("test/categorySelectTest");
 		//  ModelAndView  mo =  new ModelAndView("test/downloadImages");
 		//  ModelAndView  mo =  new ModelAndView("test/dragAndDrop");
@@ -138,8 +129,10 @@ public class SekillProductController extends GenericController<SekillProduct> {
 		//  ModelAndView  mo =  new ModelAndView("test/setCategoryTemplate");
 		//  ModelAndView  mo =  new ModelAndView("test/supplierSelectTest");
 		//  ModelAndView  mo =  new ModelAndView("test/testDialog");
-		  ModelAndView  mo =  new ModelAndView("test/testHtmlEditor");
+		// ModelAndView  mo =  new ModelAndView("test/testHtmlEditor");
 		//  ModelAndView  mo =  new ModelAndView("test/supplierSelectTest");
+		  ModelAndView  mo =  new ModelAndView("test/culturalSelectTest");
+		//  ModelAndView  mo =  new ModelAndView("sekillproduct/sekillProductNew");
 		//  ModelAndView  mo =  new ModelAndView("test/testSwfUpload");
 		//  ModelAndView  mo =  new ModelAndView("test/testTabs");
 		//  ModelAndView  mo =  new ModelAndView("test/testTree");

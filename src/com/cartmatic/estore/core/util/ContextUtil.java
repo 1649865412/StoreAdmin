@@ -35,7 +35,7 @@ import com.cartmatic.estore.system.service.AppEventManager;
 
 /**
  * 对整个应用环境的集中管理，包括初始化，刷新，和访问。
- * 
+ * 主要是对spring Bean处理
  * @author Ryan
  * 
  */

@@ -34,6 +34,8 @@ public class CulturalInformationTbl extends BaseObject implements Serializable {
 	protected String backOne;
 	protected String backTwo;
 	protected String metaKeywork;
+	protected Integer state;
+	protected String recommendArrayId;
 
 	/**
 	 * Default Empty Constructor for class CulturalInformation
@@ -166,6 +168,14 @@ public class CulturalInformationTbl extends BaseObject implements Serializable {
 		return this.type;
 	}
 	
+	public String getRecommendArrayId() {
+		return recommendArrayId;
+	}
+
+	public void setRecommendArrayId(String recommendArrayId) {
+		this.recommendArrayId = recommendArrayId;
+	}
+
 	/**
 	 * Set the type
 	 */	
@@ -309,6 +319,15 @@ public class CulturalInformationTbl extends BaseObject implements Serializable {
 	}	
 	
 	
+	
+	public Integer getState() {
+		return state;
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
+	}
+
 	/**
 	 * 搜索关键字字段	 * @return String
 	 * @hibernate.property column="backTwo" type="java.lang.String" length="20" not-null="false" unique="false"
@@ -347,7 +366,9 @@ public class CulturalInformationTbl extends BaseObject implements Serializable {
 				.append(this.videoAddress, rhs.videoAddress)
 				.append(this.backOne, rhs.backOne)
 				.append(this.backTwo, rhs.backTwo)
+				.append(this.state, rhs.state)
 				.append(this.metaKeywork, rhs.metaKeywork)
+				.append(this.recommendArrayId, rhs.recommendArrayId)
 				.isEquals();
 	}
 
@@ -372,8 +393,10 @@ public class CulturalInformationTbl extends BaseObject implements Serializable {
 				.append(this.createTime) 
 				.append(this.videoAddress) 
 				.append(this.backOne) 
-				.append(this.backTwo) 
+				.append(this.backTwo)
+				.append(this.state) 
 				.append(this.metaKeywork)
+				.append(this.recommendArrayId)
 				.toHashCode();
 	}
 
@@ -399,7 +422,9 @@ public class CulturalInformationTbl extends BaseObject implements Serializable {
 				.append("videoAddress", this.videoAddress) 
 				.append("backOne", this.backOne) 
 				.append("backTwo", this.backTwo) 
-				.append(this.metaKeywork)
+				.append("state",this.state) 
+				.append("metaKeywork",this.metaKeywork)
+				.append("recommendArrayId",this.recommendArrayId)
 				.toString();
 	}
 

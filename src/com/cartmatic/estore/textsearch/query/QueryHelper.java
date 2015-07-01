@@ -265,6 +265,7 @@ public class QueryHelper {
 		return rows;
 	}
 	
+	
 	/**
 	 * 设置分页信息，为jsp显示分页做准备
 	 * @param request
@@ -273,7 +274,6 @@ public class QueryHelper {
 	public static void setPageInfo(HttpServletRequest request, SolrQuery query, SolrDocumentList result)
 	{
 		QueryCriteria qc = new QueryCriteria();
-		
 		int rows = defaultRows;
 		long start = result.getStart();
 		long count = result.getNumFound();
@@ -289,6 +289,8 @@ public class QueryHelper {
 		qc.setPageNo(pageNo);
 		request.setAttribute("sc", qc);
 	}
+	
+	
 	
 	/**
 	 * 添加排序参数

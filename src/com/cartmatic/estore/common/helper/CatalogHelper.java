@@ -424,6 +424,7 @@ public class CatalogHelper {
 		return minAndMaxQuantity;
 	}
 	
+	
 	/**
 	 * 前台搜索排序hql转换
 	 * @param sortOrder
@@ -451,15 +452,57 @@ public class CatalogHelper {
 		return sortOrder;
 	}
 	
+	
+	/**
+	 * 功能:更新产品索引操作
+	 * <p>作者 杨荣忠 2015-6-29 下午03:17:51
+	 * @param productIds
+	 */
 	public void indexNotifyUpdateEvent(Integer...productIds){
+		System.out.println("indexNotifyUpdateEvent==============="+productIds);
 		IndexNotifyEvent event = new IndexNotifyEvent(SearchConstants.CORE_NAME_PRODUCT, SearchConstants.UPDATE_TYPE.UPDATE); 
 		event.setIds(Arrays.asList(productIds));
 		ContextUtil.getInstance().fireApplicationEvent(event);
 	}
 	
+	
+	/**
+	 * 功能:删除产品索引操作
+	 * <p>作者 杨荣忠 2015-6-29 下午03:18:06
+	 * @param productIds
+	 */
 	public void indexNotifyDeleteEvent(Integer...productIds){
+		System.out.println("indexNotifyDeleteEvent================"+productIds);
 		IndexNotifyEvent event = new IndexNotifyEvent(SearchConstants.CORE_NAME_PRODUCT, SearchConstants.UPDATE_TYPE.DEL); 
 		event.setIds(Arrays.asList(productIds));
 		ContextUtil.getInstance().fireApplicationEvent(event);
 	}
+	
+	
+	/**
+	 * 功能:更新索引操作
+	 * <p>作者 杨荣忠 2015-6-29 下午03:17:23
+	 * @param productIds
+	 * @param core
+	 */
+	public void indexNotifyUpdateEventMethod(String core,Integer...productIds){
+		System.out.println("indexNotifyUpdateEvent==============="+productIds);
+		IndexNotifyEvent event = new IndexNotifyEvent(core, SearchConstants.UPDATE_TYPE.UPDATE); 
+		event.setIds(Arrays.asList(productIds));
+		ContextUtil.getInstance().fireApplicationEvent(event);
+	}
+	
+	/**
+	 * 功能:删除索引操作
+	 * <p>作者 杨荣忠 2015-6-29 下午03:17:34
+	 * @param productIds
+	 * @param core
+	 */
+	public void indexNotifyDeleteEventMethod(String core,Integer...productIds){
+		System.out.println("indexNotifyDeleteEvent================"+productIds);
+		IndexNotifyEvent event = new IndexNotifyEvent(core, SearchConstants.UPDATE_TYPE.DEL); 
+		event.setIds(Arrays.asList(productIds));
+		ContextUtil.getInstance().fireApplicationEvent(event);
+	}
+	
 }

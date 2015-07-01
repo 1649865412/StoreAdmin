@@ -103,4 +103,7 @@ public interface SolrService
      * @return
      */
     public SearchResult queryAllCulturalByTag(HttpServletRequest request,String tags,Integer defaultPageSize);
+    
+    
+
 }
