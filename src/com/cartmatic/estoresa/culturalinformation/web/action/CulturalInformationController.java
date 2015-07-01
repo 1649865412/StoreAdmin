@@ -133,6 +133,7 @@ public class CulturalInformationController extends GenericController<CulturalInf
 					CatalogHelper.getInstance().indexNotifyDeleteEventMethod(SearchConstants.CORE_NAME_CULTURAL,Integer.parseInt(ids[i]));
 				    	}catch(Exception e){
 						System.out.println("批量删除文化资讯列表页索引有误");
+						System.out.println("hello");
 						e.printStackTrace();
 					}
 				}
