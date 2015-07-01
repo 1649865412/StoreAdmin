@@ -408,6 +408,11 @@
                 <prop key="/selector/supplierSelector.html">supplierSelectorController</prop>
                 <prop key="/selector/supplierSelectorDataList.html">supplierSelectorController</prop>
                 
+                
+                 <prop key="/selector/culturalSelector.html">culturalSelectorController</prop>
+                <prop key="/selector/culturalSelectorDataList.html">culturalSelectorController</prop>
+                
+                
                 <prop key="/selector/userSelector.html">userSelectorController</prop>
                 <prop key="/selector/userSelectorDataList.html">userSelectorController</prop>
                 <prop key="/system/adminManageBoard.html">adminManageBoardController</prop>
@@ -964,9 +969,15 @@
 		<property name="appUserManager" ref="appUserManager"/>
 		<property name="customerManager" ref="customerManager"/>
 	</bean>
+	
 	<bean id="supplierSelectorController" class="com.cartmatic.estoresa.supplier.web.action.SupplierSelectorController" parent="genericController" autowire="byName">
         <property name="lastSearchViewAllowed" value="false"></property>
 	</bean>
+	
+	<bean id="culturalSelectorController" class="com.cartmatic.estoresa.supplier.web.action.CulturalSelectorController" parent="genericController" autowire="byName">
+        <property name="lastSearchViewAllowed" value="false"></property>
+	</bean>
+	
 <!-- end:  Generated for Supplier From Template: spring-mvc.xml.beansvm  -->
 <!-- start:  Generated for SupplierProduct From Template: spring-mvc.xml.beansvm  -->
 	<bean id="supplierProductController" class="com.cartmatic.estoresa.supplier.web.action.SupplierProductController" parent="genericController" autowire="byName">

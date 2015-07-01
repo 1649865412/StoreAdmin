@@ -85,12 +85,12 @@
 			</display:column>
         		
         	<display:column property="writer" sortable="false" headerClass="data-table-title"  title="作者"
-        		decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" titleKey="culturalInformation.writer"/>
+        		decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" titleKey="culturalInformation.writer"/><%--
         		
 		    <display:column property="commentNumber" sortable="true" headerClass="data-table-title"  title="评论数"
         		decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" titleKey="culturalInformation.commentNumber"/>
         		
-		    <display:column property="readNumber" sortable="true" headerClass="data-table-title"  title="阅读数"
+		    --%><display:column property="readNumber" sortable="true" headerClass="data-table-title"  title="阅读数"
         		decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" titleKey="culturalInformation.readNumber"/>
         		
 		    <display:column property="releaseTime" sortable="true" headerClass="data-table-title"  title="发布时间"

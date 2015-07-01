@@ -1,5 +1,7 @@
 package com.cartmatic.estore.common.model.culturalinformation;
 
+import net.sf.json.JSONObject;
+
 import com.cartmatic.estore.common.model.culturalinformation.base.CulturalInformationTbl;
 
 /**
@@ -26,6 +28,19 @@ public class CulturalInformation extends CulturalInformationTbl {
 			//如：product的VO就用product.productName
 	        return this.title;
 	}
+	
+	/**
+	 * 构建简单的Json对象主要用于选择器
+	 * @return
+	 */
+	public String getJsonObject(){
+		JSONObject jsonSupplier=new JSONObject();
+		jsonSupplier.put("culturalInformationId",this.culturalInformationId);
+		jsonSupplier.put("title",this.title);
+		jsonSupplier.put("writer", this.writer);
+		return jsonSupplier.toString();
+	}
+
 	
 	/**
 	 * Default Key Fields Constructor for class CulturalInformation
