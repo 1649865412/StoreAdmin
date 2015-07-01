@@ -27,6 +27,7 @@ public class ShoppingcartTbl extends BaseObject implements Serializable {
 
     protected Integer shoppingcartId;
 	protected String uuid;
+	
 	protected String usedCouponNo;
 	protected Short isUsedCoupon;
 	protected java.math.BigDecimal cartDiscountAmount= new BigDecimal(0);
