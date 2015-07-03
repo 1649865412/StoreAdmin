@@ -56,7 +56,7 @@ public class ShoppingCartUtil
 	}
 
 	/**
-	 * 判断满减优惠 Mipenna=15 Lapeewee=37 V.Charm=34
+	 * 判断满减优惠 Mipenna=15 Lapeewee=37 V.Charm=44
 	 * 
 	 * @param shoppingcart
 	 * @return
@@ -70,8 +70,8 @@ public class ShoppingCartUtil
 		Date date = new Date();
 		DateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 		long time = Long.parseLong(format.format(date));
-		long t1=20150630175800l;
-		long t2=20150630175900l;
+		long t1=20150701000000l;
+		long t2=20150704000000l;
 		long difference1=time-t1;
 		long difference2=time-t2;
 		if (difference1 > 0 && difference2 < 0)
@@ -91,7 +91,7 @@ public class ShoppingCartUtil
 					{
 						lapeeweePrice += (item.getProductSku().getPrice().doubleValue()) * quantity;
 					}
-					else if (brandId == 34)
+					else if (brandId == 44)
 					{
 						vcharmPrice += (item.getProductSku().getPrice().doubleValue()) * quantity;
 					}
