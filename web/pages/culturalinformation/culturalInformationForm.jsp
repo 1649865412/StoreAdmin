@@ -49,12 +49,19 @@
  		<app:input property="writer" />
  	<tr>
  		<td class="FieldLabel">类型</td>
- 		<td><select name="type" id="type" style="width:150px" >
+ 		<td><select name="type" id="type" style="width:150px"   >
 			<option value="0" <c:if test="${culturalInformation.type ==0}">selected="selected" </c:if>>秀场</option>
 			<option value="1" <c:if test="${culturalInformation.type ==1}">selected="selected" </c:if>>访谈</option>
 			<option value="2" <c:if test="${culturalInformation.type ==2}">selected="selected" </c:if>>行业动态</option>
 			<option value="3" <c:if test="${culturalInformation.type ==3}">selected="selected" </c:if>>线下主题活动</option>
+			<option  onClick="getMonthShow()"  value="4" <c:if test="${culturalInformation.type ==4}">selected="selected" </c:if>>月刊</option>
 		</select>
+		</td>
+	</tr>
+	
+	<tr id="monthdiv" >
+ 		<td class="FieldLabel"><a onClick="MonthImg()">点击添加月刊</a></td>
+ 		<td id="addImg">
 		</td>
 	</tr>
   	<tr>
@@ -72,6 +79,7 @@
 					(<fmt:message key="brand.logo.desc" />)
 					<cartmatic:iconBtn icon="cross" extraCss="negative" text="清空图片" onclick="$('logoImage').src='${ctxPath}/images/default/00.jpg';$j('#logo').val('');" />
 				</div>
+				<cartmatic:swf_upload btnPlaceHolderId="logoImageBtnPlaceHolderId" uploadCategory="other" uploadFileTypes="*.jpg" fileInputId="logo" previewImg="logoImage" ></cartmatic:swf_upload>
 			</td>
 	    </tr>
 	    <tr>
@@ -88,6 +96,7 @@
 					<br/>
 					<cartmatic:iconBtn icon="cross" extraCss="negative" text="清空图片" onclick="$('picImage').src='${ctxPath}/images/default/00.jpg';$j('#pic').val('');" />
 				</div>
+				<cartmatic:swf_upload btnPlaceHolderId="picImageBtnPlaceHolderId" uploadCategory="other" uploadFileTypes="*.jpg" fileInputId="pic" previewImg="picImage" ></cartmatic:swf_upload>
 			</td>
 	    </tr>
 	    <tr>
@@ -104,6 +113,7 @@
 					<br/>
 					<cartmatic:iconBtn icon="cross" extraCss="negative" text="清空图片" onclick="$('pic2Image').src='${ctxPath}/images/default/00.jpg';$j('#pic2').val('');" />
 				</div>
+				<cartmatic:swf_upload btnPlaceHolderId="pic2ImageBtnPlaceHolderId" uploadCategory="other" uploadFileTypes="*.jpg" fileInputId="pic2" previewImg="pic2Image" ></cartmatic:swf_upload>
 			</td>
 	    </tr>
 	    
@@ -119,10 +129,8 @@
 					value="${culturalInformation.recommendArrayId}" />
 			</td>
 	    </tr>
-	    
 	    <app:input property="metaKeywork" />
  		<app:input property="sortOrder" />
- 		
       <tr>
 			<td class="FieldLabel">
 			</td>
@@ -140,19 +148,28 @@
 </form:form>
 
 
-<cartmatic:swf_upload btnPlaceHolderId="logoImageBtnPlaceHolderId" uploadCategory="other" uploadFileTypes="*.jpg" fileInputId="logo" previewImg="logoImage" ></cartmatic:swf_upload>
-<cartmatic:swf_upload btnPlaceHolderId="picImageBtnPlaceHolderId" uploadCategory="other" uploadFileTypes="*.jpg" fileInputId="pic" previewImg="picImage" ></cartmatic:swf_upload>
-<cartmatic:swf_upload btnPlaceHolderId="pic2ImageBtnPlaceHolderId" uploadCategory="other" uploadFileTypes="*.jpg" fileInputId="pic2" previewImg="pic2Image" ></cartmatic:swf_upload>
 
 
 <v:javascript formName="culturalInformation" staticJavascript="false" />
 <script type="text/javascript">
+    $j("#monthdiv").hide();
     document.forms["culturalInformation"].elements["title"].focus();
 </script>
 
 
+<script type="text/javascript" defer="defer">
+function getMonthShow(){
+	alert("hello");
+	$j("#monthdiv").show();
+}
 
-<script type="text/javascript">
+function MonthImg(){
+	alert("addMonthImg");
+	var html ="<input type='file' id='' name='' >";
+	$j("#addImg").append(html);  
+}
+
+
 function senData(arrayproductId, arrayproductName) {
 	 arrayproductIdvalue=$j("#arrayproductId").val();
 	 arrayproductNamevalue=$j("#arrayproductName").html();
@@ -187,5 +204,13 @@ function fnTestSelectMultiProductSku(productSkuList) {
     alert(arrayproductId.join());
 	alert(arrayproductName.join());
 	senData(arrayproductId.join(), arrayproductName.join());
+
+
+	
 }
+
+
+
+
+
 </script>

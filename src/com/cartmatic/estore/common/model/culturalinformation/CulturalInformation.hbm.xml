@@ -78,5 +78,13 @@
 		<property name="metaKeywork" type="java.lang.String" update="true"
 			insert="true" access="property" column="metaKeywork" length="20"
 			not-null="false" unique="false" />
+			
+			<!-- exported bi-directional one-to-many association to monthlyCultural -->
+		<set name="monthlyCultural" table="monthly_cultural" lazy="true" inverse="true" cascade="save-update" order-by="monthlyCulturalId desc" where="status=1">
+			<key>
+				<column name="culturalInformationId" />
+			</key>
+			<one-to-many class="com.cartmatic.estore.common.model.monthlycultural.MonthlyCultural" />
+		</set>
 	</class>
 </hibernate-mapping>
