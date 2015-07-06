@@ -21,6 +21,7 @@
 				  <c:when test="${supplierItem.type==1}">访谈</c:when>
 				  <c:when test="${supplierItem.type==2}">行业动态</c:when>
 				  <c:when test="${supplierItem.type==3}">线下主题活动</c:when>
+				  <c:when test="${supplierItem.type==4}">月刊</c:when>
 				  <c:otherwise>   
    					 ${param.username} is employee.  
   				</c:otherwise> 

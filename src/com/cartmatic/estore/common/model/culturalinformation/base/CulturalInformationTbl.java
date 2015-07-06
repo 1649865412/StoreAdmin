@@ -36,6 +36,25 @@ public class CulturalInformationTbl extends BaseObject implements Serializable {
 	protected String metaKeywork;
 	protected Integer state;
 	protected String recommendArrayId;
+	protected java.util.Set monthlyCultural = new java.util.HashSet();
+	protected String mediaUrls[];
+
+	
+	public String[] getMediaUrls() {
+		return mediaUrls;
+	}
+
+	public void setMediaUrls(String[] mediaUrls) {
+		this.mediaUrls = mediaUrls;
+	}
+
+	public java.util.Set getMonthlyCultural() {
+		return monthlyCultural;
+	}
+
+	public void setMonthlyCultural(java.util.Set monthlyCultural) {
+		this.monthlyCultural = monthlyCultural;
+	}
 
 	/**
 	 * Default Empty Constructor for class CulturalInformation
@@ -161,7 +180,7 @@ public class CulturalInformationTbl extends BaseObject implements Serializable {
 	}	
 
 	/**
-	 * 类型（0：秀场）（1：访谈）（2：行业动态）（3：线下主题活动）	 * @return Integer
+	 * 类型（0：秀场）（1：访谈）（3：行业动态）（4：线下主题活动）（5：月刊）	 * @return Integer
 	 * @hibernate.property column="type" type="java.lang.Integer" length="10" not-null="false" unique="false"
 	 */
 	public Integer getType() {

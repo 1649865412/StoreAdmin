@@ -1310,4 +1310,11 @@
         </property>
     </bean>
 <!-- end:  Generated for CulturalInformation From Template: spring-service.xml.vm  -->
+<!-- start:  Generated for MonthlyCultural From Template: spring-service.xml.vm  -->
+    <bean id="monthlyCulturalManager" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.cartmatic.estore.monthlycultural.service.impl.MonthlyCulturalManagerImpl" parent="genericManager" autowire="byName"/>
+        </property>
+    </bean>
+<!-- end:  Generated for MonthlyCultural From Template: spring-service.xml.vm  -->
 </beans>

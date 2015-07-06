@@ -114,30 +114,5 @@
 	<v:javascript formName="productDescription" staticJavascript="false" />
 	<app:ui_quickTip/>
 	<script type="text/javascript" src="<c:url value="/scripts/cartmatic/catelog/productForm.js"/>"></script>
-	<%-- 条码
-	<script type="text/javascript" src="<c:url value="/scripts/lodop/LodopFuncs.js"/>"></script>
-	<object id="LODOP_OB" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0> 
-		<embed id=
-		"LODOP_EM" type="application/x-print-lodop" width=0 height=0 pluginspage="<c:url value="/scripts/lodop/install_lodop32.exe"/>"></embed>
-	</object>
-	<script language="javascript" type="text/javascript">
-    //var LODOP; //声明为全局变量  
-    function fnPrintBarCode(skuId){
-    	var url = __ctxPath + "/catalog/productSku/dialog.html?doAction=getProductSkuJson";
-		var postData = "productSkuId=" + skuId;
-		var result = false;
-		$j.post(url, postData, function(result){
-				if (result.status == 2) {
-					sysMsg4p(result.msg,false);
-				}else{
-					var sku=result.data.sku;
-					var LODOP=getLodop(document.getElementById('LODOP_OB'),document.getElementById('LODOP_EM'));  
-					//LODOP.ADD_PRINT_BARCODE(23,7,116,114,"QRCode","123123123版本3的最大值是42个字符");
-					LODOP.ADD_PRINT_BARCODE(23,7,116,114,"QRCode",sku.productSkuCode);
-					LODOP.SET_PRINT_STYLEA(0,"QRCodeVersion",3);
-					LODOP.PREVIEW();
-				}
-			}, "json");
-    }
-	</script> --%>
+
 </body>

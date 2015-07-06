@@ -1,5 +1,6 @@
 package com.cartmatic.estoresa.culturalinformation.web.action;
 
+import java.text.ParseException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,18 +13,30 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cartmatic.estore.common.helper.CatalogHelper;
 import com.cartmatic.estore.common.model.culturalinformation.CulturalInformation;
+import com.cartmatic.estore.common.model.monthlycultural.MonthlyCultural;
 import com.cartmatic.estore.core.controller.GenericController;
 import com.cartmatic.estore.core.exception.ApplicationException;
 import com.cartmatic.estore.core.model.Message;
 import com.cartmatic.estore.culturalinformation.service.CulturalInformationManager;
+import com.cartmatic.estore.culturalinformation.util.CalenderTime;
+import com.cartmatic.estore.monthlycultural.service.MonthlyCulturalManager;
 import com.cartmatic.estore.textsearch.SearchConstants;
+import com.cartmatic.estore.webapp.util.RequestUtil;
 
 public class CulturalInformationController extends GenericController<CulturalInformation> {
+	
     private CulturalInformationManager culturalInformationManager = null;
-
+    private MonthlyCulturalManager monthlyCulturalManager = null;
+    public static final int MONTH_TYPE =4;
+    
     public void setCulturalInformationManager(CulturalInformationManager inMgr) {
         this.culturalInformationManager = inMgr;
     }
+
+	public void setMonthlyCulturalManager(MonthlyCulturalManager monthlyCulturalManager) {
+		this.monthlyCulturalManager = monthlyCulturalManager;
+	}
+
 
 	/*
 	 * (non-Javadoc)
@@ -65,7 +78,18 @@ public class CulturalInformationController extends GenericController<CulturalInf
 	 */
 	protected void  onSave(HttpServletRequest request, CulturalInformation entity, BindException errors) 
 	{
-            culturalInformationManager.save(entity);
+            String mediaUrls_d[] = RequestUtil.getParameterValuesNullSafe(request,"productMedia_urls_d");
+			culturalInformationManager.save(entity);
+			try
+			{
+				saveMonth(  mediaUrls_d, entity);
+			}
+			catch (ParseException e)
+			{
+				// TODO Auto-generated catch block
+				System.out.println("保存有误码！");
+				e.printStackTrace();
+			}
 			System.out.println("entityID========"+entity.getId());
 			//更新文化资讯列表页索引
 			CatalogHelper.getInstance().indexNotifyUpdateEventMethod(SearchConstants.CORE_NAME_CULTURAL, entity.getId());
@@ -140,6 +164,21 @@ public class CulturalInformationController extends GenericController<CulturalInf
 			saveMessage(Message.info("common.deleted.multi", new Object[] {getEntityTypeMessage(), ids.length }));
 		}
 		return getRedirectToActionView("search");	
+	}
+	
+	
+	public void saveMonth( String mediaUrls_d[],CulturalInformation culturalInformation) throws ParseException{
+		if( mediaUrls_d!=null&& mediaUrls_d.length>0&&culturalInformation.getType()==MONTH_TYPE){
+			for(int i=0;i<mediaUrls_d.length;i++)
+			{
+				MonthlyCultural monthlyCultural =new MonthlyCultural();
+				monthlyCultural.setImg(mediaUrls_d[i]);
+				monthlyCultural.setCreateTime(CalenderTime.strtodate(CalenderTime.getToday("yyyy-MM-dd HH:mm:ss"),"yyyy-MM-dd HH:mm:ss"));
+				monthlyCultural.setMonthlyCulturalId(culturalInformation.getId());
+				monthlyCulturalManager.save(monthlyCultural);
+			}
+			
+		}
 	}
 
 }

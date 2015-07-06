@@ -16,7 +16,6 @@
 <%@ attribute name="fileSizeLimit" required="false" type="java.lang.String" description="上传图片最大限制，例如 2MB/10MB。默认为2MB"%>
 <%@ attribute name="fileImageSize" required="false" type="java.lang.String" description="上传图片后的保存路径的前缀"%>
 
-
 <c:set var="swf_upload" value="true" scope="request"/>
 <script type="text/javascript" defer>
 var swfu_${fileInputId};
@@ -38,4 +37,3 @@ $j(document).ready(function(){
 	});
 });
 </script>
-
