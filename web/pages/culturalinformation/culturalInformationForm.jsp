@@ -16,9 +16,7 @@
 	<cartmatic:cartmaticBtn btnType="cancel" onclick="return fnDoCancelForm(this);" />
 </content>
 
-
 <app:showBindErrors bindPath="culturalInformation.*" />
-
 <form:form method="post" cssClass="mainForm" id="culturalInformation" commandName="culturalInformation"
 			action="${ctxPath}/culturalinformation/culturalInformation.html" onsubmit="return validateCulturalInformation(this);">
 		<input type="hidden" name="culturalInformationId" value="${culturalInformation.culturalInformationId}"/> 
@@ -49,19 +47,20 @@
  		<app:input property="writer" />
  	<tr>
  		<td class="FieldLabel">类型</td>
- 		<td><select name="type" id="type" style="width:150px"   >
+ 		<td><select name="type" id="type" style="width:150px"  onchange="getMonthShow()">
 			<option value="0" <c:if test="${culturalInformation.type ==0}">selected="selected" </c:if>>秀场</option>
 			<option value="1" <c:if test="${culturalInformation.type ==1}">selected="selected" </c:if>>访谈</option>
 			<option value="2" <c:if test="${culturalInformation.type ==2}">selected="selected" </c:if>>行业动态</option>
 			<option value="3" <c:if test="${culturalInformation.type ==3}">selected="selected" </c:if>>线下主题活动</option>
-			<option  onClick="getMonthShow()"  value="4" <c:if test="${culturalInformation.type ==4}">selected="selected" </c:if>>月刊</option>
+			<option value="4" <c:if test="${culturalInformation.type ==4}">selected="selected" </c:if>>月刊</option>
 		</select>
 		</td>
 	</tr>
-	
 	<tr id="monthdiv" >
- 		<td class="FieldLabel"><a onClick="MonthImg()">点击添加月刊</a></td>
+ 		<td class="FieldLabel"><span id="productMediaImageBtnPlaceHolderId_d">按钮（<a href="#" onclick=removeAllProductImg('productMoreImages_d');>移除所有产品大图</a>）</span>
+ 		</td>
  		<td id="addImg">
+ 		<div id="productMoreImages_d"></div>
 		</td>
 	</tr>
   	<tr>
@@ -147,7 +146,16 @@
   	</table>
 </form:form>
 
-
+<!-- 上传大图 -->
+		<cartmatic:swf_upload
+			btnPlaceHolderId="productMediaImageBtnPlaceHolderId_d"
+			uploadCategory="productMedia"
+			uploadFileTypes="*.jpg; *.jpeg; *.png; *.gif"
+			onComplete="fnUploadMoreImage_d_Handler" objId="1110" previewSize="v"
+			isMultiFiles="true" button_text="上传月刊" fileImageSize="v"
+			fileSizeLimit="5MB"></cartmatic:swf_upload>
+		<script type="text/javascript"
+			src="<c:url value="/scripts/cartmatic/catelog/culturalForm.js"/>"></script>
 
 
 <v:javascript formName="culturalInformation" staticJavascript="false" />
@@ -159,14 +167,15 @@
 
 <script type="text/javascript" defer="defer">
 function getMonthShow(){
-	alert("hello");
-	$j("#monthdiv").show();
-}
-
-function MonthImg(){
-	alert("addMonthImg");
-	var html ="<input type='file' id='' name='' >";
-	$j("#addImg").append(html);  
+	//alert("good");
+	var type = $j("#type").val();
+	//alert("type:"+type);
+	if(type==4){
+		  $j("#monthdiv").show();
+		}else{
+			//上处提交后，程序须判断是不是类型为月刊才决定是否做保存
+			$j("#monthdiv").hide();
+		}
 }
 
 
@@ -204,7 +213,6 @@ function fnTestSelectMultiProductSku(productSkuList) {
     alert(arrayproductId.join());
 	alert(arrayproductName.join());
 	senData(arrayproductId.join(), arrayproductName.join());
-
 }
 
 </script>

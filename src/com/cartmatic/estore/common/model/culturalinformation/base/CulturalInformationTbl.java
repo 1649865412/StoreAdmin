@@ -37,7 +37,16 @@ public class CulturalInformationTbl extends BaseObject implements Serializable {
 	protected Integer state;
 	protected String recommendArrayId;
 	protected java.util.Set monthlyCultural = new java.util.HashSet();
+	protected String mediaUrls[];
 
+	
+	public String[] getMediaUrls() {
+		return mediaUrls;
+	}
+
+	public void setMediaUrls(String[] mediaUrls) {
+		this.mediaUrls = mediaUrls;
+	}
 
 	public java.util.Set getMonthlyCultural() {
 		return monthlyCultural;

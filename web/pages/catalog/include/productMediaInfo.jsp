@@ -2,7 +2,6 @@
 <%@ taglib prefix="cartmatic" tagdir="/WEB-INF/tags/cartmatic"%>
 <%@ taglib prefix="product" tagdir="/WEB-INF/tags/catalog"%>
 <div id="productMediaInfo" style="display:none">
-
 	<!--  产品大图  -->
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-content">
 		<tr>
@@ -249,4 +248,5 @@
 			<cartmatic:cartmaticBtn btnType="common" onclick="fnTabOriented(6,5)" commonBtnValueKey="productDetail.next"/>
 		</div>
 	</c:if>
+	
 </div>
