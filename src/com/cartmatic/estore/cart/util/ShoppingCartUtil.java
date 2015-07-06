@@ -66,14 +66,14 @@ public class ShoppingCartUtil
 		double mipennaPrice = 0;
 		double lapeeweePrice = 0;
 		double vcharmPrice = 0;
-		//时间控制
+		// 时间控制
 		Date date = new Date();
 		DateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 		long time = Long.parseLong(format.format(date));
-		long t1=20150701000000l;
-		long t2=20150704000000l;
-		long difference1=time-t1;
-		long difference2=time-t2;
+		long t1 = 20150706000000l;
+		long t2 = 20150731235900l;
+		long difference1 = time - t1;
+		long difference2 = time - t2;
 		if (difference1 > 0 && difference2 < 0)
 		{
 			Set<ShoppingcartItem> items = shoppingcart.getCartItems();
