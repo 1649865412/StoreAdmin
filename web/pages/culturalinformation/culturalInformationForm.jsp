@@ -122,11 +122,11 @@
 			</td>
 			<td>
 			    <input id="b1" type="button" class="admin-btn" value="文化资讯" onclick="multiSupplierSelector_show('kkk_DIV')"/>
-			    <input id="b2" type="button" class="admin-btn" value="重置" onclick="culReset()"/>
+			    <input id="b2" type="button" class="admin-btn" value="清空" onclick="culReset()"/>
 	    <cultural:culturalSelector title="推荐资讯选择"   id="multiSupplierSelector"  autoClose="true" ondblclick="fnTestSelectMultiProductSku"  multiSelect="true"></cultural:culturalSelector>
 	            <span id="arrayproductName"></span>
 	            <input type="hidden" id="arrayproductId" name="recommendArrayId"
-					value="" />
+					value="${culturalInformation.recommendArrayId}" />
 			</td>
 	    </tr>
 	    <app:input property="metaKeywork" />
@@ -221,8 +221,6 @@ function fnTestSelectMultiProductSku(productSkuList) {
 		arrayproductId[i] = productSku.culturalInformationId;
 		arrayproductName[i] = productSku.title;
 	}
-    alert(arrayproductId.join());
-	alert(arrayproductName.join());
 	senData(arrayproductId.join(), arrayproductName.join());
 }
 </script>

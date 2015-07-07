@@ -108,13 +108,13 @@
 	}
 
 	function fnTestSelectMultiProductSku(productSkuList) {
-		alert("fnTestSelectMultiProductSku")
+	//	alert("fnTestSelectMultiProductSku")
 		var data = "";
 		var arrayproductId = new Array();
 		var arrayproductName = new Array();
 		for ( var i = 0; i < productSkuList.length; i++) {
 			var productSku = productSkuList[i];
-			data += "productSkuCode:" + productSku.productSkuCode + "\n";
+			/*data += "productSkuCode:" + productSku.productSkuCode + "\n";
 			data += "productSkuId:" + productSku.productSkuId + "\n";
 			data += "price:" + productSku.price + "\n";
 			data += "salePrice:" + productSku.salePrice + "\n";
@@ -123,12 +123,12 @@
 			data += "productName:" + productSku.product.productName + "\n";
 			data += "productCode:" + productSku.product.productCode + "\n";
 			data += "brandId:" + productSku.product.brand.brandId + "\n";
-			data += "brandName:" + productSku.product.brand.brandName + "\n";
+			data += "brandName:" + productSku.product.brand.brandName + "\n";*/
 			arrayproductId[i] = productSku.product.productId;
 			arrayproductName[i] = productSku.product.productName;
 		}
-	    alert(arrayproductId.join());
-		alert(arrayproductName.join());
+	   // alert(arrayproductId.join());
+		//alert(arrayproductName.join());
 		senData(arrayproductId.join(), arrayproductName.join());
 	}
 </script>

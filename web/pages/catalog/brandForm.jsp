@@ -2,7 +2,7 @@
 <%@ taglib prefix="cartmatic" tagdir="/WEB-INF/tags/cartmatic"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="cultural" tagdir="/WEB-INF/tags/cultural"%>
-
+<%@ taglib prefix="product" tagdir="/WEB-INF/tags/catalog"%>
 <app:pageHeading entityName="${brand.brandName}" entityHeadingKey="brandDetail.heading" />
 <content tag="buttons">
 <cartmatic:cartmaticBtn btnType="save" onclick="return fnDoSave(this,'brandName');" />
@@ -47,7 +47,7 @@
 	    
 	   <tr>
 			<td class="FieldLabel">
-				设计师首字母：
+				设计师首字母(前端首字母排序查询,只限大写字母查询)：
 			</td>
 			<td>
 				<input class="Field400" type="text" name="initials" id="initials" value="${brand.initials}" />
@@ -60,15 +60,29 @@
 			</td>
 			<td>
 			    <input id="b1" type="button" class="admin-btn" value="访谈资讯" onclick="multiSupplierSelector_show('kkk_DIV')"/>
-			    <input id="b2" type="button" class="admin-btn" value="重置" onclick="culReset()"/>
-	            <cultural:culturalSelector title="推荐资讯选择"   id="multiSupplierSelector"  autoClose="true" ondblclick="fnTestSelectMultiProductSku"  multiSelect="true"></cultural:culturalSelector>
-	            <span id="arrayproductName"></span>
-	            <input type="hidden" id="arrayproductId" name="recommendArrayId"
-					value="" />
+			    <input id="b2" type="button" class="admin-btn" value="清空" onclick="Reset(1)"/>
+	            <cultural:culturalSelector title="推荐资讯选择"   id="multiSupplierSelector"  autoClose="true" ondblclick="fnTestSelectMultiCulSku"  multiSelect="true"></cultural:culturalSelector>
+	            <span id="arrayculName"></span>
+	            <input type="hidden" id="arrayculId" name="culturalRecommendId"
+					value="${brand.culturalRecommendId}" />
 			</td>
 	    </tr>
-	    
-	    
+	  <tr>
+			<td class="FieldLabel">
+				<span>推荐产品选择(支持多选，前台只展示前六个)： </span>
+			</td>
+			<td>
+					<input type="button" value="产品推荐" id="b5" />
+					<input id="b2" type="button" class="admin-btn" value="清空" onclick="Reset(2)"/>
+					<product:productSkuSelector id="multiSelect_productSkuSelector"
+						showSelectorBtnId="b5" title="产品选择"
+						ondblclick="fnTestSelectMultiProductSku" showProductKinds="1,2"
+						multiSelect="true"></product:productSkuSelector>
+					<span id="arrayproductName"></span>
+				<input type="hidden" id="arrayproductId" name="productRecommendId"
+					value="${brand.productRecommendId}" />
+			</td>
+		</tr>
 	    <tr>
 			<td class="FieldLabel">
 				<StoreAdmin:label key="brand.website" />
@@ -176,67 +190,90 @@
 <cartmatic:swf_upload btnPlaceHolderId="logoImageBtnPlaceHolderId" uploadCategory="other" uploadFileTypes="*.jpg" fileInputId="logo" previewImg="logoImage" ></cartmatic:swf_upload>
 <cartmatic:swf_upload btnPlaceHolderId="picImageBtnPlaceHolderId" uploadCategory="other" uploadFileTypes="*.jpg" fileInputId="pic" previewImg="picImage" ></cartmatic:swf_upload>
 <cartmatic:swf_upload btnPlaceHolderId="pic2ImageBtnPlaceHolderId" uploadCategory="other" uploadFileTypes="*.jpg" fileInputId="pic2" previewImg="pic2Image" ></cartmatic:swf_upload>
+
 <v:javascript formName="brand" staticJavascript="false" />
 <script type="text/javascript">
     document.forms["brand"].elements["brandName"].focus();
 </script>
 
-
 <script type="text/javascript" defer="defer">
+//type=1是获取访谈的，type=2是获取推荐产品的
 
-function culReset(){
-	$j("#arrayproductId").val("");
-	$j("#arrayproductName").html("");
+
+
+//选择器表单值重置
+function Reset(type){
+   if(type==1){
+	    $j("#arrayculId").val("");
+		$j("#arrayculName").html("");
+	   }	
+   else if(type==2){
+	    $j("#arrayproductId").val("");
+		$j("#arrayproductName").html("");
+	   }
 }
 
 
-function getMonthShow(){
-	//alert("good");
-	var type = $j("#type").val();
-	//alert("type:"+type);
-	if(type==4){
-		  $j("#monthdiv").show();
-		}else{
-			//上处提交后，程序须判断是不是类型为月刊才决定是否做保存
-			$j("#monthdiv").hide();
+//选择器值设置表单准备提交
+function senData(arrayproductId, arrayproductName,type) {
+	//alert("senData:"+type+":"+arrayproductId+":"+arrayproductName);
+	if(type==1){
+		 arrayproductIdvalue=$j("#arrayculId").val();
+		 arrayproductNamevalue=$j("#arrayculName").html();
 		}
-}
-
-
-function senData(arrayproductId, arrayproductName) {
-	 arrayproductIdvalue=$j("#arrayproductId").val();
-	 arrayproductNamevalue=$j("#arrayproductName").html();
-	 
-	 if(arrayproductIdvalue==""){
+	else if(type==2){
+		 arrayproductIdvalue=$j("#arrayproductId").val();
+		 arrayproductNamevalue=$j("#arrayproductName").html();
+		}
+	
+	 if(arrayproductIdvalue=="")
+		 {
 		 arrayproductIdvalue="";
 		 }else{
 			 arrayproductIdvalue+=",";
 			 }
-	 if(arrayproductNamevalue==""){
+	 if(arrayproductNamevalue=="")
+		 {
 		 arrayproductNamevalue="";
 		 }else{
 			 arrayproductNamevalue+=",";
 			 }
-	$j("#arrayproductId").val(arrayproductIdvalue+arrayproductId);
-	$j("#arrayproductName").html(arrayproductNamevalue+arrayproductName);
+	 if(type==1){
+		 $j("#arrayculId").val(arrayproductIdvalue+arrayproductId);
+			$j("#arrayculName").html(arrayproductNamevalue+arrayproductName);
+		}
+	else if(type==2){
+		$j("#arrayproductId").val(arrayproductIdvalue+arrayproductId);
+		$j("#arrayproductName").html(arrayproductNamevalue+arrayproductName);
+		}
 }
 
-function fnTestSelectMultiProductSku(productSkuList) {
+//选择器值函数回调（文化）
+function fnTestSelectMultiCulSku(productSkuList) {
 	//alert("fnTestSelectMultiProductSku")
 	var data = "";
 	var arrayproductId = new Array();
 	var arrayproductName = new Array();
 	for ( var i = 0; i < productSkuList.length; i++) {
 		var productSku = productSkuList[i];
-		data += "culturalInformationId:" + productSku.culturalInformationId + "\n";
-		data += "title:" + productSku.title+ "\n";
-		data += "writer:" + productSku.writer + "\n";
 		arrayproductId[i] = productSku.culturalInformationId;
 		arrayproductName[i] = productSku.title;
 	}
-    alert(arrayproductId.join());
-	alert(arrayproductName.join());
-	senData(arrayproductId.join(), arrayproductName.join());
+	senData(arrayproductId.join(), arrayproductName.join(),1);
 }
 
+//选择器值函数回调（产品）
+function fnTestSelectMultiProductSku(productSkuList) {
+//	alert("选择器值函数回调（产品）")
+	var data = "";
+	var arrayproductId = new Array();
+	var arrayproductName = new Array();
+	//alert("productSkuList:"+productSkuList);
+	for ( var i = 0; i < productSkuList.length; i++) {
+		var productSku = productSkuList[i];
+		arrayproductId[i] = productSku.product.productId;
+		arrayproductName[i] = productSku.product.productName;
+	}
+	senData(arrayproductId.join(), arrayproductName.join(),2);
+}
 </script>
