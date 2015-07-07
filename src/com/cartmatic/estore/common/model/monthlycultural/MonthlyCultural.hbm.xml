@@ -14,7 +14,7 @@
 			<generator class="native" />
 		</id>
 		<property name="img" type="java.lang.String" update="true"
-			insert="true" access="property" column="img" length="30" not-null="false"
+			insert="true" access="property" column="img" length="255" not-null="false"
 			unique="false" />
 		<property name="createTime" type="java.util.Date" update="true"
 			insert="true" access="property" column="createTime" length="0"

@@ -12,7 +12,7 @@ $j(document).ready(function(){
  * @param {Object} data
  */
 function fnSaveProductHandler(result){
-    alert("goodbye")
+  //  alert("goodbye")
 }
 
 
@@ -22,8 +22,8 @@ function fnSaveProductHandler(result){
  * @return
  */
 function fnUploadMoreImage_d_Handler(file){
-	alert("fnUploadMoreImage_d_Handler");
-	alert("file:"+file);
+//	alert("fnUploadMoreImage_d_Handler");
+//	alert("file:"+file);
 	showUploadProudctMedia_d('productMoreImages_d',0,file);
 }
 
@@ -33,7 +33,7 @@ function fnUploadMoreImage_d_Handler(file){
  * @return
  */
 function showUploadProudctMedia_d(divId,uploadInputMediaType,file){
-	alert("showUploadProudctMedia_d");
+//	alert("showUploadProudctMedia_d");
 	var id = "1" + new Date().getTime().toString().substr(6);
 	var inputUploadHtml = "";
 	var productMedia_img = "media_noPhoto.gif";
@@ -71,7 +71,7 @@ function showUploadProudctMedia_d(divId,uploadInputMediaType,file){
  * @param {Object} parentDivId 上传控制所在的Form的ID
  */
 function fnRemoveUploadMedia(id,obj){
-	alert("fnRemoveUploadMedia");
+	//alert("fnRemoveUploadMedia");
 	//$j('#productMedia_div_' + id).remove();
 	var $this = $j(obj);
 	$this.parents(".product-media").remove();
@@ -83,7 +83,7 @@ function fnRemoveUploadMedia(id,obj){
  * @return
  */
 function removeAllProductImg(id){
-	alert("removeAllProductImg");
+	//alert("removeAllProductImg");
 	$j("#" + id).html("");
 }
 

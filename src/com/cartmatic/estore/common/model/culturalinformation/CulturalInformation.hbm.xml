@@ -80,7 +80,7 @@
 			not-null="false" unique="false" />
 			
 			<!-- exported bi-directional one-to-many association to monthlyCultural -->
-		<set name="monthlyCultural" table="monthly_cultural" lazy="true" inverse="true" cascade="save-update" order-by="monthlyCulturalId desc" where="status=1">
+		<set name="monthlyCultural" table="monthly_cultural" lazy="false" inverse="true" cascade="save-update,persist" order-by="monthlyCulturalId desc" >
 			<key>
 				<column name="culturalInformationId" />
 			</key>

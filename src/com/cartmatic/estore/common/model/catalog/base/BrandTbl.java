@@ -31,8 +31,37 @@ public class BrandTbl extends BaseObject implements Serializable {
 	protected String icon;
 	protected String countryCode;
 	protected Integer version;
-	
+	protected String initials;
+	protected String productRecommendId;
+	protected String culturalRecommendId;
 	protected java.util.Set products = new java.util.HashSet();
+	
+	
+	public String getInitials() {
+		return initials;
+	}
+
+	public void setInitials(String initials) {
+		this.initials = initials;
+	}
+
+	public String getProductRecommendId() {
+		return productRecommendId;
+	}
+
+	public void setProductRecommendId(String productRecommendId) {
+		this.productRecommendId = productRecommendId;
+	}
+
+	public String getCulturalRecommendId() {
+		return culturalRecommendId;
+	}
+
+	public void setCulturalRecommendId(String culturalRecommendId) {
+		this.culturalRecommendId = culturalRecommendId;
+	}
+
+
 
 	/**
 	 * Default Empty Constructor for class Brand
