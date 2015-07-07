@@ -125,7 +125,9 @@ function __fnGetObjJsonData_${id}(pid){
 			$j("#selectedSupplier_${id}").empty();
 			$j("input[type='checkbox'][id^='sel_ch_']",$j("#supplierSelectorDataList_${id}")).attr("checked",false);
 		}
+		
 		function fnConfirmSelectedSupplier${id}(){
+		    //alert("fnConfirmSelectedSupplier");
 			if(selectedSupplierList${id}.length<1)
 				alert("请选择文化资讯推荐");
 			if(supplierSelector_ondblclick_callback_${id})

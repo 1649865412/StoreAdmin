@@ -2,6 +2,8 @@
 package com.cartmatic.estoresa.culturalinformation.web.action;
 
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.poi.util.ArrayUtil;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,6 +27,8 @@ import com.cartmatic.estore.culturalinformation.util.CalenderTime;
 import com.cartmatic.estore.monthlycultural.service.MonthlyCulturalManager;
 import com.cartmatic.estore.textsearch.SearchConstants;
 import com.cartmatic.estore.webapp.util.RequestUtil;
+
+import edu.emory.mathcs.backport.java.util.Collections;
 
 public class CulturalInformationController extends GenericController<CulturalInformation> {
 	
@@ -97,6 +102,7 @@ public class CulturalInformationController extends GenericController<CulturalInf
 	protected void  onSave(HttpServletRequest request, CulturalInformation entity, BindException errors) 
 	{
             String mediaUrls_d[] = RequestUtil.getParameterValuesNullSafe(request,"productMedia_urls_d");
+            System.out.println(entity.getRecommendArrayId());
 			culturalInformationManager.save(entity);
 			try
 			{
@@ -112,6 +118,7 @@ public class CulturalInformationController extends GenericController<CulturalInf
 			CatalogHelper.getInstance().indexNotifyUpdateEventMethod(SearchConstants.CORE_NAME_CULTURAL, entity.getId());
 			saveMessage(Message.info("common.added", new Object[] {getEntityTypeMessage(), getEntityName(entity)}));	
 	}
+	
 
 	/**
 	 * 重写删除方法
@@ -177,6 +184,7 @@ public class CulturalInformationController extends GenericController<CulturalInf
 						e.printStackTrace();
 					}
 				}
+			
 		    mgr.deleteAllByIds(ids);
 			saveMessage(Message.info("common.deleted.multi", new Object[] {getEntityTypeMessage(), ids.length }));
 		}
@@ -184,6 +192,14 @@ public class CulturalInformationController extends GenericController<CulturalInf
 	}
 	
 	
+	
+	/**
+	 * 功能:保存月刊数据
+	 * <p>作者 杨荣忠 2015-7-7 下午02:05:04
+	 * @param mediaUrls_d
+	 * @param culturalInformation
+	 * @throws ParseException
+	 */
 	public void saveMonth( String mediaUrls_d[],CulturalInformation culturalInformation) throws ParseException{
 		if( mediaUrls_d!=null&& mediaUrls_d.length>0&&culturalInformation.getType()==MONTH_TYPE){
 			for(int i=0;i<mediaUrls_d.length;i++)
@@ -204,7 +220,6 @@ public class CulturalInformationController extends GenericController<CulturalInf
 				//monthlyCulturalList.add(monthlyCultural);
 				monthlyCulturalManager.merge(monthlyCultural);
 			}
-			
 		}
 	}
 

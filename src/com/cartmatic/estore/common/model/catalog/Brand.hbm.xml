@@ -22,7 +22,7 @@
 		<property name="designer" type="java.lang.String" update="true" insert="true" access="property" column="designer" length="64" not-null="false" unique="false" />
 		<property name="icon" type="java.lang.String" update="true" insert="true" access="property" column="icon" length="255" not-null="false" unique="false" />
 		
-		<property name="initials" type="java.lang.String" update="true" insert="true" access="property" column="12" length="255" not-null="true" unique="false" />
+		<property name="initials" type="java.lang.String" update="true" insert="true" access="property" column="initials" length="255" not-null="true" unique="false" />
 		<property name="productRecommendId" type="java.lang.String" update="true" insert="true" access="property" column="productRecommendId" length="30" not-null="false" unique="false" />
 		<property name="culturalRecommendId" type="java.lang.String" update="true" insert="true" access="property" column="culturalRecommendId" length="30" not-null="false" unique="false" />
 

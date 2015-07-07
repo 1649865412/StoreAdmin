@@ -31,9 +31,11 @@ public class BrandTbl extends BaseObject implements Serializable {
 	protected String icon;
 	protected String countryCode;
 	protected Integer version;
+	
 	protected String initials;
 	protected String productRecommendId;
 	protected String culturalRecommendId;
+	
 	protected java.util.Set products = new java.util.HashSet();
 	
 	

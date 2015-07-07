@@ -1,5 +1,5 @@
 
-package com.cartmatic.estoresa.supplier.web.action;
+package com.cartmatic.estoresa.culturalinformation.web.action;
 
 import java.util.List;
 import java.util.Map;
@@ -28,7 +28,6 @@ import com.cartmatic.estore.culturalinformation.service.CulturalInformationManag
 public class CulturalSelectorController extends GenericController<CulturalInformation> {
 	private CulturalInformationManager CulturalInformationManager=null;
 
-	
 	@SuppressWarnings("unchecked")
 	public ModelAndView defaultAction(HttpServletRequest request,
 			HttpServletResponse response) {
@@ -37,7 +36,6 @@ public class CulturalSelectorController extends GenericController<CulturalInform
 		}
 		return new ModelAndView("culturalinformation/culturalSelector");
 	}
-	
 	
 	@SuppressWarnings("unchecked")
 	private ModelAndView getData(HttpServletRequest request,

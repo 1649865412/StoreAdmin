@@ -1,6 +1,8 @@
 <%@ include file="/common/taglibs.jsp"%>
 <%@ taglib prefix="cartmatic" tagdir="/WEB-INF/tags/cartmatic"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="cultural" tagdir="/WEB-INF/tags/cultural"%>
+
 <app:pageHeading entityName="${brand.brandName}" entityHeadingKey="brandDetail.heading" />
 <content tag="buttons">
 <cartmatic:cartmaticBtn btnType="save" onclick="return fnDoSave(this,'brandName');" />
@@ -41,6 +43,32 @@
 				<input class="Field400" type="text" name="brandCode" id="brandCode" value="${brand.brandCode}" />
 			</td>
 	    </tr>
+	    
+	    
+	   <tr>
+			<td class="FieldLabel">
+				设计师首字母：
+			</td>
+			<td>
+				<input class="Field400" type="text" name="initials" id="initials" value="${brand.initials}" />
+			</td>
+	   </tr>
+	     
+	   <tr>
+			<td class="FieldLabel">
+				访谈资讯(支持多选，前台只展示前一个):
+			</td>
+			<td>
+			    <input id="b1" type="button" class="admin-btn" value="访谈资讯" onclick="multiSupplierSelector_show('kkk_DIV')"/>
+			    <input id="b2" type="button" class="admin-btn" value="重置" onclick="culReset()"/>
+	            <cultural:culturalSelector title="推荐资讯选择"   id="multiSupplierSelector"  autoClose="true" ondblclick="fnTestSelectMultiProductSku"  multiSelect="true"></cultural:culturalSelector>
+	            <span id="arrayproductName"></span>
+	            <input type="hidden" id="arrayproductId" name="recommendArrayId"
+					value="" />
+			</td>
+	    </tr>
+	    
+	    
 	    <tr>
 			<td class="FieldLabel">
 				<StoreAdmin:label key="brand.website" />
@@ -76,7 +104,7 @@
 	    </tr>
 	    <tr>
 			<td class="FieldLabel">
-				<StoreAdmin:label key="brand.icon" />
+				设计师logo图：
 			</td>
 			<td>
 				<div style="float: left;">
@@ -93,7 +121,7 @@
 	    </tr>
 	    <tr>
 			<td class="FieldLabel">
-				<StoreAdmin:label key="brand.logo" />
+				品牌logo图
 			</td>
 			<td>
 				<div style="float: left;">
@@ -110,7 +138,7 @@
 	    </tr>
 	    <tr>
 			<td class="FieldLabel">
-				<StoreAdmin:label key="brand.pic" />
+				页面品牌故事旁边logo图
 			</td>
 			<td>
 				<div style="float: left;">
@@ -151,4 +179,64 @@
 <v:javascript formName="brand" staticJavascript="false" />
 <script type="text/javascript">
     document.forms["brand"].elements["brandName"].focus();
+</script>
+
+
+<script type="text/javascript" defer="defer">
+
+function culReset(){
+	$j("#arrayproductId").val("");
+	$j("#arrayproductName").html("");
+}
+
+
+function getMonthShow(){
+	//alert("good");
+	var type = $j("#type").val();
+	//alert("type:"+type);
+	if(type==4){
+		  $j("#monthdiv").show();
+		}else{
+			//上处提交后，程序须判断是不是类型为月刊才决定是否做保存
+			$j("#monthdiv").hide();
+		}
+}
+
+
+function senData(arrayproductId, arrayproductName) {
+	 arrayproductIdvalue=$j("#arrayproductId").val();
+	 arrayproductNamevalue=$j("#arrayproductName").html();
+	 
+	 if(arrayproductIdvalue==""){
+		 arrayproductIdvalue="";
+		 }else{
+			 arrayproductIdvalue+=",";
+			 }
+	 if(arrayproductNamevalue==""){
+		 arrayproductNamevalue="";
+		 }else{
+			 arrayproductNamevalue+=",";
+			 }
+	$j("#arrayproductId").val(arrayproductIdvalue+arrayproductId);
+	$j("#arrayproductName").html(arrayproductNamevalue+arrayproductName);
+}
+
+function fnTestSelectMultiProductSku(productSkuList) {
+	//alert("fnTestSelectMultiProductSku")
+	var data = "";
+	var arrayproductId = new Array();
+	var arrayproductName = new Array();
+	for ( var i = 0; i < productSkuList.length; i++) {
+		var productSku = productSkuList[i];
+		data += "culturalInformationId:" + productSku.culturalInformationId + "\n";
+		data += "title:" + productSku.title+ "\n";
+		data += "writer:" + productSku.writer + "\n";
+		arrayproductId[i] = productSku.culturalInformationId;
+		arrayproductName[i] = productSku.title;
+	}
+    alert(arrayproductId.join());
+	alert(arrayproductName.join());
+	senData(arrayproductId.join(), arrayproductName.join());
+}
+
 </script>

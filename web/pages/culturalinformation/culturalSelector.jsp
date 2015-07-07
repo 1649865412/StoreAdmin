@@ -18,6 +18,18 @@
 				</div>
 				<input name="COL@s.writer@String@LIKE" type="text" style="width: 200px" />
 				<div class="blank10"></div>
+				<div class="title">
+					类型
+				</div>
+		<select name="COL@s.type@Integer@EQL" id="type" style="width:150px"  onchange="getMonthShow()">
+		    <option value="" >所有</option>
+			<option value="0" <c:if test="${param['COL@s.type@Integer@EQL'] ==0}">selected="selected" </c:if>>秀场</option>
+			<option value="1" <c:if test="${param['COL@s.type@Integer@EQL']  ==1}">selected="selected" </c:if>>访谈</option>
+			<option value="2" <c:if test="${param['COL@s.type@Integer@EQL']  ==2}">selected="selected" </c:if>>行业动态</option>
+			<option value="3" <c:if test="${param['COL@s.type@Integer@EQL']  ==3}">selected="selected" </c:if>>线下主题活动</option>
+			<option value="4" <c:if test="${param['COL@s.type@Integer@EQL']  ==4}">selected="selected" </c:if>>月刊</option>
+		</select>
+				<div class="blank10"></div>
 				<input type="button" id="SearchButton" name="SearchButton" onclick="fn${param.id}GetData();" value="<fmt:message key="button.search"/>" class="btn-search"/>
 				<div class="blank10"></div>
 				需选择的请搜索后在右侧列表双击相应标题或作者！

@@ -35,7 +35,6 @@
 				  <c:when test="${supplierItem.state==1}">取消</c:when>
 				</c:choose>
 			</display:column>
-			
 </display:table>
 
 <input type="hidden" name="multiSelect" value="${param.multiSelect}">

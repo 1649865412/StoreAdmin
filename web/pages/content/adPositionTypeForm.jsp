@@ -2,6 +2,7 @@
 <%@ taglib prefix="content" tagdir="/WEB-INF/tags/content"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+
 <app:pageHeading entityName="${adPositionType.adPositionTypeName}" entityHeadingKey="adPositionTypeDetail.heading" />
 <content tag="buttons">
 	<cartmatic:cartmaticBtn btnType="save" onclick="return fnDoSave(this,'positionName');" />
@@ -10,8 +11,6 @@
 	</c:if>
 	<cartmatic:cartmaticBtn btnType="cancel" onclick="return fnDoCancelForm(this);" />
 </content>
-
-
 
 <app:showBindErrors bindPath="adPositionType.*" />
 	<form:form method="post" cssClass="mainForm" id="adPositionType" commandName="adPositionType"

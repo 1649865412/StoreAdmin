@@ -977,7 +977,7 @@
         <property name="lastSearchViewAllowed" value="false"></property>
 	</bean>
 	
-	<bean id="culturalSelectorController" class="com.cartmatic.estoresa.supplier.web.action.CulturalSelectorController" parent="genericController" autowire="byName">
+	<bean id="culturalSelectorController" class="com.cartmatic.estoresa.culturalinformation.web.action.CulturalSelectorController" parent="genericController" autowire="byName">
         <property name="lastSearchViewAllowed" value="false"></property>
 	</bean>
 	

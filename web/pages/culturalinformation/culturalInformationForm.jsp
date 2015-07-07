@@ -47,7 +47,8 @@
  		<app:input property="writer" />
  	<tr>
  		<td class="FieldLabel">类型</td>
- 		<td><select name="type" id="type" style="width:150px"  onchange="getMonthShow()">
+ 		<td>
+ 		<select name="type" id="type" style="width:150px"  onchange="getMonthShow()">
 			<option value="0" <c:if test="${culturalInformation.type ==0}">selected="selected" </c:if>>秀场</option>
 			<option value="1" <c:if test="${culturalInformation.type ==1}">selected="selected" </c:if>>访谈</option>
 			<option value="2" <c:if test="${culturalInformation.type ==2}">selected="selected" </c:if>>行业动态</option>
@@ -115,17 +116,17 @@
 				<cartmatic:swf_upload btnPlaceHolderId="pic2ImageBtnPlaceHolderId" uploadCategory="other" uploadFileTypes="*.jpg" fileInputId="pic2" previewImg="pic2Image" ></cartmatic:swf_upload>
 			</td>
 	    </tr>
-	    
-	        <tr>
+	    <tr>
 			<td class="FieldLabel">
-				推荐资询(支持多选，前台只展示前三个):
+				推荐资讯(支持多选，前台只展示前三个):
 			</td>
 			<td>
 			    <input id="b1" type="button" class="admin-btn" value="文化资讯" onclick="multiSupplierSelector_show('kkk_DIV')"/>
-	    <cultural:culturalSelector title="推荐资询选择"   id="multiSupplierSelector"  autoClose="true" ondblclick="fnTestSelectMultiProductSku"  multiSelect="true"></cultural:culturalSelector>
+			    <input id="b2" type="button" class="admin-btn" value="重置" onclick="culReset()"/>
+	    <cultural:culturalSelector title="推荐资讯选择"   id="multiSupplierSelector"  autoClose="true" ondblclick="fnTestSelectMultiProductSku"  multiSelect="true"></cultural:culturalSelector>
 	            <span id="arrayproductName"></span>
 	            <input type="hidden" id="arrayproductId" name="recommendArrayId"
-					value="${culturalInformation.recommendArrayId}" />
+					value="" />
 			</td>
 	    </tr>
 	    <app:input property="metaKeywork" />
@@ -160,12 +161,23 @@
 
 <v:javascript formName="culturalInformation" staticJavascript="false" />
 <script type="text/javascript">
-    $j("#monthdiv").hide();
+    if('${culturalInformation.type}'!=4)
+    {   
+      //  alert("type:"+${culturalInformation.type});
+        $j("#monthdiv").hide();
+       }
     document.forms["culturalInformation"].elements["title"].focus();
 </script>
 
 
 <script type="text/javascript" defer="defer">
+
+function culReset(){
+	$j("#arrayproductId").val("");
+	$j("#arrayproductName").html("");
+}
+
+
 function getMonthShow(){
 	//alert("good");
 	var type = $j("#type").val();
@@ -177,7 +189,6 @@ function getMonthShow(){
 			$j("#monthdiv").hide();
 		}
 }
-
 
 function senData(arrayproductId, arrayproductName) {
 	 arrayproductIdvalue=$j("#arrayproductId").val();
@@ -214,5 +225,4 @@ function fnTestSelectMultiProductSku(productSkuList) {
 	alert(arrayproductName.join());
 	senData(arrayproductId.join(), arrayproductName.join());
 }
-
 </script>
