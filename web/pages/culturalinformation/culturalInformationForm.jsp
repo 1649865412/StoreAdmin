@@ -210,8 +210,8 @@ function fnTestSelectMultiProductSku(productSkuList) {
 		arrayproductId[i] = productSku.culturalInformationId;
 		arrayproductName[i] = productSku.title;
 	}
-    alert(arrayproductId.join());
-	alert(arrayproductName.join());
+    //alert(arrayproductId.join());
+	//alert(arrayproductName.join());
 	senData(arrayproductId.join(), arrayproductName.join());
 }
 
