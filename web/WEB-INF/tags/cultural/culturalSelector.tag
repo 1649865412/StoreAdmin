@@ -6,7 +6,10 @@
 <%@ attribute name="id" required="true" rtexprvalue="true" type="java.lang.String" description="选择器Id，要求唯一，可以看成选择器的引用"%>
 <%@ attribute name="showSelectorBtnId" required="false" rtexprvalue="true" type="java.lang.String" description="打开本窗口的按钮的ID；留空并且自己设置该按钮的onclick事件也可,通过指定事件时打开时，本属性为空"%>
 <%@ attribute name="ondblclick" required="false"  rtexprvalue="true" type="java.lang.String" description="双击时的回调函数，参数为选定的product对象(选择后的回调，单选时返回所选定的Sku，多选时返回所选择的Sku数组)"%>
+
 <%@ attribute name="autoClose" required="false"  rtexprvalue="true" type="java.lang.Boolean" description="ondblclick事件时，是否自动关闭选择器，默认true"%>
+<%@ attribute name="culId" required="false"  rtexprvalue="true" type="java.lang.String" description="文化资讯ID"%>
+
 <%@ attribute name="showProductKinds" required="false"  rtexprvalue="true" type="java.lang.String" description=""%>
 <%@ attribute name="title" required="false"  rtexprvalue="true" type="java.lang.String" description="选择器标题,默认为产品选择器(主要是订单那边需指定为商品选择器)"%>
 <%@ attribute name="multiSelect" required="false"  rtexprvalue="true" type="java.lang.Boolean" description="是否多选，默认false,表示否，"%>
@@ -49,7 +52,7 @@ function ${id}_show(paramData)
 	supplierSelector_paramData_${id}=paramData;
 	if(!(supplierSelector_dialog_${id}.dialog("isOpen")==true||supplierSelector_dialog_${id}.dialog("isOpen")==false)){
 		supplierSelector_dialog_${id}.css("visibility","visible");
-		fillDivWithPage("supplierSelector_divDlg${id}",__ctxPath+"/selector/culturalSelector.html",getSupplierSelectorData_${id}(),"post");
+		fillDivWithPage("supplierSelector_divDlg${id}",__ctxPath+"/selector/culturalSelector.html?culId=${culId}",getSupplierSelectorData_${id}(),"post");
 		supplierSelector_dialog_${id}.dialog({ title:supplierSelector_title_${id}, modal: true, height:400, width:900,buttons: {${buttons}}});
 	}
 	supplierSelector_dialog_${id}.dialog("open");
@@ -61,11 +64,11 @@ function ${id}_close()
 }
 function fn${id}GetData(){
 	var paraDate=$j("#supplierSelectorSearch_${id} :input").serializeArray();
-	fillDivWithPage("supplierSelectorDataList_${id}","${ctxPath}/selector/culturalSelectorDataList.html?pagingId=${id}",paraDate${getDataCallBack},"post");
+	fillDivWithPage("supplierSelectorDataList_${id}","${ctxPath}/selector/culturalSelectorDataList.html?pagingId=${id}&culId=${culId}",paraDate${getDataCallBack},"post");
 }
 function fnOnGoToPage${id}(){
 	var paraDate=$j("#supplierSelectorDataList_${id} :input").serializeArray();
-	fillDivWithPage("supplierSelectorDataList_${id}","${ctxPath}/selector/culturalSelectorDataList.html?pagingId=${id}",paraDate${getDataCallBack},"post");
+	fillDivWithPage("supplierSelectorDataList_${id}","${ctxPath}/selector/culturalSelectorDataList.html?pagingId=${id}&culId=${culId}",paraDate${getDataCallBack},"post");
 }
 function __fnGetObjJsonData_${id}(pid){
 	var tempJsonTxt=$j("#jsonDataList_${id}_"+pid).text();
@@ -77,14 +80,15 @@ function __fnGetObjJsonData_${id}(pid){
 	<c:when test="${not empty multiSelect&&multiSelect}">
 		var selectedSupplierList${id} =new Array();
 		function fuSelectSupplier${id}(pid,val){
-		//alert("双击选择");
-		//alert("pid:"+pid);
-		//alert("val:"+val);
-			if(val){
+		//  alert("双击选择");
+		//  alert("pid:"+pid);
+		// alert("val:"+val);
+		if(val){
 				if(val.checked){
 					var supplier=__fnGetObjJsonData_${id}(pid);
 					fnAddSelectedSupplier${id}(supplier);
 				}else{
+				  //  alert("移除所选总方法")
 					fnRemoveSelectedSupplier${id}(pid);
 				}
 			}else{
@@ -109,16 +113,18 @@ function __fnGetObjJsonData_${id}(pid){
 				$j("#selectedSupplier_${id}").append("<span id='sel_${id}_"+supplier.culturalInformationId+"' ondblclick='fnRemoveSelectedSupplier${id}("+supplier.culturalInformationId+")' title='双击移除'>"+supplier.title+",</span>");
 			}
 		}
+		
 		function fnRemoveSelectedSupplier${id}(id){
-		//alert("移除所选");
-			for(var i=0;i<selectedSupplierList${id}.length;i++){
-				if(selectedSupplierList${id}[i].supplierId==id){
-					selectedSupplierList${id}=selectedSupplierList${id}.slice(0,i).concat(selectedSupplierList${id}.slice(i+1,selectedSupplierList${id}.length));
+		   // alert("移除所选:"+id);
+		//	for(var i=0;i<selectedSupplierList${id}.length;i++){
+			//	if(selectedSupplierList${id}[i].culturalInformationId==id){
+			//		selectedSupplierList${id}=selectedSupplierList${id}.slice(0,i).concat(selectedSupplierList${id}.slice(i+1,selectedSupplierList${id}.length));
 					$j("#sel_${id}_"+id).remove();
 					$j("#sel_ch_${id}_"+id).attr("checked",false);
-				}
-			}
+			//	}
+			//}
 		}
+		
 		function fnRemoveAll${id}(){
 		  //  alert("移除全部");
 			selectedSupplierList${id}=new Array();
@@ -127,7 +133,7 @@ function __fnGetObjJsonData_${id}(pid){
 		}
 		
 		function fnConfirmSelectedSupplier${id}(){
-		    //alert("fnConfirmSelectedSupplier");
+		  //  alert("fnConfirmSelectedSupplier");
 			if(selectedSupplierList${id}.length<1)
 				alert("请选择文化资讯推荐");
 			if(supplierSelector_ondblclick_callback_${id})
@@ -138,6 +144,7 @@ function __fnGetObjJsonData_${id}(pid){
 			}
 		}
 		function fnSelectedBoxChecked${id}(){
+		//    alert("fnSelectedBoxChecked");
 			for(var i=0;i<selectedSupplierList${id}.length;i++){
 				var id=selectedSupplierList${id}[i].supplierId;
 				$j("#sel_ch_${id}_"+id).attr("checked",true);

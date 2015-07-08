@@ -76,7 +76,9 @@
 				<input type="checkbox" name="multiIds" value="${culturalInformationItem.culturalInformationId}" class="checkbox" title="${culturalInformationItem.culturalInformationName}"/>
 			</display:column>
 			
-			<display:column sortable="false" url="${editURLPath}" decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" titleKey="culturalInformation.logoImg" media="html">
+			
+			<display:column sortable="false" url="${editURLPath}" paramId="culturalInformationId" paramProperty="culturalInformationId" title="标题"
+				decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" titleKey="culturalInformation.culturalInformationName">
 				<cartmatic:img isUrlOnly="false" url="${culturalInformationItem.logoImg}" mediaType="other" id="logoImage" height="100" width="100"></cartmatic:img>
 			</display:column>
 			

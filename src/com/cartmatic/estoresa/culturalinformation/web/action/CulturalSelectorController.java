@@ -1,4 +1,3 @@
-
 package com.cartmatic.estoresa.culturalinformation.web.action;
 
 import java.util.List;
@@ -15,39 +14,50 @@ import com.cartmatic.estore.core.controller.GenericController;
 import com.cartmatic.estore.core.search.SearchCriteria;
 import com.cartmatic.estore.culturalinformation.service.CulturalInformationManager;
 
-
 /**
- *  文化资讯弹出窗选择
- *  <code>CulturalSelectorController.java</code>
- *  <p>
- *  <p>Copyright  2015 All right reserved.
- *  @author admin 时间 2015-7-1 上午10:56:08	
- *  @version 1.0 
- *  </br>最后修改人 无
+ * 文化资讯弹出窗选择 <code>CulturalSelectorController.java</code>
+ * <p>
+ * <p>
+ * Copyright 2015 All right reserved.
+ * 
+ * @author admin 时间 2015-7-1 上午10:56:08
+ * @version 1.0 </br>最后修改人 无
  */
-public class CulturalSelectorController extends GenericController<CulturalInformation> {
-	private CulturalInformationManager CulturalInformationManager=null;
+public class CulturalSelectorController extends GenericController<CulturalInformation>
+{
+	private CulturalInformationManager CulturalInformationManager = null;
 
 	@SuppressWarnings("unchecked")
-	public ModelAndView defaultAction(HttpServletRequest request,
-			HttpServletResponse response) {
-		if(request.getRequestURI().indexOf("culturalSelectorDataList.html")!=-1){
-			return getData(request, response);
+	public ModelAndView defaultAction(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView mv = new ModelAndView();
+		CulturalInformation culturalInformation =new CulturalInformation();
+		System.out.print(request.getParameter("culId"));
+		if(!request.getParameter("culId").trim().equals("")){
+			 culturalInformation = CulturalInformationManager.getById(Integer.parseInt(request.getParameter("culId")));	
 		}
-		return new ModelAndView("culturalinformation/culturalSelector");
+		
+		List<CulturalInformation> CulturalInformationList = CulturalInformationManager.getAllByIdArray(culturalInformation
+				.getRecommendArrayId());
+
+		if (request.getRequestURI().indexOf("culturalSelectorDataList.html") != -1)
+		{
+			return getData(request, response, CulturalInformationList);
+		}
+
+		return getModelAndView("culturalinformation/culturalSelector", "reCulturalInformationList", CulturalInformationList);
+
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	private ModelAndView getData(HttpServletRequest request,
-			HttpServletResponse response) {
+	private ModelAndView getData(HttpServletRequest request, HttpServletResponse response, List<CulturalInformation> CulturalInformationList) {
 		SearchCriteria searchCriteria = createSearchCriteria(request);
 		List results = searchByCriteria(searchCriteria);
 		request.setAttribute("supplierList", results);
-		request.setAttribute("pagingId",request.getParameter("pagingId"));
-		return new ModelAndView("culturalinformation/include/culturalSelectorDataList");
-	}
-	
+		request.setAttribute("pagingId", request.getParameter("pagingId"));
+		return getModelAndView("culturalinformation/include/culturalSelectorDataList", "reCulturalInformationList", CulturalInformationList);
 
+	}
 
 	@Override
 	protected String getEntityName(CulturalInformation entity) {
@@ -56,27 +66,21 @@ public class CulturalSelectorController extends GenericController<CulturalInform
 	}
 
 	@Override
-	protected void onSave(HttpServletRequest request, CulturalInformation entity,
-			BindException errors) {
+	protected void onSave(HttpServletRequest request, CulturalInformation entity, BindException errors) {
 		// TODO Auto-generated method stub
 
 	}
-	
-	
 
 	public CulturalInformationManager getCulturalInformationManager() {
 		return CulturalInformationManager;
 	}
 
-
 	public void setCulturalInformationManager(CulturalInformationManager culturalInformationManager) {
 		CulturalInformationManager = culturalInformationManager;
 	}
 
-
 	@Override
-	protected Map<Integer, Map<String, Object>> getMultiSaveModel(
-			HttpServletRequest request) {
+	protected Map<Integer, Map<String, Object>> getMultiSaveModel(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -85,6 +89,5 @@ public class CulturalSelectorController extends GenericController<CulturalInform
 	protected void initController() throws Exception {
 		mgr = CulturalInformationManager;
 	}
-
 
 }

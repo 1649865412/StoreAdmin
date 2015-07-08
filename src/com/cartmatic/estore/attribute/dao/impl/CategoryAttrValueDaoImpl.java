@@ -54,4 +54,6 @@ public class CategoryAttrValueDaoImpl extends HibernateGenericDaoImpl<CategoryAt
 		CategoryAttrValue cav = (CategoryAttrValue) findUnique(hql, categoryId,attrId);
 		return cav;
 	}
+
+
 }

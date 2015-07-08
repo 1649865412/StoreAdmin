@@ -65,16 +65,24 @@ function showUploadProudctMedia_d(divId,uploadInputMediaType,file){
 }
 
 
+
 /**
  * 删除产品媒体的某上传Input
  * @param {Object} id 需删除的上传Input所在的DIV
  * @param {Object} parentDivId 上传控制所在的Form的ID
  */
 function fnRemoveUploadMedia(id,obj){
-	//alert("fnRemoveUploadMedia");
-	//$j('#productMedia_div_' + id).remove();
-	var $this = $j(obj);
-	$this.parents(".product-media").remove();
+	  var r=confirm("此操作不可恢复！")
+	  if (r==true)
+	    {
+			var $this = $j(obj);
+			$this.parents(".product-media").remove();
+			monthlyCulturalIdDelete(id,obj);
+	    }
+	  else
+	    {
+	    
+	    }
 }
 
 /**
@@ -86,4 +94,38 @@ function removeAllProductImg(id){
 	//alert("removeAllProductImg");
 	$j("#" + id).html("");
 }
+
+
+function monthlyCulturalIdDelete(id,obj) {
+	 //alert("monthlyCulturalIdDelete");
+	// alert(__ctxPath + "/culturalinformation/culturalInformation.html?doAction=deleteMonthly");
+	$j.post(__ctxPath + "/culturalinformation/culturalInformation.html?doAction=deleteMonthly", {
+		monthlyCulturalId : id
+	}, function(result) {
+		// alert("result:"+result.status);
+			if (result.status == 1) {
+				//alert("删除成功");
+			} else {
+				alert("删除失败");
+			}
+		}, "json");
+}
+
+//动态进入后台删 除月刊数据
+/*
+function monthlyCulturalIdDelete(id,obj) {
+	alert("monthlyCulturalIdDelete");
+	$.post(__ctxPath + "/monthlycultural/monthlyCultural.html?doAction=deleteMonthly"), {
+		monthlyCulturalId : id
+	}, function(result) {
+		     alert("result:"+result.status);
+			if (result.status == 1) {
+				$j('#productMedia_div_' + id).remove();
+				var $this = $j(obj);
+				$this.parents(".product-media").remove();
+			} else {
+				alert("删除失败！");
+			}
+		}, "json");
+}*/
 

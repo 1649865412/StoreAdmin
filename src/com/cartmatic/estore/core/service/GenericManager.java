@@ -81,6 +81,18 @@ public interface GenericManager<T> {
 	 *      boolean)
 	 */
 	public List<T> getAllOrdered(String orderBy, boolean isAsc);
+	
+
+	/**
+	 * 功能:通过某个字段的ID Array数组获取对象List,字段形如：（1，2，4，5），自动判空还有是不是null
+	 * <p>作者 杨荣忠 2015-7-8 上午09:47:16
+	 * @param orderBy
+	 * @param isAsc
+	 * @return
+	 */
+	public List<T> getAllByIdArray(String idArray);
+	
+	
 
 	/**
 	 * @param id
@@ -145,4 +157,6 @@ public interface GenericManager<T> {
 	 * @return
 	 */
 	public List searchByCriteria(SearchCriteria sc);
+	
+	
 }

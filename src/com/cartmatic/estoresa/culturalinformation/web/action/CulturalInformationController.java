@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.poi.util.ArrayUtil;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cartmatic.estore.common.helper.CatalogHelper;
@@ -22,13 +22,12 @@ import com.cartmatic.estore.common.model.monthlycultural.MonthlyCultural;
 import com.cartmatic.estore.core.controller.GenericController;
 import com.cartmatic.estore.core.exception.ApplicationException;
 import com.cartmatic.estore.core.model.Message;
+import com.cartmatic.estore.core.view.AjaxView;
 import com.cartmatic.estore.culturalinformation.service.CulturalInformationManager;
 import com.cartmatic.estore.culturalinformation.util.CalenderTime;
 import com.cartmatic.estore.monthlycultural.service.MonthlyCulturalManager;
 import com.cartmatic.estore.textsearch.SearchConstants;
 import com.cartmatic.estore.webapp.util.RequestUtil;
-
-import edu.emory.mathcs.backport.java.util.Collections;
 
 public class CulturalInformationController extends GenericController<CulturalInformation> {
 	
@@ -53,6 +52,7 @@ public class CulturalInformationController extends GenericController<CulturalInf
 	protected String getEntityName(CulturalInformation entity) {
 		return entity.getCulturalInformationName();
 	}
+	
 
 	/**
 	 * 构造批量更新所需的model。
@@ -78,6 +78,8 @@ public class CulturalInformationController extends GenericController<CulturalInf
 		mgr = culturalInformationManager;
 	}
 	
+	
+	
 	/**
 	 * 缺省Action,列出缺省搜索条件的搜索结果列表。必须转给search处理。
 	 * 
@@ -88,22 +90,16 @@ public class CulturalInformationController extends GenericController<CulturalInf
 	 */
 	public ModelAndView defaultAction(HttpServletRequest request,
 			HttpServletResponse response) {
-	//	System.out.println("goodbye");
-		//CulturalInformation culturalInformation =culturalInformationManager.getById(3);
-		//java.util.Set monthlyCultural = culturalInformation.getMonthlyCultural();
-	    //System.out.println(monthlyCultural.size());
 		return search(request, response);
 	}
 	
 	
 	/**
-	 * 重写保存方法
+	 * 补充重写保存方法
 	 */
 	protected void  onSave(HttpServletRequest request, CulturalInformation entity, BindException errors) 
 	{
             String mediaUrls_d[] = RequestUtil.getParameterValuesNullSafe(request,"productMedia_urls_d");
-            System.out.println(entity.getRecommendArrayId());
-			culturalInformationManager.save(entity);
 			try
 			{
 				saveMonth(mediaUrls_d, entity);
@@ -114,12 +110,64 @@ public class CulturalInformationController extends GenericController<CulturalInf
 				System.out.println("月刊保存失败！属于文化资讯Id:"+entity.getId().toString());
 				e.printStackTrace();
 			}
-			//更新文化资讯列表页索引
-			CatalogHelper.getInstance().indexNotifyUpdateEventMethod(SearchConstants.CORE_NAME_CULTURAL, entity.getId());
-			saveMessage(Message.info("common.added", new Object[] {getEntityTypeMessage(), getEntityName(entity)}));	
 	}
 	
+	
+	
+	  /**
+     * 功能:动态进入后台删 除月刊数据
+	 * 返回结果
+	 * 默认情况下
+	 * 1表示成功
+	 * 0表示失败
+     * <p>作者 杨荣忠 2015-5-18 下午02:19:58
+     * @param request
+     * @param response
+     * @return
+     */
+	public ModelAndView deleteMonthly(HttpServletRequest request, HttpServletResponse response)
+    {
+        boolean flag =false;
+        try{
+        	int monthlyCulturalId = Integer.parseInt(request.getParameter("monthlyCulturalId"));
+        	MonthlyCultural monthlyCultural= monthlyCulturalManager.deleteById(monthlyCulturalId);
+            AjaxView ajaxView = new AjaxView(response);
+            flag =true;
+        }catch(Exception e){
+        	flag =false;
+        }
+        AjaxView ajaxView = new AjaxView(response);
+        if(flag==true)
+        {
+        	ajaxView.setStatus((short) 1);
+        }else{
+        	ajaxView.setStatus((short) 0);
+        }
+        return ajaxView;
+    }
 
+	
+	/**
+	 * showFrom时调用,可以重载这个方法在mv上加入一些新的元素，补充重写进入表单的方法,例如编辑
+	 * @param request
+	 * @param mv
+	 */
+	protected void onShowForm(HttpServletRequest request, ModelAndView mv)
+	{
+		//System.out.print("进入编辑最后阶段！");
+		CulturalInformation culturalInformation = formBackingObject(request);
+		try{
+		List<CulturalInformation> CulturalInformationList = culturalInformationManager.getAllByIdArray(culturalInformation.getRecommendArrayId());
+		List<MonthlyCultural>monthlyCulturalList =new ArrayList(culturalInformation.getMonthlyCultural());
+		mv.addObject("reCulturalInformationList", CulturalInformationList);
+		mv.addObject("monthlyCulturalList", monthlyCulturalList);
+		}
+		catch(Exception e){
+			System.out.println("进入文化资讯onShowForm方法有误"+"");
+		}
+	}
+	
+	
 	/**
 	 * 重写删除方法
 	 * @throws Exception 

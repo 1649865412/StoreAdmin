@@ -398,12 +398,18 @@
 <!-- start:  Generated for SekillProduct From Template: spring-mvc.xml.urlvm  -->
 				<prop key="/sekillproduct/sekillProduct.html">sekillProductController</prop>
 <!-- end:  Generated for SekillProduct From Template: spring-mvc.xml.urlvm  -->
+
+
 <!-- start:  Generated for CulturalInformation From Template: spring-mvc.xml.urlvm  -->
 				<prop key="/culturalinformation/culturalInformation.html">culturalInformationController</prop>
 <!-- end:  Generated for CulturalInformation From Template: spring-mvc.xml.urlvm  -->
+
+
 <!-- start:  Generated for MonthlyCultural From Template: spring-mvc.xml.urlvm  -->
 				<prop key="/monthlycultural/monthlyCultural.html">monthlyCulturalController</prop>
 <!-- end:  Generated for MonthlyCultural From Template: spring-mvc.xml.urlvm  -->
+
+
 <!-- End of URL mappings -->
                 <prop key="/system/import.html">importController</prop>
                 <prop key="/system/searchServer.html">searchServerController</prop>
@@ -412,7 +418,7 @@
                 <prop key="/selector/supplierSelectorDataList.html">supplierSelectorController</prop>
                 
                 
-                 <prop key="/selector/culturalSelector.html">culturalSelectorController</prop>
+                <prop key="/selector/culturalSelector.html">culturalSelectorController</prop>
                 <prop key="/selector/culturalSelectorDataList.html">culturalSelectorController</prop>
                 
                 

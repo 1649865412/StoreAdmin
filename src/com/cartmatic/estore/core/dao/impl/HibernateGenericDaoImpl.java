@@ -4,6 +4,7 @@ package com.cartmatic.estore.core.dao.impl;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -25,9 +26,11 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 
+import com.cartmatic.estore.common.model.attribute.CategoryAttrValue;
 import com.cartmatic.estore.core.dao.GenericDao;
 import com.cartmatic.estore.core.model.BaseObject;
 import com.cartmatic.estore.core.util.GenericsUtils;
+import com.cartmatic.estore.core.util.StringUtil;
 import com.cartmatic.estore.webapp.util.RequestContext;
 
 /**
@@ -75,6 +78,35 @@ public abstract class HibernateGenericDaoImpl<T> extends HibernateDaoSupportExt
 		entityClass = GenericsUtils.getSuperClassGenricType(getClass());
 	}
 
+	
+	/**
+	 * 功能:通过某个字段的ID Array数组获取对象List,字段形如：（1，2，4，5），自动判空还有是不是null
+	 * <p>作者 杨荣忠 2015-7-8 上午09:47:16
+	 * @param orderBy
+	 * @param isAsc
+	 * @return
+	 */
+	@Override
+	public List<T> getAllByIdArray(String idArray) {
+		List<T> list= new ArrayList();
+		if(!StringUtil.isEmpty(idArray))
+		{
+			String[]array= idArray.split(",");
+			for(int i=0;i<array.length;i++){
+				try{
+					T entity = (T) getHibernateTemplate().get(entityClass, Integer.parseInt(array[i]));
+					list.add(entity);
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+		return list;
+	}
+
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -183,6 +215,7 @@ public abstract class HibernateGenericDaoImpl<T> extends HibernateDaoSupportExt
 	public List<T> getAll() {
 		return getAllOrdered(idName, false);
 	}
+	
 
 	/*
 	 * (non-Javadoc)
@@ -202,6 +235,9 @@ public abstract class HibernateGenericDaoImpl<T> extends HibernateDaoSupportExt
 							Order.desc(orderBy)));
 		}
 	}
+
+	
+	
 
 	/*
 	 * (non-Javadoc)

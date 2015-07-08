@@ -1,7 +1,14 @@
 <%@ include file="/common/taglibs.jsp"%>
 <%@ taglib prefix="cartmatic" tagdir="/WEB-INF/tags/cartmatic"%>
 <c:if test="${param.multiSelect}">
-已选择的文化资讯：<span id="selectedSupplier_${param.id}"></span>
+已选择的文化资讯：
+
+
+<span id="selectedSupplier_multiSupplierSelector">
+
+</span>
+
+
 <div><a onclick="fnRemoveAll${param.id}();">移除所有已选择</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="fnConfirmSelectedSupplier${param.id}();">确认</a></div>
 </c:if>
 <table width="98%" border="0" cellspacing="0" cellpadding="0" align="center" style="font-size: 12px;">

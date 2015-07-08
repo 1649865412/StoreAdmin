@@ -86,6 +86,8 @@ public class SekillProductController extends GenericController<SekillProduct> {
 			request.setAttribute("list",  textManager.getAll());
 			return getModelAndView(listView, listModelName, this.textManager.getAll());
 			*/
+		
+		
 			/**
 			 * 保存后返回相应的提示信息，action=1表示保存更新成功，action=2表示保存更新失败； jFiledErrors为错误提示信息;
 			 * 提示信息最好以json方式返回
@@ -147,28 +149,6 @@ public class SekillProductController extends GenericController<SekillProduct> {
 		    return mo ;
 		}
 	
-	private AppEventDao appEventDao = null;
-	
-
-
-	public void processApplicationEvents() {
-		 long lastProcessTime=0;
-		if (lastProcessTime==0) {
-		//	lastProcessTime=ContextUtil.getInstance().getStartupTime();
-		}
-		List<AppEvent> eventList = appEventDao.findEventsAfterTime(lastProcessTime);
-		for (Iterator iter = eventList.iterator(); iter.hasNext();) {
-			AppEvent appEvent = (AppEvent) iter.next();
-			try {
-			    appEventHandler.handleApplicationEvent((ApplicationEvent)appEvent.getAppEvent());				
-			} catch (Throwable e) {
-				logger.error("Error processing application event!", e);
-			}
-			lastProcessTime=appEvent.getUpdateTime().getTime();
-		}
-	}
-	
-	
 	/**
 	 * 重写保存方法
 	 */
@@ -183,14 +163,7 @@ public class SekillProductController extends GenericController<SekillProduct> {
 			saveMessage(Message.info("common.added", new Object[] {getEntityTypeMessage(), getEntityName(entity)}));	
 		}
 	}
-	
-	public AppEventDao getAppEventDao() {
-		return appEventDao;
-	}
 
-	public void setAppEventDao(AppEventDao appEventDao) {
-		this.appEventDao = appEventDao;
-	}
 
 	public SekillProductManager getSekillProductManager() {
 		return sekillProductManager;

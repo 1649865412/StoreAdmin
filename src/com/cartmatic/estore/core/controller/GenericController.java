@@ -137,6 +137,10 @@ public abstract class GenericController<T> extends BaseController {
 		return edit(request, response);
 	}
 
+	
+	/**
+	 * 展示表单，例如进入表单编辑页面
+	 */
 	@Override
 	protected ModelAndView showForm(HttpServletRequest request,
 			BindException errors) {
@@ -422,6 +426,7 @@ public abstract class GenericController<T> extends BaseController {
 		//this.savedNavAndSearchCriteria(request, sc, getMessage(listModelName+".heading"));
 		return showForm(request, errors);
 	}
+	
 
 	/**
 	 * 和Spring的SimpleFormController里面的方法的作用类似，取得当前form里面的command，在编辑之前应该先调用。

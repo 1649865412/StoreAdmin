@@ -8,5 +8,5 @@ import com.cartmatic.estore.core.service.GenericManager;
  *
  */
 public interface CulturalInformationManager extends GenericManager<CulturalInformation> {
-
+    
 }

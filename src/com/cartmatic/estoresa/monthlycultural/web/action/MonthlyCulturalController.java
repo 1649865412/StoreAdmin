@@ -2,15 +2,22 @@ package com.cartmatic.estoresa.monthlycultural.web.action;
 
 import java.util.Map;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.validation.BindException;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cartmatic.estore.core.controller.GenericController;
+import com.cartmatic.estore.core.view.AjaxView;
 import com.cartmatic.estore.common.model.monthlycultural.MonthlyCultural;
 import com.cartmatic.estore.monthlycultural.service.MonthlyCulturalManager;
 
 public class MonthlyCulturalController extends GenericController<MonthlyCultural> {
+	
     private MonthlyCulturalManager monthlyCulturalManager = null;
 
     public void setMonthlyCulturalManager(MonthlyCulturalManager inMgr) {
@@ -60,5 +67,24 @@ public class MonthlyCulturalController extends GenericController<MonthlyCultural
 	@Override
 	protected void onSave(HttpServletRequest request, MonthlyCultural entity, BindException errors) {
 	}
+	
 
+	/**
+	 * 缺省Action,列出缺省搜索条件的搜索结果列表。必须转给search处理。
+	 * 
+	 * @param req
+	 * @param resp
+	 * @return
+	 * @throws ServletException
+	 */
+	public ModelAndView defaultAction(HttpServletRequest request,
+			HttpServletResponse response) {
+	   System.out.println("goodbye");
+	 //	CulturalInformation culturalInformation =culturalInformationManager.getById(3);
+	//	List<CulturalInformation> CulturalInformationList = culturalInformationManager.getAllByIdArray(culturalInformation.getRecommendArrayId());
+	  //  System.out.println(monthlyCultural.size());
+		return search(request, response);
+	}
+	
+	
 }
