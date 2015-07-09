@@ -27,13 +27,9 @@ function fnUploadMoreImage_d_Handler(file){
 	showUploadProudctMedia_d('productMoreImages_d',0,file);
 }
 
-/**
- * 添加触发
- * @param file
- * @return
- */
+
 function showUploadProudctMedia_d(divId,uploadInputMediaType,file){
-//	alert("showUploadProudctMedia_d");
+	//alert("showUploadProudctMedia_d");
 	var id = "1" + new Date().getTime().toString().substr(6);
 	var inputUploadHtml = "";
 	var productMedia_img = "media_noPhoto.gif";
@@ -41,19 +37,28 @@ function showUploadProudctMedia_d(divId,uploadInputMediaType,file){
 	inputUploadHtml += '<div class="product-media" id="productMedia_div_' + id + '">';
 	inputUploadHtml += '<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="no-border">';
 	inputUploadHtml += '<tr>';
-	inputUploadHtml += '<td class="list" width="15%" align="center">';
+	inputUploadHtml += '<td class="list" width="15%" align="center"><input type="hidden" id="-' + id + '" name="productMediaIds" value="-' + id + '""><input type="hidden" name="productMediaTypes" value="' + uploadInputMediaType + '">';
 	if (uploadInputMediaType == 0) {
 		inputUploadHtml += '<img id="productMedia_img_' + id + '" src="' + __mediaPath +file.previewUrl+'" width="60" height="60" />';
 	} else {
 		inputUploadHtml += '<img id="productMedia_img_' + id + '" src="' + __ctxPath + '/images/accessorie_hight_light.gif" width="60" height="60" />';
 	}
-//	inputUploadHtml += '<input type="hidden" id="productMedia_deleteds_' + id + '" name="productMedia_deleteds" value="4">';
+	inputUploadHtml += '<input type="hidden" id="productMedia_deleteds_' + id + '" name="productMedia_deleteds" value="0">';
 	inputUploadHtml += '</td><td class="list" width="24%">';
-	inputUploadHtml += '<input id="productMedia_url_' + id + '" name="productMedia_urls_d" type="text" style="width:400px;" value="'+file.url+'"/></span>';
+	inputUploadHtml += '<input id="productMedia_url_' + id + '" name="imgArray" type="text" style="width:400px;" value="'+file.url+'"/></span>';
 	inputUploadHtml += '<br />';
-	//inputUploadHtml += __FMT.productMedia_mediaDescription;
-	//inputUploadHtml += '<br />';
-	//inputUploadHtml += '<input id="productMedia_desc_' + id + '" name="productMedia_descs" type="text" style="width:400px;"/>';
+	inputUploadHtml += '文字描述';
+	inputUploadHtml += '<br />';
+	inputUploadHtml += '<input id="productMedia_desc_' + id + '" name="characterArray" type="text" style="width:400px;"/>';
+	inputUploadHtml += '来源';
+	inputUploadHtml += '<br />';
+	inputUploadHtml += '<input id="productMedia_desc_' + id + '" name="resourceArray" type="text" style="width:400px;"/>';
+	inputUploadHtml += '网址';
+	inputUploadHtml += '<br />';
+	inputUploadHtml += '<input id="productMedia_desc_' + id + '" name="websiteArray" type="text" style="width:400px;"/>';
+	inputUploadHtml += '时间';
+	inputUploadHtml += '<br />';
+	inputUploadHtml += '<input id="productMedia_desc_' + id + '" name="dateTimeArray" type="text" style="width:400px;"/>';
 	inputUploadHtml += '</td><td class="list">';
 	inputUploadHtml += '&nbsp;&nbsp;<input name="remove_empty_item" type="image" src="' + __ctxPath + '/images/icon/icon_del.gif" onclick="fnRemoveUploadMedia('+ id+',this);return false;" title="' + __FMT.productDetail_moreImage_removeThisImage + '"/>';
 	inputUploadHtml += '</td>';
@@ -61,7 +66,7 @@ function showUploadProudctMedia_d(divId,uploadInputMediaType,file){
 	inputUploadHtml += '</table>';
 	inputUploadHtml += '</div>';
 	$j("#" + divId).append(inputUploadHtml);
-	//fnInitValidProductMedia();
+	fnInitValidProductMedia();
 }
 
 

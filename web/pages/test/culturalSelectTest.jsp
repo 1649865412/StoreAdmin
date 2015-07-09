@@ -3,7 +3,6 @@
 <%@ taglib prefix="product" tagdir="/WEB-INF/tags/catalog"%>
 <%@ taglib prefix="supplier" tagdir="/WEB-INF/tags/supplier"%>
 <%@ taglib prefix="cultural" tagdir="/WEB-INF/tags/cultural"%>
-
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

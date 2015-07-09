@@ -79,6 +79,8 @@ public abstract class HibernateGenericDaoImpl<T> extends HibernateDaoSupportExt
 	}
 
 	
+	
+	
 	/**
 	 * 功能:通过某个字段的ID Array数组获取对象List,字段形如：（1，2，4，5），自动判空还有是不是null
 	 * <p>作者 杨荣忠 2015-7-8 上午09:47:16
@@ -89,9 +91,13 @@ public abstract class HibernateGenericDaoImpl<T> extends HibernateDaoSupportExt
 	@Override
 	public List<T> getAllByIdArray(String idArray) {
 		List<T> list= new ArrayList();
+	//	System.out.print(idArray);
 		if(!StringUtil.isEmpty(idArray))
 		{
 			String[]array= idArray.split(",");
+/*			System.out.print(array.length);
+			System.out.print(array[0]);
+			System.out.print(array[1]);*/
 			for(int i=0;i<array.length;i++){
 				try{
 					T entity = (T) getHibernateTemplate().get(entityClass, Integer.parseInt(array[i]));

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.cartmatic.estore.common.model.branddynamic.BrandDynamic"
+        table="brand_dynamic"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="brandDynamicId"
+            column="brandDynamicId"
+            type="java.lang.Integer"
+            length="10"
+        >
+            <generator class="native"/>
+        </id>
+         <property
+            name="img"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="img"
+            length="255"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="character"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="character"
+            length="255"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="resource"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="resource"
+            length="255"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="website"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="website"
+            length="255"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="dateTime"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="dateTime"
+            length="0"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="createTime"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="createTime"
+            length="0"
+            not-null="false"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to Brand -->
+		<many-to-one
+			name="brand"
+			class="com.cartmatic.estore.common.model.catalog.Brand"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="brandId" />
+		</many-to-one>
+    </class>
+</hibernate-mapping>

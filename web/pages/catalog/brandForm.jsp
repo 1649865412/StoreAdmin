@@ -35,6 +35,8 @@
 				<input class="Field400" type="text" name="designer" id="designer" value="<c:out value="${brand.designer}"/>" />
 			</td>
 	    </tr>
+	    
+	     <br>
 	    <tr>
 			<td class="FieldLabel">
 				<StoreAdmin:label key="brand.brandCode" />
@@ -44,7 +46,7 @@
 			</td>
 	    </tr>
 	    
-	    
+	    <br>
 	   <tr>
 			<td class="FieldLabel">
 				设计师首字母(前端首字母排序查询,只限大写字母查询)：
@@ -54,6 +56,7 @@
 			</td>
 	   </tr>
 	     
+	     <br>
 	   <tr>
 			<td class="FieldLabel">
 				访谈资讯(支持多选，前台只展示前一个):
@@ -61,8 +64,14 @@
 			<td>
 			    <input id="b1" type="button" class="admin-btn" value="访谈资讯" onclick="multiSupplierSelector_show('kkk_DIV')"/>
 			    <input id="b2" type="button" class="admin-btn" value="清空" onclick="Reset(1)"/>
-	            <cultural:culturalSelector title="推荐资讯选择"   id="multiSupplierSelector"  autoClose="true" ondblclick="fnTestSelectMultiCulSku"  multiSelect="true"></cultural:culturalSelector>
-	            <span id="arrayculName"></span>
+	            <cultural:culturalSelector title="访谈资讯选择"   id="multiSupplierSelector"  autoClose="true" ondblclick="fnTestSelectMultiCulSku"  multiSelect="true"></cultural:culturalSelector>
+	                                      新已选访谈资讯： <span id="arrayculName"></span>
+	            <br>
+			          原来已选访谈资讯：
+				<span id="arrayculNameOld"> <c:forEach
+						items="${reCulturalInformationList}" var="reCulturalInformation">
+                      	${reCulturalInformation.title},
+				    </c:forEach> </span>
 	            <input type="hidden" id="arrayculId" name="culturalRecommendId"
 					value="${brand.culturalRecommendId}" />
 			</td>
@@ -78,11 +87,41 @@
 						showSelectorBtnId="b5" title="产品选择"
 						ondblclick="fnTestSelectMultiProductSku" showProductKinds="1,2"
 						multiSelect="true"></product:productSkuSelector>
-					<span id="arrayproductName"></span>
+					   新已选推荐产品：<span id="arrayproductName"></span>
+					   <br>
+					    原来已选推荐产品：
+				<span id="arrayproductNameOld"> <c:forEach
+						items="${reProductList}" var="reproduct">
+                      	${reproduct.productName},
+				    </c:forEach> </span>
 				<input type="hidden" id="arrayproductId" name="productRecommendId"
 					value="${brand.productRecommendId}" />
 			</td>
 		</tr>
+		
+		
+		<tr id="monthdiv">
+			<td class="FieldLabel">
+				<span id="productMediaImageBtnPlaceHolderId_d">按钮（<a href="#" onclick=removeAllProductImg('productMoreImages_d');>移除所有产品大图</a>）</span>
+				<!-- 上传大图 -->
+				<cartmatic:swf_upload
+					btnPlaceHolderId="productMediaImageBtnPlaceHolderId_d"
+					uploadCategory="productMedia"
+					uploadFileTypes="*.jpg; *.jpeg; *.png; *.gif"
+					onComplete="fnUploadMoreImage_d_Handler" objId="1110" previewSize="v"
+					isMultiFiles="true" button_text="上传月刊" fileImageSize="v"
+					fileSizeLimit="5MB"></cartmatic:swf_upload>
+				<script type="text/javascript"
+					src="<c:url value="/scripts/cartmatic/catelog/brandlForm.js"/>"></script>
+			</td>
+			<td id="addImg">
+				<div id="productMoreImages_d">
+					
+				</div>
+			</td>
+		</tr>
+		
+		
 	    <tr>
 			<td class="FieldLabel">
 				<StoreAdmin:label key="brand.website" />
@@ -167,6 +206,7 @@
 				</div>
 			</td>
 	    </tr>
+	    <!--    才版旧的页面
 	    <tr>
 			<td class="FieldLabel">
 				<StoreAdmin:label key="brand.pic2" />
@@ -183,14 +223,15 @@
 					<cartmatic:iconBtn icon="cross" extraCss="negative" text="清空图片" onclick="$('pic2Image').src='${ctxPath}/images/default/00.jpg';$j('#pic2').val('');" />
 				</div>
 			</td>
-	    </tr>
+	    </tr> -->
 	</table>
 </form>
 <cartmatic:swf_upload btnPlaceHolderId="iconImageBtnPlaceHolderId" uploadCategory="other" uploadFileTypes="*.jpg" fileInputId="icon" previewImg="iconImage" ></cartmatic:swf_upload>
 <cartmatic:swf_upload btnPlaceHolderId="logoImageBtnPlaceHolderId" uploadCategory="other" uploadFileTypes="*.jpg" fileInputId="logo" previewImg="logoImage" ></cartmatic:swf_upload>
 <cartmatic:swf_upload btnPlaceHolderId="picImageBtnPlaceHolderId" uploadCategory="other" uploadFileTypes="*.jpg" fileInputId="pic" previewImg="picImage" ></cartmatic:swf_upload>
 <cartmatic:swf_upload btnPlaceHolderId="pic2ImageBtnPlaceHolderId" uploadCategory="other" uploadFileTypes="*.jpg" fileInputId="pic2" previewImg="pic2Image" ></cartmatic:swf_upload>
-
+	
+	
 <v:javascript formName="brand" staticJavascript="false" />
 <script type="text/javascript">
     document.forms["brand"].elements["brandName"].focus();
@@ -217,6 +258,7 @@ function Reset(type){
 //选择器值设置表单准备提交
 function senData(arrayproductId, arrayproductName,type) {
 	//alert("senData:"+type+":"+arrayproductId+":"+arrayproductName);
+	Reset(type);
 	if(type==1){
 		 arrayproductIdvalue=$j("#arrayculId").val();
 		 arrayproductNamevalue=$j("#arrayculName").html();
@@ -226,7 +268,7 @@ function senData(arrayproductId, arrayproductName,type) {
 		 arrayproductNamevalue=$j("#arrayproductName").html();
 		}
 	
-	 if(arrayproductIdvalue=="")
+	/* if(arrayproductIdvalue=="")
 		 {
 		 arrayproductIdvalue="";
 		 }else{
@@ -237,7 +279,7 @@ function senData(arrayproductId, arrayproductName,type) {
 		 arrayproductNamevalue="";
 		 }else{
 			 arrayproductNamevalue+=",";
-			 }
+			 }*/
 	 if(type==1){
 		 $j("#arrayculId").val(arrayproductIdvalue+arrayproductId);
 			$j("#arrayculName").html(arrayproductNamevalue+arrayproductName);

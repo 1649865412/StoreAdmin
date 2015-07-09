@@ -4344,5 +4344,44 @@
 			</field>
 		</form>
 <!-- end:  Generated for MonthlyCultural From Template: validation.xml.vm  -->
+<!-- start:  Generated for BrandDynamic From Template: validation.xml.vm  -->
+		<form name="brandDynamic">
+			<field property="img" depends="maxlength">
+				<arg position="0" key="brandDynamic.img" />
+				<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="character" depends="maxlength">
+				<arg position="0" key="brandDynamic.character" />
+				<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="resource" depends="maxlength">
+				<arg position="0" key="brandDynamic.resource" />
+				<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="website" depends="maxlength">
+				<arg position="0" key="brandDynamic.website" />
+				<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+			<field property="dateTime" depends="date">
+				<arg position="0" key="brandDynamic.dateTime" />
+			</field>
+		</form>
+<!-- end:  Generated for BrandDynamic From Template: validation.xml.vm  -->
 </formset>
 </form-validation>

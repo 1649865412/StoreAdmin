@@ -84,6 +84,7 @@ public class CulturalInformationController extends GenericController<CulturalInf
 		return mav;
 	}
 	
+	
 	  /**
      * 功能:动态进入后台删 除月刊数据
 	 * 返回结果
@@ -129,6 +130,7 @@ public class CulturalInformationController extends GenericController<CulturalInf
 		//System.out.print("进入编辑最后阶段！");
 		CulturalInformation culturalInformation = formBackingObject(request);
 		try{
+	  //  System.out.print("id:"+culturalInformation.getRecommendArrayId());
 		List<CulturalInformation> CulturalInformationList = culturalInformationManager.getAllByIdArray(culturalInformation.getRecommendArrayId());
 		List<MonthlyCultural>monthlyCulturalList =new ArrayList(culturalInformation.getMonthlyCultural());
 		mv.addObject("reCulturalInformationList", CulturalInformationList);
@@ -204,7 +206,6 @@ public class CulturalInformationController extends GenericController<CulturalInf
 						e.printStackTrace();
 					}
 				}
-			
 		    mgr.deleteAllByIds(ids);
 			saveMessage(Message.info("common.deleted.multi", new Object[] {getEntityTypeMessage(), ids.length }));
 		}

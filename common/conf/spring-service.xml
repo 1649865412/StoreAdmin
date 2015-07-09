@@ -1317,4 +1317,11 @@
         </property>
     </bean>
 <!-- end:  Generated for MonthlyCultural From Template: spring-service.xml.vm  -->
+<!-- start:  Generated for BrandDynamic From Template: spring-service.xml.vm  -->
+    <bean id="brandDynamicManager" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.cartmatic.estore.branddynamic.service.impl.BrandDynamicManagerImpl" parent="genericManager" autowire="byName"/>
+        </property>
+    </bean>
+<!-- end:  Generated for BrandDynamic From Template: spring-service.xml.vm  -->
 </beans>

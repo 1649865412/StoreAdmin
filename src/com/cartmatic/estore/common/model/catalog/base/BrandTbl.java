@@ -37,8 +37,17 @@ public class BrandTbl extends BaseObject implements Serializable {
 	protected String culturalRecommendId;
 	
 	protected java.util.Set products = new java.util.HashSet();
+	protected java.util.Set BrandDynamics = new java.util.HashSet();
 	
 	
+	public java.util.Set getBrandDynamics() {
+		return BrandDynamics;
+	}
+
+	public void setBrandDynamics(java.util.Set brandDynamics) {
+		BrandDynamics = brandDynamics;
+	}
+
 	public String getInitials() {
 		return initials;
 	}

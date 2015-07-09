@@ -33,5 +33,14 @@
 			</key>
 			<one-to-many class="com.cartmatic.estore.common.model.catalog.Product" />
 		</set>
+		
+		<!-- exported bi-directional one-to-many association to Product -->
+		<set name="BrandDynamics" table="brand_dynamic" lazy="true" inverse="true" cascade="save-update" order-by="brandDynamicId desc" >
+			<key>
+				<column name="brandId" />
+			</key>
+			<one-to-many class="com.cartmatic.estore.common.model.branddynamic.BrandDynamic" />
+		</set>
+		
 	</class>
 </hibernate-mapping>

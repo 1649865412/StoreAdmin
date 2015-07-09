@@ -1202,4 +1202,14 @@
     </bean>
     
 <!-- end:  Generated for MonthlyCultural From Template: spring-dao.xml.beansvm  -->
+<!-- start:  Generated for BrandDynamic From Template: spring-dao.xml.beansvm  -->
+    <bean id="brandDynamicDao" class="com.cartmatic.estore.branddynamic.dao.impl.BrandDynamicDaoImpl" parent="hibernateGenericDao">
+    	<property name="searchFilters">
+    		<list>
+    			<value>default;;select s from BrandDynamic s;;allow,all</value>
+    		</list>
+    	</property>
+    </bean>
+    
+<!-- end:  Generated for BrandDynamic From Template: spring-dao.xml.beansvm  -->
 </beans>
