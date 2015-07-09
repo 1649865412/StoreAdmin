@@ -24,7 +24,7 @@
 			length="10" not-null="false" unique="false" />
 			
 	--><!-- imported bi-directional many-to-one association to Brand -->
-		<many-to-one name="culturalInformation" class="com.cartmatic.estore.common.model.culturalinformation.CulturalInformation" not-null="false" fetch="select">
+		<many-to-one name="culturalInformation"   class="com.cartmatic.estore.common.model.culturalinformation.CulturalInformation" not-null="false" fetch="select">
 			<column name="culturalInformationId" />
 		</many-to-one>
 	</class>

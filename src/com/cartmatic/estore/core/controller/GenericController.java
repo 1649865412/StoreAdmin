@@ -604,7 +604,6 @@ public abstract class GenericController<T> extends BaseController {
 			HttpServletResponse response) throws Exception {
 		// 取得Form对应的Model
 		T entity = formBackingObject(request);
-
 		BindException errors = null;
 		try {
 			ServletRequestDataBinder binder = bindAndValidate(request, entity);

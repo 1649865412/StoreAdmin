@@ -21,6 +21,7 @@ import com.cartmatic.estore.common.model.culturalinformation.CulturalInformation
 import com.cartmatic.estore.common.model.monthlycultural.MonthlyCultural;
 import com.cartmatic.estore.core.controller.GenericController;
 import com.cartmatic.estore.core.exception.ApplicationException;
+import com.cartmatic.estore.core.model.BaseObject;
 import com.cartmatic.estore.core.model.Message;
 import com.cartmatic.estore.core.view.AjaxView;
 import com.cartmatic.estore.culturalinformation.service.CulturalInformationManager;
@@ -32,7 +33,9 @@ import com.cartmatic.estore.webapp.util.RequestUtil;
 public class CulturalInformationController extends GenericController<CulturalInformation> {
 	
     private CulturalInformationManager culturalInformationManager = null;
+    
     private MonthlyCulturalManager monthlyCulturalManager = null;
+    
     public static final int MONTH_TYPE =4;
     
     public void setCulturalInformationManager(CulturalInformationManager inMgr) {
@@ -43,76 +46,43 @@ public class CulturalInformationController extends GenericController<CulturalInf
 		this.monthlyCulturalManager = monthlyCulturalManager;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cartmatic.estore.core.controller.GenericController getEntityName(java.lang.Object)
-	 */
-	@Override
-	protected String getEntityName(CulturalInformation entity) {
-		return entity.getCulturalInformationName();
-	}
-	
-
-	/**
-	 * 构造批量更新所需的model。
-	 * <P>
-	 * 本来这方法对大部分情况也是可以自动分析和转换的，但考虑到比较复杂和难以灵活（验证、缺省值、I18N等、Status转换等），暂时要求各模块自己实现。要求数据要先转换为正确的类型。
-	 * 
-	 * @param request
-	 * @return
-	 */
-	@Override
-	protected Map<Integer, Map<String, Object>> getMultiSaveModel(HttpServletRequest request) {
-		//FIXME
-		throw new RuntimeException("Not implemented yet!");
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cartmatic.estore.core.controller.BaseController#initController()
-	 */
-	@Override
-	protected void initController() throws Exception {
-		mgr = culturalInformationManager;
-	}
-	
-	
 	
 	/**
-	 * 缺省Action,列出缺省搜索条件的搜索结果列表。必须转给search处理。
-	 * 
-	 * @param req
-	 * @param resp
-	 * @return
-	 * @throws ServletException
+	 * 重写保存
 	 */
-	public ModelAndView defaultAction(HttpServletRequest request,
-			HttpServletResponse response) {
-		return search(request, response);
-	}
-	
-	
-	/**
-	 * 补充重写保存方法
-	 */
-	protected void  onSave(HttpServletRequest request, CulturalInformation entity, BindException errors) 
-	{
-            String mediaUrls_d[] = RequestUtil.getParameterValuesNullSafe(request,"productMedia_urls_d");
-			try
-			{
-				saveMonth(mediaUrls_d, entity);
+	@Override
+	public ModelAndView save(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		// 取得Form对应的Model
+		CulturalInformation entity = formBackingObject(request);
+		BindException errors = null;
+		String mediaUrls_d[] =request.getParameterValues("productMedia_urls_d");
+		try {
+			ServletRequestDataBinder binder = bindAndValidate(request, entity);
+			errors = new BindException(binder.getBindingResult());
+			// 传给子类的实现，后者可以继续验证和加入错误到errors
+			if (!errors.hasErrors()) {// 里面如果出错应该抛出异常
+				mgr.save(entity);
+			//	System.out.print("id:"+entity.getCulturalInformationId());
+				saveMonth( mediaUrls_d,entity);
+				String msgKey = (isEntityNew(request)) ? "common.added": "common.updated";
+				saveMessage(Message.info(msgKey, new Object[] {getEntityTypeMessage(), getEntityName(entity)}));
 			}
-			catch (ParseException e)
-			{
-				// TODO Auto-generated catch block
-				System.out.println("月刊保存失败！属于文化资讯Id:"+entity.getId().toString());
-				e.printStackTrace();
-			}
+		} catch (ApplicationException e) {
+			handleApplicationException(errors, e);
+		}
+
+		ModelAndView mav;
+		if (errors.hasErrors()) {
+			mav = showForm(request, errors);
+		} else if (successView != null) {
+			mav = getModelAndView(successView, errors.getModel());
+		} else {
+			mav = getRedirectToActionView("edit", ((BaseObject) entity).getId()
+					.toString());
+		}
+		return mav;
 	}
-	
-	
 	
 	  /**
      * 功能:动态进入后台删 除月刊数据
@@ -147,8 +117,10 @@ public class CulturalInformationController extends GenericController<CulturalInf
     }
 
 	
+	
 	/**
-	 * showFrom时调用,可以重载这个方法在mv上加入一些新的元素，补充重写进入表单的方法,例如编辑
+	 * showFrom时调用,可以重载这个方法在mv上加入一些新的元素，补充重写进入表单的方法,例如编辑，
+	 * 主要获取推荐资讯的数据还有该文化资讯的月刊
 	 * @param request
 	 * @param mv
 	 */
@@ -248,7 +220,7 @@ public class CulturalInformationController extends GenericController<CulturalInf
 	 * @param culturalInformation
 	 * @throws ParseException
 	 */
-	public void saveMonth( String mediaUrls_d[],CulturalInformation culturalInformation) throws ParseException{
+	public void saveMonth(String mediaUrls_d[],CulturalInformation culturalInformation) throws ParseException{
 		if( mediaUrls_d!=null&& mediaUrls_d.length>0&&culturalInformation.getType()==MONTH_TYPE){
 			for(int i=0;i<mediaUrls_d.length;i++)
 			{
@@ -270,5 +242,66 @@ public class CulturalInformationController extends GenericController<CulturalInf
 			}
 		}
 	}
+	
+	
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.cartmatic.estore.core.controller.GenericController getEntityName(java.lang.Object)
+	 */
+	@Override
+	protected String getEntityName(CulturalInformation entity) {
+		return entity.getCulturalInformationName();
+	}
+	
+
+	/**
+	 * 构造批量更新所需的model。
+	 * <P>
+	 * 本来这方法对大部分情况也是可以自动分析和转换的，但考虑到比较复杂和难以灵活（验证、缺省值、I18N等、Status转换等），暂时要求各模块自己实现。要求数据要先转换为正确的类型。
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@Override
+	protected Map<Integer, Map<String, Object>> getMultiSaveModel(HttpServletRequest request) {
+		//FIXME
+		throw new RuntimeException("Not implemented yet!");
+	}
+
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.cartmatic.estore.core.controller.BaseController#initController()
+	 */
+	@Override
+	protected void initController() throws Exception {
+		mgr = culturalInformationManager;
+	}
+	
+	
+	
+	/**
+	 * 缺省Action,列出缺省搜索条件的搜索结果列表。必须转给search处理。
+	 * 
+	 * @param req
+	 * @param resp
+	 * @return
+	 * @throws ServletException
+	 */
+	public ModelAndView defaultAction(HttpServletRequest request,
+			HttpServletResponse response) {
+		return search(request, response);
+	}
+
+	@Override
+	protected void onSave(HttpServletRequest request, CulturalInformation entity, BindException errors) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 
 }
