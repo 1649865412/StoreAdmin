@@ -284,7 +284,7 @@ public class PromoServiceImpl implements PromoService {
 				//促销规则已删掉
 				return;
 			}
-			coupon = couponManager.createCoupon(couponTypeId, promoRule.getAvailableCount(), 1, "");
+			coupon = couponManager.createCoupon(couponTypeId, promoRule.getAvailableCount(), 1, "",8);
 			coupon.setPromoRule(promoRule);
 		}
 		couponManager.doSendCoupon(coupon, emailModel);

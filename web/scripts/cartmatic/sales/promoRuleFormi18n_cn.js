@@ -6,6 +6,7 @@ var pmsg = {
 	coupon_commit_wait : "<div class='message'><img src='"+__ctxPath+"/images/icon/loading.gif'/>提交信息中,请稍等!</div>",
 	coupon_commit_success : "<div class='message'><img src='"+__ctxPath+"/images/icon/info_success.png'/>恭喜! 已提交成功! 优惠券列表已更新!</div>",
 	send_coupon_success : "<div class='message'><img src='"+__ctxPath+"/images/icon/info_success.png'/>恭喜! 已成功发送邮件!</div>",
+	coupon_commit_exist : "<div class='message'><img src='"+__ctxPath+"/images/icon/info_success.png'/>优惠券已存在!</div>",
 	coupon_gen_after_save: "请先点击[保存]按钮保存规则，再生成优惠券!",
 	click_product_tip : "单击选择商品",
 	click_category_tip : "单击选择目录",

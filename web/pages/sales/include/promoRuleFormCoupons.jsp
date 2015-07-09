@@ -25,6 +25,18 @@
 							<fmt:message key="couponDetail.couponStyle.specialNo" />
 						</option>
 					</select>
+					<fmt:message key="couponDetail.couponLength" />
+					:
+					<span id="inputLengthNos" >
+					  <select id="couponLength" name="couponLength">
+                                    <option value="6">6</option>
+                                    <option value="8" selected="">8</option>
+                                    <option value="10">10</option>
+                                    <option value="12">12</option>
+                                    <option value="14">14</option>
+                                    <option value="16">16</option>
+                      </select>
+                    </span>
 					<span id="inputGenNos" >
 						<fmt:message key="couponDetail.prefix" />
 						:

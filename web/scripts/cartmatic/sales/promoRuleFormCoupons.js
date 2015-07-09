@@ -14,7 +14,7 @@ function fnDoMultiDeleteInPromo(obj) {
 	var itemNames = fnGetSelectedItemNames();
 	var frm=document.couponListForm;
 	
-	//get the delete multiIds
+	// get the delete multiIds
 	if (itemNames=="") {
 		return false;
 	}
@@ -26,21 +26,21 @@ function fnDoMultiDeleteInPromo(obj) {
 		}
 	}	
 	if (confirm(__FMT.common_message_confirmDeleteThis+ " " + itemNames+"?")) {
-		//delete first by ajax
+		// delete first by ajax
 		$j.post(frm.action+"?doAction=multiDelete"+multiIdString+"&decorator=selecter","",multiDeleteCallback);
-		//update message
-   		//$j('#coupon_message').empty();
-   		//$j('#coupon_message').append(pmsg.coupon_commit_wait);
+		// update message
+   		// $j('#coupon_message').empty();
+   		// $j('#coupon_message').append(pmsg.coupon_commit_wait);
 	}	
 }
 
 function multiDeleteCallback(){
-	//fill the div
+	// fill the div
 	var frm=document.couponListForm;
 	fillDivWithPage("ruleDetail-couponList", frm.action+"?doAction=search"+"&decorator=selecter");	
-	//update message
-   	//$j('#coupon_message').empty();
-   	//$j('#coupon_message').append(pmsg.coupon_commit_success);
+	// update message
+   	// $j('#coupon_message').empty();
+   	// $j('#coupon_message').append(pmsg.coupon_commit_success);
 }
 
 function validateGenCouponForm(){
@@ -73,13 +73,13 @@ function genCoupons(){
 	if(!validateGenCouponForm()){
 		return false;
 	}
-	//get the url  	
+	// get the url
     var url=$j('#promoRuleForm').attr('action')+"?doAction=generateCoupon";
 	var postData="";
     postData += $j('#promoRule :input').serialize();
-    //alert(postData);
+    // alert(postData);
     $j.post(url,postData,genCouponCallback,"json");
-    //update message
+    // update message
    	$j('#coupon_message').empty();
    	$j('#coupon_message').append(pmsg.coupon_commit_wait);
 }
@@ -88,21 +88,27 @@ function fnChangeCouponSytle(){
 	if($j("#couponStyle").val() == '3'){
 		$j("#inputSpecialNo").show();
 		$j("#inputGenNos").hide();
+		$j("#inputLengthNos").hide();
 	}
 	else
 	{
 		$j("#inputSpecialNo").hide();
 		$j("#inputGenNos").show();
+		$j("#inputLengthNos").show();
 	}
 }
-
+//生成优惠券之后的回调方法
 function genCouponCallback(result){
+// alert(result.status);
 	if(result.status==1){
-		//update message
+		// update message
 		var frm=document.couponListForm;
 		fillDivWithPage("ruleDetail-couponList", frm.action+"?promoRule="+$j('#promoRuleId').val()+"&doAction=search"+"&decorator=selecter");	
 		$j('#coupon_message').empty();
 		$j('#coupon_message').append(pmsg.coupon_commit_success);
+	}else if(result.status==111){
+		$j('#coupon_message').empty();
+		$j('#coupon_message').append(pmsg.coupon_commit_exist);
 	}else{
 		alert(result.msg);
 	}
@@ -138,23 +144,23 @@ function sendCoupon(){
 	if(!validateSendCouponForm()){
 		return false;
 	}
-	//get the url  	
+	// get the url
     var url=$j('#promoRuleForm').attr('action')+"?doAction=sendCoupon";
 	var postData="";
   	var actionnn = $j('#sendCouponForm').attr("id");
     postData += $j('#sendCouponForm :input').serialize();
-    //alert(postData);
+    // alert(postData);
     $j.post(url,postData,sendCouponCallback);
-    //close dialog
+    // close dialog
     dlgsendCouponDialog_close();
-    //update message
+    // update message
    	$j('#coupon_message').empty();
    	$j('#coupon_message').append(pmsg.coupon_commit_wait);
 }
 
 function sendCouponCallback(result){
 	if(result.status==1){
-		//update message
+		// update message
 		var frm=document.couponListForm;
 		fillDivWithPage("ruleDetail-couponList", frm.action+"?promoRule="+$j('#promoRuleId').val()+"&doAction=search"+"&decorator=selecter");	
    		$j('#coupon_message').empty();

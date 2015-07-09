@@ -21,7 +21,7 @@ public interface CouponManager extends GenericManager<Coupon> {
 	 * @param _prefix 前缀
 	 */
 	public List<Coupon> createCoupons(Integer _couponType, Integer _availableCount,
-			int _couponStyle, String _prefix,int _quantity);
+			int _couponStyle, String _prefix,int _quantity, int _couponLength);
 	/**
 	 * 产生一个优惠券号码
 	 * @param _couponType 优惠券促销规则ID
@@ -31,7 +31,7 @@ public interface CouponManager extends GenericManager<Coupon> {
 	 * @param _prefix 前缀
 	 */
 	public Coupon createCoupon(Integer _couponType, Integer _availableCount,
-			int _couponStyle, String _prefix) ;
+			int _couponStyle, String _prefix, int _couponLength) ;
 	
 	/**
 	 * 产生一个优惠券,使用指定的优惠券号
