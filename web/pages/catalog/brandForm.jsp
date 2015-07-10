@@ -266,8 +266,6 @@
 <script type="text/javascript" defer="defer">
 //type=1是获取访谈的，type=2是获取推荐产品的
 
-
-
 //选择器表单值重置
 function Reset(type){
    if(type==1){

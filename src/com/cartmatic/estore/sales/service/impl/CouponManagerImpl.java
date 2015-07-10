@@ -1,4 +1,3 @@
-
 package com.cartmatic.estore.sales.service.impl;
 
 import java.util.ArrayList;
@@ -24,12 +23,12 @@ import com.cartmatic.estore.sales.util.GenerateCodeUtil;
  * Manager implementation for Coupon, responsible for business processing, and
  * communicate between web and persistence layer.
  */
-public class CouponManagerImpl extends GenericManagerImpl<Coupon> implements
-		CouponManager {
+public class CouponManagerImpl extends GenericManagerImpl<Coupon> implements CouponManager
+{
 
-	private CouponDao	couponDao	= null;
-	private ConfigUtil	configUtil	= ConfigUtil.getInstance();
-	private MailEngine	mailEngine;
+	private CouponDao couponDao = null;
+	private ConfigUtil configUtil = ConfigUtil.getInstance();
+	private MailEngine mailEngine;
 
 	public void setCouponDao(CouponDao couponDao) {
 		this.couponDao = couponDao;
@@ -51,48 +50,57 @@ public class CouponManagerImpl extends GenericManagerImpl<Coupon> implements
 
 	}
 
-	public List<Coupon> createCoupons(Integer _couponType, Integer _availableCount,
-			int _couponStyle, String _prefix,int _quantity){
+	// 随机生成优惠券
+	public List<Coupon> createCoupons(Integer _couponType, Integer _availableCount, int _couponStyle, String _prefix, int _quantity,
+			int _couponLength) {
 		List<Coupon> couponList = new ArrayList<Coupon>();
-		for (int i = 0; i < _quantity; i++) {
-			Coupon coupon = createCoupon(_couponType, _availableCount, _couponStyle, _prefix);
+		for (int i = 0; i < _quantity; i++)
+		{
+			Coupon coupon = createCoupon(_couponType, _availableCount, _couponStyle, _prefix, _couponLength);
 			couponList.add(coupon);
 		}
 		return couponList;
 	}
 
-	public Coupon createCoupon(Integer _couponType, Integer _availableCount,
-			int _couponStyle, String _prefix) {
+	public Coupon createCoupon(Integer _couponType, Integer _availableCount, int _couponStyle, String _prefix, int _couponLength) {
 		Coupon coupon = new Coupon();
 		coupon.setStatus(Constants.STATUS_ACTIVE);
 		coupon.setRemainedTimes(_availableCount);
 		coupon.setIsSent(Constants.FLAG_FALSE);
 		coupon.setPromoRuleId(_couponType);
-		String no = GenerateCodeUtil
-				.generateCouponNo(_couponStyle, _prefix);
+		String no = GenerateCodeUtil.generateCouponNo(_couponStyle, _prefix, _couponLength);
 		int j = 0;
-		while (couponDao.existCoupon(no)) {
+		while (couponDao.existCoupon(no))
+		{
 			j++;
-			if (j > SalesConstants.MAX_GEN_TRY_TIMES) {
-				logger.error("CouponNo is repeat. MAX_TRY_NUM["
-						+ SalesConstants.MAX_GEN_TRY_TIMES + "]");
-				throw new DataIntegrityViolationException(
-						"CouponNo is repeat.");
+			if (j > SalesConstants.MAX_GEN_TRY_TIMES)
+			{
+				logger.error("CouponNo is repeat. MAX_TRY_NUM[" + SalesConstants.MAX_GEN_TRY_TIMES + "]");
+				throw new DataIntegrityViolationException("CouponNo is repeat.");
 			}
-			no = GenerateCodeUtil.generateCouponNo(_couponStyle, _prefix);
+			no = GenerateCodeUtil.generateCouponNo(_couponStyle, _prefix, _couponLength);
 		}
 		coupon.setCouponNo(no);
 		dao.save(coupon);
 		return coupon;
 	}
-	
-	public Coupon createCoupon(Integer couponType, Integer availableCount, String couponNo)
-	{
-		if(couponDao.existCoupon(couponNo))
+
+	public Coupon createCoupon(Integer couponType, Integer availableCount, String couponNo) {
+		Coupon coupon = getCouponByNo(couponNo);
+		// 判断优惠券是否已存在
+		if (couponDao.existCoupon(couponNo) == true)
 		{
-			return null;		
+			int remainedTimes = coupon.getRemainedTimes();
+			// 判断优惠券的剩余使用次数是否为0
+			if (remainedTimes != 0)
+			{
+				return null;
+			}
 		}
-		Coupon coupon = new Coupon();
+		else
+		{
+			coupon = new Coupon();
+		}
 		coupon.setStatus(Constants.STATUS_ACTIVE);
 		coupon.setRemainedTimes(availableCount);
 		coupon.setIsSent(Constants.FLAG_FALSE);
@@ -120,13 +128,13 @@ public class CouponManagerImpl extends GenericManagerImpl<Coupon> implements
 		Map model = new HashMap();
 		model.put("coupon", coupon);
 		model.put("email", emailModel);
-		mailEngine.sendSimpleTemplateMail(configUtil.getCouponEmailTemplate(),model, null, null, emailModel.getEmail());
-		//save
+		mailEngine.sendSimpleTemplateMail(configUtil.getCouponEmailTemplate(), model, null, null, emailModel.getEmail());
+		// save
 		coupon.setIsSent(Constants.FLAG_TRUE);
 		couponDao.save(coupon);
 	}
-	
-	public Coupon getIdleCoupon(Integer couponTypeId){
+
+	public Coupon getIdleCoupon(Integer couponTypeId) {
 		return couponDao.getIdleCoupon(couponTypeId);
 	}
 
