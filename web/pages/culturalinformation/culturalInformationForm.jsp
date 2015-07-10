@@ -142,7 +142,7 @@
 						onclick="$('logoImage').src='${ctxPath}/images/default/00.jpg';$j('#logo').val('');" />
 				</div>
 				<cartmatic:swf_upload btnPlaceHolderId="logoImageBtnPlaceHolderId"
-					uploadCategory="other" uploadFileTypes="*.jpg" fileInputId="logo"
+					uploadCategory="other" uploadFileTypes="*.jpg; *.jpeg; *.png; *.gif" fileInputId="logo"
 					previewImg="logoImage"></cartmatic:swf_upload>
 			</td>
 		</tr>
@@ -164,7 +164,7 @@
 						onclick="$('picImage').src='${ctxPath}/images/default/00.jpg';$j('#pic').val('');" />
 				</div>
 				<cartmatic:swf_upload btnPlaceHolderId="picImageBtnPlaceHolderId"
-					uploadCategory="other" uploadFileTypes="*.jpg" fileInputId="pic"
+					uploadCategory="other" uploadFileTypes="*.jpg; *.jpeg; *.png; *.gif" fileInputId="pic"
 					previewImg="picImage"></cartmatic:swf_upload>
 			</td>
 		</tr>
@@ -186,7 +186,7 @@
 						onclick="$('pic2Image').src='${ctxPath}/images/default/00.jpg';$j('#pic2').val('');" />
 				</div>
 				<cartmatic:swf_upload btnPlaceHolderId="pic2ImageBtnPlaceHolderId"
-					uploadCategory="other" uploadFileTypes="*.jpg" fileInputId="pic2"
+					uploadCategory="other" uploadFileTypes="*.jpg; *.jpeg; *.png; *.gif" fileInputId="pic2"
 					previewImg="pic2Image"></cartmatic:swf_upload>
 			</td>
 		</tr>
