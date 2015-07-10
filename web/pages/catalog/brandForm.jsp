@@ -35,8 +35,6 @@
 				<input class="Field400" type="text" name="designer" id="designer" value="<c:out value="${brand.designer}"/>" />
 			</td>
 	    </tr>
-	    
-	     <br>
 	    <tr>
 			<td class="FieldLabel">
 				<StoreAdmin:label key="brand.brandCode" />
@@ -46,7 +44,7 @@
 			</td>
 	    </tr>
 	    
-	    <br>
+	    
 	   <tr>
 			<td class="FieldLabel">
 				设计师首字母(前端首字母排序查询,只限大写字母查询)：
@@ -56,8 +54,7 @@
 			</td>
 	   </tr>
 	     
-	     <br>
-	   <tr>
+	 <tr>
 			<td class="FieldLabel">
 				访谈资讯(支持多选，前台只展示前一个):
 			</td>
@@ -99,7 +96,6 @@
 			</td>
 		</tr>
 		
-		
 		<tr id="monthdiv">
 			<td class="FieldLabel">
 				<span id="productMediaImageBtnPlaceHolderId_d">按钮（<a href="#" onclick=removeAllProductImg('productMoreImages_d');>移除所有产品大图</a>）</span>
@@ -109,18 +105,48 @@
 					uploadCategory="productMedia"
 					uploadFileTypes="*.jpg; *.jpeg; *.png; *.gif"
 					onComplete="fnUploadMoreImage_d_Handler" objId="1110" previewSize="v"
-					isMultiFiles="true" button_text="上传月刊" fileImageSize="v"
+					isMultiFiles="true" button_text="上传动态资讯" fileImageSize="v"
 					fileSizeLimit="5MB"></cartmatic:swf_upload>
 				<script type="text/javascript"
 					src="<c:url value="/scripts/cartmatic/catelog/brandlForm.js"/>"></script>
 			</td>
 			<td id="addImg">
 				<div id="productMoreImages_d">
-					
+			<c:forEach items="${brandDynamicList}"
+						var="productMoreImage">
+						<div class="product-media"
+							id="productMedia_div_
+								${productMoreImage.brandDynamicId}">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0"
+								align="center" class="no-border">
+								<tr>
+									<td class="list" width="10%" align="left">
+										<cartmatic:img url="${productMoreImage.img}"
+											mediaType="productMedia" size="v" width="60" height="60"
+											id="productMedia_img_${productMoreImage.brandDynamicId}"></cartmatic:img>
+										内容：
+										<input id=" " readonly="readonly"  name="" type="text"  style="width:400px;" value="${productMoreImage.content}"/>
+										来源：
+										<input id=" " readonly="readonly"  name="" type="text" style="width:400px;" value="${productMoreImage.resource}"/>
+										网址：
+										<input id=" " readonly="readonly"  name="" type="text" style="width:400px;" value="${productMoreImage.website}"/>
+										来源时间：
+										<input id=" " readonly="readonly"  name="" type="text" style="width:400px;" value="${productMoreImage.resourceTime}"/>
+									</td>
+									<td class="list">
+										&nbsp;&nbsp;
+										<input name="remove_empty_item" type="image"
+											src="${ctxPath}/images/icon/icon_del.gif"
+											onclick="fnRemoveUploadMedia(${productMoreImage.brandDynamicId},this);return false;"
+											title="<fmt:message key="productDetail.moreImage.removeThisImage" />" />
+									</td>
+								</tr>
+							</table>
+						</div>
+					</c:forEach>
 				</div>
 			</td>
 		</tr>
-		
 		
 	    <tr>
 			<td class="FieldLabel">
@@ -206,7 +232,7 @@
 				</div>
 			</td>
 	    </tr>
-	    <!--    才版旧的页面
+	  <!--    才版旧的页面
 	    <tr>
 			<td class="FieldLabel">
 				<StoreAdmin:label key="brand.pic2" />

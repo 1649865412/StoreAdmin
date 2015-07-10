@@ -31,7 +31,7 @@
 			length="10" not-null="false" unique="false" />
 			
 		<property name="releaseTime" type="java.util.Date" update="true"
-			insert="true" access="property" column="releaseTime" length="20"
+			insert="true" access="property" column="releaseTime" length="128"
 			not-null="false" unique="false" />
 			
 		<property name="readNumber" type="java.lang.Integer" update="true"

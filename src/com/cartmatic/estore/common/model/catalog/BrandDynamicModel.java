@@ -3,7 +3,7 @@ package com.cartmatic.estore.common.model.catalog;
 
 
 /*
- * 此类是用于品牌与设计师增加动态的时候设置
+ * 此类是用于品牌与设计师增加动态的时候过渡类
  */
 public class BrandDynamicModel
 {
@@ -12,6 +12,15 @@ public class BrandDynamicModel
 	public String[] resourceArray;
 	public String[] websiteArray;
 	public String[] dateTimeArray;
+	public String[] brandDynamicIdArray;
+
+	public String[] getBrandDynamicIdArray() {
+		return brandDynamicIdArray;
+	}
+
+	public void setBrandDynamicIdArray(String[] brandDynamicIdArray) {
+		this.brandDynamicIdArray = brandDynamicIdArray;
+	}
 
 	public String[] getImgArray() {
 		return imgArray;

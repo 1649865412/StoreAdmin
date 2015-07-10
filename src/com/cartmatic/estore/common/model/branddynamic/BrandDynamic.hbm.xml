@@ -33,12 +33,12 @@
             unique="false"
         />
         <property
-            name="character"
+            name="content"
             type="java.lang.String"
             update="true"
             insert="true"
             access="property"
-            column="character"
+            column="content"
             length="255"
             not-null="false"
             unique="false"
@@ -66,13 +66,13 @@
             unique="false"
         />
         <property
-            name="dateTime"
-            type="java.util.Date"
+            name="resourceTime"
+            type="java.lang.String"
             update="true"
             insert="true"
             access="property"
-            column="dateTime"
-            length="0"
+            column="resourceTime"
+            length="32"
             not-null="false"
             unique="false"
         />

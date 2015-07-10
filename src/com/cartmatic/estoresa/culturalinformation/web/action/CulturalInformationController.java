@@ -57,30 +57,15 @@ public class CulturalInformationController extends GenericController<CulturalInf
 		CulturalInformation entity = formBackingObject(request);
 		BindException errors = null;
 		String mediaUrls_d[] =request.getParameterValues("productMedia_urls_d");
-		try {
-			ServletRequestDataBinder binder = bindAndValidate(request, entity);
-			errors = new BindException(binder.getBindingResult());
-			// 传给子类的实现，后者可以继续验证和加入错误到errors
-			if (!errors.hasErrors()) {// 里面如果出错应该抛出异常
-				mgr.save(entity);
-			//	System.out.print("id:"+entity.getCulturalInformationId());
-				saveMonth( mediaUrls_d,entity);
-				String msgKey = (isEntityNew(request)) ? "common.added": "common.updated";
-				saveMessage(Message.info(msgKey, new Object[] {getEntityTypeMessage(), getEntityName(entity)}));
-			}
-		} catch (ApplicationException e) {
-			handleApplicationException(errors, e);
-		}
-
-		ModelAndView mav;
-		if (errors.hasErrors()) {
-			mav = showForm(request, errors);
-		} else if (successView != null) {
-			mav = getModelAndView(successView, errors.getModel());
-		} else {
-			mav = getRedirectToActionView("edit", ((BaseObject) entity).getId()
-					.toString());
-		}
+		ServletRequestDataBinder binder = bindAndValidate(request, entity);
+		// 传给子类的实现，后者可以继续验证和加入错误到errors
+		mgr.save(entity);
+		saveMonth( mediaUrls_d,entity);
+		String msgKey = (isEntityNew(request)) ? "common.added": "common.updated";
+		saveMessage(Message.info(msgKey, new Object[] {getEntityTypeMessage(), getEntityName(entity)}));
+		ModelAndView mav = getRedirectToActionView("edit", ((BaseObject) entity).getId()
+				.toString());
+		//mav = getModelAndView(successView);
 		return mav;
 	}
 	

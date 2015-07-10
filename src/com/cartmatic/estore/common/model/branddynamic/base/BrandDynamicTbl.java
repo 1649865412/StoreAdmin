@@ -18,10 +18,10 @@ public class BrandDynamicTbl extends BaseObject implements Serializable {
 
     protected Integer brandDynamicId;
 	protected String img;
-	protected String character;
+	protected String content;
 	protected String resource;
 	protected String website;
-	protected java.util.Date dateTime;
+	protected String resourceTime;
 	protected java.util.Date createTime;
 	protected com.cartmatic.estore.common.model.catalog.Brand brand;
 
@@ -82,20 +82,7 @@ public class BrandDynamicTbl extends BaseObject implements Serializable {
 		this.img = aValue;
 	}	
 
-	/**
-	 * 文字	 * @return String
-	 * @hibernate.property column="character" type="java.lang.String" length="255" not-null="false" unique="false"
-	 */
-	public String getCharacter() {
-		return this.character;
-	}
-	
-	/**
-	 * Set the character
-	 */	
-	public void setCharacter(String aValue) {
-		this.character = aValue;
-	}	
+
 
 	/**
 	 * 来源	 * @return String
@@ -127,20 +114,23 @@ public class BrandDynamicTbl extends BaseObject implements Serializable {
 		this.website = aValue;
 	}	
 
-	/**
-	 * 日期	 * @return java.util.Date
-	 * @hibernate.property column="dateTime" type="java.util.Date" length="0" not-null="false" unique="false"
-	 */
-	public java.util.Date getDateTime() {
-		return this.dateTime;
+
+
+	public String getContent() {
+		return content;
 	}
-	
-	/**
-	 * Set the dateTime
-	 */	
-	public void setDateTime(java.util.Date aValue) {
-		this.dateTime = aValue;
-	}	
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getResourceTime() {
+		return resourceTime;
+	}
+
+	public void setResourceTime(String resourceTime) {
+		this.resourceTime = resourceTime;
+	}
 
 	/**
 	 * 创建时间	 * @return java.util.Date
@@ -187,10 +177,10 @@ public class BrandDynamicTbl extends BaseObject implements Serializable {
 		return new EqualsBuilder()
 				.append(this.brandDynamicId, rhs.brandDynamicId)
 				.append(this.img, rhs.img)
-				.append(this.character, rhs.character)
+				.append(this.content, rhs.content)
 				.append(this.resource, rhs.resource)
 				.append(this.website, rhs.website)
-				.append(this.dateTime, rhs.dateTime)
+				.append(this.resourceTime, rhs.resourceTime)
 				.append(this.createTime, rhs.createTime)
 						.isEquals();
 	}
@@ -202,10 +192,10 @@ public class BrandDynamicTbl extends BaseObject implements Serializable {
 		return new HashCodeBuilder(-82280557, -700257973)
 				.append(this.brandDynamicId) 
 				.append(this.img) 
-				.append(this.character) 
+				.append(this.content) 
 				.append(this.resource) 
 				.append(this.website) 
-				.append(this.dateTime) 
+				.append(this.resourceTime) 
 				.append(this.createTime) 
 						.toHashCode();
 	}
@@ -217,10 +207,10 @@ public class BrandDynamicTbl extends BaseObject implements Serializable {
 		return new ToStringBuilder(this)
 				.append("brandDynamicId", this.brandDynamicId) 
 				.append("img", this.img) 
-				.append("character", this.character) 
+				.append("content", this.content) 
 				.append("resource", this.resource) 
 				.append("website", this.website) 
-				.append("dateTime", this.dateTime) 
+				.append("resourceTime", this.resourceTime) 
 				.append("createTime", this.createTime) 
 						.toString();
 	}

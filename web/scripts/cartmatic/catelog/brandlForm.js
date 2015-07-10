@@ -1,10 +1,9 @@
 var orientedTabs = null;
 $j(document).ready(function(){
-	$j("#productMoreImages").sortable();
-	$j("#productMoreImages_d").sortable();
-	$j("#productAccessories").sortable();
+	//$j("#productMoreImages").sortable();
+	//$j("#productMoreImages_d").sortable();
+	//$j("#productAccessories").sortable();
 });
-
 
 
 /**
@@ -27,6 +26,7 @@ function fnUploadMoreImage_d_Handler(file){
 	showUploadProudctMedia_d('productMoreImages_d',0,file);
 }
 
+//brandDynamicIdArray
 
 function showUploadProudctMedia_d(divId,uploadInputMediaType,file){
 	//alert("showUploadProudctMedia_d");
@@ -39,13 +39,13 @@ function showUploadProudctMedia_d(divId,uploadInputMediaType,file){
 	inputUploadHtml += '<tr>';
 	inputUploadHtml += '<td class="list" width="15%" align="center"><input type="hidden" id="-' + id + '" name="productMediaIds" value="-' + id + '""><input type="hidden" name="productMediaTypes" value="' + uploadInputMediaType + '">';
 	if (uploadInputMediaType == 0) {
-		inputUploadHtml += '<img id="productMedia_img_' + id + '" src="' + __mediaPath +file.previewUrl+'" width="60" height="60" />';
+		inputUploadHtml += '<img id="productMedia_img_' + id + '" src="' + __mediaPath +file.previewUrl+'" width="60"  height="60" />';
 	} else {
 		inputUploadHtml += '<img id="productMedia_img_' + id + '" src="' + __ctxPath + '/images/accessorie_hight_light.gif" width="60" height="60" />';
 	}
 	inputUploadHtml += '<input type="hidden" id="productMedia_deleteds_' + id + '" name="productMedia_deleteds" value="0">';
 	inputUploadHtml += '</td><td class="list" width="24%">';
-	inputUploadHtml += '<input id="productMedia_url_' + id + '" name="imgArray" type="text" style="width:400px;" value="'+file.url+'"/></span>';
+	inputUploadHtml += '<input id="productMedia_url_' + id + '" name="imgArray" type="text" readonly="readonly"  style="width:400px;" value="'+file.url+'"/></span>';
 	inputUploadHtml += '<br />';
 	inputUploadHtml += '文字描述';
 	inputUploadHtml += '<br />';
@@ -59,6 +59,9 @@ function showUploadProudctMedia_d(divId,uploadInputMediaType,file){
 	inputUploadHtml += '时间';
 	inputUploadHtml += '<br />';
 	inputUploadHtml += '<input id="productMedia_desc_' + id + '" name="dateTimeArray" type="text" style="width:400px;"/>';
+	//inputUploadHtml += 'Id';
+	//inputUploadHtml += '<br />';
+	//inputUploadHtml += '<input id="productMedia_desc_' + id + '" name="brandDynamicIdArray" type="text" style="width:400px;"/>';
 	inputUploadHtml += '</td><td class="list">';
 	inputUploadHtml += '&nbsp;&nbsp;<input name="remove_empty_item" type="image" src="' + __ctxPath + '/images/icon/icon_del.gif" onclick="fnRemoveUploadMedia('+ id+',this);return false;" title="' + __FMT.productDetail_moreImage_removeThisImage + '"/>';
 	inputUploadHtml += '</td>';
@@ -96,18 +99,14 @@ function fnRemoveUploadMedia(id,obj){
  * @return
  */
 function removeAllProductImg(id){
-	//alert("removeAllProductImg");
 	$j("#" + id).html("");
 }
 
 
 function monthlyCulturalIdDelete(id,obj) {
-	 //alert("monthlyCulturalIdDelete");
-	// alert(__ctxPath + "/culturalinformation/culturalInformation.html?doAction=deleteMonthly");
-	$j.post(__ctxPath + "/culturalinformation/culturalInformation.html?doAction=deleteMonthly", {
-		monthlyCulturalId : id
+	$j.post(__ctxPath + "/catalog/brand.html?doAction=deleteBrandDynamic", {
+		brandId : id
 	}, function(result) {
-		// alert("result:"+result.status);
 			if (result.status == 1) {
 				//alert("删除成功");
 			} else {
@@ -116,21 +115,5 @@ function monthlyCulturalIdDelete(id,obj) {
 		}, "json");
 }
 
-//动态进入后台删 除月刊数据
-/*
-function monthlyCulturalIdDelete(id,obj) {
-	alert("monthlyCulturalIdDelete");
-	$.post(__ctxPath + "/monthlycultural/monthlyCultural.html?doAction=deleteMonthly"), {
-		monthlyCulturalId : id
-	}, function(result) {
-		     alert("result:"+result.status);
-			if (result.status == 1) {
-				$j('#productMedia_div_' + id).remove();
-				var $this = $j(obj);
-				$this.parents(".product-media").remove();
-			} else {
-				alert("删除失败！");
-			}
-		}, "json");
-}*/
+
 

@@ -49,7 +49,7 @@ function showUploadProudctMedia_d(divId,uploadInputMediaType,file){
 	}
 //	inputUploadHtml += '<input type="hidden" id="productMedia_deleteds_' + id + '" name="productMedia_deleteds" value="4">';
 	inputUploadHtml += '</td><td class="list" width="24%">';
-	inputUploadHtml += '<input id="productMedia_url_' + id + '" name="productMedia_urls_d" type="text" style="width:400px;" value="'+file.url+'"/></span>';
+	inputUploadHtml += '<input id="productMedia_url_' + id + '" name="productMedia_urls_d" type="text" style="width:400px;" readonly="readonly"  value="'+file.url+'"/></span>';
 	inputUploadHtml += '<br />';
 	//inputUploadHtml += __FMT.productMedia_mediaDescription;
 	//inputUploadHtml += '<br />';
