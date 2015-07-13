@@ -5,7 +5,6 @@ $j(document).ready(function(){
 	//$j("#productAccessories").sortable();
 });
 
-
 /**
  * 保存产品所有数据的回调
  * @param {Object} data
@@ -13,7 +12,6 @@ $j(document).ready(function(){
 function fnSaveProductHandler(result){
   //  alert("goodbye")
 }
-
 
 /**
  * 添加触发
@@ -59,9 +57,13 @@ function showUploadProudctMedia_d(divId,uploadInputMediaType,file){
 	inputUploadHtml += '时间';
 	inputUploadHtml += '<br />';
 	inputUploadHtml += '<input id="productMedia_desc_' + id + '" name="dateTimeArray" type="text" style="width:400px;"/>';
-	//inputUploadHtml += 'Id';
-	//inputUploadHtml += '<br />';
-	//inputUploadHtml += '<input id="productMedia_desc_' + id + '" name="brandDynamicIdArray" type="text" style="width:400px;"/>';
+	inputUploadHtml += '来源着色标志选择：';
+	inputUploadHtml += '<br />';
+//	inputUploadHtml += '<input id="productMedia_desc_' + id + '" name="brandDynamicIdArray" type="text" style="width:400px;"/>';
+	inputUploadHtml +='<select name="colorTypeArray"><option value="0">默认黑色</option><option value="1">红色（新浪微博）</option><option value="2">浅蓝（Twitter）</option><option value="3">棕色（Instagram）</option><option value="4">宝蓝（Facebook）</option><option value="5">灰蓝色（Lofter）</option><option value="6">浅绿色（微信）</option></select>'
+
+//1fb6e67 红色（新浪微博）;2#abdce3 浅蓝（Twitter）;3#ab7d63 棕色（Instagram）;4#3b5b98 宝蓝（Facebook）;5#393e44 灰蓝色（Lofter），6#a6d5ab 浅绿色（微信）
+	
 	inputUploadHtml += '</td><td class="list">';
 	inputUploadHtml += '&nbsp;&nbsp;<input name="remove_empty_item" type="image" src="' + __ctxPath + '/images/icon/icon_del.gif" onclick="fnRemoveUploadMedia('+ id+',this);return false;" title="' + __FMT.productDetail_moreImage_removeThisImage + '"/>';
 	inputUploadHtml += '</td>';

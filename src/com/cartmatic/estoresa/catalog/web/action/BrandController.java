@@ -144,6 +144,7 @@ public class BrandController extends GenericController<Brand>
 				brandDynamicModel.setResourceArray(request.getParameterValues("resourceArray"));
 				brandDynamicModel.setWebsiteArray(request.getParameterValues("websiteArray"));
 				brandDynamicModel.setBrandDynamicIdArray(request.getParameterValues("brandDynamicIdArray"));
+				brandDynamicModel.setColorTypeArray(request.getParameterValues("colorTypeArray"));
 				saveMonth(brandDynamicModel, entity);
 				String msgKey = (isEntityNew(request)) ? "common.added" : "common.updated";
 				saveMessage(Message.info(msgKey, new Object[] { getEntityTypeMessage(), getEntityName(entity) }));
@@ -197,11 +198,13 @@ public class BrandController extends GenericController<Brand>
 					brandDynamic.setResourceTime(brandDynamicModel.getDateTimeArray()[i]);
 					brandDynamic.setBrandId(entity.getBrandId());
 					brandDynamic.setCreateTime(CalenderTime.strtodate(CalenderTime.getToday("yyyy-MM-dd"), "yyyy-MM-dd"));
+					brandDynamic.setColorType(Integer.parseInt(brandDynamicModel.getColorTypeArray()[i]));
 					brandDynamicManager.merge(brandDynamic);
 				}
 			}
 		}else{
-			String brandDynamicIdArray[] =brandDynamicModel.getBrandDynamicIdArray();
+			//此處編輯還在測試當中，不做使用
+			/*String brandDynamicIdArray[] =brandDynamicModel.getBrandDynamicIdArray();
 			for(int i=0;i<brandDynamicIdArray.length;i++)
 			{
 				BrandDynamic brandDynamic =brandDynamicManager.getById(Integer.parseInt(brandDynamicIdArray[i]));
@@ -211,7 +214,7 @@ public class BrandController extends GenericController<Brand>
 				brandDynamic.setResourceTime(brandDynamicModel.getDateTimeArray()[i]);
 				brandDynamic.setCreateTime(CalenderTime.strtodate(CalenderTime.getToday("yyyy-MM-dd"), "yyyy-MM-dd"));
 				brandDynamicManager.merge(brandDynamic);
-			}
+			}*/
 		}
 	}
 

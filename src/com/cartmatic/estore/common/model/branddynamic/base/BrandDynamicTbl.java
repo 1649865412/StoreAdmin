@@ -24,7 +24,25 @@ public class BrandDynamicTbl extends BaseObject implements Serializable {
 	protected String resourceTime;
 	protected java.util.Date createTime;
 	protected com.cartmatic.estore.common.model.catalog.Brand brand;
+    protected Integer colorType;
+    protected String quotation;
+    
 
+	public String getQuotation() {
+		return quotation;
+	}
+
+	public void setQuotation(String quotation) {
+		this.quotation = quotation;
+	}
+
+	public Integer getColorType() {
+		return colorType;
+	}
+
+	public void setColorType(Integer colorType) {
+		this.colorType = colorType;
+	}
 
 	/**
 	 * Default Empty Constructor for class BrandDynamic

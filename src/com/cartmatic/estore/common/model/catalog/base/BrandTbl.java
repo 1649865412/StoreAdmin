@@ -26,9 +26,19 @@ public class BrandTbl extends BaseObject implements Serializable {
 	protected String website;
 	protected String story;;
 	protected String logo;
+	
+	
+	//设计师图片滚动
+	protected String icon;
 	protected String pic;
 	protected String pic2;
-	protected String icon;
+	protected String pic3;
+	protected String pic4;
+	protected String pic5;
+	protected String pic6;
+	
+	
+	protected String quotation;
 	protected String countryCode;
 	protected Integer version;
 	
@@ -40,6 +50,39 @@ public class BrandTbl extends BaseObject implements Serializable {
 	protected java.util.Set BrandDynamics = new java.util.HashSet();
 	
 	
+	
+	public String getPic3() {
+		return pic3;
+	}
+
+	public void setPic3(String pic3) {
+		this.pic3 = pic3;
+	}
+
+	public String getPic4() {
+		return pic4;
+	}
+
+	public void setPic4(String pic4) {
+		this.pic4 = pic4;
+	}
+
+	public String getPic5() {
+		return pic5;
+	}
+
+	public void setPic5(String pic5) {
+		this.pic5 = pic5;
+	}
+
+	public String getPic6() {
+		return pic6;
+	}
+
+	public void setPic6(String pic6) {
+		this.pic6 = pic6;
+	}
+
 	public java.util.Set getBrandDynamics() {
 		return BrandDynamics;
 	}
@@ -54,6 +97,14 @@ public class BrandTbl extends BaseObject implements Serializable {
 
 	public void setInitials(String initials) {
 		this.initials = initials;
+	}
+
+	public String getQuotation() {
+		return quotation;
+	}
+
+	public void setQuotation(String quotation) {
+		this.quotation = quotation;
 	}
 
 	public String getProductRecommendId() {
