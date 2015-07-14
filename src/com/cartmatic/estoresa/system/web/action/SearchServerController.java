@@ -60,6 +60,13 @@ public class SearchServerController extends BaseController
 			mv.addObject("contentCore", cn_rs);
 			mv.addObject("contentIndexInfo", cn_indexInfo);
 			
+			//获得文化资讯的的status
+			CoreAdminResponse cul_mcr = CoreAdminRequest.getStatus(SearchConstants.CORE_NAME_CULTURAL, coreadmin);
+			NamedList cul_rs = cul_mcr.getCoreStatus().get(SearchConstants.CORE_NAME_CULTURAL);
+			NamedList cul_indexInfo = (NamedList) cul_rs.get("index");
+			mv.addObject("culCore", cul_rs);
+			mv.addObject("culIndexInfo", cul_indexInfo);
+			
 			String searchServerPath = ConfigUtil.getInstance().getStoreSearchPath();
 			if (logger.isDebugEnabled())
 				logger.debug("searchServerPath=" + searchServerPath);

@@ -224,8 +224,20 @@
 				编辑发布文章如果有视屏，支持rm,rmv,flash,mov,swf,wmv格式
 			</td>
 		</tr>
-		<app:input property="textIntroduction" />
+		
+		
+		<tr>
+			<td class="FieldLabel">
+			</td>
+			<td>
+					<textarea id="textIntroduction" name="textIntroduction" style="width: 100%; height: 500px;">${culturalInformation.textIntroduction}</textarea>
 		<app:ui_htmlEditor textareaIds="textIntroduction" />
+			</td>
+		</tr>
+		
+		
+	
+		
 		<app:formText label="common.message.createTime"
 			value="${culturalInformation.createTime}" />
 		<!--	<app:input property="videoAddress" />-->

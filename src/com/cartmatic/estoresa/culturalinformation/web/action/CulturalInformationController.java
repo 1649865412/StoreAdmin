@@ -60,6 +60,13 @@ public class CulturalInformationController extends GenericController<CulturalInf
 		ServletRequestDataBinder binder = bindAndValidate(request, entity);
 		// 传给子类的实现，后者可以继续验证和加入错误到errors
 		mgr.save(entity);
+		try{
+			CatalogHelper.getInstance().indexNotifyUpdateEventMethod(SearchConstants.CORE_NAME_CULTURAL,new Integer(entity.getId()));
+			}catch(Exception e)
+			{
+				System.out.println("单个删除文化资讯索引有误");
+				e.printStackTrace();
+			}
 		saveMonth( mediaUrls_d,entity);
 		String msgKey = (isEntityNew(request)) ? "common.added": "common.updated";
 		saveMessage(Message.info(msgKey, new Object[] {getEntityTypeMessage(), getEntityName(entity)}));
