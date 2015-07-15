@@ -46,7 +46,6 @@ public class CulturalInformationController extends GenericController<CulturalInf
 		this.monthlyCulturalManager = monthlyCulturalManager;
 	}
 
-	
 	/**
 	 * 重写保存
 	 */
@@ -74,63 +73,6 @@ public class CulturalInformationController extends GenericController<CulturalInf
 				.toString());
 		//mav = getModelAndView(successView);
 		return mav;
-	}
-	
-	
-	  /**
-     * 功能:动态进入后台删 除月刊数据
-	 * 返回结果
-	 * 默认情况下
-	 * 1表示成功
-	 * 0表示失败
-     * <p>作者 杨荣忠 2015-5-18 下午02:19:58
-     * @param request
-     * @param response
-     * @return
-     */
-	public ModelAndView deleteMonthly(HttpServletRequest request, HttpServletResponse response)
-    {
-        boolean flag =false;
-        try{
-        	int monthlyCulturalId = Integer.parseInt(request.getParameter("monthlyCulturalId"));
-        	MonthlyCultural monthlyCultural= monthlyCulturalManager.deleteById(monthlyCulturalId);
-            AjaxView ajaxView = new AjaxView(response);
-            flag =true;
-        }catch(Exception e){
-        	flag =false;
-        }
-        AjaxView ajaxView = new AjaxView(response);
-        if(flag==true)
-        {
-        	ajaxView.setStatus((short) 1);
-        }else{
-        	ajaxView.setStatus((short) 0);
-        }
-        return ajaxView;
-    }
-
-	
-	
-	/**
-	 * showFrom时调用,可以重载这个方法在mv上加入一些新的元素，补充重写进入表单的方法,例如编辑，
-	 * 主要获取推荐资讯的数据还有该文化资讯的月刊
-	 * @param request
-	 * @param mv
-	 */
-	protected void onShowForm(HttpServletRequest request, ModelAndView mv)
-	{
-		//System.out.print("进入编辑最后阶段！");
-		CulturalInformation culturalInformation = formBackingObject(request);
-		try{
-	  //  System.out.print("id:"+culturalInformation.getRecommendArrayId());
-		List<CulturalInformation> CulturalInformationList = culturalInformationManager.getAllByIdArray(culturalInformation.getRecommendArrayId());
-		List<MonthlyCultural>monthlyCulturalList =new ArrayList(culturalInformation.getMonthlyCultural());
-		mv.addObject("reCulturalInformationList", CulturalInformationList);
-		mv.addObject("monthlyCulturalList", monthlyCulturalList);
-		}
-		catch(Exception e){
-			System.out.println("进入文化资讯onShowForm方法有误"+"");
-		}
 	}
 	
 	
@@ -263,6 +205,61 @@ public class CulturalInformationController extends GenericController<CulturalInf
 		throw new RuntimeException("Not implemented yet!");
 	}
 
+
+	  /**
+   * 功能:动态进入后台删 除月刊数据
+	 * 返回结果
+	 * 默认情况下
+	 * 1表示成功
+	 * 0表示失败
+   * <p>作者 杨荣忠 2015-5-18 下午02:19:58
+   * @param request
+   * @param response
+   * @return
+   */
+	public ModelAndView deleteMonthly(HttpServletRequest request, HttpServletResponse response)
+  {
+      boolean flag =false;
+      try{
+      	int monthlyCulturalId = Integer.parseInt(request.getParameter("monthlyCulturalId"));
+      	MonthlyCultural monthlyCultural= monthlyCulturalManager.deleteById(monthlyCulturalId);
+          AjaxView ajaxView = new AjaxView(response);
+          flag =true;
+      }catch(Exception e){
+      	flag =false;
+      }
+      AjaxView ajaxView = new AjaxView(response);
+      if(flag==true)
+      {
+      	ajaxView.setStatus((short) 1);
+      }else{
+      	ajaxView.setStatus((short) 0);
+      }
+      return ajaxView;
+  }
+
+	
+	/**
+	 * showFrom时调用,可以重载这个方法在mv上加入一些新的元素，补充重写进入表单的方法,例如编辑，
+	 * 主要获取推荐资讯的数据还有该文化资讯的月刊
+	 * @param request
+	 * @param mv
+	 */
+	protected void onShowForm(HttpServletRequest request, ModelAndView mv)
+	{
+		//System.out.print("进入编辑最后阶段！");
+		CulturalInformation culturalInformation = formBackingObject(request);
+		try{
+	  //  System.out.print("id:"+culturalInformation.getRecommendArrayId());
+		List<CulturalInformation> CulturalInformationList = culturalInformationManager.getAllByIdArray(culturalInformation.getRecommendArrayId());
+		List<MonthlyCultural>monthlyCulturalList =new ArrayList(culturalInformation.getMonthlyCultural());
+		mv.addObject("reCulturalInformationList", CulturalInformationList);
+		mv.addObject("monthlyCulturalList", monthlyCulturalList);
+		}
+		catch(Exception e){
+			System.out.println("进入文化资讯onShowForm方法有误"+"");
+		}
+	}
 	
 	/*
 	 * (non-Javadoc)
