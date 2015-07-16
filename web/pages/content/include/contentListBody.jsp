@@ -54,8 +54,8 @@
 						<c:set var="stateClass" value="txt-disabled"></c:set>
 					</c:if>
 					<span class="${stateClass}"><fmt:message key="content.state.s${contentItem.state}" /></span>
-					
-			</display:column>			    
+			</display:column>			
+			    
 			</display:table>
 			<c:if test="${not empty contentList}">
 				<%@include file="/common/pagingNew.jsp"%>

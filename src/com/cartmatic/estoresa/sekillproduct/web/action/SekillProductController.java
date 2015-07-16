@@ -34,6 +34,8 @@ public class SekillProductController extends GenericController<SekillProduct> {
     
 	private AppEventHandler appEventHandler = null;
     
+	public static String SQL_TEXT = "sekill_product_text";
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -86,8 +88,6 @@ public class SekillProductController extends GenericController<SekillProduct> {
 			request.setAttribute("list",  textManager.getAll());
 			return getModelAndView(listView, listModelName, this.textManager.getAll());
 			*/
-		
-		
 			/**
 			 * 保存后返回相应的提示信息，action=1表示保存更新成功，action=2表示保存更新失败； jFiledErrors为错误提示信息;
 			 * 提示信息最好以json方式返回
@@ -102,8 +102,7 @@ public class SekillProductController extends GenericController<SekillProduct> {
 		}
 	
 	
-	
-	
+
 	/**
 	 * 功能:方法测试
 	 * <p>作者 杨荣忠 2015-5-5 上午09:50:25
@@ -113,13 +112,15 @@ public class SekillProductController extends GenericController<SekillProduct> {
 	 * @throws Exception
 	 */
 	public ModelAndView  text(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		  Map<String, Object> context =new HashMap();
+		  Map<String, Object> paramValue =new HashMap();
+		  paramValue.put("sekillProductId", 10);
+		  List<SekillProduct>  result =  sekillProductManager.getObject(SQL_TEXT,paramValue);
 		  
-		  List list = new ArrayList();
-		  list.add(1);
-		  list.add(2);
-		  list.add(3);
-		  System.out.println("text");
+		  for(int i=0;i<result.size();i++)
+		  {
+			  System.out.println(result.get(i).getSekillProductId());
+		  }
+		  //sekillProductManager.get
 		//ModelAndView  mo =  new ModelAndView("test/ajax5.htm");
 		//  ModelAndView  mo =  new ModelAndView("test/categorySelectTest");
 		//  ModelAndView  mo =  new ModelAndView("test/downloadImages");
@@ -145,7 +146,7 @@ public class SekillProductController extends GenericController<SekillProduct> {
 		//  ModelAndView  mo =  new ModelAndView("test/testValidate");
 		//  ModelAndView  mo =  new ModelAndView("test/userSelectTest");
 		//    ModelAndView  mo =  new ModelAndView("sekillproduct/sekillProductNew");
-		    mo.addObject("list", list);
+		 //   mo.addObject("list", list);
 		    return mo ;
 		}
 	

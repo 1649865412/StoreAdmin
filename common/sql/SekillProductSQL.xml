@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>index SQL</comment>
+
+
+	<!-- 一二级分类数据获取，不加品牌过滤 -->
+
+	<entry key="sekill_product_text">
+		SELECT a.* FROM `sekill_product` a LEFT JOIN `shipping_method` b ON
+		a.`sekillProductId` = b.shippingMethodId
+		where 1=1 { and a.`sekillProductId` > #sekillProductId#}
+	</entry>
+
+
+	<!--
+		<entry key="Param_THIRD_OR_FOUR.all"> { AND a.summary_time &gt;=
+		'#beginTime#' } { AND a.summary_time &lt;= '#endTime#' } </entry>
+	-->
+
+</properties>

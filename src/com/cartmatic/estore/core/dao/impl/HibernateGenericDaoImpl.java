@@ -77,9 +77,6 @@ public abstract class HibernateGenericDaoImpl<T> extends HibernateDaoSupportExt
 	public HibernateGenericDaoImpl() {
 		entityClass = GenericsUtils.getSuperClassGenricType(getClass());
 	}
-
-	
-	
 	
 	/**
 	 * 功能:通过某个字段的ID Array数组获取对象List,字段形如：（1，2，4，5），自动判空还有是不是null

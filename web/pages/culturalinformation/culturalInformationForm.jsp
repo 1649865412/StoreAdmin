@@ -224,8 +224,6 @@
 				编辑发布文章如果有视屏，支持rm,rmv,flash,mov,swf,wmv格式
 			</td>
 		</tr>
-		
-		
 		<tr>
 			<td class="FieldLabel">
 			</td>
@@ -234,9 +232,6 @@
 		<app:ui_htmlEditor textareaIds="textIntroduction" />
 			</td>
 		</tr>
-		
-		
-	
 		
 		<app:formText label="common.message.createTime"
 			value="${culturalInformation.createTime}" />
