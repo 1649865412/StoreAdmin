@@ -1,5 +1,8 @@
 package com.cartmatic.estore.sekillproduct.service.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import com.cartmatic.estore.catalog.dao.ProductDao;
 import com.cartmatic.estore.common.model.sekillproduct.SekillProduct;
 import com.cartmatic.estore.core.service.impl.GenericManagerImpl;
@@ -59,6 +62,10 @@ public class SekillProductManagerImpl extends GenericManagerImpl<SekillProduct> 
 	@Override
 	protected void onSave(SekillProduct entity) {
 
+	}
+	
+	public List<SekillProduct> getObject(String sqlName,Map<String, Object> param){
+		return sekillProductDao.getObject(sqlName,param);
 	}
 
 	@Override

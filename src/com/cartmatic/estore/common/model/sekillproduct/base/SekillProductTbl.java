@@ -24,7 +24,12 @@ public class SekillProductTbl extends BaseObject implements Serializable {
 	protected String createTime;
 	protected  Product product;
 	
+	protected Integer productId;
 	
+	public void setProductId(Integer productId) {
+		this.productId = productId;
+	}
+
 	//0已抢光，1即将开始，2马上开抢
 	protected  int status;
 	
@@ -44,6 +49,7 @@ public class SekillProductTbl extends BaseObject implements Serializable {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+	
 	
 	/**
 	 * 	 * @return Integer

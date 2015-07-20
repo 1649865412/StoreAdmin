@@ -21,6 +21,7 @@ import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 import org.hibernate.impl.CriteriaImpl;
+import org.hibernate.transform.Transformers;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.SessionFactoryUtils;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
@@ -33,6 +34,9 @@ import com.cartmatic.estore.core.search.SearchFilter;
 import com.cartmatic.estore.core.util.BeanUtils;
 import com.cartmatic.estore.core.util.HibernateUtils;
 import com.cartmatic.estore.core.util.StringUtil;
+import com.cartmatic.extend.sqlhelp.util.SQLHelper;
+import com.cartmatic.extend.sqlhelp.util.SQLProperties;
+import com.cartmatic.extend.sqlhelp.util.SqlHelp;
 
 /**
  * 主要定义不支持范型的方法、常用的方法。
@@ -60,6 +64,46 @@ public class HibernateDaoSupportExt extends HibernateDaoSupport {
 		getHibernateTemplate().clear();
 	}
 
+	
+	
+	/***********
+	 *  <p>作者 杨荣忠 2015-7-15 下午04:38:56
+	 * 查询数据，返回列表
+	 * 功能:hibernate原生态查询纯SQL,返回获取beanList;
+	 * @param <T>
+	 * @param object
+	 *            参数对象
+	 * @param sqlCfgName
+	 *            sql 配置文件中的key 值，具体看resources/sql 目录下的文件
+	 * @param class1
+	 *            类的class
+	 * @return 查询数据的列表
+	 * @throws Exception
+	 */
+
+	public final  <T> List<T>  getObjectList(String sqlName,T clazz,Map<String, Object> param){
+		List<T> objs = null;
+		String sqlValue = SQLProperties.getInstance().getSql(sqlName);
+		SQLHelper sqlHelper = new SQLHelper(sqlValue);
+		try
+		{
+			String executeSql = sqlHelper.parepareSQLtext(param);
+			System.out.print("===="+executeSql);
+			SQLQuery sqlQuery=this.getSession().createSQLQuery(executeSql);
+			sqlQuery.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+			List resultList = sqlQuery.list();
+			objs = SqlHelp.getJavaCollection(clazz,resultList);
+		}
+		catch (Exception e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		return objs;
+	}
+	
+	
 	/**
 	 * 不支持Group By和UNION。只是简单的取FROM和ORDER BY之间的语句（去除select和order子句）。
 	 * 

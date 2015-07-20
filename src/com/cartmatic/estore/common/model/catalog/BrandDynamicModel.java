@@ -13,6 +13,16 @@ public class BrandDynamicModel
 	public String[] websiteArray;
 	public String[] dateTimeArray;
 	public String[] brandDynamicIdArray;
+	public String[] colorTypeArray;
+	
+
+	public String[] getColorTypeArray() {
+		return colorTypeArray;
+	}
+
+	public void setColorTypeArray(String[] colorTypeArray) {
+		this.colorTypeArray = colorTypeArray;
+	}
 
 	public String[] getBrandDynamicIdArray() {
 		return brandDynamicIdArray;

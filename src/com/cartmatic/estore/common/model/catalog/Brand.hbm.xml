@@ -17,10 +17,18 @@
 		<property name="story" type="java.lang.String" update="true" insert="true" access="property" column="story" not-null="false" unique="false" />
 		<property name="countryCode" type="java.lang.String" update="true" insert="true" access="property" column="countryCode" length="16" not-null="false" unique="false" />
 		<property name="logo" type="java.lang.String" update="true" insert="true" access="property" column="logo" length="255" not-null="false" unique="false" />
+		
+		<property name="quotation" type="java.lang.String" update="true" insert="true" access="property" column="quotation" length="255" not-null="false" unique="false" />
+		
+		<property name="icon" type="java.lang.String" update="true" insert="true" access="property" column="icon" length="255" not-null="false" unique="false" />
 		<property name="pic" type="java.lang.String" update="true" insert="true" access="property" column="pic" length="255" not-null="false" unique="false" />
 		<property name="pic2" type="java.lang.String" update="true" insert="true" access="property" column="pic2" length="255" not-null="false" unique="false" />
+		<property name="pic3" type="java.lang.String" update="true" insert="true" access="property" column="pic3" length="255" not-null="false" unique="false" />
+		<property name="pic4" type="java.lang.String" update="true" insert="true" access="property" column="pic4" length="255" not-null="false" unique="false" />
+		<property name="pic5" type="java.lang.String" update="true" insert="true" access="property" column="pic5" length="255" not-null="false" unique="false" />
+		<property name="pic6" type="java.lang.String" update="true" insert="true" access="property" column="pic6" length="255" not-null="false" unique="false" />
+		
 		<property name="designer" type="java.lang.String" update="true" insert="true" access="property" column="designer" length="64" not-null="false" unique="false" />
-		<property name="icon" type="java.lang.String" update="true" insert="true" access="property" column="icon" length="255" not-null="false" unique="false" />
 		
 		<property name="initials" type="java.lang.String" update="true" insert="true" access="property" column="initials" length="255" not-null="true" unique="false" />
 		<property name="productRecommendId" type="java.lang.String" update="true" insert="true" access="property" column="productRecommendId" length="30" not-null="false" unique="false" />

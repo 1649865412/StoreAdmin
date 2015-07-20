@@ -492,6 +492,8 @@ public class CatalogHelper {
 		ContextUtil.getInstance().fireApplicationEvent(event);
 	}
 	
+	
+	
 	/**
 	 * 功能:删除索引操作
 	 * <p>作者 杨荣忠 2015-6-29 下午03:17:34

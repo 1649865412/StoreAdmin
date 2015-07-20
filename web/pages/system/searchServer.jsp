@@ -5,8 +5,14 @@ org.apache.solr.common.util.NamedList productCore = (org.apache.solr.common.util
 org.apache.solr.common.util.NamedList productIndexInfo = (org.apache.solr.common.util.NamedList)request.getAttribute("productIndexInfo");
 org.apache.solr.common.util.NamedList salesOrderCore = (org.apache.solr.common.util.NamedList)request.getAttribute("salesOrderCore");
 org.apache.solr.common.util.NamedList salesOrderIndexInfo = (org.apache.solr.common.util.NamedList)request.getAttribute("salesOrderIndexInfo");
+
+org.apache.solr.common.util.NamedList culCore = (org.apache.solr.common.util.NamedList)request.getAttribute("culCore");
+org.apache.solr.common.util.NamedList culIndexInfo = (org.apache.solr.common.util.NamedList)request.getAttribute("culIndexInfo");
+
 org.apache.solr.common.util.NamedList contentCore = (org.apache.solr.common.util.NamedList)request.getAttribute("contentCore");
 org.apache.solr.common.util.NamedList contentIndexInfo = (org.apache.solr.common.util.NamedList)request.getAttribute("contentIndexInfo");
+
+
 %>
 <html>
     <head>
@@ -33,6 +39,8 @@ org.apache.solr.common.util.NamedList contentIndexInfo = (org.apache.solr.common
         	<c:if test="${empty productCore}">
         	<b>Search Server is not available.</b>
         	</c:if>
+        	
+        	
         	<c:if test="${not empty salesOrderCore}">
         	<table width="100%">
         	<tr>
@@ -149,6 +157,128 @@ org.apache.solr.common.util.NamedList contentIndexInfo = (org.apache.solr.common
 			</tr>			
 			</table>
 			</c:if>
+			
+			
+			<c:if test="${not empty culCore}">
+        	<table width="100%">
+        	<tr>
+        	 <td class="FieldLabel">文化资讯索引</td>
+        	<td>      
+        	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-content">
+           		<tr>
+					 <td class="FieldLabel">
+						启动时间(startTime)
+					</td>
+					<td>
+						<%=culCore.get("startTime")%>
+					</td>
+					
+				</tr>
+				<tr>
+					 <td class="FieldLabel">
+						在线时间(uptime)
+					</td>
+					<td>
+						<%=culCore.get("uptime")%> (单位毫秒=1/1000秒)
+					</td>
+				</tr>
+				<tr>
+					 <td class="FieldLabel">
+						实例目录(instanceDir)
+					</td>
+					<td>
+						<%=culCore.get("instanceDir")%>
+					</td>
+				</tr>
+				<tr>
+					 <td class="FieldLabel">
+						数据目录(dataDir)
+					</td>
+					<td>
+						<%=culCore.get("dataDir")%>
+					</td>
+				</tr>
+				<tr>
+					 <td class="FieldLabel">&nbsp;</td>
+					<td></td>
+				</tr>
+				<tr>
+					 <td class="FieldLabel">&nbsp;</td>
+					<td></td>
+				</tr>
+				<tr>
+					 <td class="FieldLabel">&nbsp;</td>
+					<td></td>
+				</tr>				
+			</table>
+			</td>
+			<td>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-content">
+				<tr>
+					 <td class="FieldLabel">
+						索引数(numDocs)
+					</td>
+					<td>
+						<%=culIndexInfo.get("numDocs")%>
+					</td>
+				</tr>
+				<tr>
+					 <td class="FieldLabel">
+						最大文档的索引(maxDoc)
+					</td>
+					<td>
+						<%=culIndexInfo.get("maxDoc")%>
+					</td>
+				</tr>
+				<tr>
+					 <td class="FieldLabel">
+						version
+					</td>
+					<td>
+						<%=culIndexInfo.get("version")%>
+					</td>
+				</tr>
+				<tr>
+					 <td class="FieldLabel">
+						是否已优化(optimized)
+					</td>
+					<td>
+						<%=culIndexInfo.get("optimized")%>
+					</td>
+				</tr>
+				<tr>
+					 <td class="FieldLabel">
+						current
+					</td>
+					<td>
+						<%=culIndexInfo.get("current")%>
+					</td>
+				</tr>
+				<tr>
+					 <td class="FieldLabel">
+						是否有删除过(hasDeletions)
+					</td>
+					<td>
+						<%=culIndexInfo.get("hasDeletions")%>
+					</td>
+				</tr>
+				<tr>
+					 <td class="FieldLabel">
+						最后更新(lastModified)
+					</td>
+					<td>
+						<%=culIndexInfo.get("lastModified")%>
+					</td>
+				</tr>
+			</table>
+			</td>
+			</tr>			
+			</table>
+			</c:if>
+			
+			
+			
+			
 			<c:if test="${not empty contentCore}">
         	<table width="100%">
         	<tr>
