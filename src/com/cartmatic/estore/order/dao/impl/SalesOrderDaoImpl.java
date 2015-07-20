@@ -35,6 +35,13 @@ public class SalesOrderDaoImpl extends HibernateGenericDaoImpl<SalesOrder> imple
 		return null;
 	}
 	
+	/**
+	 * 通过订单ID获取订单
+	 * @return
+	 */
+	public SalesOrder getSalesOrderById(Integer salesOrderId){
+		return (SalesOrder)this.findUnique("select so from SalesOrder so where so.salesOrderId=?",salesOrderId);
+	}
 	
 	/**
 	 * 通过会员ID与订单编号获取订单

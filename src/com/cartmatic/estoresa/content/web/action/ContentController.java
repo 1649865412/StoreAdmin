@@ -40,6 +40,7 @@ import com.cartmatic.estore.webapp.event.IndexNotifyEvent;
 import com.cartmatic.estore.webapp.util.RequestUtil;
 
 public class ContentController extends GenericController<Content> {
+	
 	private ContentManager	contentManager	= null;
 	private CategoryManager	categoryManager	= null;
 	private AttributeService attributeService=null;

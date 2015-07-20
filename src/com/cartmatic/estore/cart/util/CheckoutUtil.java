@@ -56,17 +56,18 @@ import com.cartmatic.estore.webapp.util.RequestContext;
 /**
  * 
  * @author huangwm210 2008-11-19
- *
+ * 
  */
-public class CheckoutUtil {
+public class CheckoutUtil
+{
 
 	private static CheckoutUtil checkoutUtil = new CheckoutUtil();
 	private CheckoutService checkoutService;
-	private PromoService promoService;  
-	private ShoppingcartService shoppingcartService;	
+	private PromoService promoService;
+	private ShoppingcartService shoppingcartService;
 	private PaymentMethodService paymentMethodService;
 	private GiftCertificateService giftCertificateService;
-	private AddressManager addressManager=null;
+	private AddressManager addressManager = null;
 	public static final String BILL = "billad";
 	public static final String SHIPPING = "shippingad";
 	public static final String SALESORDER = "salesorder";
@@ -75,16 +76,15 @@ public class CheckoutUtil {
 	public static final String PROMOTIONS = "promotions";
 	public static final String PAYMENT = "payment";
 	public static final String NOTE = "note";
-	
-	
+
 	private CustomerManager customerManager;
-	
+
 	private ShopPointHistoryManager shopPointHistoryManager;
-	
+
 	private ShippingRateManager shippingRateManager;
-	
+
 	private MembershipManager membershipManager;
-	
+
 	public void setAddressManager(AddressManager addressManager) {
 		this.addressManager = addressManager;
 	}
@@ -92,144 +92,155 @@ public class CheckoutUtil {
 	public static synchronized CheckoutUtil getInstance() {
 		return checkoutUtil;
 	}
-	
+
 	/**
 	 * 将request中的数据转换成订单模块对应的model(原来的不够灵活)
+	 * 
 	 * @param request
 	 * @param response
 	 * @return
-	 * @throws GiftCertificateStateException 
+	 * @throws GiftCertificateStateException
 	 */
-	public Map<String, Object> parseReqeustString(Shoppingcart cart,Map<String, String>paramData,String remoteAddr) throws GiftCertificateStateException{
-		
+	public Map<String, Object> parseReqeustString(Shoppingcart cart, Map<String, String> paramData, String remoteAddr)
+			throws GiftCertificateStateException {
+
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		OrderAddress billAd = getBillAd(paramData);
-		OrderAddress shippingAd = cart.getIsOnlyVirtualItem()?null:getShippingAd(paramData);
+		OrderAddress shippingAd = cart.getIsOnlyVirtualItem() ? null : getShippingAd(paramData);
 		SalesOrder salesOrder = getSalesOrder(paramData, cart);
-		OrderShipment orderShipment = getOrderShipment(paramData,cart);
-		Set<OrderSku> skus = getSkus(paramData,cart);
+		OrderShipment orderShipment = getOrderShipment(paramData, cart);
+		Set<OrderSku> skus = getSkus(paramData, cart);
 		Set<OrderPromotion> orderPomotions = getPormotions(paramData, cart);
 		Set<OrderPayment> payments = null;
-		
+		// 判断是否为货到付款，当为货到付款时将订单支付状态改为已支付
 		salesOrder.setIpAddress(remoteAddr);
-		salesOrder.setPaymentStatus(OrderConstants.PAYMENT_STATUS_UNPAID);
-		/*
-		if(Boolean.valueOf(paramData.get("giftCertificate").toString())){
-			payments = new HashSet<OrderPayment>();
-			String[] nos = paramData.get("giftCertificateNos").toString().split("#");
-			BigDecimal m = new BigDecimal(0);
-			for(int i=0;i<nos.length;i++){
-				String no = nos[i].split(":")[0];
-				BigDecimal mm = BigDecimal.valueOf(Double.valueOf(nos[i].split(":")[1]));
-				m = m.add(mm);
-				giftCertificateService.doUseGiftCertificate(no, mm, cart.getBuyNowItemsCount());
-			    OrderPayment op = new OrderPayment();
-			    op.setTransactionType(OrderConstants.TRANSACTION_TYPE_GIFT_CERT);
-			    op.setGiftCertificateNo(no);
-			    op.setPaymentAmount(mm);
-			    op.setCreateTime(new Date());
-			    op.setVersion(0);
-			    op.setAddedBy("");
-			    op.setBalance(m);
-			    payments.add(op);
-			}
-			salesOrder.setPaidAmount(m);
+		if (salesOrder.getIsCod() == 1)
+		{
+			salesOrder.setPaymentStatus(OrderConstants.PAYMENT_STATUS_PAID);
 		}
-		*/
-		
-		//订单 已支付
+		else
+		{
+			salesOrder.setPaymentStatus(OrderConstants.PAYMENT_STATUS_UNPAID);
+		}
+		/*
+		 * if(Boolean.valueOf(paramData.get("giftCertificate").toString())){
+		 * payments = new HashSet<OrderPayment>(); String[] nos =
+		 * paramData.get("giftCertificateNos").toString().split("#"); BigDecimal
+		 * m = new BigDecimal(0); for(int i=0;i<nos.length;i++){ String no =
+		 * nos[i].split(":")[0]; BigDecimal mm =
+		 * BigDecimal.valueOf(Double.valueOf(nos[i].split(":")[1])); m =
+		 * m.add(mm); giftCertificateService.doUseGiftCertificate(no, mm,
+		 * cart.getBuyNowItemsCount()); OrderPayment op = new OrderPayment();
+		 * op.setTransactionType(OrderConstants.TRANSACTION_TYPE_GIFT_CERT);
+		 * op.setGiftCertificateNo(no); op.setPaymentAmount(mm);
+		 * op.setCreateTime(new Date()); op.setVersion(0); op.setAddedBy("");
+		 * op.setBalance(m); payments.add(op); } salesOrder.setPaidAmount(m); }
+		 */
+
+		// 订单 已支付
 		BigDecimal amountPaid = new BigDecimal(0);
-		
-		//满减 扣除
-		if(cart.getFullCutSum() != null){
+
+		// 满减 扣除
+		if (cart.getFullCutSum() != null)
+		{
 			amountPaid = amountPaid.add(cart.getFullCutSum());
 		}
-		
-		//优惠劵 扣除
-		if(cart.getCartDiscountAmount() != null){
+
+		// 优惠劵 扣除
+		if (cart.getCartDiscountAmount() != null)
+		{
 			amountPaid = amountPaid.add(cart.getCartDiscountAmount());
 			String couponNo = cart.getUsedCouponNo();
-			if(couponNo != null && couponNo.length() == 8 && couponNo.startsWith("100")){
+			if (couponNo != null && couponNo.length() == 8 && couponNo.startsWith("100"))
+			{
 				Customer customer = (Customer) RequestContext.getCurrentUser();
 				Membership member = membershipManager.getById(customer.getMembershipId());
-				Membership temp = membershipManager.getMembershipByLevel(2);//白金会员
-				if(member.getMembershipLevel() < temp.getMembershipLevel()){
+				Membership temp = membershipManager.getMembershipByLevel(2);// 白金会员
+				if (member.getMembershipLevel() < temp.getMembershipLevel())
+				{
 					customer.setMembershipId(temp.getId());
 					this.customerManager.save(customer);
 				}
 			}
 		}
-		
-		//礼品卡 扣除
-		if(cart.getGiftCertificateNos() != null){
+
+		// 礼品卡 扣除
+		if (cart.getGiftCertificateNos() != null)
+		{
 			BigDecimal mm = BigDecimal.valueOf(Double.valueOf(cart.getGiftCertificateNos().split(":")[1]));
 			amountPaid = amountPaid.add(mm);
 			giftCertificateService.doUseGiftCertificate(cart.getGiftCertificateNos().split(":")[0], mm, cart.getBuyNowItemsCount());
 			payments = new HashSet<OrderPayment>();
-		    OrderPayment op = new OrderPayment();
-		    op.setTransactionType(OrderConstants.TRANSACTION_TYPE_GIFT_CERT);
-		    op.setGiftCertificateNo(cart.getGiftCertificateNos().split(":")[0]);
-		    op.setPaymentAmount(mm);
-		    op.setCreateTime(new Date());
-		    op.setVersion(0);
-		    op.setAddedBy("");
-		    op.setBalance(mm);
-		    payments.add(op);
+			OrderPayment op = new OrderPayment();
+			op.setTransactionType(OrderConstants.TRANSACTION_TYPE_GIFT_CERT);
+			op.setGiftCertificateNo(cart.getGiftCertificateNos().split(":")[0]);
+			op.setPaymentAmount(mm);
+			op.setCreateTime(new Date());
+			op.setVersion(0);
+			op.setAddedBy("");
+			op.setBalance(mm);
+			payments.add(op);
 		}
-		//积分 扣除
-		if(cart.getShopPoint() != null){
+		// 积分 扣除
+		if (cart.getShopPoint() != null)
+		{
 			BigDecimal shopPoint = new BigDecimal(cart.getShopPoint());
-			BigDecimal mm =  ConfigUtil.getInstance().getShopPointUseGiftPercent().multiply(shopPoint);
+			BigDecimal mm = ConfigUtil.getInstance().getShopPointUseGiftPercent().multiply(shopPoint);
 			amountPaid = amountPaid.add(mm);
 			Customer customer = customerManager.getById(cart.getCustomerId());
-//			shopPointManager.saveChangeTotal(customer , -cart.getShopPoint());
-			
+			// shopPointManager.saveChangeTotal(customer ,
+			// -cart.getShopPoint());
+
 			ShopPointHistory shopPointHistory = new ShopPointHistory();
 			shopPointHistory.setShopPointType(ShopPointHistory.SHOPPOINT_TYPE_BUY);
 			shopPointHistory.setAmount(-cart.getShopPoint());
 			shopPointHistory.setCustomerId(customer.getAppuserId());
-			shopPointHistory.setDescription("购买商品时使用积分："+ cart.getShopPoint());
+			shopPointHistory.setDescription("购买商品时使用积分：" + cart.getShopPoint());
 			shopPointHistoryManager.saveShopPointHistoryAndUpdateTotal(shopPointHistory);
 		}
-		
+
 		BigDecimal total = new BigDecimal(0);
-		
-		//订单 总额
+
+		// 订单 总额
 		total = total.add(cart.getSubtotal());
-//							.subtract(amountPaid);
-		
-		
-/*		String isAbcDiscount = paramData.get("isAbcDiscount");
-		BigDecimal abcDiscount = new BigDecimal(0);
-		if(isAbcDiscount != null && isAbcDiscount.equals("true")){
-			
-			BigDecimal t1 = new BigDecimal("0.1");
-			abcDiscount = total.subtract(amountPaid).multiply(t1);
-			amountPaid = amountPaid.add(abcDiscount);
-			
-		}*/
-		
-//		.add(orderShipment.getItemTax())
-//		.add(orderShipment.getShippingCost())
-//		.add(orderShipment.getWrapUnitPrice());
-		if(total.subtract(amountPaid).compareTo(new BigDecimal(0)) < 0){
+		// .subtract(amountPaid);
+
+		/*
+		 * String isAbcDiscount = paramData.get("isAbcDiscount"); BigDecimal
+		 * abcDiscount = new BigDecimal(0); if(isAbcDiscount != null &&
+		 * isAbcDiscount.equals("true")){
+		 * 
+		 * BigDecimal t1 = new BigDecimal("0.1"); abcDiscount =
+		 * total.subtract(amountPaid).multiply(t1); amountPaid =
+		 * amountPaid.add(abcDiscount);
+		 * 
+		 * }
+		 */
+
+		// .add(orderShipment.getItemTax())
+		// .add(orderShipment.getShippingCost())
+		// .add(orderShipment.getWrapUnitPrice());
+		if (total.subtract(amountPaid).compareTo(new BigDecimal(0)) < 0)
+		{
 			amountPaid = total;
 		}
-		if(total.subtract(amountPaid).compareTo(Constants.SHIPPING_COST_COMPARE) < 0){
-//			total = total.add(new BigDecimal(12));
-//			total = total.add(Constants.SHIPPING_COST);
+		if (total.subtract(amountPaid).compareTo(Constants.SHIPPING_COST_COMPARE) < 0)
+		{
+			// total = total.add(new BigDecimal(12));
+			// total = total.add(Constants.SHIPPING_COST);
 			total = total.add(orderShipment.getShippingCost());
 		}
 		salesOrder.setPaidAmount(amountPaid);
 		salesOrder.setTotalAmount(total);
-		
-		//setup storeId
+
+		// setup storeId
 		salesOrder.setStore(ConfigUtil.getInstance().getStore());
-		
-		if(salesOrder.getHasInvoice().shortValue()==Constants.FLAG_FALSE.shortValue()){
+
+		if (salesOrder.getHasInvoice().shortValue() == Constants.FLAG_FALSE.shortValue())
+		{
 			billAd = shippingAd;
 		}
-		
+
 		returnMap.put(CheckoutUtil.BILL, billAd);
 		returnMap.put(CheckoutUtil.SHIPPING, shippingAd);
 		returnMap.put(CheckoutUtil.PROMOTIONS, orderPomotions);
@@ -240,12 +251,13 @@ public class CheckoutUtil {
 		returnMap.put(CheckoutUtil.NOTE, paramData.get("orderNote").toString());
 		return returnMap;
 	}
-	
-	private OrderAddress getBillAd(Map<String, String> vm){
+
+	private OrderAddress getBillAd(Map<String, String> vm) {
 		OrderAddress ad = new OrderAddress();
-		if(!Boolean.valueOf(vm.get("bill")))
+		if (!Boolean.valueOf(vm.get("bill")))
 			return null;
-		else{
+		else
+		{
 			ad.setAddress1(vm.get("bill_address"));
 			ad.setAddress2(vm.get("bill_address2"));
 			ad.setCity(vm.get("bill_cityName"));
@@ -260,7 +272,8 @@ public class CheckoutUtil {
 			return ad;
 		}
 	}
-	private OrderAddress getShippingAd(Map<String,String> vm){
+
+	private OrderAddress getShippingAd(Map<String, String> vm) {
 		OrderAddress ad = new OrderAddress();
 		ad.setAddress1(vm.get("address"));
 		ad.setAddress2(vm.get("address2"));
@@ -275,66 +288,73 @@ public class CheckoutUtil {
 		ad.setPostalcode(vm.get("zip"));
 		return ad;
 	}
-	
-	private SalesOrder getSalesOrder(Map<String, String> vm, Shoppingcart cart)
-	{
+
+	private SalesOrder getSalesOrder(Map<String, String> vm, Shoppingcart cart) {
 		SalesOrder so = new SalesOrder();
-		if(Boolean.valueOf(vm.get("bill"))){
+		if (Boolean.valueOf(vm.get("bill")))
+		{
 			so.setHasInvoice(Constants.FLAG_TRUE);
 			so.setInvoiceTitle(vm.get("invoiceTitle"));
 		}
-		else{
+		else
+		{
 			so.setHasInvoice(Constants.FLAG_FALSE);
 		}
 		Date now = new Date(System.currentTimeMillis());
 		so.setCreateTime(now);
 
 		so.setCustomerEmail(vm.get("email"));
-		if(vm.get("firstName").trim().length()<=0){
-			if(!RequestContext.isAnonymousUser()){
+		if (vm.get("firstName").trim().length() <= 0)
+		{
+			if (!RequestContext.isAnonymousUser())
+			{
 				so.setCustomerTitle("");
 				so.setCustomerFirstname(RequestContext.getCurrentUserName());
 				so.setCustomerLastname("");
 				so.setCustomerId(RequestContext.getCurrentUserId());
 			}
-			else{//匿名
+			else
+			{// 匿名
 				so.setCustomerTitle("");
 				so.setCustomerFirstname(I18nUtil.getInstance().getMessage("salesOrder.anonymous"));
 				so.setCustomerLastname("");
 				so.setCustomerId(RequestContext.getCurrentUserId());
 			}
 		}
-		else{
+		else
+		{
 			so.setCustomerId(RequestContext.getCurrentUserId());
 			so.setCustomerTitle(vm.get("title"));
 			so.setCustomerFirstname(vm.get("firstName"));
-			so.setCustomerLastname(vm.get("lastName"));	
+			so.setCustomerLastname(vm.get("lastName"));
 		}
 
-		
-/*		String paymentId = vm.get("paymentId");
-		
-		//货到付款
-		if(paymentId != null && paymentId.equals("cod")){
+		/*
+		 * String paymentId = vm.get("paymentId");
+		 * 
+		 * //货到付款 if(paymentId != null && paymentId.equals("cod")){
+		 * so.setIsCod(new Short("1")); } //款到发货 else{ PaymentMethod pMethod =
+		 * paymentMethodService
+		 * .getPaymentById(Integer.valueOf(vm.get("paymentId")));
+		 * so.setIsCod(pMethod.getIsCod());
+		 * so.setPaymentMethodId(Integer.valueOf(vm.get("paymentId"))); }
+		 */
+
+		String payType = vm.get("payType"); // 支付方式 ： 0 online 在线支付；1 cod 货到付款；2
+		// transfer 对公转账
+		if (payType.equals("online"))
+		{
+			so.setIsCod(new Short("0"));
+		}
+		else if (payType.equals("cod"))
+		{
 			so.setIsCod(new Short("1"));
 		}
-		//款到发货
-		else{
-			PaymentMethod pMethod = paymentMethodService.getPaymentById(Integer.valueOf(vm.get("paymentId")));
-			so.setIsCod(pMethod.getIsCod());
-			so.setPaymentMethodId(Integer.valueOf(vm.get("paymentId")));
-		}*/
-		
-		String payType = vm.get("payType");	//支付方式 ： 0 online 在线支付；1 cod 货到付款；2 transfer 对公转账
-		if(payType.equals("online")){
-			so.setIsCod(new Short("0"));
-		}else if(payType.equals("cod")){
-			so.setIsCod(new Short("1"));
-		}else if(payType.equals("transfer")){
+		else if (payType.equals("transfer"))
+		{
 			so.setIsCod(new Short("2"));
 		}
-		
-		
+
 		so.setGainedPoint(cart.getGainedPoint());
 		so.setPaidAmount(new BigDecimal(0));
 		so.setOrderStatus(OrderConstants.ORDER_STATUS_IN_PROGRESS);
@@ -343,75 +363,84 @@ public class CheckoutUtil {
 		so.setIsExchangeOrder(new Short("0"));
 		so.setGainedCouponTypeId(cart.getGainedCouponTypeId());
 		// not support now. 2013-03-20
-		//if(Boolean.valueOf(vm.get("point"))){
-		//	so.setShopPoint(Integer.valueOf(vm.get("xxxxp")));
-		//}
+		// if(Boolean.valueOf(vm.get("point"))){
+		// so.setShopPoint(Integer.valueOf(vm.get("xxxxp")));
+		// }
 		return so;
 	}
-	private OrderShipment getOrderShipment(Map<String, String> vm, Shoppingcart cart){
+
+	private OrderShipment getOrderShipment(Map<String, String> vm, Shoppingcart cart) {
 		OrderShipment os = new OrderShipment();
 		os.setCreateTime(new Date());
 		BigDecimal result = new BigDecimal(0);
-		if(!cart.getIsOnlyVirtualItem()){
-			String[] ids = vm.get("shippingMethodId").toString().split(",");//rateId,shippingMethodId
+		if (!cart.getIsOnlyVirtualItem())
+		{
+			String[] ids = vm.get("shippingMethodId").toString().split(",");// rateId,shippingMethodId
 			ShippingRate sr = checkoutService.getShippingRateById(Integer.valueOf(ids[0]));
 			Set<ShoppingcartItem> items = cart.getCartItems();
 			BigDecimal w = new BigDecimal(0);
 			Integer itemCount = 0;
-			for(ShoppingcartItem item:items){
-				if(!item.getItemType().equals(Constants.ITEM_TYPE_PRODUCT))continue;
+			for (ShoppingcartItem item : items)
+			{
+				if (!item.getItemType().equals(Constants.ITEM_TYPE_PRODUCT))
+					continue;
 				itemCount += item.getQuantity();
-			    BigDecimal w1 = NumberUtil.getBigDecimal(item.getProductSku().getWeight()).multiply(BigDecimal.valueOf(item.getQuantity()));
+				BigDecimal w1 = NumberUtil.getBigDecimal(item.getProductSku().getWeight()).multiply(BigDecimal.valueOf(item.getQuantity()));
 				w = w.add(w1);
 			}
 			BigDecimal temp = checkoutService.getShippingExpence(Integer.valueOf(ids[0]), w, itemCount);
-			result = promoService.getShippingFee(cart.getShippingDiscountInfo(), Integer.valueOf(ids[1]),temp);
-			
+			result = promoService.getShippingFee(cart.getShippingDiscountInfo(), Integer.valueOf(ids[1]), temp);
+
 			os.setCarrierName(sr.getShippingMethod().getShippingMethodName());
 			os.setShippingRateId(Integer.valueOf(ids[0]));
 		}
-		
+
 		os.setShippingCost(result);
 		os.setItemSubTotal(cart.getTotal());
 		os.setVersion(1);
 		os.setHasRobotReviewed(new Short("0"));
-   		os.setItemTax(cart.getCartItemsTotalTax().setScale(2, BigDecimal.ROUND_HALF_UP));
-   		os.setShippingTax(new BigDecimal(0));
-   		os.setDiscountAmount(cart.getCartDiscountAmount());
-        os.setHasRobotReviewed(new Short("0"));
-        if(Boolean.valueOf(vm.get("wrap"))){
-        	Wrap wrap = checkoutService.getWrapById(Integer.valueOf(vm.get("wrapId")));
-        	os.setWrapName(wrap.getWrapName());
-        	os.setWrapNote(vm.get("wrapNote"));
-        	os.setWrapUnitPrice(wrap.getDefaultPrice());
-        }
-        else{
-        	os.setWrapUnitPrice(new BigDecimal(0));
-        }
+		os.setItemTax(cart.getCartItemsTotalTax().setScale(2, BigDecimal.ROUND_HALF_UP));
+		os.setShippingTax(new BigDecimal(0));
+		os.setDiscountAmount(cart.getCartDiscountAmount());
+		os.setHasRobotReviewed(new Short("0"));
+		if (Boolean.valueOf(vm.get("wrap")))
+		{
+			Wrap wrap = checkoutService.getWrapById(Integer.valueOf(vm.get("wrapId")));
+			os.setWrapName(wrap.getWrapName());
+			os.setWrapNote(vm.get("wrapNote"));
+			os.setWrapUnitPrice(wrap.getDefaultPrice());
+		}
+		else
+		{
+			os.setWrapUnitPrice(new BigDecimal(0));
+		}
 		return os;
 	}
-	private Set<OrderSku> getSkus(Map<String, String> vm,Shoppingcart cart){
+
+	private Set<OrderSku> getSkus(Map<String, String> vm, Shoppingcart cart) {
 		Set<OrderSku> skus = new HashSet<OrderSku>();
 		Set<ShoppingcartItem> items = cart.getCartItems();
-		for(ShoppingcartItem item:items){
+		for (ShoppingcartItem item : items)
+		{
 			OrderSku sku = new OrderSku();
-			if(item.getItemType().equals(Constants.ITEM_TYPE_PRODUCT)){
+			if (item.getItemType().equals(Constants.ITEM_TYPE_PRODUCT))
+			{
 				sku.setProductSku(item.getProductSku());
 				sku.setProductSkuCode(item.getProductSku().getProductSkuCode());
 				sku.setProductName(item.getProductSku().getProduct().getProductName());
 				sku.setProductId(item.getProductSku().getProductId());
-				sku.setCostPrice(item.getProductSku().getCostPrice());//成本
+				sku.setCostPrice(item.getProductSku().getCostPrice());// 成本
 				String displayOptions = item.getProductSku().getOrderSkuDisplayOption();
 				sku.setDisplaySkuOptions(displayOptions);
-				sku.setAccessories(item.getAccessories()); //附件功能
+				sku.setAccessories(item.getAccessories()); // 附件功能
 				sku.setWeight(item.getProductSku().getWeight());
 			}
-			else if(item.getItemType().equals(Constants.ITEM_TYPE_GC)){
+			else if (item.getItemType().equals(Constants.ITEM_TYPE_GC))
+			{
 				GiftCertificate gc = giftCertificateService.createGiftCertificate(item.getShoppingcartItemGc());
 				sku.setGiftCertificate(gc);
 				StringBuffer sb = new StringBuffer("");
-				sb.append(item.getShoppingcartItemGc().getRecipient()+"###")
-				.append(item.getShoppingcartItemGc().getRecipientEmail());
+				sb.append(item.getShoppingcartItemGc().getRecipient() + "###").append(item.getShoppingcartItemGc().getRecipientEmail());
 				sku.setDisplaySkuOptions(sb.toString());
 			}
 			sku.setCreateTime(new Date(System.currentTimeMillis()));
@@ -420,7 +449,7 @@ public class CheckoutUtil {
 			sku.setTaxName(item.getTaxName());
 			sku.setIsOnSale(item.getIsOnSale());
 			sku.setIsWholesale(item.getIsWholesale());
-			sku.setItemType(item.getItemType());   
+			sku.setItemType(item.getItemType());
 			sku.setDiscountPrice(item.getDiscountPrice());
 			sku.setQuantity(item.getQuantity());
 			sku.setTotal(item.getTotal());
@@ -431,67 +460,76 @@ public class CheckoutUtil {
 		}
 		return skus;
 	}
-	private Set<OrderPromotion> getPormotions(Map<String, String> vm, Shoppingcart cart){
+
+	private Set<OrderPromotion> getPormotions(Map<String, String> vm, Shoppingcart cart) {
 		Set<OrderPromotion> returnSet = new HashSet<OrderPromotion>();
 		Set<ShoppingcartPromotion> ps = cart.getShoppingCartPromotions();
-		if(ps.size()!=0){
-			for(ShoppingcartPromotion p:ps){
+		if (ps.size() != 0)
+		{
+			for (ShoppingcartPromotion p : ps)
+			{
 				OrderPromotion op = new OrderPromotion();
 				op.setPromoRuleId(p.getPromoRuleId());
 				op.setPromotionName(p.getPromotionName());
 				op.setCreateTime(new Date());
-				if(p.getIsUsedCoupon().equals(Shoppingcart.ISUSECOUPON_YES)){
+				if (p.getIsUsedCoupon().equals(Shoppingcart.ISUSECOUPON_YES))
+				{
 					op.setCouponNo(p.getUsedCouponNo().toString());
 					returnSet.add(op);
 				}
 				returnSet.add(op);
 			}
 		}
-		if(returnSet.size()==0)
+		if (returnSet.size() == 0)
 			return null;
 		else
 			return returnSet;
 	}
-	
+
 	/**
-	 * 检查购物车中的每一个Item的库存
-	 * 返回的字符串的格式是：
-	 * productName1:msg1###productName2:msg2
+	 * 检查购物车中的每一个Item的库存 返回的字符串的格式是： productName1:msg1###productName2:msg2
+	 * 
 	 * @param request
 	 * @param response
 	 * @return
 	 */
-	public String checkInventoryForShoppingcart(HttpServletRequest request,HttpServletResponse response){
+	public String checkInventoryForShoppingcart(HttpServletRequest request, HttpServletResponse response) {
 		Shoppingcart cart = shoppingcartService.loadCookieCart(request);
-		String temp = "";		
-		if(cart==null)
+		String temp = "";
+		if (cart == null)
 			return temp;
-		else{
+		else
+		{
 			Set<ShoppingcartItem> items = cart.getCartItems();
-			for(ShoppingcartItem item:items){
-				if(!item.getItemType().equals(Constants.ITEM_TYPE_PRODUCT))continue;
+			for (ShoppingcartItem item : items)
+			{
+				if (!item.getItemType().equals(Constants.ITEM_TYPE_PRODUCT))
+					continue;
 				boolean stock = shoppingcartService.checkInventory(item, item.getProductSku().getProductSkuCode());
-				if(!stock){
-					temp += item.getProductSku().getProduct().getProductName()+":Out of Stock!###";
+				if (!stock)
+				{
+					temp += item.getProductSku().getProduct().getProductName() + ":Out of Stock!###";
 				}
 			}
-			if(temp.length()>0){
-				temp = temp.substring(0,temp.length()-3);
+			if (temp.length() > 0)
+			{
+				temp = temp.substring(0, temp.length() - 3);
 			}
-			else{
+			else
+			{
 				temp = "ok";
 			}
 		}
 		return temp;
 	}
-	
-	public Map<String,String> paramDataCheckForPaging(Map<String,String> paramData2,HttpServletRequest request){
-		Map<String,String> paramData=new HashMap<String, String>();
+
+	public Map<String, String> paramDataCheckForPaging(Map<String, String> paramData2, HttpServletRequest request) {
+		Map<String, String> paramData = new HashMap<String, String>();
 		paramData.putAll(paramData2);
-		Customer customer=(Customer)RequestContext.getCurrentUser();
-		//获取运输地址信息
-		Integer shippingAddressId=	Integer.parseInt(paramData2.get("shippingAddressId"));	//getCheckoutPagingModel(request).getShippingAddressId();
-		Address  shippingAddress=addressManager.getById(shippingAddressId);
+		Customer customer = (Customer) RequestContext.getCurrentUser();
+		// 获取运输地址信息
+		Integer shippingAddressId = Integer.parseInt(paramData2.get("shippingAddressId")); // getCheckoutPagingModel(request).getShippingAddressId();
+		Address shippingAddress = addressManager.getById(shippingAddressId);
 		paramData.put("address", shippingAddress.getAddress());
 		paramData.put("address2", shippingAddress.getAddress2());
 		paramData.put("countryName", shippingAddress.getCountryName());
@@ -503,12 +541,13 @@ public class CheckoutUtil {
 		paramData.put("title", shippingAddress.getTitle());
 		paramData.put("telphone", shippingAddress.getTelephone());
 		paramData.put("zip", shippingAddress.getZip());
-		paramData.put("countryId", shippingAddress.getCountryId()==null?null:shippingAddress.getCountryId().toString());
-		paramData.put("stateId", shippingAddress.getStateId()==null?null:shippingAddress.getStateId().toString());
-//		paramData.put("cityId", shippingAddress.getCityId().toString());
-		//获取发票地址信息
-		Address  billingAddress=addressManager.getDefBillingAddress(customer.getAppuserId());
-		if(billingAddress == null){
+		paramData.put("countryId", shippingAddress.getCountryId() == null ? null : shippingAddress.getCountryId().toString());
+		paramData.put("stateId", shippingAddress.getStateId() == null ? null : shippingAddress.getStateId().toString());
+		// paramData.put("cityId", shippingAddress.getCityId().toString());
+		// 获取发票地址信息
+		Address billingAddress = addressManager.getDefBillingAddress(customer.getAppuserId());
+		if (billingAddress == null)
+		{
 			shippingAddress.setIsDefaultBillingAddress(Constants.FLAG_TRUE);
 			addressManager.save(shippingAddress);
 			billingAddress = shippingAddress;
@@ -526,23 +565,22 @@ public class CheckoutUtil {
 		paramData.put("bill_title", billingAddress.getTitle());
 		paramData.put("bill_telphone", billingAddress.getTelephone());
 		paramData.put("bill_zip", billingAddress.getZip());
-		//当前用户email
+		// 当前用户email
 		paramData.put("email", customer.getEmail());
-		//是否使用包装
-		String wrap_wrapId=request.getParameter("wrap_wrapId");
-		String wrapNote=request.getParameter("wrapNote");
-		wrap_wrapId=StringUtils.isBlank(wrap_wrapId)||wrap_wrapId.equals("0")?"":wrap_wrapId;
-		paramData.put("wrapId",wrap_wrapId);
-		paramData.put("wrap", wrap_wrapId.equals("")?"false":"true");
-		paramData.put("wrapNote",wrapNote);
-		//是否使用了积分
-		paramData.put("point","false");
-		//是否使用了礼券
-		String giftCertificate=paramData2.get("giftCertificate");
-		paramData.put("giftCertificate", (giftCertificate==null||!giftCertificate.equals("true"))?"false":"true");
+		// 是否使用包装
+		String wrap_wrapId = request.getParameter("wrap_wrapId");
+		String wrapNote = request.getParameter("wrapNote");
+		wrap_wrapId = StringUtils.isBlank(wrap_wrapId) || wrap_wrapId.equals("0") ? "" : wrap_wrapId;
+		paramData.put("wrapId", wrap_wrapId);
+		paramData.put("wrap", wrap_wrapId.equals("") ? "false" : "true");
+		paramData.put("wrapNote", wrapNote);
+		// 是否使用了积分
+		paramData.put("point", "false");
+		// 是否使用了礼券
+		String giftCertificate = paramData2.get("giftCertificate");
+		paramData.put("giftCertificate", (giftCertificate == null || !giftCertificate.equals("true")) ? "false" : "true");
 		return paramData;
 	}
-	
 
 	public CheckoutService getCheckoutService() {
 		return checkoutService;
@@ -564,28 +602,28 @@ public class CheckoutUtil {
 		this.paymentMethodService = paymentMethodService;
 	}
 
-	public void setGiftCertificateService(
-			GiftCertificateService giftCertificateService) {
+	public void setGiftCertificateService(GiftCertificateService giftCertificateService) {
 		this.giftCertificateService = giftCertificateService;
 	}
-	
-	public CheckoutPagingModel getCheckoutPagingModel(HttpServletRequest request){
-		CheckoutPagingModel checkoutPagingModel=(CheckoutPagingModel)request.getSession().getAttribute(CheckoutPagingModel.SESSION_KEY);
-		if(checkoutPagingModel==null){
-			checkoutPagingModel=new CheckoutPagingModel();
-			request.getSession().setAttribute(CheckoutPagingModel.SESSION_KEY,checkoutPagingModel);
+
+	public CheckoutPagingModel getCheckoutPagingModel(HttpServletRequest request) {
+		CheckoutPagingModel checkoutPagingModel = (CheckoutPagingModel) request.getSession().getAttribute(CheckoutPagingModel.SESSION_KEY);
+		if (checkoutPagingModel == null)
+		{
+			checkoutPagingModel = new CheckoutPagingModel();
+			request.getSession().setAttribute(CheckoutPagingModel.SESSION_KEY, checkoutPagingModel);
 		}
 		return checkoutPagingModel;
 	}
-	 
+
 	/**
 	 * 列出购物车应用运输方式的运费
+	 * 
 	 * @param shippingAddress
 	 * @param cart
 	 * @return
 	 */
-	public List<ShippingRate> statCartShipping(Address shippingAddress,Shoppingcart cart) 
-	{
+	public List<ShippingRate> statCartShipping(Address shippingAddress, Shoppingcart cart) {
 		List<ShippingRate> result = new ArrayList<ShippingRate>();
 		Store store = ConfigUtil.getInstance().getStore();
 		Set<ShippingMethod> methos = store.getShippingMethods();
@@ -593,23 +631,25 @@ public class CheckoutUtil {
 		{
 			return result;
 		}
-		List<ShippingRate> shippingRateList = shippingRateManager.findAllShippingRate();	//checkoutService.getRegionShippingRates(shippingAddress.getCountryId(),shippingAddress.getStateId(), shippingAddress.getCityId());
-		//计算运费
+		List<ShippingRate> shippingRateList = shippingRateManager.findAllShippingRate(); // checkoutService.getRegionShippingRates(shippingAddress.getCountryId(),shippingAddress.getStateId(),
+		// shippingAddress.getCityId());
+		// 计算运费
 		Set<ShoppingcartItem> items = cart.getCartItems();
 		BigDecimal w = new BigDecimal(0);
 		Integer itemCount = 0;
-		for(ShoppingcartItem item:items){
-			if(!item.getItemType().equals(Constants.ITEM_TYPE_PRODUCT))continue;
+		for (ShoppingcartItem item : items)
+		{
+			if (!item.getItemType().equals(Constants.ITEM_TYPE_PRODUCT))
+				continue;
 			itemCount += item.getQuantity();
 			BigDecimal w0 = item.getProductSku().getWeight();
-			BigDecimal w1 = w0==null?(new BigDecimal(0))
-					:w0.multiply(BigDecimal.valueOf(item.getQuantity()));
+			BigDecimal w1 = w0 == null ? (new BigDecimal(0)) : w0.multiply(BigDecimal.valueOf(item.getQuantity()));
 			w = w.add(w1);
 		}
-		
-		for(ShippingRate shippingRate : shippingRateList)
+
+		for (ShippingRate shippingRate : shippingRateList)
 		{
-			//判断是否在当前store中。
+			// 判断是否在当前store中。
 			boolean isBelongToStore = false;
 			for (ShippingMethod method : methos)
 			{
@@ -621,31 +661,35 @@ public class CheckoutUtil {
 			}
 			if (!isBelongToStore)
 				continue;
-		    if (shippingRate.getMaxWeight()!= null) //过滤超重的运输shippingRate.  
-            {
-                if (w.compareTo(shippingRate.getMaxWeight()) == 1)
-                {
-                    continue;
-                }
-            }
-			BigDecimal temp = checkoutService.getShippingExpence(shippingRate.getShippingRateId(), w, itemCount);
-			BigDecimal cartShipping = promoService.getShippingFee(cart.getShippingDiscountInfo(), shippingRate.getShippingMethod().getShippingMethodId(),temp).setScale(2,BigDecimal.ROUND_HALF_UP); 
-//			checkoutService.caculateTaxes(cart, Integer.valueOf(shippingAddress.getCountryId()), Integer.valueOf(shippingAddress.getStateId()), shippingAddress.getCityId());
-			/*BigDecimal r = new BigDecimal(0);
-			Set<ShoppingcartItem> items1 = cart.getCartItems();
-			for(ShoppingcartItem i:items1){
-				r = r.add(i.getTax());  
+			if (shippingRate.getMaxWeight() != null) // 过滤超重的运输shippingRate.
+			{
+				if (w.compareTo(shippingRate.getMaxWeight()) == 1)
+				{
+					continue;
+				}
 			}
-			r = r.setScale(2,BigDecimal.ROUND_HALF_UP);*/
+			BigDecimal temp = checkoutService.getShippingExpence(shippingRate.getShippingRateId(), w, itemCount);
+			BigDecimal cartShipping = promoService.getShippingFee(cart.getShippingDiscountInfo(),
+					shippingRate.getShippingMethod().getShippingMethodId(), temp).setScale(2, BigDecimal.ROUND_HALF_UP);
+			// checkoutService.caculateTaxes(cart,
+			// Integer.valueOf(shippingAddress.getCountryId()),
+			// Integer.valueOf(shippingAddress.getStateId()),
+			// shippingAddress.getCityId());
+			/*
+			 * BigDecimal r = new BigDecimal(0); Set<ShoppingcartItem> items1 =
+			 * cart.getCartItems(); for(ShoppingcartItem i:items1){ r =
+			 * r.add(i.getTax()); } r = r.setScale(2,BigDecimal.ROUND_HALF_UP);
+			 */
 			shippingRate.setCartShipping(cartShipping);
 			result.add(shippingRate);
 		}
-		//价格从低到高排序
-		Collections.sort(result,new Comparator<ShippingRate>(){
+		// 价格从低到高排序
+		Collections.sort(result, new Comparator<ShippingRate>()
+		{
 			public int compare(ShippingRate shippingRate1, ShippingRate shippingRate2) {
 				return shippingRate1.getCartShipping().compareTo(shippingRate2.getCartShipping());
-			} 
-			
+			}
+
 		});
 		return result;
 	}

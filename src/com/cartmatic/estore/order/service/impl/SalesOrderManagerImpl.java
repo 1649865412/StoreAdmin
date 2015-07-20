@@ -215,6 +215,15 @@ public class SalesOrderManagerImpl extends GenericManagerImpl<SalesOrder> implem
 	}
 	
 	/**
+	 * 通过订单ID获取订单
+	 * @return
+	 */
+	public SalesOrder getSalesOrderById(Integer salesOrderId){
+		Assert.notNull(salesOrderId);
+		return salesOrderDao.getSalesOrderById(salesOrderId);
+	}
+	
+	/**
 	 * 通过会员Email与订单编号获取订单
 	 * @param orderNo 订单编号
 	 * @param userId 前台会员ID

@@ -33,6 +33,12 @@ public interface SalesOrderDao extends GenericDao<SalesOrder> {
 	public SalesOrder getSalesOrder(String orderNo, String email);
 	
 	/**
+	 * 通过订单ID获取订单
+	 * @return
+	 */
+	public SalesOrder getSalesOrderById(Integer salesOrderId);
+	
+	/**
 	 * 通过会员ID与订单ID获取订单
 	 * @param salesOrderId 订单ID
 	 * @param userId 前台会员ID
@@ -89,5 +95,7 @@ public interface SalesOrderDao extends GenericDao<SalesOrder> {
 	 * @return
 	 */
 	public List<SalesOrder> getSalesOrder(Integer userId, Serializable paymentStatus, Date begin, Date end);
+
+
 	
 }

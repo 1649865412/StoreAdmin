@@ -16,7 +16,12 @@
 			<fmt:message key="salesOrder.paymentStatus" />:
 		</td>
 		<td>
-			<b><fmt:message key="payment.status.${salesOrder.paymentStatus}" /></b>
+			<c:if test="${salesOrder.isCod ==1}">
+				<b><fmt:message key="payment.status.40" /></b>
+			</c:if>
+			<c:if test="${salesOrder.isCod !=1}">
+				<b><fmt:message key="payment.status.${salesOrder.paymentStatus}" /></b>
+			</c:if>
 		</td>
 	</tr>
 	<%--<c:if test="${salesOrder.paymentStatus==30}">

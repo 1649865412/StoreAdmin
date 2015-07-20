@@ -25,7 +25,9 @@ import com.cartmatic.estore.sekillproduct.service.SekillProductManager;
 import com.cartmatic.estore.system.dao.AppEventDao;
 import com.cartmatic.estore.system.service.AppEventManager;
 
-public class SekillProductController extends GenericController<SekillProduct> {
+public class SekillProductController extends GenericController<SekillProduct>
+  {
+	
     private SekillProductManager sekillProductManager = null;
 
     private ProductService productService=null;
@@ -67,6 +69,7 @@ public class SekillProductController extends GenericController<SekillProduct> {
 		mgr = sekillProductManager;
 	}
 
+
 	
 /*	public ModelAndView defaultAction(HttpServletRequest request,HttpServletResponse response) {
 		SearchCriteria sc = createSearchCriteria(request);
@@ -74,6 +77,7 @@ public class SekillProductController extends GenericController<SekillProduct> {
 		return getModelAndView(listView, listModelName, sekillProductManager.searchByCriteria(sc));
 	}
 	*/
+	
 	
 	
 	/**
@@ -150,6 +154,7 @@ public class SekillProductController extends GenericController<SekillProduct> {
 		    return mo ;
 		}
 	
+
 	/**
 	 * 重写保存方法
 	 */
@@ -165,7 +170,6 @@ public class SekillProductController extends GenericController<SekillProduct> {
 		}
 	}
 
-
 	public SekillProductManager getSekillProductManager() {
 		return sekillProductManager;
 	}
@@ -173,6 +177,7 @@ public class SekillProductController extends GenericController<SekillProduct> {
 	public ProductService getProductService() {
 		return productService;
 	}
+	
     public AppEventManager getAppEventManager() {
 			return appEventManager;
 		}

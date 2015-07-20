@@ -17,7 +17,7 @@ import com.mysql.jdbc.ResultSet;
 /**
  *  用于项目执行原生态sql，由  ResultSet rs结果集转换成BeanList
  *  <code>SqlHelp.java</code>
- *  <p>
+ *  <p> 杨荣忠
  *  <p>Copyright  2015 All right reserved.
  *  @author admin 时间 2015-7-15 下午04:22:10	
  *  @version 1.0 
