@@ -32,7 +32,7 @@ import com.cartmatic.estore.common.service.InventoryService;
 import com.cartmatic.estore.common.service.OrderService;
 import com.cartmatic.estore.common.service.ProductService;
 import com.cartmatic.estore.common.service.SupplierService;
-import com.cartmatic.estore.common.util.DateUtil;
+import com.cartmatic.estore.core.service.impl.GenericManagerImpl;
 import com.cartmatic.estore.core.util.StringUtil;
 import com.cartmatic.estore.core.view.MailEngine;
 import com.cartmatic.estore.exception.OutOfStockException;
@@ -47,7 +47,7 @@ import com.cartmatic.estore.webapp.util.RequestContext;
 /**
  * @author pengzhirong
  */
-public class OrderServiceImpl implements OrderService, InitializingBean {
+public class OrderServiceImpl extends GenericManagerImpl<SalesOrder>  implements OrderService, InitializingBean {
 
 	protected final transient Log	logger	= LogFactory.getLog(getClass());	
 	private SalesOrderManager salesOrderManager = null;
@@ -144,7 +144,14 @@ public class OrderServiceImpl implements OrderService, InitializingBean {
 		salesOrder.setOrderAddress(billingAddress);
 		if(salesOrder.getOrderStatus()==null)
 			salesOrder.setOrderStatus(OrderConstants.ORDER_STATUS_IN_PROGRESS);
-		salesOrder.setPaymentStatus(OrderConstants.PAYMENT_STATUS_UNPAID);
+		if (salesOrder.getIsCod() == 1)
+		{
+			salesOrder.setPaymentStatus(OrderConstants.PAYMENT_STATUS_PAID);
+		}
+		else
+		{
+			salesOrder.setPaymentStatus(OrderConstants.PAYMENT_STATUS_UNPAID);
+		}
 		salesOrderManager.save(salesOrder);
 		
 		orderShipment.setSalesOrderId(salesOrder.getSalesOrderId());
@@ -362,6 +369,14 @@ public class OrderServiceImpl implements OrderService, InitializingBean {
 	}
 	
 	/**
+	 * 通过订单ID获取订单
+	 * @return
+	 */
+	public SalesOrder getSalesOrderById(Integer salesOrderId){
+		return salesOrderManager.getSalesOrderById(salesOrderId);
+	}
+	
+	/**
 	 * 通过会员ID与订单ID获取订单
 	 * @param salesOrderId 订单ID
 	 * @param userId 前台会员ID
@@ -532,10 +547,7 @@ public class OrderServiceImpl implements OrderService, InitializingBean {
 		return false;
 	}
 
-	public void afterPropertiesSet() throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	public void setOrderAuditHelper(OrderAuditHelper orderAuditHelper) {
 		this.orderAuditHelper = orderAuditHelper;
@@ -545,5 +557,23 @@ public class OrderServiceImpl implements OrderService, InitializingBean {
 		OrderShipment orderShipment=orderSku.getOrderShipment();
 		orderShipment.updateStatusForReallocated();
 		salesOrderManager.save(orderShipment);
+	}
+
+	@Override
+	protected void initManager() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void onDelete(SalesOrder entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void onSave(SalesOrder entity) {
+		// TODO Auto-generated method stub
+		
 	}
 }

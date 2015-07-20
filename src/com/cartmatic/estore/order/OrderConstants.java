@@ -32,6 +32,7 @@ public class OrderConstants {
 	public final static Short PAYMENT_STATUS_UNPAID=new Short("10");  //未付
 	public final static Short PAYMENT_STATUS_PARTIALLY_PAID=new Short("20"); // 部分支付
 	public final static Short PAYMENT_STATUS_PAID=new Short("30");  //支付
+//	public final static Short PAYMENT_STATUS_COD=new Short("40");  //货到付款
 	
 	
 	/** 支付事务类型－在线支付*/

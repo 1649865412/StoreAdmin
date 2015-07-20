@@ -307,4 +307,10 @@ public interface SalesOrderManager extends GenericManager<SalesOrder> {
 	 * @return
 	 */
 	public List<SalesOrder> getSalesOrder(Integer userId, Serializable paymentStatus, Date begin, Date end);
+
+	/**
+	 * 通过订单ID获取订单
+	 * @return
+	 */
+	public SalesOrder getSalesOrderById(Integer salesOrderId);
 }

@@ -15,13 +15,14 @@ import com.cartmatic.estore.common.model.order.OrderShipment;
 import com.cartmatic.estore.common.model.order.OrderSku;
 import com.cartmatic.estore.common.model.order.SalesOrder;
 import com.cartmatic.estore.common.model.system.PaymentHistory;
+import com.cartmatic.estore.core.service.GenericManager;
 import com.cartmatic.estore.exception.OutOfStockException;
 
 /**
  * 订单服务接品类
  * @author pengzhirong
  */
-public interface OrderService {
+public interface OrderService  extends GenericManager<SalesOrder> {
 	
 	/**
 	 * 返回指定会员的订单数是否为零
@@ -69,6 +70,12 @@ public interface OrderService {
 	 * @return
 	 */
 	public SalesOrder getSalesOrder(Integer storeId,String orderNo, Serializable userId);
+	
+	/**
+	 * 通过订单ID获取订单
+	 * @return
+	 */
+	public SalesOrder getSalesOrderById(Integer salesOrderId);
 	
 	/**
 	 * 通过会员ID与订单ID获取订单

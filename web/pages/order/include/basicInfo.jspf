@@ -26,7 +26,12 @@
 				<c:if test="${salesOrder.isOnHold eq 1}"><span style="color:red">(<fmt:message key="order.status.onHold"/>)</span></c:if>
 	        	<span class="${salesOrder.orderStatus==30 ? 'green' : (salesOrder.orderStatus==10||salesOrder.orderStatus==20 ? 'yellow' : '')}"><fmt:message key="order.status.${salesOrder.orderStatus}"/></span>
 		 	</b>&nbsp;
+		 	<c:if test="${salesOrder.isCod ==1}">
+		 		<b><span class="${salesOrder.paymentStatus==30 ? 'green' : 'yellow'}"><fmt:message key="payment.status.40" /></span></b>
+		 	</c:if>
+		 	<c:if test="${salesOrder.isCod !=1}">
 		 	<b><span class="${salesOrder.paymentStatus==30 ? 'green' : 'yellow'}"><fmt:message key="payment.status.${salesOrder.paymentStatus}" /></span></b>
+		 	</c:if>
 		 	<c:if test="${salesOrder.isLocked eq 1}">
 				<span id="lockedByTip" style="${(salesOrder.lockedByMyself) ? 'color:green' : ''}"><b><fmt:message key="salesOrder.lockedBy"><fmt:param value="${salesOrder.lockedByUserName}"/></fmt:message></b></span>
 			</c:if>

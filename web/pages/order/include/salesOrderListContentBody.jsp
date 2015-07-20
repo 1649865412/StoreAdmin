@@ -60,7 +60,12 @@
 			</c:if>
 			<span class="${salesOrderItem.orderStatus==30 ? 'green' : (salesOrderItem.orderStatus==10 || salesOrderItem.orderStatus==20 ? 'yellow' : '')}"><fmt:message key="order.status.${salesOrderItem.orderStatus}" /></span>
         	|
-        	<span class="${salesOrderItem.paymentStatus==30?'green':(salesOrderItem.paymentStatus==20?'yellow':'red')}"><fmt:message key="payment.status.${salesOrderItem.paymentStatus}" /></span>
+        	<c:if test="${salesOrderItem.isCod == 1}">
+        		<span class="green"><fmt:message key="payment.status.40" /></span>
+        	</c:if>
+        	<c:if test="${salesOrderItem.isCod != 1}">
+        		<span class="${salesOrderItem.paymentStatus==30 || salesOrderItem.paymentStatus==40?'green':(salesOrderItem.paymentStatus==20?'yellow':'red')}"><fmt:message key="payment.status.${salesOrderItem.paymentStatus}" /></span>
+			</c:if>
 		</display:column>
 		<display:column media="html" sortable="false" headerClass="w100" class="w100" decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" titleKey="order.tab.message">
 			<a href="javascript:void%20${salesOrderItem.salesOrderId}" onclick="fnOpenSalesOrderForm(${salesOrderItem.salesOrderId},'${salesOrderItem.orderNo}','tabIndex=4');" title="View messages for this order">${salesOrderItem.sumOfAllMsgs}|New(${salesOrderItem.sumAdminNewMsgs})</a>
