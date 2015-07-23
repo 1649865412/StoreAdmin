@@ -53,6 +53,10 @@ public class RecommendedTypeForCatalogController extends
 
 	}
 	
+	
+	/**
+	 * 后台商品与目录管理default推荐模
+	 */
 	public ModelAndView search(HttpServletRequest request,
 			HttpServletResponse response) {
 		String sourceType = RequestUtil.getParameterNullSafe(request, "sourceType");

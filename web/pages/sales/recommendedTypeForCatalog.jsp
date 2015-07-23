@@ -8,8 +8,9 @@ function fnInitRecommmended(){
 	</c:forEach>
 }
 
+
+
 function validateRecommendedProductAction($rp_id){
-	
 	applyValidate($("sortOrder_"+$rp_id),"integer,minValue=0,maxValue=1000");
 	applyValidate($("startTime_"+$rp_id),"required,date");
 	applyValidate($("expireTime_"+$rp_id),"date");
@@ -26,8 +27,6 @@ function validateRecommendedProductAction($rp_id){
   		removeValidate($("expireTime_"+$rp_id),true);
   		return false; 
   	}
-	
-	
 }
 
 function checkExpireTime($rp_id){
@@ -95,6 +94,8 @@ function fnSaveRecommendedProduct($rp_id, $sourceId, $typeId)
    	$j.post(url,param,fnSaveRecommendedProductCallback,"json");
     	
 }
+
+
 function fnSaveRecommendedProductCallback(result){
 	//update message
    	if(result.status==1){
@@ -130,8 +131,6 @@ function fnDeleteRecommendedProductCallback(result){
    	}
 }
 
-
-
 function refreshPage($typeId){
 	var reloadURL = "${ctxPath}/catalog/recommendedProduct/dialog.html?recommendedTypeId="+ $typeId +"&sourceId=${param.sourceId}&decorator=selecter";
     var reloadDiv = "re_div_" + $typeId;
@@ -142,6 +141,8 @@ function refreshPageCallback(){
 	$j('#message').append("<b>~~~~"+'<fmt:message key="recommendedProduct.refreshPage.success"/>'+"~~~~</b>");
 }
 </script>
+
+
 <c:forEach items="${recommendedTypeList}" var="recommendedType">
     <div class="commend">
         ${recommendedType.recommendTitle}
@@ -150,7 +151,7 @@ function refreshPageCallback(){
         </c:if>
         <a href="javascript:productSelector_show('${recommendedType.recommendedTypeId}');"> 
             <img src="${ctxPath}/images/select.gif" title="<fmt:message key="recommendedProduct.openAdd"/>"  align="absmiddle" />
-        </a>
+        </a>sdfs
         <span id="frm_${recommendedType.recommendedTypeId}"> 
             <input type="hidden" name="${recommendedType.recommendedTypeId}_productId" 
                    id="${recommendedType.recommendedTypeId}_productId" value="" /> 
@@ -164,5 +165,6 @@ function refreshPageCallback(){
     </div>
     <div class="clear"></div>
 </c:forEach>
+
 <product:productSelector id="productSelector" ondblclick="fnAddRecommendedProduct" catalogId="${param.catalogId}"></product:productSelector>
 <div id="message" style="visibility:hidden"></div>

@@ -124,7 +124,6 @@ function validateAction(){
 	 if(!validateRecommendedType()){
     	return false;
    	}
-   	   
     return true;
 }
 
