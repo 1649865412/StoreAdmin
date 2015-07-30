@@ -653,6 +653,8 @@ function fnAutoRefreshTabHeight(tid){
 		if(height>0&&iframe_s.height()!=height){iframe_s.height(height);}
 		},300);
 }
+
+
 var tab_container=null;
 function fnCreateTabWindow(tabId,label,url,param){
 	tabId=tabId?tabId:new Date().getTime().toString().substr(6);

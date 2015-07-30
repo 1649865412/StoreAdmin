@@ -20,22 +20,22 @@
 		<property name="code" type="java.lang.String" update="true"
 			insert="true" access="property" column="code" length="32" not-null="true"
 			unique="false" />
-			
-			
-			<property name="discountAreaTitle" type="java.lang.String" update="true"
-			insert="true" access="property" column="discountAreaTitle" length="255" not-null="true"
+       <property name="brandId" type="java.lang.Integer" update="true"
+			insert="true" access="property" column="brandId" length="20" not-null="true"
 			unique="false" />
-			<property name="discountAreaContent" type="java.lang.String" update="true"
-			insert="true" access="property" column="discountAreaContent" length="255" not-null="true"
-			unique="false" />
-			<property name="weekOnNewTitle" type="java.lang.String" update="true"
-			insert="true" access="property" column="weekOnNewTitle" length="255" not-null="true"
-			unique="false" />
-			<property name="weekOnNewContent" type="java.lang.String" update="true"
-			insert="true" access="property" column="weekOnNewContent" length="255" not-null="true"
-			unique="false" />
-			
-			
+
+		<property name="discountAreaTitle" type="java.lang.String"
+			update="true" insert="true" access="property" column="discountAreaTitle"
+			length="255" not-null="true" unique="false" />
+		<property name="discountAreaContent" type="java.lang.String"
+			update="true" insert="true" access="property" column="discountAreaContent"
+			length="255" not-null="true" unique="false" />
+		<property name="weekOnNewTitle" type="java.lang.String"
+			update="true" insert="true" access="property" column="weekOnNewTitle"
+			length="255" not-null="true" unique="false" />
+		<property name="weekOnNewContent" type="java.lang.String"
+			update="true" insert="true" access="property" column="weekOnNewContent"
+			length="255" not-null="true" unique="false" />
 		<property name="description" type="java.lang.String" update="true"
 			insert="true" access="property" column="description" length="65535"
 			not-null="false" unique="false" />

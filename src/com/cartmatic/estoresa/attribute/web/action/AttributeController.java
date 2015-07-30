@@ -27,7 +27,7 @@ public class AttributeController extends GenericController<Attribute> {
 	public void setAttributeManager(AttributeManager inMgr) {
 		this.attributeManager = inMgr;
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 

@@ -28,7 +28,9 @@ $j(document).ready(function(){
 			</ul>
 			<div style="padding:0;width:244px;" id="productListcategorySelector">
 				<div class="tree-do-wrap">
+				
 					<input id="btn_openCategory" type="button" value="" onclick="fnOpen();" class="button_view_details button-disabled" title="打开" disabled="disabled">
+					
 					<input id="btn_moveCategoryDown" type="button" value="" onclick="fnMoveCategoryDown();" class="button_move_down button-disabled" title="<fmt:message key="button.small.down" />">
 					<input id="btn_moveCategoryUp" type="button" value="" onclick="fnMoveCategoryUp();" class="button_move_up button-disabled" title="<fmt:message key="button.small.up" />">
 					<input id="btn_addCategory" type="button" value="" onclick="fnAddCategoryForm();" class="button_category_create button-disabled" title="添加商品分类">

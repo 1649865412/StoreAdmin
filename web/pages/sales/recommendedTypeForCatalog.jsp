@@ -142,7 +142,6 @@ function refreshPageCallback(){
 }
 </script>
 
-
 <c:forEach items="${recommendedTypeList}" var="recommendedType">
     <div class="commend">
         ${recommendedType.recommendTitle}
@@ -151,7 +150,7 @@ function refreshPageCallback(){
         </c:if>
         <a href="javascript:productSelector_show('${recommendedType.recommendedTypeId}');"> 
             <img src="${ctxPath}/images/select.gif" title="<fmt:message key="recommendedProduct.openAdd"/>"  align="absmiddle" />
-        </a>sdfs
+        </a>
         <span id="frm_${recommendedType.recommendedTypeId}"> 
             <input type="hidden" name="${recommendedType.recommendedTypeId}_productId" 
                    id="${recommendedType.recommendedTypeId}_productId" value="" /> 
