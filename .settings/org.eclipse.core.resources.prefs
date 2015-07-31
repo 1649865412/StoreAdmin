@@ -1,4 +1,4 @@
-#Tue Apr 07 17:20:24 CST 2015
+#Fri Jul 24 10:36:34 CST 2015
 eclipse.preferences.version=1
 encoding//common/TrustMerchant.properties=UTF-8
 encoding//common/conf/app-config.properties=UTF-8
@@ -20,6 +20,7 @@ encoding//web/decorators/decIndex.jsp=UTF-8
 encoding//web/decorators/decPrintable.jsp=UTF-8
 encoding//web/decorators/decWindow.jsp=UTF-8
 encoding//web/decorators/include/javascripts.jspf=UTF-8
+encoding//web/decorators/include/message.jspf=UTF-8
 encoding//web/decorators/include/uiResource.jspf=UTF-8
 encoding//web/pages/catalog/brandForm.jsp=UTF-8
 encoding//web/pages/catalog/include/basicInfo.jsp=UTF-8

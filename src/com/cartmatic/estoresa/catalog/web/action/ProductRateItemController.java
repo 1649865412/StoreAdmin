@@ -13,6 +13,7 @@ import com.cartmatic.estore.core.controller.GenericController;
 public class ProductRateItemController extends GenericController<ProductRateItem> {
     private ProductRateItemManager productRateItemManager = null;
 
+    
     public void setProductRateItemManager(ProductRateItemManager inMgr) {
         this.productRateItemManager = inMgr;
     }

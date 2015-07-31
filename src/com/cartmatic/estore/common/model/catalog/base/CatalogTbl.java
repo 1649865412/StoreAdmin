@@ -27,12 +27,12 @@ public class CatalogTbl extends BaseObject implements Serializable {
 	protected Integer version;
 	protected Short availabilityRule;
 	
+	
 	protected Integer brandId;
 	protected String discountAreaTitle;
 	protected String discountAreaContent;
 	protected String weekOnNewTitle;
 	protected String weekOnNewContent;
-	
 	
 	
 	public Integer getBrandId() {
