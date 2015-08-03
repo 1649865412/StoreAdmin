@@ -146,7 +146,7 @@
 					previewImg="logoImage"></cartmatic:swf_upload>
 			</td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<td class="FieldLabel">
 				大图一：
 			</td>
@@ -190,6 +190,15 @@
 					previewImg="pic2Image"></cartmatic:swf_upload>
 			</td>
 		</tr>
+		 -->
+		  <tr>
+			<td class="FieldLabel">
+				列表页内容介绍：
+			</td>
+			<td>
+				<textarea id="content" name="content" rows="4" cols="80" class="Field400">${culturalInformation.content}</textarea>
+			</td>
+	    </tr>
 		<tr>
 			<td class="FieldLabel">
 				推荐资讯(支持多选，前台只展示前三个):
