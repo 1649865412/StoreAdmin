@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.cartmatic.estore.common.model.talentmanager.TalentShow"
+        table="talent_show"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="talentShowId"
+            column="talentShowId"
+            type="java.lang.Integer"
+            length="10"
+        >
+            <generator class="native"/>
+        </id>
+         <property
+            name="creatTime"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="creatTime"
+            length="32"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="content"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="content"
+            length="120"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="releaseTime"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="releaseTime"
+            length="0"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="sort"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="sort"
+            length="10"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="img"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="img"
+            length="120"
+            not-null="false"
+            unique="false"
+        />
+     </class>
+</hibernate-mapping>
