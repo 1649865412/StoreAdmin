@@ -395,10 +395,14 @@
 <!-- start:  Generated for TextMessage From Template: spring-mvc.xml.urlvm  -->
 				<prop key="/customer/textMessage.html">textMessageController</prop>
 <!-- end:  Generated for TextMessage From Template: spring-mvc.xml.urlvm  -->
+
 <!-- start:  Generated for SekillProduct From Template: spring-mvc.xml.urlvm  -->
 				<prop key="/sekillproduct/sekillProduct.html">sekillProductController</prop>
 <!-- end:  Generated for SekillProduct From Template: spring-mvc.xml.urlvm  -->
 
+<!-- start:  Generated for SekillProduct From Template: spring-mvc.xml.urlvm  -->
+				<prop key="/talentmanager/talentShow.html">talentShowController</prop>
+<!-- end:  Generated for SekillProduct From Template: spring-mvc.xml.urlvm  -->
 
 <!-- start:  Generated for CulturalInformation From Template: spring-mvc.xml.urlvm  -->
 				<prop key="/culturalinformation/culturalInformation.html">culturalInformationController</prop>
@@ -413,7 +417,7 @@
 <!-- start:  Generated for BrandDynamic From Template: spring-mvc.xml.urlvm  -->
 				<prop key="/branddynamic/brandDynamic.html">brandDynamicController</prop>
 <!-- end:  Generated for BrandDynamic From Template: spring-mvc.xml.urlvm  -->
-<!-- End of URL mappings -->
+				
                 <prop key="/system/import.html">importController</prop>
                 <prop key="/system/searchServer.html">searchServerController</prop>
                 
@@ -1088,4 +1092,11 @@
 		<property name="brandDynamicManager" ref="brandDynamicManager"/>
 	</bean>
 <!-- end:  Generated for BrandDynamic From Template: spring-mvc.xml.beansvm  -->
+
+
+<!-- start:  Generated for TalentShow From Template: spring-mvc.xml.beansvm  -->
+	<bean id="talentShowController" class="com.cartmatic.estoresa.talentmanager.web.action.TalentShowController" parent="genericController">
+		<property name="talentShowManager" ref="talentShowManager"/>
+	</bean>
+<!-- end:  Generated for TalentShow From Template: spring-mvc.xml.beansvm  -->
 </beans>

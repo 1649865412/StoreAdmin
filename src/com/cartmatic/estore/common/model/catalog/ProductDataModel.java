@@ -11,6 +11,14 @@ public class ProductDataModel {
 	
 	private String shortDescription;
 	
+	private String productInfoationDescription;
+	
+	private String productSizeDescription;
+	
+	private String customerServiceDescription;
+	
+	private String qrCodeDescription;
+	
 	private String imageDescription;
 	
 	private Integer []mainCategoryIds;
@@ -316,5 +324,39 @@ public class ProductDataModel {
 	public void setProductMedia_deletedsUp(String[] productMediaDeletedsUp) {
 		productMedia_deletedsUp = productMediaDeletedsUp;
 	}
+
+	public String getProductInfoationDescription() {
+		return productInfoationDescription;
+	}
+
+	public void setProductInfoationDescription(String productInfoationDescription) {
+		this.productInfoationDescription = productInfoationDescription;
+	}
+
+	public String getProductSizeDescription() {
+		return productSizeDescription;
+	}
+
+	public void setProductSizeDescription(String productSizeDescription) {
+		this.productSizeDescription = productSizeDescription;
+	}
+
+	public String getCustomerServiceDescription() {
+		return customerServiceDescription;
+	}
+
+	public void setCustomerServiceDescription(String customerServiceDescription) {
+		this.customerServiceDescription = customerServiceDescription;
+	}
+
+	public String getQrCodeDescription() {
+		return qrCodeDescription;
+	}
+
+	public void setQrCodeDescription(String qrCodeDescription) {
+		this.qrCodeDescription = qrCodeDescription;
+	}
+	
+	
 	
 }

@@ -554,6 +554,12 @@ public class ProductMainManagerImpl implements ProductMainManager {
 			productDescription.setFullDescription(productDataModel.getFullDescription());
 			productDescription.setShortDescription(productDataModel.getShortDescription());
 			productDescription.setImageDescription(productDataModel.getImageDescription());
+			
+			productDescription.setQrCodeDescription(productDataModel.getQrCodeDescription());
+			productDescription.setCustomerServiceDescription(productDataModel.getCustomerServiceDescription());
+			productDescription.setProductSizeDescription(productDataModel.getProductSizeDescription());
+			productDescription.setProductInfoationDescription(productDataModel.getProductInfoationDescription());
+			
 			productDescriptionManager.save(productDescription);
 			product.setProductDescription(productDescription);
 		}

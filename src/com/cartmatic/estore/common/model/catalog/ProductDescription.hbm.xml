@@ -12,5 +12,9 @@
 		<property name="shortDescription" type="java.lang.String" update="true" insert="true" access="property" column="shortDescription" length="512" not-null="false" unique="false" />
 		<property name="fullDescription" type="java.lang.String" update="true" insert="true" access="property" column="fullDescription" not-null="false" unique="false" />
 		<property name="imageDescription" type="java.lang.String" update="true" insert="true" access="property" column="imageDescription" not-null="false" unique="false" />
+		<property name="productInfoationDescription" type="java.lang.String" update="true" insert="true" access="property" column="productInfoationDescription" not-null="false" unique="false" />
+		<property name="productSizeDescription" type="java.lang.String" update="true" insert="true" access="property" column="productSizeDescription" not-null="false" unique="false" />
+		<property name="customerServiceDescription" type="java.lang.String" update="true" insert="true" access="property" column="customerServiceDescription" not-null="false" unique="false" />
+		<property name="qrCodeDescription" type="java.lang.String" update="true" insert="true" access="property" column="qrCodeDescription" not-null="false" unique="false" />
 	</class>
 </hibernate-mapping>

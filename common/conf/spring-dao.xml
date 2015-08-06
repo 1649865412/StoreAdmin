@@ -1212,4 +1212,15 @@
     </bean>
     
 <!-- end:  Generated for BrandDynamic From Template: spring-dao.xml.beansvm  -->
+
+<!-- start:  Generated for TalentShow From Template: spring-dao.xml.beansvm  -->
+    <bean id="talentShowDao" class="com.cartmatic.estore.talentmanager.dao.impl.TalentShowDaoImpl" parent="hibernateGenericDao">
+    	<property name="searchFilters">
+    		<list>
+    			<value>default;;select s from TalentShow s;;allow,all</value>
+    		</list>
+    	</property>
+    </bean>
+    
+<!-- end:  Generated for TalentShow From Template: spring-dao.xml.beansvm  -->
 </beans>

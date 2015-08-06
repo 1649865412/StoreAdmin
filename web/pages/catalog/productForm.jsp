@@ -67,6 +67,7 @@
 				<li>
 					<a href="#descriptionInfo"><fmt:message key="product.tab.description" /> </a><span id="descriptionInfoFlag"></span>
 				</li>
+				
 				<li>
 					<a href="#productMediaInfo"><fmt:message key="product.tab.media" /> </a><span id="productMediaInfoFlag"></span>
 				</li>

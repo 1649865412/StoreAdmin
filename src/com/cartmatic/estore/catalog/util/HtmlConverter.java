@@ -9,7 +9,15 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.cartmatic.estore.common.helper.ConfigUtil;
-
+/**
+ *  html
+ *  <code>HtmlConverter.java</code>
+ *  <p>
+ *  <p>Copyright  2015 All right reserved.
+ *  @author admin 时间 2015-8-5 上午10:19:00	
+ *  @version 1.0 
+ *  </br>最后修改人 无
+ */
 public class HtmlConverter {
 	public static String converProductDescription(String htmlContent){
 		Document document=Jsoup.parse(htmlContent);
@@ -37,13 +45,14 @@ public class HtmlConverter {
 	}
 	
 	public  static void test()throws Exception {
-		String htmlContent=FileUtils.readFileToString(new File("D:\\Desktop\\H_Noname4.html"), "UTF-8");
+		String htmlContent=FileUtils.readFileToString(new File("D:\\百度一下，你就知道.html"), "UTF-8");
 		Document document=Jsoup.parse(htmlContent);
 		Elements elements= document.select("img");
 		for (int i = 0; i < elements.size(); i++) {
 			System.out.println(elements.get(i).attr("src"));;
 		}
 		System.out.println("================================================");
+		//给第一个src重新设置值
 		elements.get(0).attr("src","http://192.168.1.123/media/other/uploads/201109/heditor/201109011546547212.jpg");
 		for (int i = 0; i < elements.size(); i++) {
 			System.out.println(elements.get(i).attr("src"));;
@@ -53,9 +62,10 @@ public class HtmlConverter {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		String htmlContent=FileUtils.readFileToString(new File("D:\\Desktop\\H_Noname4.html"), "UTF-8");
-		String content=converProductDescription(htmlContent);
+	//	String htmlContent=FileUtils.readFileToString(new File("D:\\百度一下，你就知道.html"), "UTF-8");
+		//String content=converProductDescription(htmlContent);
+		test();
 		System.out.println("-----------------------------------------");
-		System.out.println(content);
+		//System.out.println(content);
 	}
 }

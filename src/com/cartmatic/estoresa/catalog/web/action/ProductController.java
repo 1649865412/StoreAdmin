@@ -327,15 +327,31 @@ public class ProductController extends GenericController<Product> {
 					errors.addError(fieldError);
 				}
 			}
+			
 			if (!errors.hasErrors()) {// 里面如果出错应该抛出异常
 				// 组装productDataModel数据
 				ProductDataModel productDataModel = new ProductDataModel();
 				// 编辑产品时，同时保存描述信息，productDescription
 				productDataModel.setOnlySaveProductInfo(onlySaveProductInfo);
 				if (!onlySaveProductInfo) {
+					
+					System.out.println("fullDescription:"+request.getParameter("fullDescription"));
+					System.out.println("shortDescription:"+request.getParameter("shortDescription"));
+					System.out.println("imageDescription:"+request.getParameter("imageDescription"));
+					System.out.println("qrCodeDescription:"+request.getParameter("qrCodeDescription"));
+					System.out.println("customerServiceDescription:"+request.getParameter("customerServiceDescription"));
+					System.out.println("productSizeDescription:"+request.getParameter("productSizeDescription"));
+					System.out.println("productInfoationDescription:"+request.getParameter("productInfoationDescription"));
+					
 					productDataModel.setFullDescription(request.getParameter("fullDescription"));
 					productDataModel.setShortDescription(request.getParameter("shortDescription"));
 					productDataModel.setImageDescription(request.getParameter("imageDescription"));
+					productDataModel.setQrCodeDescription(request.getParameter("qrCodeDescription"));
+					productDataModel.setCustomerServiceDescription(request.getParameter("customerServiceDescription"));
+					productDataModel.setProductSizeDescription(request.getParameter("productSizeDescription"));
+					productDataModel.setProductInfoationDescription(request.getParameter("productInfoationDescription"));
+					
+					
 					//普通产品时才存在附件
 					if(product.getProductKind().intValue()==CatalogConstants.PRODUCT_KIND_COMMON.intValue()){
 						//保存产品附件

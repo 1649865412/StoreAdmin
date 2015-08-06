@@ -9,6 +9,8 @@
 		
 	</head>
 	<body>
+	
+	
 <form method="post" action="http://tinymce.moxiecode.com/dump.php?example=true">
 	<h3>Full featured example</h3>
 
@@ -44,9 +46,12 @@
 	<input type="submit" name="save" value="Submit" />
 	<input type="reset" name="reset" value="Reset" />
 </form>
+
+
 <br/>
+
+
 <textarea id="elm2" name="elm2" rows="15" cols="80" style="width: 80%">
-		
 今日广州 	 
 	关注热点新闻，畅谈心中感悟，在这里，不同的观点将会激烈碰撞，您的思想也将得到一次深刻的洗礼与升华......
 ·455条公交可享优惠
@@ -55,6 +60,7 @@
 ·海珠区宝岗大厦一单位发生火灾(08.10.15早上)
 ·买沙发，要注意D咩？
 	</textarea>
+	
 	<app:ui_htmlEditor textareaIds="elm1,elm2"/>
 	</body>
 </html>

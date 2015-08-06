@@ -24,6 +24,7 @@ public class RecommendedTypeDaoImpl extends HibernateGenericDaoImpl<RecommendedT
         return null;
     }
     
+    
     public List getRecommendedTypesBySearchCriteria(RecommendedTypeSearchCriteria recommendedTypeSearchCriteria){
     	StringBuffer sb = new StringBuffer(200);
     	sb.append("from RecommendedType where 1=1 ");

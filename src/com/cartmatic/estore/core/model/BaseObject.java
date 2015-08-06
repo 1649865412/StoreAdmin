@@ -9,7 +9,7 @@ import java.io.Serializable;
  * <P>
  * 一些常用（但不是必须）的属性有：id, name, code/naturalKey, nameKey, status, version, deleted,
  * updateTime等。其中前2个一般都是需要的（仅用于设计需要的表可能不需要name）。Code是业务主键，有时候用其他字段名，如orderNo。
- * 
+ * 四个常用属性，子类bean字段也可以同名
  */
 public abstract class BaseObject implements Serializable {
 

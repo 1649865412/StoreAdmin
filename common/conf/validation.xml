@@ -4383,5 +4383,65 @@
 			</field>
 		</form>
 <!-- end:  Generated for BrandDynamic From Template: validation.xml.vm  -->
+<!-- start:  Generated for Talentshow From Template: validation.xml.vm  -->
+		<form name="talentshow">
+			<field property="creatTime" depends="maxlength">
+				<arg position="0" key="talentshow.creatTime" />
+				<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>32</var-value>
+				</var>
+			</field>
+			<field property="content" depends="maxlength">
+				<arg position="0" key="talentshow.content" />
+				<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>120</var-value>
+				</var>
+			</field>
+			<field property="releaseTime" depends="date">
+				<arg position="0" key="talentshow.releaseTime" />
+			</field>
+			<field property="sort" depends="integer">
+				<arg position="0" key="talentshow.sort" />
+			</field>
+		</form>
+<!-- end:  Generated for Talentshow From Template: validation.xml.vm  -->
+<!-- start:  Generated for TalentShow From Template: validation.xml.vm  -->
+		<form name="talentShow">
+			<field property="creatTime" depends="maxlength">
+				<arg position="0" key="talentShow.creatTime" />
+				<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>32</var-value>
+				</var>
+			</field>
+			<field property="content" depends="maxlength">
+				<arg position="0" key="talentShow.content" />
+				<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>120</var-value>
+				</var>
+			</field>
+			<field property="releaseTime" depends="date">
+				<arg position="0" key="talentShow.releaseTime" />
+			</field>
+			<field property="sort" depends="integer">
+				<arg position="0" key="talentShow.sort" />
+			</field>
+			<field property="img" depends="maxlength">
+				<arg position="0" key="talentShow.img" />
+				<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>120</var-value>
+				</var>
+			</field>
+		</form>
+<!-- end:  Generated for TalentShow From Template: validation.xml.vm  -->
 </formset>
 </form-validation>

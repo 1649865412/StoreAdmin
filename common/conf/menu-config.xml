@@ -20,9 +20,15 @@
 		<Item name="AwardMenu" title="menu.viewAwards" page="/activity/award.html"/>
 		<Item name="UserAwardMenu" title="menu.viewUserAwards" page="/activity/userAward.html"/>
 <!--end of sales menu items-->
+
 <!-- start:  Generated for SekillProduct From Template: menu-config.xml.vm  -->
 			<Item name="SekillProductsMenu" title="menu.viewSekillProducts" page="/sekillproduct/sekillProduct.html"/>
 <!-- end:  Generated for SekillProduct From Template: menu-config.xml.vm  -->
+
+		<!-- start:  Generated for TalentShow From Template: menu-config.xml.vm  -->
+			<Item name="TalentShowsMenu" title="menu.viewTalentShows" page="/talentmanager/talentShow.html"/>
+<!-- end:  Generated for TalentShow From Template: menu-config.xml.vm  -->
+
 
 		</Menu>
 
@@ -189,6 +195,7 @@
 <!-- end:  Generated for CulturalInformation From Template: menu-config.xml.vm  -->
 		<!--end of culturalinformation menu items-->
 		</Menu>
+
 
 </Menus>
 </MenuConfig>

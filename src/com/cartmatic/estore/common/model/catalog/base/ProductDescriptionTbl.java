@@ -22,6 +22,11 @@ public class ProductDescriptionTbl extends BaseObject implements Serializable {
 	protected String shortDescription;
 	protected String fullDescription;
 	protected String imageDescription;
+	
+	protected String productInfoationDescription;
+	protected String productSizeDescription;
+	protected String customerServiceDescription;
+	protected String qrCodeDescription ;
 
 	/**
 	 * Default Empty Constructor for class ProductDescription
@@ -53,6 +58,40 @@ public class ProductDescriptionTbl extends BaseObject implements Serializable {
 	public void setProductDescriptionId(Integer aValue) {
 		this.productDescriptionId = aValue;
 	}	
+
+	
+	
+	public String getProductInfoationDescription() {
+		return productInfoationDescription;
+	}
+
+	public void setProductInfoationDescription(String productInfoationDescription) {
+		this.productInfoationDescription = productInfoationDescription;
+	}
+
+	public String getProductSizeDescription() {
+		return productSizeDescription;
+	}
+
+	public void setProductSizeDescription(String productSizeDescription) {
+		this.productSizeDescription = productSizeDescription;
+	}
+
+	public String getCustomerServiceDescription() {
+		return customerServiceDescription;
+	}
+
+	public void setCustomerServiceDescription(String customerServiceDescription) {
+		this.customerServiceDescription = customerServiceDescription;
+	}
+
+	public String getQrCodeDescription() {
+		return qrCodeDescription;
+	}
+
+	public void setQrCodeDescription(String qrCodeDescription) {
+		this.qrCodeDescription = qrCodeDescription;
+	}
 
 	/**
 	 * 产品短描述	 * @return String
