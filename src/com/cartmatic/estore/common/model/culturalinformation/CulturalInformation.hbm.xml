@@ -25,15 +25,18 @@
 			update="true" insert="true" access="property" column="recommendArrayId"
 			length="30" not-null="false" unique="false" />
 
+	    <property name="content" type="java.lang.String"
+			update="true" insert="true" access="property" column="content"
+			length="250" not-null="false" unique="false" />
 
 		<property name="commentNumber" type="java.lang.Integer"
 			update="true" insert="true" access="property" column="commentNumber"
 			length="10" not-null="false" unique="false" />
-			
+
 		<property name="releaseTime" type="java.util.Date" update="true"
 			insert="true" access="property" column="releaseTime" length="128"
 			not-null="false" unique="false" />
-			
+
 		<property name="readNumber" type="java.lang.Integer" update="true"
 			insert="true" access="property" column="readNumber" length="10"
 			not-null="false" unique="false" />
@@ -78,13 +81,17 @@
 		<property name="metaKeywork" type="java.lang.String" update="true"
 			insert="true" access="property" column="metaKeywork" length="20"
 			not-null="false" unique="false" />
-			
-			<!-- exported bi-directional one-to-many association to monthlyCultural -->
-		<set name="monthlyCultural" table="monthly_cultural" lazy="false" inverse="true" cascade="save-update,persist" order-by="monthlyCulturalId desc" >
+
+		<!--
+			exported bi-directional one-to-many association to monthlyCultural
+		-->
+		<set name="monthlyCultural" table="monthly_cultural" lazy="false"
+			inverse="true" cascade="save-update,persist" order-by="monthlyCulturalId desc">
 			<key>
 				<column name="culturalInformationId" />
 			</key>
-			<one-to-many class="com.cartmatic.estore.common.model.monthlycultural.MonthlyCultural" />
+			<one-to-many
+				class="com.cartmatic.estore.common.model.monthlycultural.MonthlyCultural" />
 		</set>
 	</class>
 </hibernate-mapping>

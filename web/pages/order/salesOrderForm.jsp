@@ -60,6 +60,7 @@
 	</div>
 </div>
 <c:set var="ui_QuickTip" value="true" scope="request"/>
+
 <script type="text/javascript">
     autoApplyValidate(document.getElementById("salesOrder"));
     var _salesOrderId = "${salesOrder.salesOrderId}";
@@ -74,9 +75,11 @@
     	window.location.href="${ctxPath}/order/window.html?doAction=lock&salesOrderId="+_salesOrderId+"&tabIndex="+fnGetSelectedTabIndex()+"&tid=${param.tid}";
     }
     
+    
     function fnUnlock(){
     	window.location.href="${ctxPath}/order/window.html?doAction=unlock&salesOrderId="+_salesOrderId+"&tabIndex="+fnGetSelectedTabIndex()+"&tid=${param.tid}";
     }
+    
     function fnGetSelectedTabIndex(){
     	var selected = $tabs.appTabs( "option", "selected" );
 		return selected;

@@ -26,7 +26,6 @@ public abstract class CategoryController<T> extends GenericController<T> {
 		this.categoryManager = categoryManager;
 	}
 	
-
 	/* 
 	 * 保存目录判断目录Code是否重复
 	 * @see com.cartmatic.estore.core.controller.GenericController#onSave(javax.servlet.http.HttpServletRequest, java.lang.Object, org.springframework.validation.BindException)

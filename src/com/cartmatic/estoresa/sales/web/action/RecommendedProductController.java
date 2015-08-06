@@ -44,6 +44,9 @@ public class RecommendedProductController extends
 		this.recommendedTypeManager = recommendedTypeManager;
 	}
 
+	/**
+	 * 异步获取数推荐数据集
+	 */
 	public ModelAndView defaultAction(HttpServletRequest request,
 			HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("sales/recommendedProduct");

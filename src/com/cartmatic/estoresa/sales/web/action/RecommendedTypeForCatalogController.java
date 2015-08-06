@@ -12,6 +12,8 @@ import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cartmatic.estore.Constants;
+import com.cartmatic.estore.catalog.service.BrandManager;
+import com.cartmatic.estore.common.model.catalog.Brand;
 import com.cartmatic.estore.common.model.sales.RecommendedType;
 import com.cartmatic.estore.core.controller.GenericController;
 import com.cartmatic.estore.sales.SalesConstants;
@@ -26,6 +28,17 @@ import com.cartmatic.estore.webapp.util.RequestUtil;
 public class RecommendedTypeForCatalogController extends
 		GenericController<RecommendedType> {
 	private RecommendedTypeManager	recommendedTypeManager	= null;
+	
+	private BrandManager brandManager=null;
+	
+
+	public BrandManager getBrandManager() {
+		return brandManager;
+	}
+
+	public void setBrandManager(BrandManager brandManager) {
+		this.brandManager = brandManager;
+	}
 
 	public void setRecommendedTypeManager(
 			RecommendedTypeManager recommendedTypeManager) {
@@ -53,8 +66,14 @@ public class RecommendedTypeForCatalogController extends
 
 	}
 	
+	
+	/**
+	 * 后台商品与目录管理default推荐模
+	 */
 	public ModelAndView search(HttpServletRequest request,
 			HttpServletResponse response) {
+		// 获取所有品牌（搜索表单）
+		List<Brand> brands = brandManager.findAllBrands();
 		String sourceType = RequestUtil.getParameterNullSafe(request, "sourceType");
 		RecommendedTypeSearchCriteria recommendedTypeSearchCriteria = new RecommendedTypeSearchCriteria();
 		if(SalesConstants.RECOMMENDED_TYPE_SOURCE_CATEGORY.equals(sourceType)){
@@ -68,6 +87,7 @@ public class RecommendedTypeForCatalogController extends
 		
 		List results = recommendedTypeManager.getRecommendedTypesBySearchCriteria(recommendedTypeSearchCriteria);
 		Map model = new HashMap();
+		model.put("brands", brands);
 		model.put("recommendedTypeList", results);
 		model.put("sourceType", sourceType);
 		return getModelAndView("sales/recommendedTypeForCatalog",model);

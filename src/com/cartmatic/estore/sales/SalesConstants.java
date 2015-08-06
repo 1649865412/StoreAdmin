@@ -17,8 +17,11 @@ public class SalesConstants {
 	public static final int			MAX_GEN_TIMES							= 2000;
 	public static final int			MAX_GEN_TRY_TIMES						= 100;
 
+	
+	//目录推荐，产品推荐情况的数据的获取
 	public static final String		RECOMMENDED_TYPE_SOURCE_PRODUCT			= "PRODUCT";
 	public static final String		RECOMMENDED_TYPE_SOURCE_CATEGORY		= "CATEGORY";
+	
 
 	public static final int			DEFAULT_RECOMMENDED_PRODUCT_COUNT		= 10;
 	// 推荐规则

@@ -98,6 +98,20 @@ public class CatalogController extends GenericController<Catalog> {
 		mgr = catalogManager;
 	}
 
+	
+	
+	/**
+	 * 重载编辑方法,增加首页品牌数据
+	 */
+	@Override
+	protected void onShowForm(HttpServletRequest request, ModelAndView mv)
+	{
+		
+		List<Brand> brands = brandManager.findAllBrands();
+		mv.addObject("brands", brands);
+	}
+	
+	
 	/*
 	 * (non-Javadoc)
 	 * 

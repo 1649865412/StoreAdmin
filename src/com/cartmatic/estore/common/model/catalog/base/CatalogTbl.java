@@ -27,6 +27,54 @@ public class CatalogTbl extends BaseObject implements Serializable {
 	protected Integer version;
 	protected Short availabilityRule;
 	
+	
+	protected Integer brandId;
+	protected String discountAreaTitle;
+	protected String discountAreaContent;
+	protected String weekOnNewTitle;
+	protected String weekOnNewContent;
+	
+	
+	public Integer getBrandId() {
+		return brandId;
+	}
+
+	public void setBrandId(Integer brandId) {
+		this.brandId = brandId;
+	}
+
+	public String getDiscountAreaTitle() {
+		return discountAreaTitle;
+	}
+
+	public void setDiscountAreaTitle(String discountAreaTitle) {
+		this.discountAreaTitle = discountAreaTitle;
+	}
+
+	public String getDiscountAreaContent() {
+		return discountAreaContent;
+	}
+
+	public void setDiscountAreaContent(String discountAreaContent) {
+		this.discountAreaContent = discountAreaContent;
+	}
+
+	public String getWeekOnNewTitle() {
+		return weekOnNewTitle;
+	}
+
+	public void setWeekOnNewTitle(String weekOnNewTitle) {
+		this.weekOnNewTitle = weekOnNewTitle;
+	}
+
+	public String getWeekOnNewContent() {
+		return weekOnNewContent;
+	}
+
+	public void setWeekOnNewContent(String weekOnNewContent) {
+		this.weekOnNewContent = weekOnNewContent;
+	}
+
 	//对应的根商品分类
 	private Category category;
 

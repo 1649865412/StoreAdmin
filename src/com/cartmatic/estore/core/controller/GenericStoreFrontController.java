@@ -267,6 +267,7 @@ public abstract class GenericStoreFrontController<T> extends MultiActionControll
             String modelName, Object modelObject) {
         return new ModelAndView(viewName, modelName, modelObject);
     }
+    
     /**
      * 简化版本， 适用于不支持动态配置模版并且不需要传入Model的时候用。需要保证templatePath存在。
      * 
@@ -329,14 +330,29 @@ public abstract class GenericStoreFrontController<T> extends MultiActionControll
         return templatePath;
     }
 
+    
+    /**
+     * 功能:判断模板是否存在
+     * <p>作者 杨荣忠 2015-7-29 上午10:37:57
+     * @param templatePath
+     * @return
+     */
     protected boolean isTemplateExists(String templatePath)
     {
         return ContextUtil.getInstance().isFileExists(RequestContext.getRelativeTemplatePath(templatePath));
     }
 
+    
+    /**
+     * 功能:根据key获取内容
+     * <p>作者 杨荣忠 2015-7-29 上午10:38:18
+     * @param msgKey
+     * @return
+     */
     protected final String getMessage(String msgKey) {
 		return super.getMessageSourceAccessor().getMessage(msgKey);
 	}
+    
     /**
      * 令到Spring在完成设置后调用，并进一步调用各Controller的初始化方法
      * 

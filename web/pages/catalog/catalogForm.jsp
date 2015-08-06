@@ -66,6 +66,54 @@
 						<textarea id="description" name="description" style="width: 90%; height: 100px">${catalog.description}</textarea>
 					</td>
 				</tr>
+					<tr>
+			<td class="FieldLabel">
+				首页每周主打设计师
+			</td>
+			<td>
+				<select class="Field400" name="brandId" id="brandId">
+					<option value=""></option>
+					<c:forEach items="${brands}" var="brand">
+						<option value="${brand.brandId}" <c:if test="${catalog.brandId==brand.brandId}">selected="selected"</c:if>>
+							${brand.brandName}
+						</option>
+					</c:forEach>
+				</select>
+			</td>
+        </tr>
+				<tr>
+					<td class="FieldLabel">
+						首页每周上新标题内容：
+					</td>
+					<td>
+						<input type="text" value="${catalog.weekOnNewTitle}" name="weekOnNewTitle" id="weekOnNewTitle">
+					</td>
+				</tr>
+				<tr>
+					<td class="FieldLabel">
+						首页每周上新内容：
+					</td>
+					<td>
+						<textarea id="weekOnNewContent" name="weekOnNewContent" style="width: 90%; height: 100px">${catalog.weekOnNewContent}</textarea>
+					</td>
+				</tr>
+				<tr>
+					<td class="FieldLabel">
+						首页折扣专区标题：
+					</td>
+					<td>
+					    <input type="text" value="${catalog.discountAreaTitle}" name="discountAreaTitle">
+					</td>
+				</tr>
+				<tr>
+					<td class="FieldLabel">
+						首页折扣专区内容：
+					</td>
+					<td>
+						<textarea id="discountAreaContent" name="discountAreaContent" style="width: 90%; height: 100px">${catalog.discountAreaContent}</textarea>
+					</td>
+				</tr>
+				
 		  	</table>
 	</form:form>
 	<%--推荐页面：sales/recommendedTypeForCatalog--%>

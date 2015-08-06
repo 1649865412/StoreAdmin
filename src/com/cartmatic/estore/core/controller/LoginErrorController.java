@@ -69,9 +69,9 @@ public class LoginErrorController extends BaseController {
 			try {
 
 				if (ContextUtil.isStoreFront()) {
-					req.getRequestDispatcher("/signup.html?error=true").forward(req, resp);
+					req.getRequestDispatcher("/index.html?error=0&tag=0").forward(req, resp);
 				} else {
-					req.getRequestDispatcher("login.html?error=true").forward(req, resp);
+					req.getRequestDispatcher("index.html?error=1&tag=0").forward(req, resp);
 				}
 			} catch (Throwable ex) {
 				logger.error("Cannot forward to error login page: " + targetUrl, ex);

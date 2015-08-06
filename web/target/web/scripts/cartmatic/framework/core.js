@@ -1,5 +1,6 @@
 /**
  * 最常用、可重用、业务无关、技术无关、框架无关、最精简的JS方法集合
+   
  */
 /*Prototype $() 替代方法*/
 function $(el) {
@@ -59,6 +60,7 @@ function removeClass(el, className) {
 	var regex = new RegExp("(^|\\s)" + className + "(\\s|$)", "g");
 	$(el).className = $(el).className.replace(regex, "");
 };
+
 
 /*切换旧样式到新样式*/
 function fnSetStyle(el,reomveClassName,addClassName){		

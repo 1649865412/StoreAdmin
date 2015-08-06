@@ -123,3 +123,5 @@ public class OrderConstants {
      */
     public final static short ORDER_CANCELTYPE_OTHER=6;
 }
+
+

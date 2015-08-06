@@ -171,7 +171,7 @@
 	<tr>
 	<th><fmt:message key="category.recommendProduct.manage" /></th>
 	</tr>
-	<tr>
+			<tr>
 	<td>
 		<form name="recommendedProductForm" action="">
 		<jsp:include flush="true" page="/sales/recommendedTypeForCatalog.html">
@@ -182,7 +182,7 @@
         </jsp:include>
         </form>
 	</td>
-	</tr>
+			</tr>
 </table>
 <script type="text/javascript" defer>
 	$j(document).ready(function(){

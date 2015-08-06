@@ -461,6 +461,8 @@ public final class RequestUtil {
 		setCookie(response, "UNAME", StringUtils.isNotBlank(user.getFirstname())?user.getFirstname():user.getEmail(), ctxPath);
 		setCookie(response, "UEMAIL", appuser.getEmail(), ctxPath);
 	}
+	
+	
 
 	//不进行设置过期时间，使其过期时间自动设置为session的连线时间.
 	public static void setUserInfoCookieCMHOME(HttpServletResponse response, AppUser appuser, String ctxPath) {
