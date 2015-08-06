@@ -1,5 +1,7 @@
 package com.cartmatic.estore.culturalinformation.service.impl;
 
+import java.util.List;
+
 import com.cartmatic.estore.common.model.culturalinformation.CulturalInformation;
 import com.cartmatic.estore.core.service.impl.GenericManagerImpl;
 import com.cartmatic.estore.culturalinformation.service.CulturalInformationManager;
@@ -13,6 +15,10 @@ public class CulturalInformationManagerImpl extends GenericManagerImpl<CulturalI
 
 	private CulturalInformationDao culturalInformationDao = null;
 
+	
+    public List<CulturalInformation>getResutlType(String type){
+        return     	  culturalInformationDao.getResutlType(type);
+    }
 	/**
 	 * @param culturalInformationDao
 	 *            the culturalInformationDao to set
