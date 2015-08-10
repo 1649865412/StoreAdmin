@@ -4443,5 +4443,18 @@
 			</field>
 		</form>
 <!-- end:  Generated for TalentShow From Template: validation.xml.vm  -->
+<!-- start:  Generated for ProductTalenshow From Template: validation.xml.vm  -->
+		<form name="productTalenshow">
+			<field property="productId" depends="integer">
+				<arg position="0" key="productTalenshow.productId" />
+			</field>
+			<field property="talenShowId" depends="integer">
+				<arg position="0" key="productTalenshow.talenShowId" />
+			</field>
+			<field property="sorted" depends="integer">
+				<arg position="0" key="productTalenshow.sorted" />
+			</field>
+		</form>
+<!-- end:  Generated for ProductTalenshow From Template: validation.xml.vm  -->
 </formset>
 </form-validation>

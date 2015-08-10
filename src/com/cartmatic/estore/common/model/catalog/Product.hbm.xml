@@ -34,6 +34,17 @@
 		<property name="templatePath" type="java.lang.String" update="true" insert="true" access="property" column="templatePath" length="128" not-null="false" unique="false" />
 		<property name="status" type="java.lang.Short" update="true" insert="true" access="property" column="status" length="5" not-null="true" unique="false" />
 		<property name="extra1" type="java.lang.String" update="true" insert="true" access="property" column="extra1" length="255" not-null="false" unique="false" />
+		
+		
+		<!-- exported bi-directional one-to-many association to Product -->
+		<set name="ProductTalenshowValues" table="product_talenshow" lazy="true" inverse="true" cascade="save-update" order-by="productId desc" >
+			<key>
+				<column name="productId" />
+			</key>
+			<one-to-many class="com.cartmatic.estore.common.model.producttalenshow.ProductTalenshow" />
+		</set>
+		
+		
 		<!-- imported bi-directional many-to-one association to Supplier -->
 		<many-to-one name="supplier" class="com.cartmatic.estore.common.model.supplier.Supplier" not-null="false" fetch="select">
 			<column name="supplierId" />

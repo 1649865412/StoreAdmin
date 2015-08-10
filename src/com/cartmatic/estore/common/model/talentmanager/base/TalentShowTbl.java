@@ -2,10 +2,13 @@ package com.cartmatic.estore.common.model.talentmanager.base;
 
 import java.io.Serializable;
 import com.cartmatic.estore.Constants;
+import com.cartmatic.estore.common.model.producttalenshow.ProductTalenshow;
 import com.cartmatic.estore.core.model.BaseObject;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
+
+
 
 /**
  * TalentShow Base Java Bean, base class for the model, mapped directly to database table
@@ -22,7 +25,16 @@ public class TalentShowTbl extends BaseObject implements Serializable {
 	protected java.util.Date releaseTime;
 	protected Integer sort;
 	protected String img;
+	protected java.util.Set<ProductTalenshow> ProductTalenshowValues = new java.util.HashSet<ProductTalenshow>();
 
+	
+	public java.util.Set<ProductTalenshow> getProductTalenshowValues() {
+		return ProductTalenshowValues;
+	}
+
+	public void setProductTalenshowValues(java.util.Set<ProductTalenshow> productTalenshowValues) {
+		ProductTalenshowValues = productTalenshowValues;
+	}
 
 	/**
 	 * Default Empty Constructor for class TalentShow

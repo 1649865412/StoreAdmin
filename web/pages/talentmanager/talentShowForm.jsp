@@ -1,5 +1,7 @@
 <%@ include file="/common/taglibs.jsp"%>
+<%@ taglib prefix="cartmatic" tagdir="/WEB-INF/tags/cartmatic"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="talentSelector" tagdir="/WEB-INF/tags/talentshow"%>
 
 <app:pageHeading entityName="${talentShow.talentShowName}" entityHeadingKey="talentShowDetail.heading" />
 <content tag="buttons">
@@ -17,7 +19,6 @@
 			action="${ctxPath}/talentmanager/talentShow.html" onsubmit="return validateTalentShow(this);">
 		<input type="hidden" name="talentShowId" value="${talentShow.talentShowId}"/> 
 		<table class="table-content" cellSpacing="0" cellPadding="0" width="100%" border="0">
-		<app:input property="creatTime" />
  		<app:input property="content" />
  		<app:input property="sort" />
  		<tr>
@@ -29,6 +30,32 @@
 					readonly="true"
 					value="<fmt:formatDate value="${talentShow.releaseTime}" pattern="yyyy-MM-dd" />" />
 				<app:ui_datePicker outPut="releaseTime" />
+			</td>
+		</tr>
+	<tr>
+			<td class="FieldLabel">
+				达人秀:
+			</td>
+			<td>
+				<input id="b1" type="button" class="admin-btn" value="达人秀"
+					onclick="multiSupplierSelector_show('kkk_DIV')" />
+					
+				<input id="b2" type="button" class="admin-btn" value="清空"
+					onclick="culReset()" />
+
+				<talentSelector:talentSelector title="达人秀选择"
+					id="multiSupplierSelector" autoClose="true"
+					ondblclick="fnTestSelectMultiProductSku" multiSelect="true"></talentSelector:talentSelector>
+				新已选达人秀：
+				<span id="arrayproductName"> </span>
+				<br>
+				原来已选达人秀：
+				<span id="arrayproductNameOld"> <c:forEach
+						items="${reCulturalInformationList}" var="reCulturalInformation">
+                      	${reCulturalInformation.title},
+				    </c:forEach> </span>
+				<input type="hidden" id="arrayproductId" name="recommendArrayId"
+					value="${culturalInformation.recommendArrayId}" />
 			</td>
 		</tr>
 		
@@ -59,6 +86,38 @@
 		</tr>
   	</table>
 </form:form>
+
+
+
+<script type="text/javascript" defer="defer">
+
+function culReset(){
+	$j("#arrayproductId").val("");
+	$j("#arrayproductName").html("");
+}
+
+function senData(arrayproductId, arrayproductName) {
+	 culReset();
+	 arrayproductIdvalue=$j("#arrayproductId").val();
+	 arrayproductNamevalue=$j("#arrayproductName").html();
+	$j("#arrayproductId").val(arrayproductIdvalue+arrayproductId);
+	$j("#arrayproductName").html(arrayproductNamevalue+arrayproductName);
+}
+
+function fnTestSelectMultiProductSku(productSkuList) {
+	//alert("fnTestSelectMultiProductSku")
+	var data = "";
+	var arrayproductId = new Array();
+	var arrayproductName = new Array();
+	for ( var i = 0; i < productSkuList.length; i++) {
+		var productSku = productSkuList[i];
+		arrayproductId[i] = productSku.talentShowId;
+		arrayproductName[i] = productSku.content;
+	}
+	senData(arrayproductId.join(), arrayproductName.join());
+}
+</script>
+
 
 <v:javascript formName="talentShow" staticJavascript="false" />
 <script type="text/javascript">

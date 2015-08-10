@@ -17,6 +17,7 @@ public interface EvalRecommendationManager extends GenericManager<Product>
 	public List<Product> getProductsByRecommendedTypeNameByProductId(final Store store,
 			final String recommendedTypeName, final Integer sourceId, 
 			final int firstResult, final int maxResults);
+	
 	// 手动+自动评估 根据[推荐类型Id][源Id的list]获得特定范围的推荐产品(不能重复,而且必须是激活的)
 	public List<Product> getProductsByRecommendedTypeNameBySourceIdList(final Store store,
 			final String recommendedTypeName, final List<Integer> sourceIds,

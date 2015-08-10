@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class
+		name="com.cartmatic.estore.common.model.producttalenshow.ProductTalenshow"
+		table="product_talenshow" select-before-update="false" dynamic-update="false"
+		dynamic-insert="false" optimistic-lock="version">
+		<id name="productTalenShowId" column="product_talenShow_Id" type="java.lang.Integer"
+			length="10">
+			<generator class="native" />
+		</id>
+		<property name="sorted" type="java.lang.Integer" update="true"
+			insert="true" access="property" column="sorted" length="10" not-null="false"
+			unique="false" />
+
+		<!-- imported bi-directional many-to-one association to Brand -->
+		<many-to-one name="product"
+			class="com.cartmatic.estore.common.model.catalog.Product" not-null="false"
+			fetch="select">
+			<column name="productId" />
+		</many-to-one>
+		
+		
+		<!-- imported bi-directional many-to-one association to Brand -->
+		<many-to-one name="TalentShow"
+			class="com.cartmatic.estore.common.model.talentmanager.TalentShow" not-null="false"
+			fetch="select">
+			<column name="talenShowId" />
+		</many-to-one>
+		
+		
+	</class>
+</hibernate-mapping>

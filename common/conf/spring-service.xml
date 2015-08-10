@@ -1333,4 +1333,11 @@
         </property>
     </bean>
 <!-- end:  Generated for TalentShow From Template: spring-service.xml.vm  -->
+<!-- start:  Generated for ProductTalenshow From Template: spring-service.xml.vm  -->
+    <bean id="productTalenshowManager" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.cartmatic.estore.producttalenshow.service.impl.ProductTalenshowManagerImpl" parent="genericManager" autowire="byName"/>
+        </property>
+    </bean>
+<!-- end:  Generated for ProductTalenshow From Template: spring-service.xml.vm  -->
 </beans>

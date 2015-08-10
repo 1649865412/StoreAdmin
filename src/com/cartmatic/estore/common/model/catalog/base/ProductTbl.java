@@ -14,6 +14,7 @@ import com.cartmatic.estore.common.model.catalog.ProductMediaUp;
 import com.cartmatic.estore.common.model.catalog.ProductReview;
 import com.cartmatic.estore.common.model.catalog.ProductSku;
 import com.cartmatic.estore.common.model.catalog.ProductStat;
+import com.cartmatic.estore.common.model.producttalenshow.ProductTalenshow;
 import com.cartmatic.estore.common.model.supplier.Supplier;
 import com.cartmatic.estore.core.model.BaseObject;
 
@@ -86,6 +87,8 @@ public class ProductTbl extends BaseObject implements Serializable {
 	
 	protected com.cartmatic.estore.common.model.catalog.ProductHandDraw productHandDraw;
 
+	protected java.util.Set<ProductTalenshow> ProductTalenshowValues = new java.util.HashSet<ProductTalenshow>();
+	
 	protected java.util.Set<ProductAttrValue> productAttrValues = new java.util.HashSet<ProductAttrValue>();
 	protected java.util.Set<ProductStat> productStats = new java.util.HashSet<ProductStat>();
 	protected java.util.Set<ProductCategory> productCategorys = new java.util.HashSet<ProductCategory>();
@@ -96,6 +99,16 @@ public class ProductTbl extends BaseObject implements Serializable {
 	
 	protected java.util.Set<ProductMediaUp> productMediasUp = new java.util.HashSet<ProductMediaUp>();
 	
+	
+	
+	public java.util.Set<ProductTalenshow> getProductTalenshowValues() {
+		return ProductTalenshowValues;
+	}
+
+	public void setProductTalenshowValues(java.util.Set<ProductTalenshow> productTalenshowValues) {
+		ProductTalenshowValues = productTalenshowValues;
+	}
+
 	/**
 	 * Default Empty Constructor for class Product
 	 */

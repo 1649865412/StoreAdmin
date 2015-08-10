@@ -14,9 +14,7 @@
 <!-- start:  Generated for GiftCertificate From Template: menu-config.xml.vm  -->
 			<Item name="GiftCertificatesMenu" title="menu.viewGiftCertificates" page="/sales/giftCertificate.html"/>
 <!-- end:  Generated for GiftCertificate From Template: menu-config.xml.vm  -->
-<!-- start:  Generated for RecommendedType From Template: menu-config.xml.vm  -->
-			<Item name="RecommendedTypesMenu" title="menu.viewRecommendedTypes" page="/sales/recommendedType.html"/>
-<!-- end:  Generated for RecommendedType From Template: menu-config.xml.vm  -->
+
 		<Item name="AwardMenu" title="menu.viewAwards" page="/activity/award.html"/>
 		<Item name="UserAwardMenu" title="menu.viewUserAwards" page="/activity/userAward.html"/>
 <!--end of sales menu items-->
@@ -36,7 +34,7 @@
 			<!-- start:  Generated for Catalog From Template: menu-config.xml.vm  -->
 			<Item name="CatalogsMenu" title="menu.viewCatalogs" page="/catalog/catalog.html"/>
 <!-- end:  Generated for Catalog From Template: menu-config.xml.vm  -->
-			<Item name="ProductTypesMenu" title="menu.viewProductTypes" page="/catalog/productType.html"/>
+		
 <!-- end:  Generated for ProductType From Template: menu-config.xml.vm  -->
 <!-- start:  Generated for Brand From Template: menu-config.xml.vm  -->
 			<Item name="BrandsMenu" title="menu.viewBrands" page="/catalog/brand.html"/>
@@ -45,7 +43,7 @@
 			<Item name="ProductReviewsMenu" title="menu.viewProductReviews" page="/catalog/productReview.html"/>
 <!-- end:  Generated for ProductReview From Template: menu-config.xml.vm  -->
 <!-- start:  Generated for SkuOption From Template: menu-config.xml.vm  -->
-			<Item name="SkuOptionsMenu" title="menu.viewSkuOptions" page="/catalog/skuOption.html"/>
+			
 <!-- end:  Generated for SkuOption From Template: menu-config.xml.vm  -->
 <!-- start:  Generated for AccessoryGroup From Template: menu-config.xml.vm  -->
 			<Item name="AccessoryGroupsMenu" title="menu.viewAccessoryGroups" page="/catalog/accessoryGroup.html"/>
@@ -144,7 +142,7 @@
             <Item name="SystemVersionsMenu" title="menu.viewSystemVersions" page="/system/systemVersion.html"/>
         </Item>
         <!--end: of system config items--> 
-        <Item name="attributeMenu" title="menu.configattribute" page="/system/attribute.html"/>
+       
         <!--start: of region items--> 
         <!-- start:  Generated for Country From Template: menu-config.xml.vm  -->
 		<Item name="CountrysMenu" title="menu.shippingRegionManage" page="/system/shippingMethod.html">
@@ -178,6 +176,11 @@
 <!-- start:  Generated for Wrap From Template: menu-config.xml.vm  -->
 			<Item name="WrapsMenu" title="menu.viewWraps" page="/system/wrap.html"/>
 <!-- end:  Generated for Wrap From Template: menu-config.xml.vm  -->
+
+<!-- start:  Generated for RecommendedType From Template: menu-config.xml.vm  -->
+			<Item name="RecommendedTypesMenu" title="menu.viewRecommendedTypes" page="/sales/recommendedType.html"/>
+<!-- end:  Generated for RecommendedType From Template: menu-config.xml.vm  -->
+
         <!--start: of ImportDataMenu items--> 
 		<Item name="ImportDataMenu" title="menu.importData" page="/system/import.html"/>
         <!--end: of ImportDataMenu items-->
@@ -195,6 +198,13 @@
 <!-- end:  Generated for CulturalInformation From Template: menu-config.xml.vm  -->
 		<!--end of culturalinformation menu items-->
 		</Menu>
+
+
+    <Menu name="viewSKUMenu" title="menu.viewSKUMenu" description="View SKUMenu" roles="admin" width="120" page="/catalog/productType.html">
+	        <Item name="ProductTypesMenu" title="menu.viewProductTypes" page="/catalog/productType.html"/>
+            <Item name="SkuOptionsMenu" title="menu.viewSkuOptions" page="/catalog/skuOption.html"/>
+			<Item name="attributeMenu" title="menu.configattribute" page="/system/attribute.html"/>
+	</Menu>
 
 
 </Menus>

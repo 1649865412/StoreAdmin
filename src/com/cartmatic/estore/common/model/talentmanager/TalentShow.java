@@ -1,5 +1,7 @@
 package com.cartmatic.estore.common.model.talentmanager;
 
+import net.sf.json.JSONObject;
+
 import com.cartmatic.estore.common.model.talentmanager.base.TalentShowTbl;
 
 /**
@@ -26,6 +28,21 @@ public class TalentShow extends TalentShowTbl {
 			//如：product的VO就用product.productName
 	        return this.content;
 	}
+	
+	
+	/**
+	 * 构建简单的Json对象主要用于选择器
+	 * @return
+	 */
+	public String getJsonObject(){
+		JSONObject jsonSupplier=new JSONObject();
+		jsonSupplier.put("talentShowId",this.talentShowId);
+		jsonSupplier.put("content",this.content);
+		jsonSupplier.put("img", this.img);
+		jsonSupplier.put("releaseTime", this.releaseTime);
+		return jsonSupplier.toString();
+	}
+	
 	
 	/**
 	 * Default Key Fields Constructor for class TalentShow

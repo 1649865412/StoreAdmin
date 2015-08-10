@@ -1,22 +1,20 @@
-package com.cartmatic.estoresa.talentmanager.web.action;
+package com.cartmatic.estoresa.producttalenshow.web.action;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.validation.BindException;
 
-import com.cartmatic.estore.common.model.talentmanager.TalentShow;
 import com.cartmatic.estore.core.controller.GenericController;
-import com.cartmatic.estore.talentmanager.service.TalentShowManager;
+import com.cartmatic.estore.common.model.producttalenshow.ProductTalenshow;
+import com.cartmatic.estore.producttalenshow.service.ProductTalenshowManager;
 
-public class TalentShowController extends GenericController<TalentShow> {
-    private TalentShowManager talentShowManager = null;
+public class ProductTalenshowController extends GenericController<ProductTalenshow> {
+    private ProductTalenshowManager productTalenshowManager = null;
 
-    public void setTalentShowManager(TalentShowManager inMgr) {
-        this.talentShowManager = inMgr;
+    public void setProductTalenshowManager(ProductTalenshowManager inMgr) {
+        this.productTalenshowManager = inMgr;
     }
 
 	/*
@@ -25,8 +23,8 @@ public class TalentShowController extends GenericController<TalentShow> {
 	 * @see com.cartmatic.estore.core.controller.GenericController getEntityName(java.lang.Object)
 	 */
 	@Override
-	protected String getEntityName(TalentShow entity) {
-		return entity.getTalentShowName();
+	protected String getEntityName(ProductTalenshow entity) {
+		return entity.getProductTalenshowName();
 	}
 
 	/**
@@ -50,7 +48,7 @@ public class TalentShowController extends GenericController<TalentShow> {
 	 */
 	@Override
 	protected void initController() throws Exception {
-		mgr = talentShowManager;
+		mgr = productTalenshowManager;
 	}
 
 	/*
@@ -60,8 +58,7 @@ public class TalentShowController extends GenericController<TalentShow> {
 	 *      java.lang.Object, org.springframework.validation.BindException)
 	 */
 	@Override
-	protected void onSave(HttpServletRequest request, TalentShow entity, BindException errors) {
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-     	entity.setCreatTime(df.format(new Date()));
+	protected void onSave(HttpServletRequest request, ProductTalenshow entity, BindException errors) {
 	}
+
 }

@@ -83,6 +83,10 @@
 				<li>
 					<a href="#supplierInfo"><fmt:message key="product.tab.supplier" /> </a><span id="supplierInfoTabFlag"></span>
 				</li>
+				<li>
+					<a href="#talenShow">达人秀</a><span id="talenShow"></span>
+				</li>
+				
 				<c:if test="${not empty product.productId}">
 				<li>
 					<a href="#otherInfo"><fmt:message key="product.tab.other" /> </a><span id="otderInfoTabFlag"></span>
@@ -106,6 +110,7 @@
 			<%@ include file="./include/promotionInfo.jsp"%>
 			<%@ include file="./include/recommendedInfo.jsp"%>
 			<%@ include file="./include/supplierInfo.jsp"%>
+			<%@ include file="./include/talenshow.jsp"%>
 			<c:if test="${not empty product.productId}">
 				<%@ include file="./include/otherInfo.jsp"%>
 			</c:if>
