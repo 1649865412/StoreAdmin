@@ -84,6 +84,10 @@
 					<a href="#supplierInfo"><fmt:message key="product.tab.supplier" /> </a><span id="supplierInfoTabFlag"></span>
 				</li>
 				<li>
+					<a href="#productDeatilContentShow">产品详情页信息</a><span id="talenShow"></span>
+				</li>
+				
+				<li>
 					<a href="#talenShow">达人秀</a><span id="talenShow"></span>
 				</li>
 				
@@ -111,6 +115,8 @@
 			<%@ include file="./include/recommendedInfo.jsp"%>
 			<%@ include file="./include/supplierInfo.jsp"%>
 			<%@ include file="./include/talenshow.jsp"%>
+			<%@ include file="./include/productDeatilContentShow.jsp"%>
+			
 			<c:if test="${not empty product.productId}">
 				<%@ include file="./include/otherInfo.jsp"%>
 			</c:if>

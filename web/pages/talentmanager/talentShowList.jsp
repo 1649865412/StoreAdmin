@@ -1,4 +1,5 @@
 <%@ include file="/common/taglibs.jsp"%>
+<%@ taglib prefix="cartmatic" tagdir="/WEB-INF/tags/cartmatic"%>
 <app:pageHeading pageHeadingKey="talentShowList.heading" />
 
 <content tag="buttons">
@@ -51,10 +52,17 @@
 		    <display:column property="releaseTime" sortable="false" headerClass="data-table-title"
         		decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" titleKey="talentShow.releaseTime"/>
 		    <display:column property="sort" sortable="false" headerClass="data-table-title"
-        		decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" titleKey="talentShow.sort"/><%--
+        		decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" titleKey="talentShow.sort"/>
+        		<%--
 		    <display:column property="img" sortable="false" headerClass="data-table-title"
         		decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" titleKey="talentShow.img"/>
-		--%></display:table>
+		--%>
+			<display:column sortable="false"  title="图片"
+				decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" titleKey="talentShow.img">
+				<cartmatic:img isUrlOnly="false" url="${talentShowItem.img}" mediaType="other" id="img" height="100" width="100"></cartmatic:img>
+			</display:column>
+			
+			</display:table>
 		<%@include file="/common/pagingOnlyNew.jsp"%>
 </form>
 <script type="text/javascript">

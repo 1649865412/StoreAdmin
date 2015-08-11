@@ -19,7 +19,6 @@ import net.sf.json.JSONObject;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.ServletRequestDataBinder;
@@ -72,8 +71,10 @@ import com.cartmatic.estore.common.model.catalog.ProductSkuOptionValue;
 import com.cartmatic.estore.common.model.catalog.ProductType;
 import com.cartmatic.estore.common.model.catalog.WholesalePrice;
 import com.cartmatic.estore.common.model.inventory.Inventory;
+import com.cartmatic.estore.common.model.producttalenshow.ProductTalenshow;
 import com.cartmatic.estore.common.model.supplier.Supplier;
 import com.cartmatic.estore.common.model.supplier.SupplierProduct;
+import com.cartmatic.estore.common.model.talentmanager.TalentShow;
 import com.cartmatic.estore.common.service.AttributeService;
 import com.cartmatic.estore.common.util.DateUtil;
 import com.cartmatic.estore.core.controller.BaseBinder;
@@ -85,8 +86,10 @@ import com.cartmatic.estore.core.util.StringUtil;
 import com.cartmatic.estore.core.view.AjaxView;
 import com.cartmatic.estore.exception.BulkUpdateException;
 import com.cartmatic.estore.inventory.service.InventoryManager;
+import com.cartmatic.estore.producttalenshow.service.ProductTalenshowManager;
 import com.cartmatic.estore.supplier.service.SupplierManager;
 import com.cartmatic.estore.supplier.service.SupplierProductManager;
+import com.cartmatic.estore.talentmanager.service.TalentShowManager;
 import com.cartmatic.estore.webapp.util.RequestContext;
 import com.cartmatic.estore.webapp.util.RequestUtil;
 
@@ -99,11 +102,14 @@ public class ProductController extends GenericController<Product> {
 	private ProductAttGroupManager		productAttGroupManager		= null;
 	private CategoryManager				categoryManager				= null;
 	private ProductMediaManager			productMediaManager			= null;
-	private ProductMediaUpManager			productMediaUpManager			= null;
+	private ProductMediaUpManager		productMediaUpManager			= null;
 	private InventoryManager			inventoryManager			= null;
 	private ProductAttGroupItemManager	productAttGroupItemManager	= null;
 	private ProductDescriptionManager	productDescriptionManager	= null;
 	private ProductCategoryManager		productCategoryManager		= null;
+	private TalentShowManager           talentShowManager           = null;
+
+	private ProductTalenshowManager     productTalenshowManager     = null;
 	private WholesalePriceManager		wholesalePriceManager		= null;
 	private AttributeService attributeService=null;
 	private SupplierManager supplierManager=null;
@@ -111,6 +117,11 @@ public class ProductController extends GenericController<Product> {
 	
 	private AccessoryGroupManager accessoryGroupManager=null;
 	
+	
+
+	public void setProductTalenshowManager(ProductTalenshowManager productTalenshowManager) {
+		this.productTalenshowManager = productTalenshowManager;
+	}
 
 	public void setSupplierProductManager(
 			SupplierProductManager supplierProductManager) {
@@ -125,6 +136,14 @@ public class ProductController extends GenericController<Product> {
 		this.accessoryGroupManager = accessoryGroupManager;
 	}
 
+	public TalentShowManager getTalentShowManager() {
+		return talentShowManager;
+	}
+
+	public void setTalentShowManager(TalentShowManager talentShowManager) {
+		this.talentShowManager = talentShowManager;
+	}
+	
 	public void setAttributeService(AttributeService attributeService) {
 		this.attributeService = attributeService;
 	}
@@ -268,6 +287,8 @@ public class ProductController extends GenericController<Product> {
 		}
 	}
 
+	
+	
 	/**
 	 * 对编辑普通产品或产品包时，对相应的Sku设置的数据进行验证
 	 * 
@@ -285,6 +306,30 @@ public class ProductController extends GenericController<Product> {
 			errors.rejectValue("productSkuCode", msgKey);
 		}
 	}
+	
+	
+
+	/**
+	 * 功能:对产品保存的时候，同时保存达人秀数据
+	 * <p>作者 杨荣忠 2015-8-11 上午09:32:33
+	 */
+	public void saveProductTalenshow(HttpServletRequest request,Product product){
+		try{
+			//System.out.print(request.getParameter("recommendArrayId"));
+			String array[] = request.getParameter("recommendArrayId").split(",");
+			for(int i=0;i<array.length;i++){
+				ProductTalenshow productTalenshow= new ProductTalenshow();
+				TalentShow talentShow  =  talentShowManager.getById(Integer.parseInt(array[i]));
+				productTalenshow.setProduct(product);
+				productTalenshow.setTalentShow(talentShow);
+				productTalenshowManager.save(productTalenshow);
+			}
+		}catch(Exception e){
+		//	e.printStackTrace();
+		}
+	}
+	
+	
 
 	@Override
 	public ModelAndView save(HttpServletRequest request,
@@ -292,6 +337,7 @@ public class ProductController extends GenericController<Product> {
 		if (logger.isDebugEnabled()) {
 			logger.debug("entering ProductController 'save' method...");
 		}
+		
 		// 首次保存只是保存productInfo
 		boolean onlySaveProductInfo = ServletRequestUtils.getBooleanParameter(
 				request, "onlySaveProductInfo", false);
@@ -334,15 +380,15 @@ public class ProductController extends GenericController<Product> {
 				// 编辑产品时，同时保存描述信息，productDescription
 				productDataModel.setOnlySaveProductInfo(onlySaveProductInfo);
 				if (!onlySaveProductInfo) {
-					
-					System.out.println("fullDescription:"+request.getParameter("fullDescription"));
+					/*System.out.println("fullDescription:"+request.getParameter("fullDescription"));
+					System.out.println("fullDescription:"+request.getParameter("fullDescription2"));
 					System.out.println("shortDescription:"+request.getParameter("shortDescription"));
 					System.out.println("imageDescription:"+request.getParameter("imageDescription"));
 					System.out.println("qrCodeDescription:"+request.getParameter("qrCodeDescription"));
 					System.out.println("customerServiceDescription:"+request.getParameter("customerServiceDescription"));
 					System.out.println("productSizeDescription:"+request.getParameter("productSizeDescription"));
 					System.out.println("productInfoationDescription:"+request.getParameter("productInfoationDescription"));
-					
+*/
 					productDataModel.setFullDescription(request.getParameter("fullDescription"));
 					productDataModel.setShortDescription(request.getParameter("shortDescription"));
 					productDataModel.setImageDescription(request.getParameter("imageDescription"));
@@ -475,6 +521,7 @@ public class ProductController extends GenericController<Product> {
 				productDataModel.setHandDrawId(handDrawId);
 				productDataModel.setHandDrawUrl(handDrawUrl);
 				
+				
 				// 保存更新产品数据
 				Map<String, Object> saveProductMsg = productMainManager.saveProductAction(productDataModel);
 				
@@ -482,6 +529,7 @@ public class ProductController extends GenericController<Product> {
 					//更新索引
 					CatalogHelper.getInstance().indexNotifyUpdateEvent(product.getProductId());
 				}
+				saveProductTalenshow( request, product);
 				
 				// 保存为ajax处理，因此保存后续更新页面新增的产品媒体的ID
 				newProductMediaIds = (List<String>) saveProductMsg.get("newProductMediaIds");
@@ -1476,6 +1524,17 @@ public class ProductController extends GenericController<Product> {
 			}
 		}
 		return true;
+	}
+	
+	/**
+	 * 功能:做产品详情页里嵌入达人秀功能选择
+	 * <p>作者 杨荣忠 2015-8-10 下午05:10:03
+	 * @param request
+	 * @return
+	 */
+	public ModelAndView productAddProductDeatilContent(HttpServletRequest request,HttpServletResponse response) {
+		ModelAndView mv =new ModelAndView("/catalog/productDeatilContent");
+		return mv;
 	}
 	
 	/**

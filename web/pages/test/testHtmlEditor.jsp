@@ -6,10 +6,8 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Testing HtmlEditor page</title>
 		<%@ include file="/decorators/include/javascripts.jspf"%>
-		
 	</head>
 	<body>
-	
 	
 <form method="post" action="http://tinymce.moxiecode.com/dump.php?example=true">
 	<h3>Full featured example</h3>
@@ -42,7 +40,7 @@
 		<a href="javascript:;" onmousedown="tinyMCE.execCommand('mceReplaceContent',false,'<b>{$selection}</b>');">[Replace selection]</a>
 	</div>
 
-	<br />
+	<br/>
 	<input type="submit" name="save" value="Submit" />
 	<input type="reset" name="reset" value="Reset" />
 </form>

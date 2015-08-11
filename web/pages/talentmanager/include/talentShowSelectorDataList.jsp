@@ -16,8 +16,9 @@
 		${supplierItem.releaseTime}
 	</display:column>
 	
-	<display:column sortable="false" decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" title="图片">
-		${supplierItem.img}
+	<display:column sortable="false"  title="图片"
+				decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" titleKey="talentShow.img">
+				<cartmatic:img isUrlOnly="false" url="${supplierItem.img}" mediaType="other" id="img" height="100" width="100"></cartmatic:img>
 	</display:column>
 	
 </display:table>

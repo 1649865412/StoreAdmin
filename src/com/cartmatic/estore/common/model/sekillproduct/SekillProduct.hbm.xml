@@ -5,53 +5,25 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class
-        name="com.cartmatic.estore.common.model.sekillproduct.SekillProduct"
-        table="sekill_product"
-        select-before-update="false"
-        dynamic-update="false"
-        dynamic-insert="false"
-        optimistic-lock="version"
-    >
-		<id
-            name="sekillProductId"
-            column="sekillProductId"
-            type="java.lang.Integer"
-            length="11"
-        >
-            <generator class="native"/>
-        </id>
+	<class name="com.cartmatic.estore.common.model.sekillproduct.SekillProduct"
+		table="sekill_product" select-before-update="false" dynamic-update="false"
+		dynamic-insert="false" optimistic-lock="version">
+		<id name="sekillProductId" column="sekillProductId" type="java.lang.Integer"
+			length="11">
+			<generator class="native" />
+		</id>
 
-        <property
-            name="sekillTime"
-           type="java.lang.String"
-            update="true"
-            insert="true"
-            access="property"
-            column="sekillTime"
-            length="50"
-            not-null="false"
-            unique="false"
-        />
-        <property
-            name="createTime"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            access="property"
-            column="createTime"
-            length="50"
-            not-null="false"
-            unique="false"
-        />
-            <!-- imported bi-directional many-to-one association to ProductSku -->
-		<many-to-one
-			name="product"
-			class="com.cartmatic.estore.common.model.catalog.Product"
-            not-null="false"
-			fetch="select"
-		>	
+		<property name="sekillTime" type="java.lang.String" update="true"
+			insert="true" access="property" column="sekillTime" length="50"
+			not-null="false" unique="false" />
+		<property name="createTime" type="java.lang.String" update="true"
+			insert="true" access="property" column="createTime" length="50"
+			not-null="false" unique="false" />
+		<!-- imported bi-directional many-to-one association to ProductSku -->
+		<many-to-one name="product"
+			class="com.cartmatic.estore.common.model.catalog.Product" not-null="false"
+			fetch="select">
 			<column name="productId" />
 		</many-to-one>
-     </class>
+	</class>
 </hibernate-mapping>

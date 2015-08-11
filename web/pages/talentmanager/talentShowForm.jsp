@@ -1,9 +1,8 @@
 <%@ include file="/common/taglibs.jsp"%>
 <%@ taglib prefix="cartmatic" tagdir="/WEB-INF/tags/cartmatic"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="talentSelector" tagdir="/WEB-INF/tags/talentshow"%>
 
-<app:pageHeading entityName="${talentShow.talentShowName}" entityHeadingKey="talentShowDetail.heading" />
+<app:pageHeading entityName="${talentShow.talentShowName}" entityHeadingKey="talentShowList.heading" />
 <content tag="buttons">
 	<cartmatic:cartmaticBtn btnType="save" onclick="return fnDoSave(this);" />
 	<%--
@@ -31,7 +30,7 @@
 					value="<fmt:formatDate value="${talentShow.releaseTime}" pattern="yyyy-MM-dd" />" />
 				<app:ui_datePicker outPut="releaseTime" />
 			</td>
-		</tr>
+		</tr><%--
 	<tr>
 			<td class="FieldLabel">
 				达人秀:
@@ -55,11 +54,11 @@
                       	${reCulturalInformation.title},
 				    </c:forEach> </span>
 				<input type="hidden" id="arrayproductId" name="recommendArrayId"
-					value="${culturalInformation.recommendArrayId}" />
+					value="${talentShow.recommendArrayId}" />
 			</td>
 		</tr>
 		
- 		<tr>
+ 		--%><tr>
 			<td class="FieldLabel">
 				上传图片:
 			</td>

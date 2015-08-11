@@ -3,21 +3,39 @@ package com.cartmatic.estoresa.talentmanager.web.action;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.validation.BindException;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.cartmatic.estore.catalog.service.ProductManager;
+import com.cartmatic.estore.common.model.producttalenshow.ProductTalenshow;
 import com.cartmatic.estore.common.model.talentmanager.TalentShow;
 import com.cartmatic.estore.core.controller.GenericController;
 import com.cartmatic.estore.talentmanager.service.TalentShowManager;
 
 public class TalentShowController extends GenericController<TalentShow> {
     private TalentShowManager talentShowManager = null;
+    private ProductManager	productManager	= null;
 
-    public void setTalentShowManager(TalentShowManager inMgr) {
+    public TalentShowManager getTalentShowManager() {
+		return talentShowManager;
+	}
+
+	public void setTalentShowManager(TalentShowManager inMgr) {
         this.talentShowManager = inMgr;
     }
+
+	public ProductManager getProductManager() {
+		return productManager;
+	}
+
+	public void setProductManager(ProductManager productManager) {
+		this.productManager = productManager;
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -63,5 +81,26 @@ public class TalentShowController extends GenericController<TalentShow> {
 	protected void onSave(HttpServletRequest request, TalentShow entity, BindException errors) {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
      	entity.setCreatTime(df.format(new Date()));
+	}
+	
+	/**
+	 * 功能:做产品详情页里嵌入达人秀功能选择
+	 * <p>作者 杨荣忠 2015-8-10 下午05:10:03
+	 * @param request
+	 * @return
+	 */
+	public ModelAndView productAddTalent(HttpServletRequest request,HttpServletResponse response) {
+		ModelAndView mv =new ModelAndView("/talentmanager/include/talentProductShowForm");
+		String productId =request.getParameter("productId");
+		System.out.print("productId:"+productId);
+		if(productId!=null){
+			try{
+				Set<ProductTalenshow>productTalenshowList = 	productManager.getById(Integer.parseInt(productId)).getProductTalenshowValues();
+				mv.addObject("productTalenshowList", productTalenshowList);
+			}catch(Exception e){
+			   
+			}
+		}
+		return mv;
 	}
 }

@@ -2,7 +2,7 @@
 <%@ taglib prefix="supplier" tagdir="/WEB-INF/tags/supplier"%>
 <%@ taglib prefix="product" tagdir="/WEB-INF/tags/catalog"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<div id="talenShow" style="display:none;min-height: 520px;">
+<div id="supplierInfo" style="display:none;min-height: 520px;">
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-content">
 		<tr>
 			<th colspan="2">
