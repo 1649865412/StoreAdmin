@@ -63,4 +63,3 @@
 	</tr>
 </table>
 
-<app:ui_htmlEditor textareaIds="qrCodeDescription" />

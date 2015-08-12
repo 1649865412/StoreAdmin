@@ -404,6 +404,11 @@
 				<prop key="/talentmanager/talentShow.html">talentShowController</prop>
 <!-- end:  Generated for SekillProduct From Template: spring-mvc.xml.urlvm  -->
 
+<!-- start:  Generated for SekillProduct From Template: spring-mvc.xml.urlvm  -->
+				<prop key="/producttalenshow/producttalenshow.html">productTalenshowController</prop>
+<!-- end:  Generated for SekillProduct From Template: spring-mvc.xml.urlvm  -->
+
+
 <!-- start:  Generated for CulturalInformation From Template: spring-mvc.xml.urlvm  -->
 				<prop key="/culturalinformation/culturalInformation.html">culturalInformationController</prop>
 <!-- end:  Generated for CulturalInformation From Template: spring-mvc.xml.urlvm  -->

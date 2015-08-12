@@ -63,7 +63,7 @@
 			</display:column>
 			<display:column sortable="false"  
 				decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" title="操作">
-				 <a href="${ctxPath}/talentmanager/talentShow.html?doAction=delete&productTalenShowId=${talentShowItem.productTalenShowId}">删除</a>
+				 <a onClick="deleteOne(${talentShowItem.productTalenShowId})">删除</a>
 			</display:column>
 	</display:table>
 </form:form>
@@ -97,6 +97,22 @@ function fnTestSelectMultiProductSku(productSkuList) {
 	}
 	senData(arrayproductId.join(), arrayproductName.join());
 }
+
+
+
+function deleteOne(productTalenShowId) {
+	$j.post(__ctxPath+"/producttalenshow/producttalenshow.html?doAction=deleteOne",{
+		productTalenShowId : productTalenShowId
+	}, function(result) {
+		  //  alert("result:"+result.status);
+			if (result.status == 1) {
+				alert("删除成功，刷新后可见")
+			} else {
+				alert("删除失败");
+			}
+		}, "json");
+}
+
 </script>
 
 

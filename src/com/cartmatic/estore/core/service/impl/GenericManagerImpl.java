@@ -310,4 +310,5 @@ public abstract class GenericManagerImpl<T> implements GenericManager<T>,
 	public List searchByCriteria(SearchCriteria sc) {
 		return dao.searchByCriteria(sc);
 	}
+	
 }

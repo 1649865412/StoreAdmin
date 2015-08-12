@@ -243,6 +243,7 @@ public abstract class GenericController<T> extends BaseController {
 		request.setAttribute("sc", sc);
 		return sc;
 	}
+	
 
 	/**
 	 * 缺省Action,列出缺省搜索条件的搜索结果列表。必须转给search处理。
@@ -257,6 +258,8 @@ public abstract class GenericController<T> extends BaseController {
 		return search(request, response);
 	}
 
+	
+	
 	/**
 	 * 删除一条记录。并在应用级出错的时候显示出错信息。
 	 * 

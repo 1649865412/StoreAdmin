@@ -3,11 +3,16 @@ package com.cartmatic.estoresa.producttalenshow.web.action;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.validation.BindException;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.cartmatic.estore.core.controller.GenericController;
 import com.cartmatic.estore.common.model.producttalenshow.ProductTalenshow;
+import com.cartmatic.estore.core.controller.GenericController;
+import com.cartmatic.estore.core.view.AjaxView;
 import com.cartmatic.estore.producttalenshow.service.ProductTalenshowManager;
 
 public class ProductTalenshowController extends GenericController<ProductTalenshow> {
@@ -50,6 +55,8 @@ public class ProductTalenshowController extends GenericController<ProductTalensh
 	protected void initController() throws Exception {
 		mgr = productTalenshowManager;
 	}
+	
+	
 
 	/*
 	 * (non-Javadoc)
@@ -59,6 +66,33 @@ public class ProductTalenshowController extends GenericController<ProductTalensh
 	 */
 	@Override
 	protected void onSave(HttpServletRequest request, ProductTalenshow entity, BindException errors) {
+		
+	}
+	
+
+	/**
+	 * 在产品详情页删除一条记录。
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView deleteOne(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+      //  System.out.print("id:"+request.getParameter("productTalenShowId"));
+        AjaxView ajaxView = new AjaxView(response);
+        Short flag = 0;
+        try{
+        	productTalenshowManager.deleteById(Integer.parseInt(request.getParameter("productTalenShowId")));
+        	flag =1;
+        }
+          catch(Exception e)
+        {
+        	
+        }
+          ajaxView.setStatus(flag);
+          return ajaxView;
 	}
 
 }
