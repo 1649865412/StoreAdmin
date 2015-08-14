@@ -81,7 +81,7 @@
 	    </tr>
 	  <tr>
 			<td class="FieldLabel">
-				<span>推荐产品选择(支持多选，前台只展示前六个)： </span>
+				<span>推荐产品选择(支持多选，前台只展示前八个)： </span>
 			</td>
 			<td>
 					<input type="button" value="产品推荐" id="b5" />
@@ -221,7 +221,7 @@
 	    
 	    <tr>
 			<td class="FieldLabel">
-				设计师logo图(滾動圖第一張)：
+				设计师logo图：
 			</td>
 			<td>
 				<div style="float: left;">
@@ -238,7 +238,7 @@
 	    </tr>
 	    <tr>
 			<td class="FieldLabel">
-				滚动图第二張
+				滚动图第一張
 			</td>
 			<td>
 				<div style="float: left;">
@@ -248,14 +248,13 @@
 					<span id="pic2ImageBtnPlaceHolderId"></span>
 					<input type="hidden" id="pic2" name="pic2" value="${brand.pic2}" />
 					<br/>
-					(<fmt:message key="brand.icon.desc" />)
 					<cartmatic:iconBtn icon="cross" extraCss="negative" text="清空图片" onclick="$('pic2Image').src='${ctxPath}/images/default/00.jpg';$j('#pic2').val('');" />
 				</div>
 			</td>
 	    </tr> 
 	       <tr>
 			<td class="FieldLabel">
-				滚动图第三張
+				滚动图第二張
 			</td>
 			<td>
 				<div style="float: left;">
@@ -265,14 +264,13 @@
 					<span id="pic3ImageBtnPlaceHolderId"></span>
 					<input type="hidden" id="pic3" name="pic3" value="${brand.pic3}" />
 					<br/>
-					(<fmt:message key="brand.icon.desc" />)
 					<cartmatic:iconBtn icon="cross" extraCss="negative" text="清空图片" onclick="$('pic3Image').src='${ctxPath}/images/default/00.jpg';$j('#pic3').val('');" />
 				</div>
 			</td>
 	    </tr> 
 	       <tr>
 			<td class="FieldLabel">
-				滚动图第四張
+				滚动图第三張
 			</td>
 			<td>
 				<div style="float: left;">
@@ -282,14 +280,13 @@
 					<span id="pic4ImageBtnPlaceHolderId"></span>
 					<input type="hidden" id="pic4" name="pic4" value="${brand.pic4}" />
 					<br/>
-					(<fmt:message key="brand.icon.desc" />)
 					<cartmatic:iconBtn icon="cross" extraCss="negative" text="清空图片" onclick="$('pic4Image').src='${ctxPath}/images/default/00.jpg';$j('#pic4').val('');" />
 				</div>
 			</td>
 	    </tr> 
 	       <tr>
 			<td class="FieldLabel">
-				滚动图第五張
+				滚动图第四張
 			</td>
 			<td>
 				<div style="float: left;">
@@ -299,14 +296,13 @@
 					<span id="pic5ImageBtnPlaceHolderId"></span>
 					<input type="hidden" id="pic5" name="pic5" value="${brand.pic5}" />
 					<br/>
-					(<fmt:message key="brand.icon.desc" />)
 					<cartmatic:iconBtn icon="cross" extraCss="negative" text="清空图片" onclick="$('pic5Image').src='${ctxPath}/images/default/00.jpg';$j('#pic5').val('');" />
 				</div>
 			</td>
 	    </tr> 
 	       <tr>
 			<td class="FieldLabel">
-				滚动图第六張
+				滚动图第五張
 			</td>
 			<td>
 				<div style="float: left;">
@@ -316,7 +312,6 @@
 					<span id="pic6ImageBtnPlaceHolderId"></span>
 					<input type="hidden" id="pic6" name="pic6" value="${brand.pic6}" />
 					<br/>
-					(<fmt:message key="brand.icon.desc" />)
 					<cartmatic:iconBtn icon="cross" extraCss="negative" text="清空图片" onclick="$('pic6Image').src='${ctxPath}/images/default/00.jpg';$j('#pic6').val('');" />
 				</div>
 			</td>
@@ -333,7 +328,6 @@
 					<span id="picImageBtnPlaceHolderId"></span>
 					<input type="hidden" id="pic" name="pic" value="${brand.pic}" />
 					<br/>
-					(<fmt:message key="brand.pic.desc" />)
 					<cartmatic:iconBtn icon="cross" extraCss="negative" text="清空图片" onclick="$('picImage').src='${ctxPath}/images/default/00.jpg';$j('#pic').val('');" />
 				</div>
 			</td>

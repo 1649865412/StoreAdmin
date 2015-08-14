@@ -566,6 +566,7 @@ public class ProductController extends GenericController<Product> {
 		return ajaxView;
 	}
 
+	
 	@Override
 	protected void onShowForm(HttpServletRequest request, ModelAndView mv) {
 		if (logger.isDebugEnabled()) {

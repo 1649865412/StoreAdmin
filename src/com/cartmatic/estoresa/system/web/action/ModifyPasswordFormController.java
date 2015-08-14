@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
