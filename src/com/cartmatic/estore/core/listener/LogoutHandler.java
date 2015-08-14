@@ -40,6 +40,7 @@ public class LogoutHandler extends org.springframework.security.web.authenticati
 		if (ContextUtil.isStoreFront()) {
 			ShoppingCartUtil.getInstance().removeShoppingcartCookie(request, response);
 		}
+		System.out.print("url:"+request.getContextPath());
 		RequestUtil.removeUserCookies(response, request.getContextPath());
 	}
 }

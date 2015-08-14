@@ -2,18 +2,8 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<comment>index SQL</comment>
-
-
-	<!-- 一二级分类数据获取，不加品牌过滤 -->
-
 	<entry key="BRAND_SEARCH">
-		SELECT a.* FROM `sekill_product` a LEFT JOIN `shipping_method` b ON
-		a.`sekillProductId` = b.shippingMethodId
-		where 1=1 { and a.`sekillProductId` > #sekillProductId#}
-
 		SELECT * FROM  brand a WHERE 1=1 
 		{and  a.`brandName` LIKE "%#tags#%" OR  a.`designer` LIKE  "%#tags#%" }
 	</entry>
-
-
 </properties>

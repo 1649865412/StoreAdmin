@@ -80,6 +80,25 @@ public class ModifyPasswordFormController extends BaseController {
 		saveMessage(Message.info("appUser.password.modified"));
 		return new ModelAndView(new RedirectView(successView));
 	}
+	
+	
+	
+   public boolean checkAppUser(HttpServletRequest request)
+	{
+		AppUser appUser = appUserManager.getUserByName(request.getParameter("eamil"));
+		boolean tag = false;
+		if(appUser!=null){
+			String oldPassword = passwordEncoder.encodePassword(request.getParameter("password"), null);
+			boolean isOldPasswordRight = appUserManager.getIsPasswordRight(appUser.getAppuserId(), oldPassword);
+			if(isOldPasswordRight==true){
+				//此处判断是不是登录成功
+				tag = true;
+				//可继续写其它代码，例如购物车与用户cookie
+			}
+		}
+		return tag;
+	}
+	
 
 	public void setSuccessView(String avalue)
     {

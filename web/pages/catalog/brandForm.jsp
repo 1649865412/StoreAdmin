@@ -45,7 +45,7 @@
 	    </tr>
 	   <tr>
 			<td class="FieldLabel">
-				设计师首字母(前端首字母排序查询,只限大写字母查询)：
+				设计师首字母(只限大写字母查询)：
 			</td>
 			<br>
 			<td>
@@ -62,12 +62,12 @@
 	   </tr>
 	 <tr>
 			<td class="FieldLabel">
-				访谈资讯(支持多选，前台只展示前一个):
+				访谈资讯:
 			</td>
 			<td>
 			    <input id="b1" type="button" class="admin-btn" value="访谈资讯" onclick="multiSupplierSelector_show('kkk_DIV')"/>
 			    <input id="b2" type="button" class="admin-btn" value="清空" onclick="Reset(1)"/>
-	            <cultural:culturalSelector title="访谈资讯选择"   id="multiSupplierSelector"  autoClose="true" ondblclick="fnTestSelectMultiCulSku"  multiSelect="true"></cultural:culturalSelector>
+	            <cultural:culturalSelector multiSelect= "false" title="访谈资讯选择"   id="multiSupplierSelector"  autoClose="true" ondblclick="fnTestSelectMultiCulSku"  ></cultural:culturalSelector>
 	                                      新已选访谈资讯： <span id="arrayculName"></span>
 	            <br>
 			          原来已选访谈资讯：
@@ -385,19 +385,6 @@ function senData(arrayproductId, arrayproductName,type) {
 		 arrayproductIdvalue=$j("#arrayproductId").val();
 		 arrayproductNamevalue=$j("#arrayproductName").html();
 		}
-	
-	/* if(arrayproductIdvalue=="")
-		 {
-		 arrayproductIdvalue="";
-		 }else{
-			 arrayproductIdvalue+=",";
-			 }
-	 if(arrayproductNamevalue=="")
-		 {
-		 arrayproductNamevalue="";
-		 }else{
-			 arrayproductNamevalue+=",";
-			 }*/
 	 if(type==1){
 		 $j("#arrayculId").val(arrayproductIdvalue+arrayproductId);
 			$j("#arrayculName").html(arrayproductNamevalue+arrayproductName);
@@ -409,17 +396,12 @@ function senData(arrayproductId, arrayproductName,type) {
 }
 
 //选择器值函数回调（文化）
-function fnTestSelectMultiCulSku(productSkuList) {
-	//alert("fnTestSelectMultiProductSku")
-	var data = "";
-	var arrayproductId = new Array();
-	var arrayproductName = new Array();
-	for ( var i = 0; i < productSkuList.length; i++) {
-		var productSku = productSkuList[i];
-		arrayproductId[i] = productSku.culturalInformationId;
-		arrayproductName[i] = productSku.title;
-	}
-	senData(arrayproductId.join(), arrayproductName.join(),1);
+function fnTestSelectMultiCulSku( productSku) {
+	var arrayproductId ="";
+	var arrayproductName = "";
+	arrayproductId = productSku.culturalInformationId;
+	arrayproductName = productSku.title;
+	senData(arrayproductId, arrayproductName,1);
 }
 
 //选择器值函数回调（产品）
@@ -428,7 +410,7 @@ function fnTestSelectMultiProductSku(productSkuList) {
 	var data = "";
 	var arrayproductId = new Array();
 	var arrayproductName = new Array();
-	//alert("productSkuList:"+productSkuList);
+//	alert("productSkuList:"+productSkuList);
 	for ( var i = 0; i < productSkuList.length; i++) {
 		var productSku = productSkuList[i];
 		arrayproductId[i] = productSku.product.productId;
@@ -437,3 +419,4 @@ function fnTestSelectMultiProductSku(productSkuList) {
 	senData(arrayproductId.join(), arrayproductName.join(),2);
 }
 </script>
+
