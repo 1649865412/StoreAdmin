@@ -207,5 +207,11 @@
 	</Menu>
 
 
+		<Menu name="viashowMenu" title="menu.viewviashowMenu" description="View viashowMenu" roles="admin" width="120" page="/viashow/index.html">
+<!-- start:  Generated for Via From Template: menu-config.xml.vm  -->
+			<Item name="ViasMenu" title="menu.viewVias" page="/viashow/via.html"/>
+<!-- end:  Generated for Via From Template: menu-config.xml.vm  -->
+		<!--end of viashow menu items-->
+		</Menu>
 </Menus>
 </MenuConfig>

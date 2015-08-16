@@ -1340,4 +1340,11 @@
         </property>
     </bean>
 <!-- end:  Generated for ProductTalenshow From Template: spring-service.xml.vm  -->
+<!-- start:  Generated for Via From Template: spring-service.xml.vm  -->
+    <bean id="viaManager" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.cartmatic.estore.viashow.service.impl.ViaManagerImpl" parent="genericManager" autowire="byName"/>
+        </property>
+    </bean>
+<!-- end:  Generated for Via From Template: spring-service.xml.vm  -->
 </beans>

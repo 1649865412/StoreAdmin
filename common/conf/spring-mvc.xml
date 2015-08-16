@@ -410,9 +410,13 @@
 
 
 <!-- start:  Generated for CulturalInformation From Template: spring-mvc.xml.urlvm  -->
-				<prop key="/culturalinformation/culturalInformation.html">culturalInformationController</prop>
+				<prop key="/viashow/via.html">viaController</prop>
 <!-- end:  Generated for CulturalInformation From Template: spring-mvc.xml.urlvm  -->
 
+
+<!-- start:  Generated for CulturalInformation From Template: spring-mvc.xml.urlvm  -->
+				<prop key="/culturalinformation/culturalInformation.html">culturalInformationController</prop>
+<!-- end:  Generated for CulturalInformation From Template: spring-mvc.xml.urlvm  -->
 
 <!-- start:  Generated for MonthlyCultural From Template: spring-mvc.xml.urlvm  -->
 				<prop key="/monthlycultural/monthlyCultural.html">monthlyCulturalController</prop>
@@ -1119,4 +1123,9 @@
 		<property name="productTalenshowManager" ref="productTalenshowManager"/>
 	</bean>
 <!-- end:  Generated for ProductTalenshow From Template: spring-mvc.xml.beansvm  -->
+<!-- start:  Generated for Via From Template: spring-mvc.xml.beansvm  -->
+	<bean id="viaController" class="com.cartmatic.estoresa.viashow.web.action.ViaController" parent="genericController">
+		<property name="viaManager" ref="viaManager"/>
+	</bean>
+<!-- end:  Generated for Via From Template: spring-mvc.xml.beansvm  -->
 </beans>

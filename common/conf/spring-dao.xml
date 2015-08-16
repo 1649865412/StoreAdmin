@@ -1233,4 +1233,14 @@
     </bean>
     
 <!-- end:  Generated for ProductTalenshow From Template: spring-dao.xml.beansvm  -->
+<!-- start:  Generated for Via From Template: spring-dao.xml.beansvm  -->
+    <bean id="viaDao" class="com.cartmatic.estore.viashow.dao.impl.ViaDaoImpl" parent="hibernateGenericDao">
+    	<property name="searchFilters">
+    		<list>
+    			<value>default;;select s from Via s;;allow,all</value>
+    		</list>
+    	</property>
+    </bean>
+    
+<!-- end:  Generated for Via From Template: spring-dao.xml.beansvm  -->
 </beans>

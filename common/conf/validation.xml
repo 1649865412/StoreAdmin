@@ -4456,5 +4456,49 @@
 			</field>
 		</form>
 <!-- end:  Generated for ProductTalenshow From Template: validation.xml.vm  -->
+<!-- start:  Generated for Via From Template: validation.xml.vm  -->
+		<form name="via">
+			<field property="name" depends="maxlength">
+				<arg position="0" key="via.name" />
+				<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>32</var-value>
+				</var>
+			</field>
+			<field property="company" depends="maxlength">
+				<arg position="0" key="via.company" />
+				<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>32</var-value>
+				</var>
+			</field>
+			<field property="email" depends="maxlength">
+				<arg position="0" key="via.email" />
+				<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>32</var-value>
+				</var>
+			</field>
+			<field property="phone" depends="maxlength">
+				<arg position="0" key="via.phone" />
+				<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>32</var-value>
+				</var>
+			</field>
+			<field property="bark" depends="maxlength">
+				<arg position="0" key="via.bark" />
+				<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>32</var-value>
+				</var>
+			</field>
+		</form>
+<!-- end:  Generated for Via From Template: validation.xml.vm  -->
 </formset>
 </form-validation>
