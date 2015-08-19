@@ -24,6 +24,12 @@ public interface ProductDao extends GenericDao<Product> {
 	public List<Product> findProductByCategoryIdForShow(SearchCriteria searchCriteria,Integer categoryId,String sorter);
 	
 
+	/**
+	 * 功能:商场默认所有最新产品
+	 * <p>作者 杨荣忠 2015-8-19 下午06:11:42
+	 * @return
+	 */
+	public List<Product> getDefaultProduct();
 	
 	/**
 	 * 前台搜索产品

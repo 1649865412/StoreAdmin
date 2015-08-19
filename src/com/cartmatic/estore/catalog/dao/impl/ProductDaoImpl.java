@@ -2,7 +2,9 @@ package com.cartmatic.estore.catalog.dao.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.lang.StringUtils;
@@ -12,6 +14,7 @@ import com.cartmatic.estore.Constants;
 import com.cartmatic.estore.catalog.dao.ProductDao;
 import com.cartmatic.estore.catalog.util.SearchUtil;
 import com.cartmatic.estore.common.helper.CatalogHelper;
+import com.cartmatic.estore.common.model.catalog.Brand;
 import com.cartmatic.estore.common.model.catalog.Product;
 import com.cartmatic.estore.common.model.catalog.ProductSearchCriteria;
 import com.cartmatic.estore.common.model.catalog.SearchAttributeItem;
@@ -36,6 +39,14 @@ public class ProductDaoImpl extends HibernateGenericDaoImpl<Product> implements 
 	
 	public SearchCriteria getProductSkuSearchCriteria(SearchCriteria searchCriteria,ProductSearchCriteria productSearchCriteria){
 		return searchProducts(searchCriteria, productSearchCriteria,"ps","","ps.productSkuId desc");
+	}
+	
+	public static String SqlSearch ="GET_DEFAULT_PRODUCT";
+	
+	public List<Product> getDefaultProduct(){
+		 Map<String, Object> paramValue =new HashMap();
+		 List<Product> result = getObjectList(SqlSearch,new Product(),paramValue);
+		 return result;
 	}
 	
 	/**
@@ -253,9 +264,7 @@ public class ProductDaoImpl extends HibernateGenericDaoImpl<Product> implements 
 			}
 			whereClause=getAndClause(whereClause, attributeQuery.toString());
 		}
-		
-		
-		
+			
 		
 		String hql="select ";
 		if(requireDistinct){

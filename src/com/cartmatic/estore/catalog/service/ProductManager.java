@@ -2,7 +2,6 @@ package com.cartmatic.estore.catalog.service;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import com.cartmatic.estore.common.model.catalog.Accessory;
 import com.cartmatic.estore.common.model.catalog.AccessoryGroup;
@@ -20,7 +19,10 @@ public interface ProductManager extends GenericManager<Product> {
 	public Product getProductByProductCode(String productCode);
 	
 	public Product getActiveProduct(Integer productId);
-
+	
+	
+	public List<Product> getDefaultProduct();
+	
 
 	/**
 	 * 查找某目录下的产品

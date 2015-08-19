@@ -39,6 +39,10 @@ public class ProductManagerImpl extends GenericManagerImpl<Product> implements P
 	public void setProductCodeGenerator(ProductCodeGenerator productCodeGenerator) {
 		this.productCodeGenerator = productCodeGenerator;
 	}
+	
+	public List<Product> getDefaultProduct(){
+		return  productDao.getDefaultProduct();
+	}
 
 	/**
 	 * @param productDao
