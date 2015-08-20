@@ -1,5 +1,6 @@
 package com.cartmatic.estore.catalog.dao.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -19,6 +20,7 @@ import com.cartmatic.estore.common.model.catalog.Product;
 import com.cartmatic.estore.common.model.catalog.ProductSearchCriteria;
 import com.cartmatic.estore.common.model.catalog.SearchAttributeItem;
 import com.cartmatic.estore.common.model.catalog.SearchAttributeModel;
+import com.cartmatic.estore.common.model.culturalinformation.CulturalInformation;
 import com.cartmatic.estore.core.dao.impl.HibernateGenericDaoImpl;
 import com.cartmatic.estore.core.search.SearchCriteria;
 
@@ -44,10 +46,16 @@ public class ProductDaoImpl extends HibernateGenericDaoImpl<Product> implements 
 	public static String SqlSearch ="GET_DEFAULT_PRODUCT";
 	
 	public List<Product> getDefaultProduct(){
-		 Map<String, Object> paramValue =new HashMap();
+	/*	 Map<String, Object> paramValue =new HashMap();
 		 List<Product> result = getObjectList(SqlSearch,new Product(),paramValue);
+		 return result;*/
+		 List<Product> result =new ArrayList();
+		 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		 result =findByHql("from Product product where product.planStartTime>=? and product.planEndTime<=？ order by product.planStartTime asc", df.format(new Date()));
 		 return result;
 	}
+	
+	
 	
 	/**
 	 * @param searchCriteria新款框架搜索条件及分页对象

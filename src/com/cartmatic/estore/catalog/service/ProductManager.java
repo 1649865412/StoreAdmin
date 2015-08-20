@@ -21,6 +21,11 @@ public interface ProductManager extends GenericManager<Product> {
 	public Product getActiveProduct(Integer productId);
 	
 	
+	/**
+	 * 功能:默认进来的所有产品数据
+	 * <p>作者 杨荣忠 2015-8-20 上午09:44:28
+	 * @return
+	 */
 	public List<Product> getDefaultProduct();
 	
 
