@@ -724,8 +724,8 @@ public class OrderProcessFlowManagerImpl implements OrderProcessFlowManager, Ini
 				handleDigitalProduct(salesOrder, orderShipment);
 			}			
 		}
-		if(curPaidAmount.compareTo(BigDecimal.ZERO)==1)
-		{
+	//	if(curPaidAmount.compareTo(BigDecimal.ZERO)==1)
+	//	{
 			salesOrder.setPaymentStatus((curPaidAmount.compareTo(salesOrder.getTotalAmount())==-1) ? OrderConstants.PAYMENT_STATUS_PARTIALLY_PAID : OrderConstants.PAYMENT_STATUS_PAID);
 			//订单金额已全部支付时，添加一个队列，根据IP查找地址及经纬度
 			if(salesOrder.getPaymentStatus().intValue()==OrderConstants.PAYMENT_STATUS_PAID.intValue()){
@@ -749,7 +749,7 @@ public class OrderProcessFlowManagerImpl implements OrderProcessFlowManager, Ini
 				queue.setNextRetryTime(new Date());
 				systemQueueManager.save(queue);
 			}
-		}
+		//}
 		//unlock and save
 		salesOrderManager.unlock(salesOrder);
 		return 1;

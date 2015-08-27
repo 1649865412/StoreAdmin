@@ -51,7 +51,7 @@ public class ProductDaoImpl extends HibernateGenericDaoImpl<Product> implements 
 		 return result;*/
 		 List<Product> result =new ArrayList();
 		 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-		 result =findByHql("from Product product where product.planStartTime>=? and product.planEndTime<=？ order by product.planStartTime asc", df.format(new Date()));
+		 result =findByHql("from Product product where product.planStartTime>=? and product.planEndTime<? order by product.planStartTime asc", df.format(new Date()));
 		 return result;
 	}
 	

@@ -29,7 +29,7 @@
 							<span id="productMediaImageBtnPlaceHolderId_d"></span>
 						</td>
 						<td>
-							<fmt:message key="productDetail.moreImage.desc.d" />（<a href="#" onclick="removeAllProductImg('productMoreImages_d');">移除所有产品大图</a>）
+							(请上传1300*900尺寸)（<a href="#" onclick="removeAllProductImg('productMoreImages_d');">移除所有产品大图</a>）
 						</td>
 					</tr>
 				</table>

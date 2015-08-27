@@ -45,7 +45,7 @@
 			<fmt:message key="salesOrder.totalAmount" />:
 		</td>
 		<td>
-			${salesOrder.totalAmount}
+   	${salesOrder.totalAmount}
 		</td>
 	</tr>
 	<tr>

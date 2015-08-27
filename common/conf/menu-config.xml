@@ -26,7 +26,9 @@
 		<!-- start:  Generated for TalentShow From Template: menu-config.xml.vm  -->
 			<Item name="TalentShowsMenu" title="menu.viewTalentShows" page="/talentmanager/talentShow.html"/>
 <!-- end:  Generated for TalentShow From Template: menu-config.xml.vm  -->
-
+      <!-- start:  Generated for Via From Template: menu-config.xml.vm  -->
+			<Item name="ViasMenu" title="menu.viewVias" page="/viashow/via.html"/>
+<!-- end:  Generated for Via From Template: menu-config.xml.vm  -->
 
 		</Menu>
 
@@ -206,12 +208,5 @@
 			<Item name="attributeMenu" title="menu.configattribute" page="/system/attribute.html"/>
 	</Menu>
 
-
-		<Menu name="viashowMenu" title="menu.viewviashowMenu" description="View viashowMenu" roles="admin" width="120" page="/viashow/index.html">
-<!-- start:  Generated for Via From Template: menu-config.xml.vm  -->
-			<Item name="ViasMenu" title="menu.viewVias" page="/viashow/via.html"/>
-<!-- end:  Generated for Via From Template: menu-config.xml.vm  -->
-		<!--end of viashow menu items-->
-		</Menu>
 </Menus>
 </MenuConfig>

@@ -43,6 +43,7 @@ import com.cartmatic.estore.common.service.PaymentMethodService;
 import com.cartmatic.estore.common.service.PromoService;
 import com.cartmatic.estore.common.service.ShoppingcartService;
 import com.cartmatic.estore.common.util.NumberUtil;
+import com.cartmatic.estore.core.util.CollectionUtil;
 import com.cartmatic.estore.core.util.I18nUtil;
 import com.cartmatic.estore.customer.service.AddressManager;
 import com.cartmatic.estore.customer.service.CustomerManager;
@@ -683,11 +684,12 @@ public class CheckoutUtil
 			shippingRate.setCartShipping(cartShipping);
 			result.add(shippingRate);
 		}
+	    
 		// 价格从低到高排序
 		Collections.sort(result, new Comparator<ShippingRate>()
 		{
 			public int compare(ShippingRate shippingRate1, ShippingRate shippingRate2) {
-				return shippingRate1.getCartShipping().compareTo(shippingRate2.getCartShipping());
+				return shippingRate2.getCartShipping().compareTo(shippingRate1.getCartShipping());
 			}
 
 		});
