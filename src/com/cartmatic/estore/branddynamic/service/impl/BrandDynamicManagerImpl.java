@@ -1,5 +1,7 @@
 package com.cartmatic.estore.branddynamic.service.impl;
 
+import java.util.List;
+
 import com.cartmatic.estore.common.model.branddynamic.BrandDynamic;
 import com.cartmatic.estore.core.service.impl.GenericManagerImpl;
 import com.cartmatic.estore.branddynamic.service.BrandDynamicManager;
@@ -12,6 +14,11 @@ import com.cartmatic.estore.branddynamic.dao.BrandDynamicDao;
 public class BrandDynamicManagerImpl extends GenericManagerImpl<BrandDynamic> implements BrandDynamicManager {
 
 	private BrandDynamicDao brandDynamicDao = null;
+	
+	public List<BrandDynamic> getResutlType(Integer brandId){
+		return brandDynamicDao.getResutlType(brandId);
+		
+	}
 
 	/**
 	 * @param brandDynamicDao

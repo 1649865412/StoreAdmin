@@ -457,9 +457,15 @@ public final class RequestUtil {
 	//不进行设置过期时间，使其过期时间自动设置为session的连线时间.
 	public static void setUserInfoCookie(HttpServletResponse response, AppUser appuser, String ctxPath) {
 		com.cartmatic.estore.common.model.system.AppUser user=(com.cartmatic.estore.common.model.system.AppUser)appuser;
-		setCookie(response, "UID", appuser.getAppuserId().toString(), ctxPath);
 		setCookie(response, "UNAME", StringUtils.isNotBlank(user.getFirstname())?user.getFirstname():user.getEmail(), ctxPath);
+		setCookie(response, "UID", appuser.getAppuserId().toString(), ctxPath);
 		setCookie(response, "UEMAIL", appuser.getEmail(), ctxPath);
+	}
+	
+	
+	//不进行设置过期时间，使其过期时间自动设置为session的连线时间.
+	public static void setErrorResultCookie(HttpServletResponse response, String name ,String value, String ctxPath) {
+		setCookie(response, name, value, ctxPath);
 	}
 	
 	

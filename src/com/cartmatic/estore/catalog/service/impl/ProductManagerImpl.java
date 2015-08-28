@@ -40,8 +40,8 @@ public class ProductManagerImpl extends GenericManagerImpl<Product> implements P
 		this.productCodeGenerator = productCodeGenerator;
 	}
 	
-	public List<Product> getDefaultProduct(){
-		return  productDao.getDefaultProduct();
+	public List<Product> getDefaultProduct(String sort){
+		return  productDao.getDefaultProduct(sort);
 	}
 
 	/**
@@ -152,6 +152,9 @@ public class ProductManagerImpl extends GenericManagerImpl<Product> implements P
 		return productDao.getByIds(ids);
 	}
 	
+	public List<Product> getByBrandId(Integer brandId){
+		return productDao.getByBrandId(brandId);
+	}
 	
 
 	public void refresh(Object entity){

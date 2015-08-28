@@ -24,9 +24,10 @@ public interface ProductManager extends GenericManager<Product> {
 	/**
 	 * 功能:默认进来的所有产品数据
 	 * <p>作者 杨荣忠 2015-8-20 上午09:44:28
+	 * @param sort 
 	 * @return
 	 */
-	public List<Product> getDefaultProduct();
+	public List<Product> getDefaultProduct(String sort);
 	
 
 	/**
@@ -79,6 +80,13 @@ public interface ProductManager extends GenericManager<Product> {
 	 * @return
 	 */
 	public List<Product> getByIds(String[] ids);
+	
+	/**
+	 * 根据品牌ID获取产品
+	 * @param brandId
+	 * @return
+	 */
+	public List<Product> getByBrandId(Integer brandId);
 
 	
 	public void refresh(Object entity);

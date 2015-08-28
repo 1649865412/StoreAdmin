@@ -2,8 +2,11 @@ package com.cartmatic.extend.catalog.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.collections.CollectionUtils;
 
 import com.cartmatic.estore.common.model.catalog.Brand;
 
@@ -162,8 +165,8 @@ public class CharacterSort
 	
 	
 	public static Map<String ,List<Brand> >  listBrandSort(List<Brand> list) {
-		Map<String ,List<Brand> > map = new HashMap();
-		ArrayList arraylist = new ArrayList();
+		Map<String ,List<Brand> > map = new LinkedHashMap();
+		ArrayList <Brand> arraylist = new ArrayList();
 		String[] alphatableb = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
 				"V", "W", "X", "Y", "Z" };
 		for (String a : alphatableb)
@@ -172,10 +175,12 @@ public class CharacterSort
 			{// 为了排序都返回大写字母
 				if (a.equals(String2AlphaFirst(list.get(i).getInitials(), "b")))
 				{
-					arraylist.add(list.get(i).toString());
+					arraylist.add(list.get(i));
 				}
 			}
-			map.put(a, arraylist);
+			if(!CollectionUtils.isEmpty(arraylist)){
+				map.put(a, arraylist);	
+			}
 			arraylist = new ArrayList();
 		}
 		return map;

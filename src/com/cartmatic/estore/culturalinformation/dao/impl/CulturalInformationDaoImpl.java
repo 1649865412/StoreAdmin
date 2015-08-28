@@ -13,10 +13,14 @@ import com.cartmatic.estore.culturalinformation.dao.CulturalInformationDao;
 public class CulturalInformationDaoImpl extends HibernateGenericDaoImpl<CulturalInformation> implements CulturalInformationDao {
 	public List<CulturalInformation>getResutlType(String type){
 		List<CulturalInformation> result =new ArrayList();
-		if(type != null){
-		result =findByHql("from CulturalInformation where type=? order by createTime asc", type);
-		}else{
-			result =findByHql("from CulturalInformation where state=0 order by createTime asc");
+		try{
+			if(type != null){
+				result =findByHql("from CulturalInformation where type=? order by createTime asc", Integer.parseInt(type));
+				}else{
+					result =findByHql("from CulturalInformation where state=0 order by createTime asc");
+				}
+		}catch(Exception e ){
+			
 		}
 		return result;
 	}

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.savedrequest.SavedRequest;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cartmatic.estore.common.helper.AppAuditHelper;
@@ -26,7 +27,6 @@ import com.cartmatic.estore.core.util.ContextUtil;
  */
 public class LoginErrorController extends BaseController {
 
-	
 	public ModelAndView defaultAction(HttpServletRequest req,HttpServletResponse resp) throws ServletException {
 		// login error, audit event then forward to error page
 		Exception e = (Exception) req.getSession().getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
@@ -79,6 +79,8 @@ public class LoginErrorController extends BaseController {
 		}
 		return null;
 	}
+	
+	
 
 	@Override
 	protected Map<Integer, Map<String, Object>> getMultiSaveModel(

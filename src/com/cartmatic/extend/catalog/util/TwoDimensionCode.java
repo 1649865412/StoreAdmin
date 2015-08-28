@@ -196,9 +196,9 @@ public class TwoDimensionCode {
 		return content;
 	}
 
-	public static void main(String[] args) {
-		String imgPath = "D:/Michael_QRCode.png";
-		String encoderContent = "二维码学习!"+ "\n作者：蔺彦慧"+ "\n时间：2013-07-26";
+	public static void main(String imgPath,String encoderContent) {
+//		String imgPath = "D:/Michael_QRCode.png";
+//		String encoderContent = "二维码学习!"+ "\n作者：蔺彦慧"+ "\n时间：2013-07-26";
 		TwoDimensionCode handler = new TwoDimensionCode();
 		handler.encoderQRCode(encoderContent, imgPath, "png");
 		// try {
