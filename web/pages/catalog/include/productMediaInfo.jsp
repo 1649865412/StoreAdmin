@@ -98,7 +98,7 @@
         
 	</table>
 	
-	<!--  上部分 额外图  -->
+	<!--  上部分 额外图  
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-content">
 		<tr>
 			<th colspan="2">
@@ -152,7 +152,7 @@
         </tr>
         
 	</table>
-	
+	-->
 	<!--  手绘图  -->
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-content">
 		<tr>
@@ -176,7 +176,7 @@
 	    </tr>
 	</table>
 	
-	<!--  附件  -->
+	<!--  附件  
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-content">
 		<tr>
 			<th>
@@ -228,18 +228,18 @@
 				</div>
 			</td>
 	    </tr>
-	</table>
+	</table>-->
 	<%--
 	<cartmatic:swf_upload btnPlaceHolderId="productMediaImageBtnPlaceHolderId" uploadCategory="productMedia" uploadFileTypes="*.jpg" onComplete="fnUploadMoreImageHandler" objId="${product.productId}" previewSize="d" isMultiFiles="true" button_text="上传产品中图" fileImageSize="d"></cartmatic:swf_upload>
 	--%>
 	<!-- 上传大图 -->
 	<cartmatic:swf_upload btnPlaceHolderId="productMediaImageBtnPlaceHolderId_d" uploadCategory="productMedia" uploadFileTypes="*.jpg; *.jpeg; *.png; *.gif" onComplete="fnUploadMoreImage_d_Handler" objId="${product.productId}" previewSize="v" isMultiFiles="true" button_text="上传产品大图" fileImageSize="v"  fileSizeLimit="5MB"></cartmatic:swf_upload>
-	<!-- 上传 上部分的额外图 -->
-	<cartmatic:swf_upload btnPlaceHolderId="productMediaImageBtnPlaceHolderId_up" uploadCategory="productMedia" uploadFileTypes="*.jpg; *.jpeg; *.png; *.gif" onComplete="fnUploadMoreImage_up_Handler" objId="${product.productId}" previewSize="v" isMultiFiles="true" button_text="上传产品额外图" fileImageSize="v"  fileSizeLimit="5MB"></cartmatic:swf_upload>
+	<!-- 上传 上部分的额外图 
+	<cartmatic:swf_upload btnPlaceHolderId="productMediaImageBtnPlaceHolderId_up" uploadCategory="productMedia" uploadFileTypes="*.jpg; *.jpeg; *.png; *.gif" onComplete="fnUploadMoreImage_up_Handler" objId="${product.productId}" previewSize="v" isMultiFiles="true" button_text="上传产品额外图" fileImageSize="v"  fileSizeLimit="5MB"></cartmatic:swf_upload>-->
 	<!-- 鼠标移上浮动图 -->
 	<cartmatic:swf_upload btnPlaceHolderId="productHandDrawBtnPlaceHolderId" uploadCategory="productMedia" uploadFileTypes="*.jpg; *.jpeg; *.png; *.gif" onComplete="fnUploadHandDrawHandler" objId="${product.productId}" previewSize="hd" isMultiFiles="false" button_text="鼠标浮动图 " fileImageSize="hd"  fileSizeLimit="5MB"></cartmatic:swf_upload>
-	<!-- 上传附件 -->
-	<cartmatic:swf_upload btnPlaceHolderId="productAccessoryBtnPlaceHolderId" uploadCategory="productMedia" uploadFileTypes="*.*" onComplete="fnUploadAccessoryHandler" objId="${product.productId}"  isMultiFiles="true" button_text="上传产品附件"  fileSizeLimit="5MB"></cartmatic:swf_upload>
+	<!-- 上传附件
+	<cartmatic:swf_upload btnPlaceHolderId="productAccessoryBtnPlaceHolderId" uploadCategory="productMedia" uploadFileTypes="*.*" onComplete="fnUploadAccessoryHandler" objId="${product.productId}"  isMultiFiles="true" button_text="上传产品附件"  fileSizeLimit="5MB"></cartmatic:swf_upload> -->
 	
 	<c:if test="${isOriented}">
 		<div class="add-btn">

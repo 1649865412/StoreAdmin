@@ -30,9 +30,13 @@ import com.cartmatic.estore.core.controller.GenericController;
 import com.cartmatic.estore.core.exception.ApplicationException;
 import com.cartmatic.estore.core.model.BaseObject;
 import com.cartmatic.estore.core.model.Message;
+import com.cartmatic.estore.core.util.CollectionUtil;
 import com.cartmatic.estore.core.view.AjaxView;
 import com.cartmatic.estore.culturalinformation.service.CulturalInformationManager;
 import com.cartmatic.estore.culturalinformation.util.CalenderTime;
+import com.sun.org.apache.commons.collections.CollectionUtils;
+
+import edu.emory.mathcs.backport.java.util.Collections;
 
 public class BrandController extends GenericController<Brand>
 {
@@ -119,7 +123,8 @@ public class BrandController extends GenericController<Brand>
 			errors.rejectValue("brandCode", msgKey);
 		}
 	}
-
+	
+	
 	/**
 	 * 重写保存
 	 */

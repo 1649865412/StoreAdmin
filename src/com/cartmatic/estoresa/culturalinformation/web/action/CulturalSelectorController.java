@@ -58,6 +58,9 @@ public class CulturalSelectorController extends GenericController<CulturalInform
 		return getModelAndView("culturalinformation/include/culturalSelectorDataList", "reCulturalInformationList", CulturalInformationList);
 
 	}
+	 
+	
+
 
 	@Override
 	protected String getEntityName(CulturalInformation entity) {

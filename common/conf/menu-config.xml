@@ -184,7 +184,7 @@
 <!-- end:  Generated for RecommendedType From Template: menu-config.xml.vm  -->
 
         <!--start: of ImportDataMenu items--> 
-		<Item name="ImportDataMenu" title="menu.importData" page="/system/import.html"/>
+		<!--<Item name="ImportDataMenu" title="menu.importData" page="/system/import.html"/>--> 
         <!--end: of ImportDataMenu items-->
 <!-- start:  Generated for SystemQueue From Template: menu-config.xml.vm  -->
 		<Item name="SystemQueuesMenu" title="menu.viewSystemQueues" page="/system/systemQueue.html"/>
