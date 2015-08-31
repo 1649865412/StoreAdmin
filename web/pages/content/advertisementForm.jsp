@@ -18,7 +18,7 @@
 		<input type="hidden" name="advertisementId" value="${advertisement.advertisementId}"/> 
 		<table class="table-content" cellSpacing="0" cellPadding="0" width="100%" border="0">
  		<app:input property="advertisementName" />
- 		<app:input property="sortOrder" />
+ 	<!-- 	<app:input property="sortOrder" /> -->
  		<tr style="display:none">
 			<td class="FieldLabel">
 				<StoreAdmin:label key="advertisement.contentType" />
@@ -32,9 +32,9 @@
 				是否要在图片上显示文字
 			</td>
 			<td>
-				要<input type="radio" value="1" name="showContext" <c:if test="${advertisement.showContext==1}" >checked</c:if>>
+				要<input type="radio" value="1" name="showContext"  <c:if test="${advertisement.showContext==1}" >checked</c:if>>
 				&nbsp;&nbsp;&nbsp; 
-				不要<input type="radio" value="2" name="showContext" <c:if test="${advertisement.showContext==2}" >checked</c:if>>
+				不要<input type="radio" value="2" name="showContext" <c:if test="${advertisement.showContext==null}" >checked</c:if><c:if test="${advertisement.showContext==2}" >checked</c:if>>
 			</td>
 		</tr>
 			<tr>
@@ -156,7 +156,7 @@
 				</c:forEach>
 			</td>
 		</tr>
-		<tr>
+		<!--关联到：<tr>
 			<td class="FieldLabel">
 				<StoreAdmin:label key="advertisement.displayTo" />
 			</td>
@@ -170,7 +170,8 @@
 				</select>
 			</td>
 		</tr>
-		<tr>
+		是否包含子目录
+		 <tr>
 			<td></td>
 			<td>
 				<cartmatic:iconBtn icon="magnifier" id="btnAddCat" textKey="button.selectAdditionalCategory" />
@@ -187,6 +188,7 @@
 				</spring:bind>
 			</td>
 		</tr>
+		 -->
 		<tr>
 			<td class="FieldLabel">
 				<StoreAdmin:label key="advertisement.startPublishTime" />

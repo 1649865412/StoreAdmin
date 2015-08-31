@@ -136,7 +136,7 @@
 				<textarea id="categoryDescription" name="categoryDescription" style="width: 90%; height: 100px">${category.categoryDescription}</textarea>
 			</td>
 	    </tr>
-		<tr>
+ 	<tr  style="display:none">
 			<td class="FieldLabel">
 				<StoreAdmin:label key="category.templatePath" />
 			</td>
@@ -144,6 +144,7 @@
 				<app:templateSelect templateList="${appConfig.categoryTemplates}" name="templatePath" classes="Field400" value="${category.templatePath}"></app:templateSelect>
 			</td>
 	    </tr>
+     	    
 	</table>
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-content">
 		<c:if test="${not empty attributeList}">

@@ -26,8 +26,9 @@ import com.cartmatic.estore.core.search.SearchCriteria;
 
 /**
  * Dao implementation for Product.
-*/
-public class ProductDaoImpl extends HibernateGenericDaoImpl<Product> implements ProductDao {
+ */
+public class ProductDaoImpl extends HibernateGenericDaoImpl<Product> implements ProductDao
+{
 
 	public SearchCriteria getProductSearchCriteria4Front(SearchCriteria searchCriteria,ProductSearchCriteria productSearchCriteria){
 		String orderClause=CatalogHelper.getInstance().convertSortOrder(productSearchCriteria.getSort());

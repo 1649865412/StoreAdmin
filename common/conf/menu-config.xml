@@ -15,8 +15,8 @@
 			<Item name="GiftCertificatesMenu" title="menu.viewGiftCertificates" page="/sales/giftCertificate.html"/>
 <!-- end:  Generated for GiftCertificate From Template: menu-config.xml.vm  -->
 
-		<Item name="AwardMenu" title="menu.viewAwards" page="/activity/award.html"/>
-		<Item name="UserAwardMenu" title="menu.viewUserAwards" page="/activity/userAward.html"/>
+	<!--	<Item name="AwardMenu" title="menu.viewAwards" page="/activity/award.html"/>
+		<Item name="UserAwardMenu" title="menu.viewUserAwards" page="/activity/userAward.html"/>-->
 <!--end of sales menu items-->
 
 <!-- start:  Generated for SekillProduct From Template: menu-config.xml.vm  -->
@@ -48,7 +48,7 @@
 			
 <!-- end:  Generated for SkuOption From Template: menu-config.xml.vm  -->
 <!-- start:  Generated for AccessoryGroup From Template: menu-config.xml.vm  -->
-			<Item name="AccessoryGroupsMenu" title="menu.viewAccessoryGroups" page="/catalog/accessoryGroup.html"/>
+	<!--		<Item name="AccessoryGroupsMenu" title="menu.viewAccessoryGroups" page="/catalog/accessoryGroup.html"/> -->
 <!-- end:  Generated for AccessoryGroup From Template: menu-config.xml.vm  -->
 		</Menu>
 		<Menu name="inventoryMenu" title="menu.viewinventoryMenu" description="View inventoryMenu" width="120" page="/inventory/index.html">
@@ -65,9 +65,9 @@
 		<Menu name="orderMenu" title="menu.order" description="View orderMenu" width="120" page="/order/index.html">
 			<Item name="SalesOrdersMenu" title="menu.viewSalesOrders" page="/order/salesOrder.html"/>
 			<Item name="PaymentsMenu" title="menu.payments" page="/order/createPayment.html"/>
-			<Item name="OrderSettlementsMenu" title="menu.viewOrderSettlements" page="/order/orderSettlement.html"/>
+			<!--<Item name="OrderSettlementsMenu" title="menu.viewOrderSettlements" page="/order/orderSettlement.html"/>-->
 			<!-- start:  Generated for TransferRecord From Template: menu-config.xml.vm  -->
-			<Item name="TransferRecordsMenu" title="menu.viewTransferRecords" page="/order/transferRecord.html"/>
+			<!--<Item name="TransferRecordsMenu" title="menu.viewTransferRecords" page="/order/transferRecord.html"/>-->
 			<!-- end:  Generated for TransferRecord From Template: menu-config.xml.vm  -->
 		</Menu>		
         <Menu name="supplierMenu" title="menu.viewSupplier" description="View supplierMenu" roles="admin" width="120" page="/supplier/index.html">
@@ -84,11 +84,11 @@
 <!-- start:  Generated for AwaitingPurchase From Template: menu-config.xml.vm  -->
 			<Item name="AwaitingPurchasesMenu" title="menu.viewAwaitingPurchases" page="/supplier/awaitingPurchase.html"/>
 <!-- end:  Generated for AwaitingPurchase From Template: menu-config.xml.vm  -->
-<!-- start:  Generated for TbCategoryRefer From Template: menu-config.xml.vm  -->
-			<Item name="TbCategoryRefersMenu" title="menu.viewTbCategoryRefers" page="/supplier/tbCategoryRefer.html"/>
+<!-- start:  Generated for TbCategoryRefer From Template: menu-config.xml.vm  --> -->
+	<!--		<Item name="TbCategoryRefersMenu" title="menu.viewTbCategoryRefers" page="/supplier/tbCategoryRefer.html"/> -->
 <!-- end:  Generated for TbCategoryRefer From Template: menu-config.xml.vm  -->
 <!-- start:  Generated for TbCatPropRefer From Template: menu-config.xml.vm  -->
-			<Item name="TbCatPropRefersMenu" title="menu.viewTbCatPropRefers" page="/supplier/tbCatPropRefer.html"/>
+	<!--		<Item name="TbCatPropRefersMenu" title="menu.viewTbCatPropRefers" page="/supplier/tbCatPropRefer.html"/>-->
 <!-- end:  Generated for TbCatPropRefer From Template: menu-config.xml.vm  -->
 <!--end of supplier menu items-->
 		</Menu>
@@ -207,6 +207,7 @@
             <Item name="SkuOptionsMenu" title="menu.viewSkuOptions" page="/catalog/skuOption.html"/>
 			<Item name="attributeMenu" title="menu.configattribute" page="/system/attribute.html"/>
 	</Menu>
+
 
 </Menus>
 </MenuConfig>

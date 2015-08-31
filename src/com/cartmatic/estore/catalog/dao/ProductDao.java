@@ -29,7 +29,7 @@ public interface ProductDao extends GenericDao<Product> {
 	 * <p>作者 杨荣忠 2015-8-19 下午06:11:42
 	 * @return
 	 */
-	public List<Product> getDefaultProduct();
+	public List<Product> getDefaultProduct(String sort);
 	
 	/**
 	 * 前台搜索产品
@@ -76,5 +76,12 @@ public interface ProductDao extends GenericDao<Product> {
 	public void refresh(Object entity);
 	
 	public String getMaxAutoCode(String sample);
+
+	/**
+	 * 根据品牌ID获取产品
+	 * @param brandId
+	 * @return
+	 */
+	public List<Product> getByBrandId(Integer brandId);
 	
 }
