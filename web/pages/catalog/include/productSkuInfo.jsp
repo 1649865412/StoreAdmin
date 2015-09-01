@@ -2,6 +2,7 @@
 <%@ taglib prefix="cartmatic" tagdir="/WEB-INF/tags/cartmatic"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div id="productSkuInfo" style="display:none;min-height: 520px;">
+<font color="red">(同产品的不同SKU产品，请移步到关联推荐里设置！)<font>
 	<c:choose>
 		<c:when test="${product.productKind!=2}">
 			<%@ include file="productSkuFormInfo.jsp"%>
