@@ -18,6 +18,7 @@ import com.cartmatic.estore.customer.service.AddressManager;
 public class AddressController extends GenericController<Address> {
     private AddressManager addressManager = null;
 
+    
     public void setAddressManager(AddressManager inMgr) {
         this.addressManager = inMgr;
     }

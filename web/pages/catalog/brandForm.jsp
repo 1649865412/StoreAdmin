@@ -213,7 +213,7 @@
 					<span id="logoImageBtnPlaceHolderId"></span>
 					<input type="hidden" id="logo" name="logo" value="${brand.logo}" />
 					<br/>
-					(<fmt:message key="brand.logo.desc" />)
+					(建议尺寸：300*200)
 					<cartmatic:iconBtn icon="cross" extraCss="negative" text="清空图片" onclick="$('logoImage').src='${ctxPath}/images/default/00.jpg';$j('#logo').val('');" />
 				</div>
 			</td>
@@ -231,7 +231,7 @@
 					<span id="iconImageBtnPlaceHolderId"></span>
 					<input type="hidden" id="icon" name="icon" value="${brand.icon}" />
 					<br/>
-					(<fmt:message key="brand.icon.desc" />)
+					(建议尺寸：300*200)
 					<cartmatic:iconBtn icon="cross" extraCss="negative" text="清空图片" onclick="$('iconImage').src='${ctxPath}/images/default/00.jpg';$j('#icon').val('');" />
 				</div>
 			</td>
@@ -248,6 +248,7 @@
 					<span id="pic2ImageBtnPlaceHolderId"></span>
 					<input type="hidden" id="pic2" name="pic2" value="${brand.pic2}" />
 					<br/>
+					(建议尺寸：1420*385)
 					<cartmatic:iconBtn icon="cross" extraCss="negative" text="清空图片" onclick="$('pic2Image').src='${ctxPath}/images/default/00.jpg';$j('#pic2').val('');" />
 				</div>
 			</td>
@@ -264,6 +265,7 @@
 					<span id="pic3ImageBtnPlaceHolderId"></span>
 					<input type="hidden" id="pic3" name="pic3" value="${brand.pic3}" />
 					<br/>
+					(建议尺寸：1420*385)
 					<cartmatic:iconBtn icon="cross" extraCss="negative" text="清空图片" onclick="$('pic3Image').src='${ctxPath}/images/default/00.jpg';$j('#pic3').val('');" />
 				</div>
 			</td>
@@ -280,6 +282,7 @@
 					<span id="pic4ImageBtnPlaceHolderId"></span>
 					<input type="hidden" id="pic4" name="pic4" value="${brand.pic4}" />
 					<br/>
+					(建议尺寸：1420*385)
 					<cartmatic:iconBtn icon="cross" extraCss="negative" text="清空图片" onclick="$('pic4Image').src='${ctxPath}/images/default/00.jpg';$j('#pic4').val('');" />
 				</div>
 			</td>
@@ -296,6 +299,7 @@
 					<span id="pic5ImageBtnPlaceHolderId"></span>
 					<input type="hidden" id="pic5" name="pic5" value="${brand.pic5}" />
 					<br/>
+					(建议尺寸：1420*385)
 					<cartmatic:iconBtn icon="cross" extraCss="negative" text="清空图片" onclick="$('pic5Image').src='${ctxPath}/images/default/00.jpg';$j('#pic5').val('');" />
 				</div>
 			</td>
@@ -312,6 +316,7 @@
 					<span id="pic6ImageBtnPlaceHolderId"></span>
 					<input type="hidden" id="pic6" name="pic6" value="${brand.pic6}" />
 					<br/>
+					(建议尺寸：1420*385)
 					<cartmatic:iconBtn icon="cross" extraCss="negative" text="清空图片" onclick="$('pic6Image').src='${ctxPath}/images/default/00.jpg';$j('#pic6').val('');" />
 				</div>
 			</td>
@@ -328,6 +333,7 @@
 					<span id="picImageBtnPlaceHolderId"></span>
 					<input type="hidden" id="pic" name="pic" value="${brand.pic}" />
 					<br/>
+					(建议尺寸：1420*385)
 					<cartmatic:iconBtn icon="cross" extraCss="negative" text="清空图片" onclick="$('picImage').src='${ctxPath}/images/default/00.jpg';$j('#pic').val('');" />
 				</div>
 			</td>

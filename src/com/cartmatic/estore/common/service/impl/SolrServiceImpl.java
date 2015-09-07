@@ -111,8 +111,35 @@ public class SolrServiceImpl implements SolrService
 			e.printStackTrace();
 		}		
 		return searchResult;
-    	
     }
+    
+    /**
+	 * 文化资讯页面查询(Id集)
+	 */
+	public SearchResult queryAllCulturalByTag(HttpServletRequest request,String tags,Integer defaultPageSize)
+	{
+		SearchResult searchResult=new SearchResult();
+     //	SolrQuery query = QueryHelper.buildContentQuery(request,defaultPageSize);
+    	try {
+    		SolrQuery query = new SolrQuery("+ (metaKeywork:"+tags+")");
+			QueryResponse queryResponse = getSolrServer(SearchConstants.CORE_NAME_CULTURAL).query(query);
+			SolrDocumentList datas = queryResponse.getResults();
+			QueryHelper.setPageInfo(request, query, datas);
+	    	List<Integer> rs = new ArrayList<Integer>();
+			for (SolrDocument data : datas)
+			{				
+				rs.add(Integer.valueOf(data.getFieldValue("id").toString()));
+			}
+			searchResult.setResultList(rs);
+			
+		} catch (SolrServerException e) {
+			logger.error(e);
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		return searchResult;
+	}
+	
 
     /**
      * 通过core名来获得coreServer.
@@ -469,32 +496,6 @@ public class SolrServiceImpl implements SolrService
 	}
 	
 	
-	/**
-	 * 文化资讯页面查询(Id集)
-	 */
-	public SearchResult queryAllCulturalByTag(HttpServletRequest request,String tags,Integer defaultPageSize)
-	{
-		SearchResult searchResult=new SearchResult();
-     //	SolrQuery query = QueryHelper.buildContentQuery(request,defaultPageSize);
-    	try {
-    		SolrQuery query = new SolrQuery("+ (metaKeywork:"+tags+")");
-			QueryResponse queryResponse = getSolrServer(SearchConstants.CORE_NAME_CULTURAL).query(query);
-			SolrDocumentList datas = queryResponse.getResults();
-			QueryHelper.setPageInfo(request, query, datas);
-	    	List<Integer> rs = new ArrayList<Integer>();
-			for (SolrDocument data : datas)
-			{				
-				rs.add(Integer.valueOf(data.getFieldValue("id").toString()));
-			}
-			searchResult.setResultList(rs);
-			
-		} catch (SolrServerException e) {
-			logger.error(e);
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-		return searchResult;
-	}
-	
+
 
 }

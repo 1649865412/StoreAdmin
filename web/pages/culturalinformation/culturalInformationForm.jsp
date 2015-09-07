@@ -136,10 +136,11 @@
 						value="${culturalInformation.logoImg}" />
 					<br />
 					(
-					<fmt:message key="brand.logo.desc" />
+					 推荐尺寸:300*200象素 
 					)
 					<cartmatic:iconBtn icon="cross" extraCss="negative" text="清空图片"
 						onclick="$('logoImage').src='${ctxPath}/images/default/00.jpg';$j('#logo').val('');" />
+						
 				</div>
 				<cartmatic:swf_upload btnPlaceHolderId="logoImageBtnPlaceHolderId"
 					uploadCategory="other" uploadFileTypes="*.jpg; *.jpeg; *.png; *.gif" fileInputId="logo"
