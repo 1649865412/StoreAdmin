@@ -60,7 +60,7 @@
 		
  		--%><tr>
 			<td class="FieldLabel">
-				上传图片:
+				上传图片(建议尺寸：400*650):
 			</td>
 			<td>
 				<div style="float: left;">

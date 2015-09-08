@@ -111,7 +111,7 @@
 					uploadCategory="productMedia"
 					uploadFileTypes="*.jpg; *.jpeg; *.png; *.gif"
 					onComplete="fnUploadMoreImage_d_Handler" objId="1110" previewSize="v"
-					isMultiFiles="true" button_text="上传动态资讯" fileImageSize="v"
+					isMultiFiles="true" button_text="上传动态资讯(图片尺寸：422*422)" fileImageSize="v"
 					fileSizeLimit="5MB"></cartmatic:swf_upload>
 				<script type="text/javascript"
 					src="<c:url value="/scripts/cartmatic/catelog/brandlForm.js"/>"></script>
@@ -213,7 +213,7 @@
 					<span id="logoImageBtnPlaceHolderId"></span>
 					<input type="hidden" id="logo" name="logo" value="${brand.logo}" />
 					<br/>
-					(建议尺寸：300*200)
+					(建议尺寸：425*425)
 					<cartmatic:iconBtn icon="cross" extraCss="negative" text="清空图片" onclick="$('logoImage').src='${ctxPath}/images/default/00.jpg';$j('#logo').val('');" />
 				</div>
 			</td>
@@ -231,7 +231,7 @@
 					<span id="iconImageBtnPlaceHolderId"></span>
 					<input type="hidden" id="icon" name="icon" value="${brand.icon}" />
 					<br/>
-					(建议尺寸：300*200)
+					(建议尺寸：425*425)
 					<cartmatic:iconBtn icon="cross" extraCss="negative" text="清空图片" onclick="$('iconImage').src='${ctxPath}/images/default/00.jpg';$j('#icon').val('');" />
 				</div>
 			</td>

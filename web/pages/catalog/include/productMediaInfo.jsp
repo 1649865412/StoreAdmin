@@ -157,7 +157,7 @@
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-content">
 		<tr>
 			<th>
-				产品鼠标移上去浮动图
+				产品鼠标移上去浮动图（推荐尺寸:700*1048象素)
 			</th>
 		</tr>
 		<tr>

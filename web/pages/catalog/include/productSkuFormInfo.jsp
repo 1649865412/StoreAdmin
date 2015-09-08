@@ -41,13 +41,13 @@
 				</td>
 				<td>
 					<div style="float: left;">
-						<cartmatic:img url="${productSku.image}" id="productImage" mediaType="product" size="b" width="72" height="72"></cartmatic:img>
+						<cartmatic:img url="${productSku.image}" id="productImage" mediaType="product" size="d" width="72" height="72"></cartmatic:img>
 					</div>
 					<div style="float: left; margin: 20px;">
 						<input type="hidden" name="image" id="image" value="${productSku.image}" />
 						<span id="skuImgBtnPlaceHolderId"></span>
 						<br/>
-						(<fmt:message key="productSku.image.desc" />)
+						(推荐尺寸:700*1048象素)
 					</div>
 				</td>
              </tr>
@@ -354,4 +354,4 @@
 	</c:if>
 </div>
 <v:javascript formName="productSku" staticJavascript="false" />
-<cartmatic:swf_upload btnPlaceHolderId="skuImgBtnPlaceHolderId" uploadCategory="product" uploadFileTypes="*.jpg" previewImg="productImage" objId="${product.productId}" previewSize="b" fileInputId="image" button_text="上传图片"></cartmatic:swf_upload>
+<cartmatic:swf_upload btnPlaceHolderId="skuImgBtnPlaceHolderId" uploadCategory="product" uploadFileTypes="*.jpg; *.jpeg; *.png; *.gif" previewImg="productImage" objId="${product.productId}" previewSize="b" fileInputId="image" button_text="上传图片"></cartmatic:swf_upload>

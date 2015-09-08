@@ -70,8 +70,8 @@ public class ShoppingCartUtil
 		Date date = new Date();
 		DateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 		long time = Long.parseLong(format.format(date));
-		long t1 = 20150706000000l;
-		long t2 = 20150731235900l;
+		long t1 = 20150907000000l;
+		long t2 = 20150913235900l;
 		long difference1 = time - t1;
 		long difference2 = time - t2;
 		if (difference1 > 0 && difference2 < 0)
@@ -83,37 +83,40 @@ public class ShoppingCartUtil
 				{
 					Integer brandId = item.getProductSku().getProduct().getBrandId();
 					int quantity = item.getQuantity();
-					if (brandId == 15)
+					if (brandId == 39)
 					{
 						mipennaPrice += (item.getProductSku().getPrice().doubleValue()) * quantity;
 					}
-					else if (brandId == 37)
+				/*	else if (brandId == 37)
 					{
 						lapeeweePrice += (item.getProductSku().getPrice().doubleValue()) * quantity;
 					}
 					else if (brandId == 44)
 					{
 						vcharmPrice += (item.getProductSku().getPrice().doubleValue()) * quantity;
-					}
+					}*/
 				}
 				catch (Exception e)
 				{
 					e.printStackTrace();
 				}
 			}
-			if (mipennaPrice >= 500 && mipennaPrice < 800)
+			
+			if (mipennaPrice >= 300 )
+			{
+				//每满300减50
+				result +=getResidue(mipennaPrice)*50;
+			}
+			
+			/*else if (mipennaPrice >= 600 && mipennaPrice < 900)
 			{
 				result += 100;
 			}
-			else if (mipennaPrice >= 800 && mipennaPrice < 1000)
+			else if (mipennaPrice >= 900)
 			{
-				result += 200;
-			}
-			else if (mipennaPrice >= 1000)
-			{
-				result += 300;
-			}
-			if (lapeeweePrice >= 900 && lapeeweePrice < 1200)
+				result += 150;
+			}*/
+			/*if (lapeeweePrice >= 900 && lapeeweePrice < 1200)
 			{
 				result += 100;
 			}
@@ -140,9 +143,22 @@ public class ShoppingCartUtil
 			else if (vcharmPrice >= 800)
 			{
 				result += 300;
-			}
+			}*/
 		}
 		return result;
+	}
+	
+	/**
+	 * 功能:每满300减50
+	 * <p>作者 杨荣忠 2015-9-7 下午04:01:01
+	 * @param mipennaPrice
+	 * @return
+	 */
+	public static double getResidue(Double mipennaPrice){
+		double value =0;
+		//每满300减50
+		value = (mipennaPrice-(mipennaPrice%300.0))/300.0;		
+		return value;
 	}
 
 	// product.productName

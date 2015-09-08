@@ -186,13 +186,8 @@ public class QueryHelper {
 	{
 		Store store=ConfigUtil.getInstance().getStore();
 		// 根据request分析当前页数.
-	//	SolrQuery query = new SolrQuery(request.getParameter("q"));
-		
-		SolrQuery query = new SolrQuery("+ (productName:"+request.getParameter("q")+")");
-		
-	//	query.add("qt", store.getSearchProductDisMaxRequestHandler());
-	//	query.add("qt", store.getSearchProductDisMaxRequestHandler());
-		
+		SolrQuery query = new SolrQuery(request.getParameter("q"));
+		query.add("qt", store.getSearchProductDisMaxRequestHandler());
 		searchProductCondition(query, request);
 		//增加对目录的层面统计
 		/*query.setFacet(true);
@@ -210,6 +205,7 @@ public class QueryHelper {
 		appendPagingParam(query, pageNo, pageSize);
 		
 		return query;
+		
 	}
 	
 	/**
