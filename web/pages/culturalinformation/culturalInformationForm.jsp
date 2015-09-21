@@ -231,7 +231,7 @@
 			<td class="FieldLabel">
 			</td>
 			<td>
-				编辑发布文章如果有视屏，支持rm,rmv,flash,mov,swf,wmv格式
+				编辑发布文章如果有视屏，支持rm,rmv,flash,mov,swf,wmv格式;文章内容子标题自定义颜色建议：秀场("#fbbd6a"),访谈("#a6d5ab"),行业动态("#abdce3"),线下主题活动("#fb6e67")
 			</td>
 		</tr>
 		<tr>

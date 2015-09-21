@@ -155,7 +155,6 @@
 			alert("<fmt:message key="system.timeout"/>");
 			window.location=__ctxPath+"/";
 		}
-
 		resetForm();
 	</script>
 </form>

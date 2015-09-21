@@ -194,7 +194,7 @@
 	    </tr>
 	    <tr>
 			<td class="FieldLabel">
-				<StoreAdmin:label key="brand.sortOrder" />
+				<StoreAdmin:label key="brand.sortOrder" />(越小越靠前)
 			</td>
 			<td>
 				<input class="Field400" type="text" name="sortOrder" id="sortOrder" value="${empty brand.sortOrder ? 10 : brand.sortOrder}" /> 

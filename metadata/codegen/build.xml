@@ -2,7 +2,7 @@
 <!-- =============================================================== -->
 <!-- Ant build file to run codegen                                   -->
 <!-- =============================================================== -->
-<project name="codegen" default="gen-specified" basedir=".">
+<project name="storeAdmin" default="gen-specified" basedir=".">
 	
 	<!--不再在properties文件里面配置framework等，而基本上也没有什么参数需要配置的-->
 	<!--<loadproperties srcFile="${basedir}/conf/generator.properties" />-->
