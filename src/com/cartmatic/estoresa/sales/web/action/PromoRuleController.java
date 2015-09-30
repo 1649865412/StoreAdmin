@@ -707,6 +707,7 @@ public class PromoRuleController extends GenericController<PromoRule>
 		request.setAttribute("entityClassName", entityClassName);
 		return entity;
 	}
+	
 
 	private void refreshPruleManager() {
 		// 马上刷新 后台

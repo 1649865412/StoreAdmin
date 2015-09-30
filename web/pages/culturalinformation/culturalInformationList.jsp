@@ -26,14 +26,14 @@
 						<search:input attrPath="s.releaseTime" attrNameKey="culturalInformation.releaseTime" datatype="String"
 							operator="LIKE" classes="form-inputbox" />
 							
-					<!--类型（0：秀场）（1：访谈）（3：行业动态）（4：线下主题活动）（5：月刊）-->
+					<!--类型（0：秀场）（1：访谈）（3：搭配）（4：线下主题活动）（5：月刊）-->
 				<div class="title">类型</div>
 					<div>
 						<select name="COL@s.type@Integer@EQ" id="type" style="width:150px" >
 							<option value="">所有</option>
 							<option value="0" <c:if test="${param['COL@s.type@Integer@EQ'] ==0}">selected="selected" </c:if>>秀场</option>
 							<option value="1" <c:if test="${param['COL@s.type@Integer@EQ'] ==1}">selected="selected" </c:if>>访谈</option>
-							<option value="2" <c:if test="${param['COL@s.type@Integer@EQ'] ==2}">selected="selected" </c:if>>行业动态</option>
+							<option value="2" <c:if test="${param['COL@s.type@Integer@EQ'] ==2}">selected="selected" </c:if>>搭配</option>
 							<option value="3" <c:if test="${param['COL@s.type@Integer@EQ'] ==3}">selected="selected" </c:if>>线下主题活动</option>
 							<option value="4" <c:if test="${param['COL@s.type@Integer@EQ'] ==4}">selected="selected" </c:if>>月刊</option>
 						</select>
@@ -104,7 +104,7 @@
 				<c:choose >
 				  <c:when test="${culturalInformationItem.type==0}">秀场</c:when>
 				  <c:when test="${culturalInformationItem.type==1}">访谈</c:when>
-				  <c:when test="${culturalInformationItem.type==2}">行业动态</c:when>
+				  <c:when test="${culturalInformationItem.type==2}">搭配</c:when>
 				  <c:when test="${culturalInformationItem.type==3}">线下主题活动</c:when>
 				  <c:when test="${culturalInformationItem.type==4}">月刊</c:when>
 				  <c:otherwise>   

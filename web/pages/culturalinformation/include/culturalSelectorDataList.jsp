@@ -19,7 +19,7 @@
 				<c:choose >
 				  <c:when test="${supplierItem.type==0}">秀场</c:when>
 				  <c:when test="${supplierItem.type==1}">访谈</c:when>
-				  <c:when test="${supplierItem.type==2}">行业动态</c:when>
+				  <c:when test="${supplierItem.type==2}">搭配</c:when>
 				  <c:when test="${supplierItem.type==3}">线下主题活动</c:when>
 				  <c:when test="${supplierItem.type==4}">月刊</c:when>
 				  <c:otherwise>   

@@ -596,6 +596,7 @@ public abstract class GenericController<T> extends BaseController {
 		return search(request, response);
 	}
 
+	
 	/**
 	 * 保存单个记录的数据，并可以处理应用级的错误信息。在formBackingObject读数据的时候已经加锁，所以可以保证事务和版本控制。子类需要实现onSave。
 	 * 

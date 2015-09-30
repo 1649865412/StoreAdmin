@@ -29,7 +29,7 @@ CREATE TABLE `cultural_information` (
   `metaKeywork` varchar(20) DEFAULT NULL COMMENT '索引关键字(如有多个，以逗号分隔)',
   `readNumber` int(10) DEFAULT NULL COMMENT '阅读数',
   `writer` varchar(20) DEFAULT NULL COMMENT '作者',
-  `type` int(10) DEFAULT NULL COMMENT '类型（0：秀场）（1：访谈）（3：行业动态）（4：线下主题活动）（5：月刊）',
+  `type` int(10) DEFAULT NULL COMMENT '类型（0：秀场）（1：访谈）（3：搭配）（4：线下主题活动）（5：月刊）',
   `logoImg` varchar(128) DEFAULT NULL COMMENT 'logo',
   `imgOne` varchar(128) DEFAULT NULL COMMENT '大图一',
   `imgTwo` varchar(128) DEFAULT NULL COMMENT '大图二',
