@@ -67,23 +67,23 @@
 					onchange="getMonthShow()">
 					<option value="0"
 						<c:if test="${culturalInformation.type ==0}">selected="selected" </c:if>>
-						秀场
+						时尚前沿
 					</option>
 					<option value="1"
 						<c:if test="${culturalInformation.type ==1}">selected="selected" </c:if>>
-						访谈
+						思维对话
 					</option>
 					<option value="2"
 						<c:if test="${culturalInformation.type ==2}">selected="selected" </c:if>>
-						搭配
+						聚焦四方
 					</option>
 					<option value="3"
 						<c:if test="${culturalInformation.type ==3}">selected="selected" </c:if>>
-						线下主题活动
+						线下活动
 					</option>
 					<option value="4"
 						<c:if test="${culturalInformation.type ==4}">selected="selected" </c:if>>
-						月刊
+						四方志
 					</option>
 				</select>
 			</td>
@@ -231,7 +231,7 @@
 			<td class="FieldLabel">
 			</td>
 			<td>
-				编辑发布文章如果有视屏，支持rm,rmv,flash,mov,swf,wmv格式;文章内容子标题自定义颜色建议：秀场("#fbbd6a"),访谈("#a6d5ab"),搭配("#abdce3"),线下主题活动("#fb6e67")
+				编辑发布文章如果有视屏，支持rm,rmv,flash,mov,swf,wmv格式;文章内容子标题自定义颜色建议：时尚前沿("#fbbd6a"),思维对话("#a6d5ab"),聚焦四方("#abdce3"),线下活动("#fb6e67")
 			</td>
 		</tr>
 		<tr>

@@ -5,7 +5,6 @@
 		<script type="text/javascript" src="../scripts/cartmatic/sales/promoRuleForm.js"></script>
 		<%@ include file="./promoRuleFormRuleLoad.jsp"%>
 		<div class="inbox">
-		ttttttt
 		<c:if test="${promoRule.promoType == 'shoppingcartPromotion' || promoRule.promoType == 'couponPromotion' }">
 		<div class="inbox-sub"><%@ include file="./cartRuleFormEligibilitys.jsp"%></div>
 		<div class="inbox-sub"><%@ include file="./cartRuleFormConditions.jsp"%></div>

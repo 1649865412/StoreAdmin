@@ -15,7 +15,7 @@ public class ApplicationException extends RuntimeException {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= -14561090463768497L;
+	private static final long	serialVersionUID	= -14561040463768497L;
 
 	private Object[]			args;
 

@@ -11,7 +11,7 @@
 	<tr>
 		<td>
 			<textarea id="productInfoationDescription" rows="4" cols="80"
-				style="width: 99.5%" name="productInfoationDescription">${product.productDescription.productInfoationDescription}999999</textarea>
+				style="width: 99.5%" name="productInfoationDescription">${product.productDescription.productInfoationDescription}</textarea>
 		</td>
 	</tr>
 </table>

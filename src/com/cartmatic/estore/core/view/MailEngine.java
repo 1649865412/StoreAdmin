@@ -33,6 +33,8 @@ import com.cartmatic.estore.common.util.DateConverter;
 import com.cartmatic.estore.core.util.VelocityUtil;
 import com.cartmatic.estore.system.model.EmailQueue;
 import com.cartmatic.estore.system.service.SystemQueueManager;
+import com.cartmatic.extend.mailhelp.util.EmailDemo;
+import com.cartmatic.extend.mailhelp.util.Mail;
 
 /**
  * 提供邮件处理的统一处理，基于Velocity和邮件队列。支持Html、附件、多个收件人等。
@@ -119,7 +121,6 @@ public class MailEngine {
 				EmailQueue email = new EmailQueue();
 				email.setMimeMessage(baos.toByteArray());
 				email.setMailTos(subMailTos.toString());
-				
 				SystemQueue queue = new SystemQueue();
 				queue.setTitle(mailSubject);
 				queue.setQueueType(SystemQueue.TYPE_EMAIL);
@@ -157,12 +158,26 @@ public class MailEngine {
 
 		MimeMessage message = composeEmail(finalFrom, tos, cc, replyTo,
 				subject, htmlMsgContent, attachedFileName, attachedFile, inline);
+		
+		Mail mail;
+		try
+		{
+			mail = EmailDemo.toEail( finalFrom, tos[0], subject,  htmlMsgContent);
+			mail.send();
+		}
+		catch (MessagingException e1)
+		{
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		//开发模式是直接打印邮件
 		if(ConfigUtil.getInstance().getIsDevMode())
 		{
 			System.out.println(subject);
 			System.out.println(htmlMsgContent);
 		}
+		
+		
 		// 根据配置控制是否使用队列，这样对使用本地服务器的情况会更快
 		if (queueDisabled) {
 			try {
@@ -209,7 +224,6 @@ public class MailEngine {
 			helper.setSubject(subject);
 			// use the true flag to indicate the text included is HTML
 			helper.setText(htmlMsgContent, true);
-
 			// add attachments
 			if (attachedFile != null) {
 				if (inline) {
@@ -238,6 +252,7 @@ public class MailEngine {
 			message.setRecipients(Message.RecipientType.TO, new InternetAddress[]{(InternetAddress)to});
 			mailSender.send(message);
 		}
+		
 	}
 
 	/**

@@ -11,12 +11,12 @@
 
 <div><a onclick="fnRemoveAll${param.id}();">移除所有已选择</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="fnConfirmSelectedSupplier${param.id}();">确认</a></div>
 </c:if>
-<table width="98%" border="0" cellspacing="0" cellpadding="0" align="center" style="font-size: 12px;">
+<table width="98%" borde                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           r="0" cellspacing="0" cellpadding="0" align="center" style="font-size: 12px;">
 	<tr>
 		<td valign="top" width="25%">
 			<div class="content" id="supplierSelectorSearch_${param.id}">
 				<div class="title">
-					标题查询
+			 		标题查询
 				</div>
 				<input name="COL@s.title@String@LIKE" type="text" style="width: 200px" />
 				<div class="blank10"></div>
@@ -30,11 +30,12 @@
 				</div>
 		<select name="COL@s.type@Integer@EQL" id="type" style="width:150px"  onchange="getMonthShow()">
 		    <option value="" >所有</option>
-			<option value="0" <c:if test="${param['COL@s.type@Integer@EQL'] ==0}">selected="selected" </c:if>>秀场</option>
-			<option value="1" <c:if test="${param['COL@s.type@Integer@EQL']  ==1}">selected="selected" </c:if>>访谈</option>
-			<option value="2" <c:if test="${param['COL@s.type@Integer@EQL']  ==2}">selected="selected" </c:if>>搭配</option>
-			<option value="3" <c:if test="${param['COL@s.type@Integer@EQL']  ==3}">selected="selected" </c:if>>线下主题活动</option>
-			<option value="4" <c:if test="${param['COL@s.type@Integer@EQL']  ==4}">selected="selected" </c:if>>月刊</option>
+			<option value="0" <c:if test="${param['COL@s.type@Integer@EQL'] ==0}">selected="selected" </c:if>>时尚前沿</option>
+			<option value="1" <c:if test="${param['COL@s.type@Integer@EQL']  ==1}">selected="selected" </c:if>>思维对话</option>
+			<option value="2" <c:if test="${param['COL@s.type@Integer@EQL']  ==2}">selected="selected" </c:if>>聚焦四方
+			</option>
+			<option value="3" <c:if test="${param['COL@s.type@Integer@EQL']  ==3}">selected="selected" </c:if>>线下活动</option>
+			<option value="4" <c:if test="${param['COL@s.type@Integer@EQL']  ==4}">selected="selected" </c:if>>四方志</option>
 		</select>
 				<div class="blank10"></div>
 				<input type="button" id="SearchButton" name="SearchButton" onclick="fn${param.id}GetData();" value="<fmt:message key="button.search"/>" class="btn-search"/>

@@ -18,7 +18,7 @@ public class GiftCertificate extends GiftCertificateTbl
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -109720087278889035L;
+	private static final long serialVersionUID = -104720087278889035L;
 	public static final Short STATUS_ACTIVE = 1;// 礼券激活
 	public static final Short STATUS_UNACTIVE = 2;// 非激活
 	public static final Short STATUS_UNDEAL = 0;// 未成交，刚下订单，但未支付
