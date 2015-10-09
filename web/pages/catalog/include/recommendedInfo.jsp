@@ -1,4 +1,5 @@
 <div id="recommendedInfo" style="display:none;min-height: 520px;">
+
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-content">
 		<tr>
 			<th>

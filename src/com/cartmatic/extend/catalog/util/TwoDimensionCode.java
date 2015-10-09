@@ -214,4 +214,8 @@ public class TwoDimensionCode {
 		System.out.println("========decoder success!!!");
 	}
 
+	public void getDimensionCode(String imgPath,String encoderContent){
+		TwoDimensionCode handler = new TwoDimensionCode();
+		handler.encoderQRCode(encoderContent, imgPath, "png");
+	}
 }

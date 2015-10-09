@@ -1,12 +1,10 @@
 package com.cartmatic.estore.catalog.dao.impl;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import com.cartmatic.estore.catalog.dao.BrandDao;
 import com.cartmatic.estore.common.model.catalog.Brand;
-import com.cartmatic.estore.common.model.sekillproduct.SekillProduct;
 import com.cartmatic.estore.core.dao.impl.HibernateGenericDaoImpl;
 
 /**
@@ -22,10 +20,14 @@ public class BrandDaoImpl extends HibernateGenericDaoImpl<Brand> implements Bran
 	 * <p>作者 杨荣忠 2015-8-12 下午12:08:04
 	 * @return
 	 */
-	public List<Brand> getSearch(String tags ){
-		 Map<String, Object> paramValue =new HashMap();
-		 paramValue.put("tags", tags);
-		 List<Brand> result = getObjectList(SqlSearch,new Brand(),paramValue);
+	public List<Brand> getSearch(String tag ){
+	//	 Map<String, Object> paramValue =new HashMap();
+	//	 paramValue.put("tags", tags);
+		// List<Brand> result = getObjectList(SqlSearch,new Brand(),paramValue);
+		List<Brand> result =new ArrayList();
+		if(tag !=null){
+			 result = findByHql("from Brand b where b.brandName like ?", "%"+tag+"%");	
+		}
 		 return result;
 	}
 }

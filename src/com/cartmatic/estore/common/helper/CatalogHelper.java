@@ -323,6 +323,7 @@ public class CatalogHelper {
 	 */
 	public void setPriceViewType(ProductSku productSku){
 		Short priceViewType=null;
+		try{
 		if(productSku.getPrice().compareTo(BigDecimal.ZERO)>0&&productSku.getSalePrice()!=null){
 			priceViewType=2;
 		}else if(productSku.getPrice().compareTo(BigDecimal.ZERO)>0&&productSku.getDiscountPrice().compareTo(productSku.getPrice())!=0){
@@ -331,6 +332,12 @@ public class CatalogHelper {
 			priceViewType= 1;
 		}else{
 			priceViewType= 4;
+		}
+		}
+		catch(Exception e){
+		//	System.out.print("wrong");
+		//	priceViewType= 4;
+		//	e.printStackTrace();
 		}
 		productSku.setPriceViewType(priceViewType);
 	}

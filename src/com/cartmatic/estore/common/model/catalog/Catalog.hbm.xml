@@ -36,6 +36,11 @@
 		<property name="weekOnNewContent" type="java.lang.String"
 			update="true" insert="true" access="property" column="weekOnNewContent"
 			length="255" not-null="true" unique="false" />
+			
+		<property name="weekOnNewUrl" type="java.lang.String"
+			update="true" insert="true" access="property" column="weekOnNewUrl"
+			length="255" not-null="true" unique="false" />
+			
 		<property name="description" type="java.lang.String" update="true"
 			insert="true" access="property" column="description" length="65535"
 			not-null="false" unique="false" />

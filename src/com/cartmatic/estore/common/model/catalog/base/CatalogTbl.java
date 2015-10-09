@@ -33,8 +33,18 @@ public class CatalogTbl extends BaseObject implements Serializable {
 	protected String discountAreaContent;
 	protected String weekOnNewTitle;
 	protected String weekOnNewContent;
+	protected String weekOnNewUrl;
 	
 	
+	
+	public String getWeekOnNewUrl() {
+		return weekOnNewUrl;
+	}
+
+	public void setWeekOnNewUrl(String weekOnNewUrl) {
+		this.weekOnNewUrl = weekOnNewUrl;
+	}
+
 	public Integer getBrandId() {
 		return brandId;
 	}

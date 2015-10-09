@@ -70,8 +70,8 @@ public class ShoppingCartUtil
 		Date date = new Date();
 		DateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 		long time = Long.parseLong(format.format(date));
-		long t1 = 20150907000000l;
-		long t2 = 20150913235900l;
+		long t1 = 20151010000000l;
+		long t2 = 20151120235900l;
 		long difference1 = time - t1;
 		long difference2 = time - t2;
 		if (difference1 > 0 && difference2 < 0)
@@ -83,10 +83,10 @@ public class ShoppingCartUtil
 				{
 					Integer brandId = item.getProductSku().getProduct().getBrandId();
 					int quantity = item.getQuantity();
-					if (brandId == 39)
-					{
+					//if (brandId == 39)
+					///{
 						mipennaPrice += (item.getProductSku().getPrice().doubleValue()) * quantity;
-					}
+					//}
 				/*	else if (brandId == 37)
 					{
 						lapeeweePrice += (item.getProductSku().getPrice().doubleValue()) * quantity;
@@ -155,6 +155,19 @@ public class ShoppingCartUtil
 	 * @return
 	 */
 	public static double getResidue(Double mipennaPrice){
+		double value =0;
+		//每满300减50
+		value = (mipennaPrice-(mipennaPrice%300.0))/300.0;		
+		return value;
+	}
+	
+	/**
+	 * 功能:满600减100，1000减200.
+	 * <p>作者 杨荣忠 2015-9-7 下午04:01:01
+	 * @param mipennaPrice
+	 * @return
+	 */
+	public static double getResidue2(Double mipennaPrice){
 		double value =0;
 		//每满300减50
 		value = (mipennaPrice-(mipennaPrice%300.0))/300.0;		

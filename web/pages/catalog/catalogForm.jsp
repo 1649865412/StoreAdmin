@@ -68,7 +68,7 @@
 				</tr>
 					<tr>
 			<td class="FieldLabel">
-				首页每周主打设计师
+				商场首页每周主打设计师
 			</td>
 			<td>
 				<select class="Field400" name="brandId" id="brandId">
@@ -83,7 +83,7 @@
         </tr>
 				<tr>
 					<td class="FieldLabel">
-						首页每周上新标题内容：
+						商场首页每周上新标题内容：
 					</td>
 					<td>
 						<input type="text" value="${catalog.weekOnNewTitle}" name="weekOnNewTitle" id="weekOnNewTitle">
@@ -91,7 +91,7 @@
 				</tr>
 				<tr>
 					<td class="FieldLabel">
-						首页每周上新内容：
+						商场首页每周上新内容：
 					</td>
 					<td>
 						<textarea id="weekOnNewContent" name="weekOnNewContent" style="width: 90%; height: 100px">${catalog.weekOnNewContent}</textarea>
@@ -99,7 +99,7 @@
 				</tr>
 				<tr>
 					<td class="FieldLabel">
-						首页折扣专区标题：
+						商场首页折扣专区标题：
 					</td>
 					<td>
 					    <input type="text" value="${catalog.discountAreaTitle}" name="discountAreaTitle">
@@ -107,13 +107,13 @@
 				</tr>
 				<tr>
 					<td class="FieldLabel">
-						首页折扣专区内容：
+						商场首页折扣专区内容：
 					</td>
 					<td>
 						<textarea id="discountAreaContent" name="discountAreaContent" style="width: 90%; height: 100px">${catalog.discountAreaContent}</textarea>
 					</td>
 				</tr>
-				
+				<app:input property="weekOnNewUrl" />
 		  	</table>
 	</form:form>
 	<%--推荐页面：sales/recommendedTypeForCatalog--%>
