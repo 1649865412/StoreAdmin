@@ -32,9 +32,9 @@
 		    <option value="" >所有</option>
 			<option value="0" <c:if test="${param['COL@s.type@Integer@EQL'] ==0}">selected="selected" </c:if>>时尚前沿</option>
 			<option value="1" <c:if test="${param['COL@s.type@Integer@EQL']  ==1}">selected="selected" </c:if>>思维对话</option>
-			<option value="2" <c:if test="${param['COL@s.type@Integer@EQL']  ==2}">selected="selected" </c:if>>聚焦四方
+			<option value="2" <c:if test="${param['COL@s.type@Integer@EQL']  ==2}">selected="selected" </c:if>>品牌播报
 			</option>
-			<option value="3" <c:if test="${param['COL@s.type@Integer@EQL']  ==3}">selected="selected" </c:if>>线下活动</option>
+			<option value="3" <c:if test="${param['COL@s.type@Integer@EQL']  ==3}">selected="selected" </c:if>>聚焦四方</option>
 			<option value="4" <c:if test="${param['COL@s.type@Integer@EQL']  ==4}">selected="selected" </c:if>>四方志</option>
 		</select>
 				<div class="blank10"></div>

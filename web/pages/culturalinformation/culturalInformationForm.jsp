@@ -75,11 +75,11 @@
 					</option>
 					<option value="2"
 						<c:if test="${culturalInformation.type ==2}">selected="selected" </c:if>>
-						聚焦四方
+						品牌播报
 					</option>
 					<option value="3"
 						<c:if test="${culturalInformation.type ==3}">selected="selected" </c:if>>
-						线下活动
+						聚焦四方
 					</option>
 					<option value="4"
 						<c:if test="${culturalInformation.type ==4}">selected="selected" </c:if>>

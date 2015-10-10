@@ -19,8 +19,8 @@
 				<c:choose >
 				  <c:when test="${supplierItem.type==0}">时尚前沿</c:when>
 				  <c:when test="${supplierItem.type==1}">思维对话</c:when>
-				  <c:when test="${supplierItem.type==2}">聚焦四方</c:when>
-				  <c:when test="${supplierItem.type==3}">线下活动</c:when>
+				  <c:when test="${supplierItem.type==2}">品牌播报</c:when>
+				  <c:when test="${supplierItem.type==3}">聚焦四方</c:when>
 				  <c:when test="${supplierItem.type==4}">四方志</c:when>
 				  <c:otherwise>   
    					 ${param.username} is employee.  

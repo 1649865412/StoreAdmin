@@ -33,8 +33,8 @@
 							<option value="0" <c:if test="${param['COL@s.type@Integer@EQ'] ==0}">selected="selected" </c:if>>时尚前沿</option>
 							<option value="1" <c:if test="${param['COL@s.type@Integer@EQ'] ==1}">selected="selected" </c:if>>思维对话
 </option>
-							<option value="2" <c:if test="${param['COL@s.type@Integer@EQ'] ==2}">selected="selected" </c:if>>聚焦四方</option>
-							<option value="3" <c:if test="${param['COL@s.type@Integer@EQ'] ==3}">selected="selected" </c:if>>线下活动</option>
+							<option value="2" <c:if test="${param['COL@s.type@Integer@EQ'] ==2}">selected="selected" </c:if>>品牌播报</option>
+							<option value="3" <c:if test="${param['COL@s.type@Integer@EQ'] ==3}">selected="selected" </c:if>>聚焦四方</option>
 							<option value="4" <c:if test="${param['COL@s.type@Integer@EQ'] ==4}">selected="selected" </c:if>>四方志</option>
 						</select>
 					</div>
@@ -104,8 +104,8 @@
 				<c:choose >
 				  <c:when test="${culturalInformationItem.type==0}">时尚前沿</c:when>
 				  <c:when test="${culturalInformationItem.type==1}">思维对话</c:when>
-				  <c:when test="${culturalInformationItem.type==2}">聚焦四方</c:when>
-				  <c:when test="${culturalInformationItem.type==3}">线下活动</c:when>
+				  <c:when test="${culturalInformationItem.type==2}">品牌播报</c:when>
+				  <c:when test="${culturalInformationItem.type==3}">聚焦四方</c:when>
 				  <c:when test="${culturalInformationItem.type==4}">四方志</c:when>
 				  <c:otherwise>   
    					 ${param.username} is employee.  
@@ -114,12 +114,12 @@
 			</display:column>
 									
 			<display:column property="metaKeywork" sortable="true" headerClass="data-table-title"  title="搜索关键词"
-        		decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" titleKey="culturalInformation.metaKeywork"/>
+        		decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" titleKey="culturalInformation.metaKeywork"/><%--
         		
 		    <display:column property="sortOrder" sortable="true" headerClass="data-table-title"  title="排序(越大越前)"
         		decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" titleKey="culturalInformation.sortOrder"/>
         		
-		 	 <display:column sortable="true" title="发布状态"
+		 	 --%><display:column sortable="true" title="发布状态"
 				decorator="com.cartmatic.estore.core.decorator.TblColumnDecorator" titleKey="culturalInformation.state">
 				<c:choose >
 				  <c:when test="${culturalInformationItem.state==0}">正常</c:when>
