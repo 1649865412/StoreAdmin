@@ -15,9 +15,9 @@ public class CulturalInformationDaoImpl extends HibernateGenericDaoImpl<Cultural
 		List<CulturalInformation> result =new ArrayList();
 		try{
 			if(type != null){
-				result =findByHql("from CulturalInformation where type=? order by createTime asc", Integer.parseInt(type));
+				result =findByHql("from CulturalInformation c where c.type=? and c.state=0 order by c.releaseTime desc", Integer.parseInt(type));
 				}else{
-					result =findByHql("from CulturalInformation where state=0 order by createTime asc");
+					result =findByHql("from CulturalInformation c where c.state=0 order by c.releaseTime desc");
 				}
 		}catch(Exception e ){
 			
