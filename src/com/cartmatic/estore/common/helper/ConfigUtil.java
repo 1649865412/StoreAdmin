@@ -134,7 +134,7 @@ public class ConfigUtil {
 			store.setEmail(this.getConfig(store.getCode()+"_StoreEmail"));
 			store.setPhone(this.getConfig(store.getCode()+"_StorePhone"));
 			store.setEmailSender(this.getConfig(store.getCode()+"_StoreEmailSender", getDefaultSystemEmail()));
-			store.setCategoryListPerSize(this.getConfig(store.getCode()+"_StoreCategoryListPerSize",20));
+			store.setCategoryListPerSize(this.getConfig(store.getCode()+"_StoreCategoryListPerSize",5));
 			store.setSearchAttribute(this.getConfigAsMap(store.getCode()+"_StoreSearchAttribute", ""));
 			store.setSearchSkuOption(this.getConfigAsMap(store.getCode()+"_StoreSearchSkuOption", ""));
 			store.setMediaUrlPath(this.getConfig(store.getCode()+"_StoreMediaUrlPath", "/media/"));

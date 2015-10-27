@@ -250,7 +250,7 @@
 </form:form>
 
 	
-<cartmatic:swf_upload btnPlaceHolderId="url_btnPlaceHolderId" fileInputId="url" uploadFileTypes="*.jpg;*.gif;" uploadCategory="a_and_d" button_text="上传图片"></cartmatic:swf_upload>
+<cartmatic:swf_upload fileSizeLimit="10MB"  btnPlaceHolderId="url_btnPlaceHolderId" fileInputId="url" uploadFileTypes="*.jpg;*.gif;*.png" uploadCategory="a_and_d" button_text="上传图片"></cartmatic:swf_upload>
 <cartmatic:swf_upload fileSizeLimit="10MB"  btnPlaceHolderId="url_btnPlaceHolderId" fileInputId="mediaPathMpFour" uploadFileTypes="*.mp4" uploadCategory="a_and_d" button_text="视屏(.mp4格式)"></cartmatic:swf_upload>
 <cartmatic:swf_upload fileSizeLimit="10MB"  btnPlaceHolderId="url_btnPlaceHolderId" fileInputId="mediaPathOgv" uploadFileTypes="*.ogv" uploadCategory="a_and_d" button_text="视屏(.ogv格式)"></cartmatic:swf_upload>
 <cartmatic:swf_upload fileSizeLimit="10MB"  btnPlaceHolderId="url_btnPlaceHolderId" fileInputId="mediaPathMpWebm" uploadFileTypes="*.webm" uploadCategory="a_and_d" button_text="视屏(.webm格式)"></cartmatic:swf_upload>

@@ -309,7 +309,6 @@ public class BrandTbl extends BaseObject implements Serializable {
 	}	
 
 	/**
-	 * @see java.lang.Object#equals(Object)
 	 */
 	public boolean equals(Object object) {
 		if (!(object instanceof BrandTbl)) {
